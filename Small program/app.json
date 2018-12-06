@@ -1,0 +1,37 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/Release/Release",
+    "pages/news/news",
+    "pages/me/me"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list":[
+      { 
+        "selectedIconPath":"images/home2.png",
+        "iconPath":"images/home.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      }, 
+      { 
+       "selectedIconPath":"images/l2.png",
+        "iconPath":"images/l.png",
+        "pagePath": "pages/logs/logs",
+        "text": "机构"
+      }, 
+      {
+       "selectedIconPath":"images/r2.png",
+        "iconPath":"images/r.png",
+        "pagePath": "pages/me/me",
+        "text": "我"
+      }
+    ]
+  }
+}

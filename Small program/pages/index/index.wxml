@@ -1,0 +1,109 @@
+<!--index.wxml-->
+<view class="container">
+	<view id="container_home">			
+		<!-- 轮播图 -->
+		<view class="banner">
+			<!-- 搜索 -->
+			<view class=" banner_sousuo">
+			  <input class="binner_input" placeholder="搜索" auto-focus/>
+			</view>
+			<!-- 轮播 -->
+			<view class="banner_image">
+				<swiper class="banner" indicator-color="{{indicator}}" indicator-active-color="{{indicatorColor}}" circular="true" indicator-dots="true" autoplay="true" interval="3000">
+				    <swiper-item wx:for="{{bannerImages}}" wx:key="index">
+				      <image src="{{item.images.s}}" class="slide-image" class="slide-image"></image>
+				    </swiper-item>
+				</swiper>
+			</view>
+		</view>
+		<!-- 认人..活动展示 -->
+		<view class="one_classify brbote7">
+			<view class="box">
+				<view class="column">
+				    <view class="item" wx:for="{{genreImages}}" wx:key="index">
+				    	<view class="box-img">
+				    		<image wx:if="{{item.id==1}}" class="ico5" src="{{one1}}" alt=""></image>
+				    		<image wx:if="{{item.id==2}}" class="ico5" src="{{one2}}" alt=""></image>
+				    		<image wx:if="{{item.id==3}}" class="ico5" src="{{one3}}" alt=""></image>
+				    		<image wx:if="{{item.id==4}}" class="ico5" src="{{one4}}" alt=""></image>
+				    		<image wx:if="{{item.id==5}}" class="ico5" src="{{one5}}" alt=""></image>
+				    	</view>
+				    	<text>{{item.name}}</text>
+					</view>
+			    </view>
+		    </view>
+		</view>
+		<!-- 附近机构 -->
+		<view class="nearby clearFix brbote7">
+			<view class="nearby-top clearFix height40">
+				<view class="f-left f333 fontSize30">附近机构</view>
+				<text class="f-right f999">全部></text>
+			</view>
+			<view class="nearby-center clearFix height80 brbott-tae7e7e7">
+				<view class="nearby-item clearFix paddTa20" wx:for="{{listItem}}" wx:key="index">
+					<view class="f-left bo-f000ff paddLe24 wihe40">
+						 <image wx:if="{{item.avatar.length>0}}" src="{{items.avatar.s}}" ></image>
+						 <image wx:else src="{{loge}}" style="border:1rpx solid #ddd;"></image>
+					</view>
+					<view class="f-right wi82 brbott-boe7e7e7 paddBo20 ">
+						<view class="fontSize30 .ma-bo7">{{item.name}}</view>
+						<view class="f999">发布数{{item.publish}}<i class="dian"></i>5已找到{{item.founded}}2<i class="dian"></i>爱心值{{item.love}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 附近关注最新 -->
+		<view class="list_Four">
+			<view class="list-top brbott-boe7e7e7">
+				<view class="box">
+				<view class="column">
+				    <view class="item bc_green">附近</view>
+			     	<view class="item bc_green">关注</view>
+			      	<view class="item bc_green">最新</view>
+			    </view>
+		   		 </view>
+			</view>
+			<view class="list-center">
+				<view class="list_item">
+					<view class="nearby-top">
+						<view class="clearFix height40">
+							<!-- <view class="SixImg-img"><image src="{{one4}}" alt=""></image></view> -->
+							<view class="f-left f333 fontSize30">认领其他</view>
+							<text class="f-right f999">1天前</text>
+						</view>
+						<text class>咖啡馆和健康地块规划将对方考虑给家里反馈根据上对方了解对方了更划算将地方官发动机更换
+						</text>
+						<view class="list-imgbox">
+							<!-- 图片为6张 -->
+							<view class="SixImg clearFix">
+							    <view class="SixImg-img"><image src="{{one1}}" alt=""></image></view>
+						     	<view class="SixImg-img"><image src="{{one2}}" alt=""></image></view>
+						      	<view class="SixImg-img"><image src="{{one3}}" alt=""></image></view>
+						      	<view class="SixImg-img"><image src="{{one4}}" alt=""></image></view>
+						    </view>
+						    <!-- 图片为一张 -->
+						    <!-- <view class="SixImg clearFix">
+							    <view class="OneImg-img">
+							    	<image src="{{one1}}" alt=""></image>
+							    </view>
+						    </view> -->
+		   			 	</view>
+		   			 	<view class="nearby-bottom paddBo20 paddTa20">
+		   			 		<view class="clearFix height40">
+								<view class="f-left f333 fontSize30 wi70">
+									<view  class="wihe40 f-left paddRi14"><image src="{{loge}}" alt=""></image></view>
+									<view class="f-left" style="line-height: 40px">榆林数据等放寒假</view>
+								</view>
+								<view class="f-right wi23 f999 clearFix">
+									<view class="wihe20 f-left paddRi9"><image src="{{one5}}" alt=""></image></view>
+									<view class="f-left length">55</view>
+									<view class="wihe30 f-right"><image src="{{loge}}" alt=""></image></view>
+								</view>
+							</view>
+		   			 	</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
