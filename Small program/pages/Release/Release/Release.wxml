@@ -1,0 +1,43 @@
+<!--logs.wxml-->
+<view class="container log-list">
+	<view></view>
+	<view id="Release">
+		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7">
+			<view class="box">
+				<view class="column">
+				    <view class="item">
+				    	<select name="机构类型" id="">
+				    		<option value="">机构类型</option>
+				    	</select>
+					</view>
+			     	<view class="item">
+						<select name="区域" id="">
+				    		<option value="">区域</option>
+				    	</select>
+			     	</view>
+			      	<view class="item">
+			      		<select name="排序" id="">
+				    		<option value="">排序</option>
+				    	</select>
+			      	</view>
+			    </view>
+	   		 </view>
+   		 </view>
+   		 <view class="Release-center">
+   		 	<view class="nearby clearFix">
+			<view class="nearby-center clearFix height80">
+				<view class="nearby-item clearFix paddTa20" wx:for="{{listItem}}" wx:key="index">
+					<view class="f-left bo-f000ff paddLe24 wihe40">
+						 <image wx:if="{{item.avatar.length>0}}" src="{{items.avatar.s}}" ></image>
+						 <image wx:else src="{{loge}}" style="border:1rpx solid #ddd;"></image>
+					</view>
+					<view class="f-right wi82 brbott-boe7e7e7 paddBo20">
+						<view class="fontSize30 .ma-bo7">{{item.name}}</view>
+						<view class="f999">发布数{{item.publish}}<i class="dian"></i>5已找到{{item.founded}}<i class="dian"></i>爱心值{{item.love}}</view>
+					</view>
+				</view>
+			</view>
+			</view>
+   		 </view>
+	</view>
+</view>

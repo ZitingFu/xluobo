@@ -26,13 +26,18 @@ view,p,h1,h2,h3,h4,h5,h6,ul,li {
 .dian{
 	position:relative;
 	display:inline-block;
-	width: 6rpx;
-	height:6rpx;
+	width:3px;
+	height:3px;
 	background-color:#999999;
 	top:-3px;
 	left:0;
 	border-radius:100%;
-	margin:0 20rpx; 
+	margin:0 10px; 
+}
+.hidden{
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
 }
 .brbott-boe7e7e7{
 	border-bottom:1px solid #e7e7e7;
@@ -41,7 +46,7 @@ view,p,h1,h2,h3,h4,h5,h6,ul,li {
 	border-top:1px solid #e7e7e7;
 }
 .brbote7{
-	border-bottom:20px solid #e7e7e7;
+	border-bottom:10px solid #e7e7e7;
 }
 .f999{
 	color:#999999;
@@ -71,12 +76,32 @@ view,p,h1,h2,h3,h4,h5,h6,ul,li {
 	height:90px;
 	line-height:90px;
 }
+.height85{
+	height:85px;
+	line-height:85px;
+}
 .height80{
 	height:80px;
+}
+.height88{
+	height:88px;
+	line-height: 88px;
+}
+.height45{
+	height:45px;
+	line-height: 45px;
+}
+.height50{
+	height:50px;
+	line-height:50px;
 }
 .height40{
 	height:40px;
 	line-height: 40px;
+}
+.height47{
+	height:47px;
+	line-height: 47px;
 }
 .width80{
 	width: 8rpx;
@@ -89,13 +114,18 @@ view,p,h1,h2,h3,h4,h5,h6,ul,li {
 	width:30px;
 	height:30px;
 }
+.wihe25{
+	width:28px;
+	height:25px;
+}
 .wihe80{
 	width:80px;
 	height:80px;
 }
 .wihe20{
 	width:20px;
-	height:20px;
+	height:23px;
+	position:relative;
 }
 .bc_green{
 	width:33.33%;
@@ -118,6 +148,9 @@ view,p,h1,h2,h3,h4,h5,h6,ul,li {
 }
 .wi75{
 	width: 75%;
+}
+.wi60{
+	width:60%;
 }
 .wi20{
 	width: 20%;
@@ -149,6 +182,13 @@ view,p,h1,h2,h3,h4,h5,h6,ul,li {
 .paddLe24{
 	padding-left:24rpx; 
 }
+.paddBo13{
+	padding-top:20rpx;
+}
+.paddTa13{
+	padding-top:20rpx;
+ }
+
 .paddRi24{
 	padding-right:24rpx; 
 }
@@ -159,7 +199,7 @@ view,p,h1,h2,h3,h4,h5,h6,ul,li {
 	padding-right:9rpx; 
 }
 .ma-bo7{
-	margin-bottom:7rpx;
+	margin-bottom:15rpx;
 }
 image {
 	width:100%;
@@ -193,6 +233,7 @@ image {
   display: flex;
   justify-content: space-between;
 }
+
 /*共同*/
 /*......home.........*/
 #container_home{
@@ -205,10 +246,13 @@ image {
 	z-index:2;
 	position: absolute;
 	left:20rpx;
-	bottom:240rpx;
+	top:28rpx;
 	border-radius:10rpx;
 	padding-left:30rpx; 
 	background-color:#fff; 
+	padding-top:10rpx;
+	padding-bottom:10rpx;
+
 }
 .banner_input{
 	height:59rpx;
@@ -239,10 +283,21 @@ image {
 	left:27rpx;
 }
 /*附近机构*/
+.list-imgbox{
+	/*margin-top:20px; */
+}
+.list_Four{
+	/*margin-top:30rpx; */
+}
 .nearby-top{
-	padding:0 24px; 
+	padding:0px 28rpx;
+	/*padding-top:10px;  */
 }
 /*附近关注最新*/
+.genre_name_top{
+	padding-top:13px;
+	padding-bottom:13px; 
+}
 .list-top{
 	height:94rpx;
 	line-height:94rpx;
@@ -253,7 +308,7 @@ image {
 	height:220rpx;
 	margin-top:20rpx;
 	margin-right:2%;  
-	border:1rpx solid #cecece;
+	/*border:1rpx solid #cecece;*/
 	float: left;
 	box-sizing: border-box;
 }
@@ -269,5 +324,62 @@ image {
 }
 .length{
 	padding-left:5px;
-	padding-right:24px;  
+	padding-right:15px;  
+}
+.xinxi{
+	position: relative;
+	top:11rpx;
+}
+.fenxi{
+	width:23px;
+	height:22px;
+	position:relative;
+	top:16rpx;
+	right:2rpx;
+}
+.jing{
+	width:20rpx;
+	height:20rpx;
+	padding-right:4px;
+	position:relative;
+	top:3rpx; 
+}
+.genre_name{
+	background-color:#f3f5f9;
+	color: #005bc8;
+	height:25px;
+	line-height:25px;
+	border-radius:13px;
+	padding:0 15px;
+	font-size:12px;
+}
+/*......机构页面.......*/
+#Release,#me{
+	width: 100%;
+}
+.Release-top .box{
+	padding:0 54px; 
+}
+/*......我的.......*/
+#me{
+	/*background-color:#ddd;*/
+}
+li{	
+	padding:5px 10px;
+	display:block;
+	height:30px;
+}
+li image{
+	width:30px;
+	height:100%;
+	position: relative;
+	float:left;
+}
+li span{
+	display:inline-block;
+	width:90%;
+	height:25px;
+	line-height:25px;
+	float:right;
+	border-bottom:1px solid #ddd;
 }

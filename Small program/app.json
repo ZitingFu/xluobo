@@ -1,10 +1,10 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/Release/Release",
-    "pages/news/news",
-    "pages/me/me"
+    "pages/index/index/index",
+    "pages/Release/Release/Release",
+    "pages/me/me/me",
+    "pages/logs/logs/logs",
+    "pages/news/news/news"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -17,19 +17,19 @@
       { 
         "selectedIconPath":"images/home2.png",
         "iconPath":"images/home.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/index/index/index",
         "text": "首页"
       }, 
       { 
        "selectedIconPath":"images/l2.png",
         "iconPath":"images/l.png",
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/Release/Release/Release",
         "text": "机构"
       }, 
       {
        "selectedIconPath":"images/r2.png",
         "iconPath":"images/r.png",
-        "pagePath": "pages/me/me",
+        "pagePath": "pages/me/me/me",
         "text": "我"
       }
     ]

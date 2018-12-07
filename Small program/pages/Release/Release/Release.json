@@ -1,0 +1,6 @@
+{
+ "navigationBarTitleText": "机构",
+  "enablePullDownRefresh":true,
+  "backgroundTextStyle":"#ffffff",
+  "onReachBottomDistance":50
+}

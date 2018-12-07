@@ -35,7 +35,7 @@
 		</view>
 		<!-- 附近机构 -->
 		<view class="nearby clearFix brbote7">
-			<view class="nearby-top clearFix height40">
+			<view class="nearby-top clearFix height47">
 				<view class="f-left f333 fontSize30">附近机构</view>
 				<text class="f-right f999">全部></text>
 			</view>
@@ -47,7 +47,7 @@
 					</view>
 					<view class="f-right wi82 brbott-boe7e7e7 paddBo20 ">
 						<view class="fontSize30 .ma-bo7">{{item.name}}</view>
-						<view class="f999">发布数{{item.publish}}<i class="dian"></i>5已找到{{item.founded}}2<i class="dian"></i>爱心值{{item.love}}</view>
+						<view class="f999">发布数{{item.publish}}<i class="dian"></i>5已找到{{item.founded}}<i class="dian"></i>爱心值{{item.love}}</view>
 					</view>
 				</view>
 			</view>
@@ -58,46 +58,53 @@
 				<view class="box">
 				<view class="column">
 				    <view class="item bc_green">附近</view>
-			     	<view class="item bc_green">关注</view>
+			     	<!-- <view class="item bc_green">关注</view> -->
 			      	<view class="item bc_green">最新</view>
 			    </view>
 		   		 </view>
 			</view>
 			<view class="list-center">
-				<view class="list_item">
+				<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem}}" wx:key="index">
 					<view class="nearby-top">
-						<view class="clearFix height40">
-							<!-- <view class="SixImg-img"><image src="{{one4}}" alt=""></image></view> -->
-							<view class="f-left f333 fontSize30">认领其他</view>
-							<text class="f-right f999">1天前</text>
+						<view class="clearFix genre_name_top">
+							<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
+							<text class="f-right f999">1天</text>
 						</view>
-						<text class>咖啡馆和健康地块规划将对方考虑给家里反馈根据上对方了解对方了更划算将地方官发动机更换
-						</text>
+						<text class="clearFix" style="width: 100%;">{{item.content}}</text>
 						<view class="list-imgbox">
 							<!-- 图片为6张 -->
 							<view class="SixImg clearFix">
-							    <view class="SixImg-img"><image src="{{one1}}" alt=""></image></view>
-						     	<view class="SixImg-img"><image src="{{one2}}" alt=""></image></view>
-						      	<view class="SixImg-img"><image src="{{one3}}" alt=""></image></view>
-						      	<view class="SixImg-img"><image src="{{one4}}" alt=""></image></view>
+								<!-- 图片6张 -->
+								<view bindtap="imgtop" class="SixImg-img" wx:if="{{item.images.length != 0}}" wx:for="{{item.images}}" data-list="{{item.images}}" data-index='{{index}}'  wx:key="index" wx:for-item="iteming">
+							    	<image src="{{iteming.s}}" alt=""></image>
+							    </view>
+							    <!-- 图片1张 -->
+							   <!-- <view class="SixImg-img" wx:for="{{item.images}}" style="width:100%;height:500rpx;" wx:key="index" wx:for-item="iteming">
+							    	<image  src="{{iteming.s}}" alt=""></image>
+							    </view> -->
+							    <!-- video -->
+							    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video>
 						    </view>
 						    <!-- 图片为一张 -->
-						    <!-- <view class="SixImg clearFix">
+						   <!--  <view class="SixImg clearFix">
 							    <view class="OneImg-img">
 							    	<image src="{{one1}}" alt=""></image>
 							    </view>
 						    </view> -->
 		   			 	</view>
-		   			 	<view class="nearby-bottom paddBo20 paddTa20">
+		   			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
 		   			 		<view class="clearFix height40">
-								<view class="f-left f333 fontSize30 wi70">
-									<view  class="wihe40 f-left paddRi14"><image src="{{loge}}" alt=""></image></view>
-									<view class="f-left" style="line-height: 40px">榆林数据等放寒假</view>
+								<view class="f-left f333 fontSize30 wi70 hidden">
+									<view  class="wihe20 f-left paddRi14" style="top:7px;">
+										<image wx:if="{{item.avatar.length != 0}}" src="{{item.avatar.s}}" alt=""></image>
+									 	<image wx:else src="{{loge}}"></image>
+									</view>
+									<view class="f-left hidden wi70" style="line-height: 40px">{{item.user_name}}</view>
 								</view>
 								<view class="f-right wi23 f999 clearFix">
-									<view class="wihe20 f-left paddRi9"><image src="{{one5}}" alt=""></image></view>
-									<view class="f-left length">55</view>
-									<view class="wihe30 f-right"><image src="{{loge}}" alt=""></image></view>
+									<view class="wihe20 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
+									<view class="f-left length">{{item.comment_count}}</view>
+									<view class="f-right fenxi"><image src="{{fexi}}" alt=""></image></view>
 								</view>
 							</view>
 		   			 	</view>
