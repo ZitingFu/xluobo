@@ -26,20 +26,8 @@ Page({
     indicator:"#fff",
     page:1,
     none:false,
-    block:true,
-    navData:[
-      {   
-        id:0,
-        text: '附近'
-      },
-      {
-        id:1,
-        text: '最新'
-      },
-    ],
-    currentTab:0
+    block:true
   },
-
   //事件处理函数
   bindViewTap: function(options){
     wx.navigateTo({
@@ -85,7 +73,6 @@ Page({
         myAmapFun.getRegeo({
           success: function (data) {
             var city = data[0].regeocodeData.addressComponent.city
-            console.log(city)
             that.setData({
               city:city
             })
@@ -94,6 +81,7 @@ Page({
         });
       }
     })
+   
     //请求轮播图数据
     wx.request({
       url: 'https://qb.xluob.com/mini/index/home',
@@ -120,7 +108,6 @@ Page({
          that.setData({ 
             genreImages:genre
           })
-         wx.hideLoading()
       }
     })
     //附近机构数据
@@ -131,11 +118,11 @@ Page({
          "city":city
       },
       success: function(res) {
+        console.log(res.data.data.list.avatar)
        var list = res.data.data.list
          that.setData({ 
             listItem:list
           })
-         wx.hideLoading()
       }
     })
     // 附近列表
@@ -147,64 +134,40 @@ Page({
           "area":city
       },
       success: function(res) {
+        console.log(res)
         var from = res.data.data.list
          that.setData({ 
             fromItem:from
           })
-         wx.hideLoading()
       }
     })
-  },
-  //点击附近最新判断
-  listtop:function(e){
-    var that = this
-    var city = that.setData.city
-    var page = Number(that.data.page)
-    var current = e.currentTarget.dataset.currenttab
-    console.log(that.data.city)
-    console.log(page)
-    console.log(current)
-    // 附近
-    if(current==0){
-      wx.request({
-        url: 'https://qb.xluob.com/mini/index/nearby',
-        method:"post",
-        data: {
-            "pn":page,
-            "area":city
-        },
-        success: function(res) {
-          var from = res.data.data.list
-         console.log(from)
-          that.setData({ 
-              fromItem:from,
-              currentTab:current
-          })
-          wx.hideLoading()
-        }
-      })
-    }
-    //最新
-    else if(current==1){
-      wx.request({
-        url: 'https://qb.xluob.com/mini/index/newquestion',
-        method:"post",
-        data: {
-            "pn":page,
-            "area":city
-        },
-        success: function(res) {
-          var from = res.data.data.list
-           console.log(from)
-          that.setData({ 
-              fromItem:from,
-              currentTab:current
 
-          })
-          wx.hideLoading()
-        }
-      })
-    }
+    // if (app.globalData.userInfo) {
+    //   this.setData({
+    //     userInfo: app.globalData.userInfo,
+    //     hasUserInfo: true
+    //   })
+    // } else if (this.data.canIUse){
+    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //   // 所以此处加入 callback 以防止这种情况
+    //   app.userInfoReadyCallback = res => {
+    //     this.setData({
+    //       userInfo: res.userInfo,
+    //       hasUserInfo: true
+    //     })
+    //   }
+    // } else {
+    //   // 在没有 open-type=getUserInfo 版本的兼容处理
+    //   wx.getUserInfo({
+    //     success: res => {
+    //       app.globalData.userInfo = res.userInfo
+    //       this.setData({
+    //         userInfo: res.userInfo,
+    //         hasUserInfo: true
+    //       })
+    //     }
+    //   })
+    // }
   },
   // 上拉
   onReachBottom: function(){
@@ -212,54 +175,30 @@ Page({
     var city = that.setData.city
     var page = Number(that.data.page)
     page = page + 1
+    console.log(page)
     // 显示加载图标
     wx.showLoading({
       title: '正在加载中'
     })
-    if(that.data.currentTab==0){
-     // 附近列表
-      wx.request({
-        url: 'https://qb.xluob.com/mini/index/nearby',
-        method:"post",
-        data: {
-            "pn":page,
-            "area":city
-        },
-        success: function(res) {
-          var from = that.data.fromItem;
-          for (var i = 0; i < res.data.data.list.length; i++) {
-            from.push(res.data.data.list[i]);
-          }
-          that.setData({ 
-              fromItem:from,
-              page:page
-          })
-           wx.hideLoading()
+    wx.request({
+      url: 'https://qb.xluob.com/mini/index/nearby',
+      method:"post",
+      data: {
+          "pn":page,
+          "area":city
+      },
+      success: function(res) {
+        var from = that.data.fromItem;
+        for (var i = 0; i < res.data.data.list.length; i++) {
+          from.push(res.data.data.list[i]);
         }
-      })
-    }
-    else if(that.data.currentTab==1){
-      // 最新列表
-       wx.request({
-        url: 'https://qb.xluob.com/mini/index/newquestion',
-        method:"post",
-        data: {
-            "pn":page,
-            "area":city
-        },
-        success: function(res) {
-          var from = that.data.fromItem;
-          for (var i = 0; i < res.data.data.list.length; i++) {
-            from.push(res.data.data.list[i]);
-          }
-          that.setData({ 
-              fromItem:from,
-              page:page
-          })
-           wx.hideLoading()
-        }
-      })
-    }
+        that.setData({ 
+            fromItem:from,
+            page:page
+        })
+         wx.hideLoading()
+      }
+    })
   },
   //下拉
   onPullDownRefresh: function(){
@@ -325,7 +264,7 @@ Page({
           })
       }
     })
-    //附近机构数据
+    // //附近机构数据
     wx.request({
       url: 'https://qb.xluob.com/mini/organization/nearbyorg',
       method:"post",
@@ -349,13 +288,15 @@ Page({
       },
       success: function(res) {
         var from = res.data.data.list
-         that.setData({ 
-            fromItem:from
-          })
-         wx.hideLoading()
+        that.setData({ 
+          fromItem:from
+        })
+         // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
       }
     })
-    
   },
   getUserInfo: function(e) {
     console.log(e)

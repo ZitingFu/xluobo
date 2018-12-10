@@ -1,0 +1,52 @@
+/**index.wxss**/
+.page{
+    width: 100%;
+    height: 100%;
+}
+.container{
+    width: 100%;
+    height: 100%;
+}
+.nav {
+    height:44px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    line-height: 80rpx;
+    background: #f7f7f7;
+    font-size: 16px;
+    white-space: nowrap;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background-color: #fff;
+}
+.nav-item {
+    height: 44px;
+    width: 20%;
+    display: inline-block;
+    text-align: center;
+}
+.active{
+    border-bottom:3px solid #ff8030;
+    padding-bottom:9px; 
+    border-radius:2px;
+}
+.nav-item.active2{
+    border-bottom:2px solid #FFF;
+}
+.tab-box{
+    /*background: greenyellow;*/
+    padding-top: 80rpx;
+    height:520px;
+    width:100%;
+    line-height: 520px;
+    box-sizing: border-box;
+    top:100px;
+    left:0;
+}
+.tab-content{
+    color: red;
+    overflow-y: scroll;
+}

@@ -1,3 +1,4 @@
+@import "weui.wxss"
 .container {
 	height: 100%;
 	display: flex;
@@ -23,6 +24,34 @@ view,p,h1,h2,h3,h4,h5,h6,ul,li {
 /*a:hover {
   text-decoration: none;
 }*/
+i{
+	display:inline-block;
+}
+.sjx{
+	background-image: url(https://img.qa.xluob.com/Small%20program/icon_xia_nor.png);
+}
+.sjs{
+	background-image: url(https://img.qa.xluob.com/Small%20program/5.png);
+}
+.sjx,.sjs{
+	width:8px;
+	height:7px;
+	margin-left:5px; 
+	background-size:100% 100%;
+}
+.active{
+    border-bottom:3px solid #ff8030;
+    padding-bottom:9px; 
+    border-radius:2px;
+}
+.active2{
+	/*background-color:#cecece;*/
+}
+.active3{
+	background-color:#fda249;
+	color:#fff;
+}
+
 .dian{
 	position:relative;
 	display:inline-block;
@@ -234,6 +263,9 @@ image {
   justify-content: space-between;
 }
 
+.nav-item.active2{
+    border-bottom:2px solid #FFF;
+}
 /*共同*/
 /*......home.........*/
 #container_home{
@@ -303,6 +335,9 @@ image {
 	line-height:94rpx;
 	font-size:30rpx;
 }
+.list-top .active{
+	 padding-bottom:11px;
+}
 .SixImg .SixImg-img{
 	width:32%;
 	height:220rpx;
@@ -354,12 +389,69 @@ image {
 	font-size:12px;
 }
 /*......机构页面.......*/
-#Release,#me{
+#Release,#me,#search{
 	width: 100%;
+}
+#Release{
+	position: relative;
+}
+.Release-center{
+	overflow: hidden;
 }
 .Release-top .box{
 	padding:0 54px; 
 }
+.item_type{
+	position: relative;
+}
+.organ_Type{
+	position:absolute;
+	left:0px;
+	top:47px;
+	z-index:3;
+	width:100%;
+	background-color:#fff;
+	border-bottom:1px solid #cecece;
+	padding:12px 17px 12px 8px; 
+}
+.organ_Type_number{
+	position:absolute;
+	text-align:center;
+	left:0px;
+	top:47px;
+	z-index:3;
+	width:100%;
+	background-color:#fff;
+}
+.organ_Type_number li{
+	border-bottom:1px solid #e7e7e7;
+	line-height:30px; 
+}
+.Popup{
+	position: fixed;
+	width: 100%;
+	top:52px;
+	left:0;
+	bottom:0;
+	z-index:2; 
+	background-color:#000;
+	opacity: .5; 
+}
+.organ_Type li{
+	padding:0px 0px;
+	width: 80px;
+	height: 32px;
+	display:inline-block;
+	line-height: 32px;
+	margin:6px 5px; 
+	box-sizing: border-box;
+	text-align:center;
+	line-height: 32px;
+	border:1px solid #e7e7e7;
+	/*float: left;*/
+	border-radius:4px;
+}
+
 /*......我的.......*/
 #me{
 	/*background-color:#ddd;*/
