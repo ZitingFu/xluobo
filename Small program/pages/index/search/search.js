@@ -2,36 +2,101 @@ var amapFile = require('../../../utils/util.js');
 //index.js
 //获取应用实例
 const app = getApp()
-
 Page({
     data: {
+        input:"",
+        xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
+        fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
+        jing:"https://img.qa.xluob.com/Small%20program/1.png",
+        fromItem:"",
+        loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
         motto: 'Hello World',
         userInfo: {},
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         navData:[
-            { 
-                text: '首页'
+            {   
+                id:1,
+                text: '寻人'
+            },
+            {   
+                id:2,
+                text: '寻物'
             },
             {
-                text: '健康'
+                id:3,
+                text: '认人'
             },
-            {
-                text: '情感'
+            {   
+                id:4,
+                text: '认领'
             },
-            {
-                text: '职场'
-            },
-            {
-                text: '育儿'
+            {   
+                id:5,
+                text: '好人风采'
             }
 
         ],
         currentTab: 0,
         navScrollLeft: 0
     },
+    Back:function () { 
+        console.log(123)
+       wx.navigateTo({
+            url:'../index/index'
+        })
+    },  
+    cancel:function(){
+        var that = this
+        var text = ""
+        that.setData({ 
+            input:text
+        })
+    },
+    search:function(e){
+        var that = this
+        var name = e.detail.value;
+        console.log(name)
+        wx.request({
+          url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+          method:"post",
+          data: {
+            "name":name,
+            "pn":1,
+            "type":1
+          },
+          success: function(res) {
+            var from = res.data.data.list
+            that.setData({ 
+                fromItem:from
+            })
+            wx.hideLoading()
+          }
+        })
+    },
     //事件处理函数
-    onLoad: function () {
+    onLoad: function (e) {
+        wx.showLoading({
+          title: '正在加载中'
+        })
+        //寻人
+        var that = this
+        wx.request({
+          url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+          method:"post",
+          data: {
+              "pn":1,
+              "type":1
+          },
+          success: function(res) {
+            console.log(res)
+            var from = res.data.data.list
+             that.setData({ 
+                fromItem:from
+              })
+             wx.hideLoading()
+          }
+        })
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
@@ -87,11 +152,31 @@ Page({
         }
     },
     switchTab(event){
+        wx.showLoading({
+          title: '正在加载中'
+        })
+        var that = this
         var cur = event.detail.current;
+        var number = Number(event.detail.current)+1
         var singleNavWidth = this.data.windowWidth / 5;
         this.setData({
             currentTab: cur,
             navScrollLeft: (cur - 2) * singleNavWidth
         });
+         wx.request({
+          url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+          method:"post",
+          data: {
+              "pn":1,
+              "type":number
+          },
+          success: function(res) {
+            var from = res.data.data.list
+             that.setData({ 
+                fromItem:from
+              })
+             wx.hideLoading()
+          }
+        })
     }
 })

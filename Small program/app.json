@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/Release/Release/Release",
     "pages/index/index/index",
+    "pages/Release/Release/Release",
     "pages/index/search/search",
     "pages/index/matterDetails/matterDetails",
     "pages/index/peopleDetails/peopleDetails",

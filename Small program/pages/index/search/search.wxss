@@ -7,6 +7,26 @@
     width: 100%;
     height: 100%;
 }
+#search .banner_sousuo{
+    position: fixed;
+    z-index: 100;
+    width: 78%;
+    left: 20px;
+}
+.bind-s{
+    position:relative;
+    font-size:24rpx;
+    top:21px;
+    right:13px;
+}
+.search-top{
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    z-index:99;
+    background-color:#fff;
+    overflow: hidden;
+}
 .nav {
     height:44px;
     width: 100%;
@@ -17,36 +37,55 @@
     font-size: 16px;
     white-space: nowrap;
     position: fixed;
-    top: 0;
+    top:60px;
     left: 0;
-    z-index: 99;
-    background-color: #fff;
+    z-index:100;
+    background-color:#fff;
+    border-bottom:1px solid #e7e7e7;
+    border-top:1px solid #e7e7e7;
 }
 .nav-item {
+    line-height: 44px;
     height: 44px;
     width: 20%;
     display: inline-block;
     text-align: center;
+    border-bottom:3px solid #ff8030;
 }
 .active{
     border-bottom:3px solid #ff8030;
     padding-bottom:9px; 
     border-radius:2px;
 }
-.nav-item.active2{
+.nav-item .active2{
     border-bottom:2px solid #FFF;
 }
 .tab-box{
     /*background: greenyellow;*/
-    padding-top: 80rpx;
-    height:520px;
+    padding-top:100px;
+    height:800px;
     width:100%;
-    line-height: 520px;
+    /*line-height: 520px;*/
     box-sizing: border-box;
-    top:100px;
-    left:0;
+   /* top:100px;
+    left:0;*/
 }
 .tab-content{
-    color: red;
+    /*color: red;*/
     overflow-y: scroll;
 }
+.active {
+    border-bottom:3px solid #ff8030;
+    padding-bottom:9px;
+    border-radius:2px;
+}
+.bind-top{
+    float: left;
+    position: relative;
+    left:5px;
+    bottom:-27px;
+    width:25px;
+    height: 25px;
+    background-color:red;
+}
+

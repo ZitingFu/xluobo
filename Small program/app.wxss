@@ -41,7 +41,7 @@ i{
 }
 .active{
     border-bottom:3px solid #ff8030;
-    padding-bottom:9px; 
+    padding-bottom:10px; 
     border-radius:2px;
 }
 .active2{
@@ -392,6 +392,9 @@ image {
 #Release,#me,#search{
 	width: 100%;
 }
+#search{
+	height:100%;
+}
 #Release{
 	position: relative;
 }
@@ -412,7 +415,7 @@ image {
 	width:100%;
 	background-color:#fff;
 	border-bottom:1px solid #cecece;
-	padding:12px 17px 12px 8px; 
+	/*padding:12px 17px 12px 8px; */
 }
 .organ_Type_number{
 	position:absolute;
@@ -439,7 +442,7 @@ image {
 }
 .organ_Type li{
 	padding:0px 0px;
-	width: 80px;
+	width:22%;
 	height: 32px;
 	display:inline-block;
 	line-height: 32px;
