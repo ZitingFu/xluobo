@@ -18,7 +18,7 @@ App({
               code: res.code
             },
           success: function (res) {
-            console.log(res)
+            // console.log(res)
               // if (res.data.openid){
               //   wx.setStorage({
               //     key:"tokenId",

@@ -1,17 +1,9 @@
 /**index.wxss**/
-.page{
-    width: 100%;
-    height: 100%;
-}
-.container{
-    width: 100%;
-    height: 100%;
-}
 #search .banner_sousuo{
-    position: fixed;
-    z-index: 100;
+    /*position: fixed;*/
+   /* z-index: 100;*/
     width: 78%;
-    left: 20px;
+    /*left: 20px;*/
 }
 .bind-s{
     position:relative;
@@ -22,35 +14,12 @@
 .search-top{
     position: fixed;
     width: 100%;
-    height: 100px;
-    z-index:99;
-    background-color:#fff;
-    overflow: hidden;
-}
-.nav {
-    height:44px;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-    line-height: 80rpx;
-    background: #f7f7f7;
-    font-size: 16px;
-    white-space: nowrap;
-    position: fixed;
-    top:60px;
+    height:107px;
+    top:0;
     left: 0;
-    z-index:100;
+    z-index:5;
     background-color:#fff;
-    border-bottom:1px solid #e7e7e7;
-    border-top:1px solid #e7e7e7;
-}
-.nav-item {
-    line-height: 44px;
-    height: 44px;
-    width: 20%;
-    display: inline-block;
-    text-align: center;
-    border-bottom:3px solid #ff8030;
+    overflow: hidden;
 }
 .active{
     border-bottom:3px solid #ff8030;
@@ -59,20 +28,6 @@
 }
 .nav-item .active2{
     border-bottom:2px solid #FFF;
-}
-.tab-box{
-    /*background: greenyellow;*/
-    padding-top:100px;
-    height:800px;
-    width:100%;
-    /*line-height: 520px;*/
-    box-sizing: border-box;
-   /* top:100px;
-    left:0;*/
-}
-.tab-content{
-    /*color: red;*/
-    overflow-y: scroll;
 }
 .active {
     border-bottom:3px solid #ff8030;
@@ -87,5 +42,27 @@
     width:25px;
     height: 25px;
     background-color:red;
+}
+
+/**/
+.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+.weui-tab__content{
+    padding-top: 10px;
+    /*text-align: center;*/
+}
+#search .weui-navbar{
+    /*margin-top:58px;*/
+    position: fixed;
+    height:50px;
+    top:56px;
+    left:0px;
+    background-color:#fff;
+    z-index:5;
+    /*border-bottom:1rpx solid #ccc;*/
 }
 
