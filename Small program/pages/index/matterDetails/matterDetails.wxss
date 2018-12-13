@@ -1,20 +1,12 @@
-/**index.wxss**/
-.userinfo {
+.log-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /*padding: 40rpx;*/
 }
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.log-item {
+  margin: 10rpx;
 }
-.userinfo-nickname {
-  color: #aaa;
+.notime{
+	background-image: url(https://img.qa.xluob.com/Small%20program/Notime.png);
+	height:400px;
 }
-.usermotto {
-  margin-top: 200px;
-}
-
-

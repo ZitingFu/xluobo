@@ -1,116 +1,58 @@
-<!--index.wxml-->
-<view class="container">
-	<view id="container_home">			
-		<!-- 轮播图 -->
-		<view class="banner">
-			<!-- 搜索 -->
-			<view class=" banner_sousuo">
-			  <input class="binner_input" placeholder="搜索" auto-focus/>
-			</view>
-			<!-- 轮播 -->
-			<view class="banner_image">
-				<swiper class="banner" indicator-color="{{indicator}}" indicator-active-color="{{indicatorColor}}" circular="true" indicator-dots="true" autoplay="true" interval="3000">
-				    <swiper-item wx:for="{{bannerImages}}" wx:key="index">
-				      <image src="{{item.images.s}}" class="slide-image" class="slide-image"></image>
-				    </swiper-item>
-				</swiper>
-			</view>
+<!--logs.wxml-->
+<view class="container log-list">
+	<view class=""></view>
+	<view id="Release">
+		<!-- 机构类型 -->
+		<view class="organ_Type" wx:if="{{boolean}}">
+			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
 		</view>
-		<!-- 认人..活动展示 -->
-		<view class="one_classify brbote7">
+		<!-- 排序 -->
+		<view class="organ_Type_number" wx:if="{{boolean3}}" >
+			<li bindtap="Type_top_number" data-number="" class="{{number == 0?'ff8030':'f333'}}">默认排序</li>
+			<li bindtap="Type_top_number" data-number="1" class="{{number == 1?'ff8030':'f333'}}">距离最近</li>
+			<li bindtap="Type_top_number" data-number="2" class="{{number == 2?'ff8030':'f333'}}">爱心值优先</li>
+		</view>
+		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7">
 			<view class="box">
 				<view class="column">
-				    <view class="item" wx:for="{{genreImages}}" wx:key="index">
-				    	<view class="box-img">
-				    		<image wx:if="{{item.id==1}}" class="ico5" src="{{one1}}" alt=""></image>
-				    		<image wx:if="{{item.id==2}}" class="ico5" src="{{one2}}" alt=""></image>
-				    		<image wx:if="{{item.id==3}}" class="ico5" src="{{one3}}" alt=""></image>
-				    		<image wx:if="{{item.id==4}}" class="ico5" src="{{one4}}" alt=""></image>
-				    		<image wx:if="{{item.id==5}}" class="ico5" src="{{one5}}" alt=""></image>
-				    	</view>
-				    	<text>{{item.name}}</text>
+				    <view class="item" bindtap="open" data-open="0">
+				    	<select name="机构类型" id="">
+				    		<option value="">机构类型<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
+				    	</select>
 					</view>
+			     	<view class="item" data-open="1">
+						<select name="区域" id="" >
+				    		<option value="">区域<i class="{{open_num==1?'sjs':'sjx'}}"></i></option>
+				    	</select>
+			     	</view>
+			      	<view class="item" bindtap="open3" data-open="2">
+			      		<select name="排序" id="">
+				    		<option value="">排序<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
+				    	</select>
+			      	</view>
 			    </view>
-		    </view>
-		</view>
-		<!-- 附近机构 -->
-		<view class="nearby clearFix brbote7">
-			<view class="nearby-top clearFix height47">
-				<view class="f-left f333 fontSize30">附近机构</view>
-				<text class="f-right f999">全部></text>
-			</view>
-			<view class="nearby-center clearFix height80 brbott-tae7e7e7">
-				<view class="nearby-item clearFix paddTa20" wx:for="{{listItem}}" wx:key="index">
-					<view class="f-left bo-f000ff paddLe24 wihe40">
-						 <image wx:if="{{item.avatar.length>0}}" src="{{items.avatar.s}}" ></image>
-						 <image wx:else src="{{loge}}" style="border:1rpx solid #ddd;"></image>
-					</view>
-					<view class="f-right wi82 brbott-boe7e7e7 paddBo20 ">
-						<view class="fontSize30 .ma-bo7">{{item.name}}</view>
-						<view class="f999">发布数{{item.publish}}<i class="dian"></i>5已找到{{item.founded}}<i class="dian"></i>爱心值{{item.love}}</view>
-					</view>
-				</view>
-			</view>
-		</view>
-		<!-- 附近关注最新 -->
-		<view class="list_Four">
-			<view class="list-top brbott-boe7e7e7">
-				<view class="box">
-				<view class="column">
-				    <view class="item bc_green">附近</view>
-			     	<!-- <view class="item bc_green">关注</view> -->
-			      	<view class="item bc_green">最新</view>
-			    </view>
-		   		 </view>
-			</view>
-			<view class="list-center">
-				<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem}}" wx:key="index">
-					<view class="nearby-top">
-						<view class="clearFix genre_name_top">
-							<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
-							<text class="f-right f999">1天</text>
+	   		 </view>
+   		 </view>
+   		<view class="Release-center {{activeIndex == 1 ? 'notime' : ''}}" >
+   		 	<view class="nearby clearFix">
+				<view class="nearby-center clearFix">
+					<view class="nearby-item clearFix paddTa20" wx:for="{{listItem}}" wx:key="index">
+						<view class="f-left bo-f000ff paddLe24 wihe40">
+							 <image wx:if="{{item.avatar.length>0}}" src="{{item.avatar.b}}" ></image>
+							 <image wx:else src="{{loge}}" style="border:1rpx solid #ddd;"></image>
 						</view>
-						<text class="clearFix" style="width: 100%;">{{item.content}}</text>
-						<view class="list-imgbox">
-							<!-- 图片为6张 -->
-							<view class="SixImg clearFix">
-								<!-- 图片6张 -->
-								<view bindtap="imgtop" class="SixImg-img" wx:if="{{item.images.length != 0}}" wx:for="{{item.images}}" data-list="{{item.images}}" data-index='{{index}}'  wx:key="index" wx:for-item="iteming">
-							    	<image src="{{iteming.s}}" alt=""></image>
-							    </view>
-							    <!-- 图片1张 -->
-							   <!-- <view class="SixImg-img" wx:for="{{item.images}}" style="width:100%;height:500rpx;" wx:key="index" wx:for-item="iteming">
-							    	<image  src="{{iteming.s}}" alt=""></image>
-							    </view> -->
-							    <!-- video -->
-							    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video>
-						    </view>
-						    <!-- 图片为一张 -->
-						   <!--  <view class="SixImg clearFix">
-							    <view class="OneImg-img">
-							    	<image src="{{one1}}" alt=""></image>
-							    </view>
-						    </view> -->
-		   			 	</view>
-		   			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
-		   			 		<view class="clearFix height40">
-								<view class="f-left f333 fontSize30 wi70 hidden">
-									<view  class="wihe20 f-left paddRi14" style="top:7px;">
-										<image wx:if="{{item.avatar.length != 0}}" src="{{item.avatar.s}}" alt=""></image>
-									 	<image wx:else src="{{loge}}"></image>
-									</view>
-									<view class="f-left hidden wi70" style="line-height: 40px">{{item.user_name}}</view>
-								</view>
-								<view class="f-right wi23 f999 clearFix">
-									<view class="wihe20 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
-									<view class="f-left length">{{item.comment_count}}</view>
-									<view class="f-right fenxi"><image src="{{fexi}}" alt=""></image></view>
-								</view>
-							</view>
-		   			 	</view>
+						<view class="f-right wi82 brbott-boe7e7e7 paddBo20">
+							<view class="fontSize30 .ma-bo7">{{item.name}}</view>
+							<view class="f999">发布数{{item.publish}}<i class="dian"></i>5已找到{{item.founded}}<i class="dian"></i>爱心值{{item.love}}</view>
+						</view>
 					</view>
 				</view>
 			</view>
-		</view>
+   		</view>
+   		<!-- 弹出框 -->
+   		<view class="Popup" bindtap="open" wx:if="{{boolean}}"></view>
+   		<view class="Popup" bindtap="open3" wx:if="{{boolean3}}"></view>
 	</view>
+	<!--三级联动 -->
 </view>
+

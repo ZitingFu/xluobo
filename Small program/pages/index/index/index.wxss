@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color:red; 
 }
 .userinfo-avatar {
   width: 128rpx;
@@ -17,5 +16,15 @@
 .usermotto {
   margin-top: 200px;
 }
-
+/**/
+.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+.weui-tab__content{
+    padding-top: 10px;
+    /*text-align: center;*/
+}
 

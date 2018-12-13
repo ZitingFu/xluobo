@@ -65,4 +65,7 @@
     z-index:5;
     /*border-bottom:1rpx solid #ccc;*/
 }
+/*#search .weui-navbar__title{
+    cursor: pointer;
+}*/
 

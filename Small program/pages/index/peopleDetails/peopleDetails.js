@@ -6,27 +6,26 @@ Page({
   data: {
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
-    bannerImages:"",
-    genreImages:"",
+    notime:"https://img.qa.xluob.com/Small%20program/Notime.png",
+    activeIndex:"0",
+    type_id:"",
+    TypeItem:"",
     listItem:"",
     fromItem:"",
+    sjx:"https://img.qa.xluob.com/Small%20program/icon_xia_nor.png",
+    sjs:"https://img.qa.xluob.com/Small%20program/5.png",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
-    xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
-    fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
-    jing:"https://img.qa.xluob.com/Small%20program/1.png",
     zhfa:"",
-    one1:"https://img.qa.xluob.com/Small%20program/recognize_publi%402x.png",
-    one2:"https://img.qa.xluob.com/Small%20program/renwu_public.png",
-    one3:"https://img.qa.xluob.com/Small%20program/find_public%402x.png",
-    one4:"https://img.qa.xluob.com/Small%20program/lookfor_public%402x.png",
-    one5:"https://img.qa.xluob.com/Small%20program/goodperson_publicwelfare%402x.png",
     inputShowed: false,
     inputVal:"",
     indicatorColor:"#fda249",
     indicator:"#fff",
     page:1,
-    none:false,
-    block:true
+    boolean:false,
+    boolean3:false,
+    currentTab:0,
+    number:0,
+    open_num:8,
   },
   //事件处理函数
   bindViewTap: function(options){
@@ -47,6 +46,124 @@ Page({
         current:arry[index].s,
         urls:arry
        })
+  },
+  // 机构类型打开/关闭
+  open:function(){
+     var that = this
+     that.setData({ 
+          boolean:!that.data.boolean,
+          boolean3:false
+      })
+     if(that.data.boolean == true){
+        that.setData({
+           open_num:0
+        })
+     }
+     else{
+        that.setData({
+             open_num:99
+          })
+     }
+  },
+  open3:function(){
+    var that = this
+     that.setData({ 
+          boolean:false,
+          boolean3:!that.data.boolean3
+      })
+      if(that.data.boolean3 == true){
+        that.setData({
+           open_num:2
+        })
+     }
+     else{
+        that.setData({
+             open_num:99
+          })
+     }
+  },
+  //排序
+  Type_top_number:function(e){
+     wx.showLoading({
+        title: '正在加载...',
+      })
+      var that = this
+      var number = e.currentTarget.dataset.number
+      var type_id =  that.data.type_id
+      var code = that.data.city
+      that.setData({ 
+          number:number,
+          boolean3:false
+      })
+      setTimeout(function(){
+        wx.request({
+          url: 'https://qb.xluob.com/mini/organization/index',
+          method:"post",
+          data: {
+             site:type_id,
+             code:code,
+             sort:number
+          },
+          success: function(res) {
+           var list = res.data.data.list
+           if(list.length==0){
+              that.setData({ 
+                 listItem:"",
+                activeIndex:1
+              })
+           }else{
+              that.setData({ 
+                listItem:list,
+                activeIndex:0
+              })
+           }
+          }
+        })
+        wx.hideLoading()  
+      },1000)
+  },
+  // 点击机构选项发送请求
+  Type_top:function(e){
+      wx.showLoading({
+        title: '正在加载...',
+      })
+      var that = this
+      var current = e.currentTarget.dataset.currenttab
+      var type_id = e.currentTarget.dataset.type_id
+      var sort = that.data.number
+      var code = that.data.city
+      that.setData({ 
+          currentTab:current,
+          type_id:type_id,
+          boolean:false
+      })
+      setTimeout(function(){
+        wx.request({
+          url: 'https://qb.xluob.com/mini/organization/index',
+          method:"post",
+          data: {
+             site:type_id,
+             code:code,
+             sort:sort
+          },
+          success: function(res) {
+           var list = res.data.data.list
+           if(list.length == 0){
+             that.setData({ 
+                listItem:"",
+                activeIndex:1
+              })
+           }
+           else{
+            that.setData({ 
+                listItem:list,
+                activeIndex:0
+            })
+           }
+          }
+        })
+         wx.hideLoading()
+      },1000)
   },
   onLoad: function (options) {
     var that = this
@@ -72,234 +189,44 @@ Page({
         var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
         myAmapFun.getRegeo({
           success: function (data) {
-            var city = data[0].regeocodeData.addressComponent.city
+            var city = data[0].regeocodeData.addressComponent.adcode
             that.setData({
               city:city
+            })
+            //所有场所
+            wx.request({
+              url: 'https://qb.xluob.com/mini/site/list',
+              method:"post",
+              success: function(res) {
+               var site = res.data.data.site
+                that.setData({ 
+                    TypeItem:site
+                })
+              }
+            })
+            //机构列表
+            wx.request({
+              url: 'https://qb.xluob.com/mini/organization/index',
+              method:"post",
+              data: {
+                 "code":city,
+                 "site":"",
+                 "sort":""
+              },
+              success: function(res) {
+               var list = res.data.data.list
+                that.setData({ 
+                  listItem:list
+                })
+              }
             })
             wx.hideLoading()
           }
         });
-      }
-    })
-   
-    //请求轮播图数据
-    wx.request({
-      url: 'https://qb.xluob.com/mini/index/home',
-      method:"post",
-      data: {
-         "city":city
-      },
-      success: function(res) {
-       var banner = res.data.data.banner
-         that.setData({ 
-            bannerImages:banner
-          })
-      }
-    })
-    //请求一级分类数据
-    wx.request({
-      url: "https://qb.xluob.com/mini/genre/list",
-      method:"post",
-      data: {
-         "id":0
-      },
-      success: function(res) {
-       var genre = res.data.data.genre
-         that.setData({ 
-            genreImages:genre
-          })
-      }
-    })
-    //附近机构数据
-    wx.request({
-      url: 'https://qb.xluob.com/mini/organization/nearbyorg',
-      method:"post",
-      data: {
-         "city":city
-      },
-      success: function(res) {
-        console.log(res.data.data.list.avatar)
-       var list = res.data.data.list
-         that.setData({ 
-            listItem:list
-          })
-      }
-    })
-    // 附近列表
-    wx.request({
-      url: 'https://qb.xluob.com/mini/index/nearby',
-      method:"post",
-      data: {
-          "pn":page,
-          "area":city
-      },
-      success: function(res) {
-        console.log(res)
-        var from = res.data.data.list
-         that.setData({ 
-            fromItem:from
-          })
-      }
-    })
-
-    // if (app.globalData.userInfo) {
-    //   this.setData({
-    //     userInfo: app.globalData.userInfo,
-    //     hasUserInfo: true
-    //   })
-    // } else if (this.data.canIUse){
-    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //   // 所以此处加入 callback 以防止这种情况
-    //   app.userInfoReadyCallback = res => {
-    //     this.setData({
-    //       userInfo: res.userInfo,
-    //       hasUserInfo: true
-    //     })
-    //   }
-    // } else {
-    //   // 在没有 open-type=getUserInfo 版本的兼容处理
-    //   wx.getUserInfo({
-    //     success: res => {
-    //       app.globalData.userInfo = res.userInfo
-    //       this.setData({
-    //         userInfo: res.userInfo,
-    //         hasUserInfo: true
-    //       })
-    //     }
-    //   })
-    // }
-  },
-  // 上拉
-  onReachBottom: function(){
-    var that = this;
-    var city = that.setData.city
-    var page = Number(that.data.page)
-    page = page + 1
-    console.log(page)
-    // 显示加载图标
-    wx.showLoading({
-      title: '正在加载中'
-    })
-    wx.request({
-      url: 'https://qb.xluob.com/mini/index/nearby',
-      method:"post",
-      data: {
-          "pn":page,
-          "area":city
-      },
-      success: function(res) {
-        var from = that.data.fromItem;
-        for (var i = 0; i < res.data.data.list.length; i++) {
-          from.push(res.data.data.list[i]);
-        }
-        that.setData({ 
-            fromItem:from,
-            page:page
-        })
-         wx.hideLoading()
-      }
-    })
-  },
-  //下拉
-  onPullDownRefresh: function(){
-    // 显示顶部刷新图标
-    wx.showNavigationBarLoading();
-    var that = this;
-    var city = that.setData.city
-    var page = Number(that.data.page)
-     // 引入高德地图
-    wx.showLoading({
-      title: '正在加载...',
-    })
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
-        var markersData = {
-          latitude: latitude,//纬度
-          longitude: longitude,//经度
-          key: that.data.MapKey
-        };
-        var addArr = [];
-        var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
-        myAmapFun.getRegeo({
-          success: function (data) {
-            var city = data[0].regeocodeData.addressComponent.city
-            that.setData({
-              city:city
-            })
-            wx.hideLoading()
-          }
-        });
-      }
-    })
-    //请求轮播图数据
-    wx.request({
-      url: 'https://qb.xluob.com/mini/index/home',
-      method:"post",
-      data: {
-         "city":city
-      },
-      success: function(res) {
-       var banner = res.data.data.banner
-         that.setData({ 
-            bannerImages:banner
-          })
-      }
-    })
-    //请求一级分类数据
-    wx.request({
-      url: "https://qb.xluob.com/mini/genre/list",
-      method:"post",
-      data: {
-         "id":0
-      },
-      success: function(res) {
-       var genre = res.data.data.genre
-         that.setData({ 
-            genreImages:genre
-          })
-      }
-    })
-    // //附近机构数据
-    wx.request({
-      url: 'https://qb.xluob.com/mini/organization/nearbyorg',
-      method:"post",
-      data: {
-         "city":city
-      },
-      success: function(res) {
-       var list = res.data.data.list
-         that.setData({ 
-            listItem:list
-          })
-      }
-    })
-    // 附近列表
-    wx.request({
-      url: 'https://qb.xluob.com/mini/index/nearby',
-      method:"post",
-      data: {
-          "pn":page,
-          "area":city
-      },
-      success: function(res) {
-        var from = res.data.data.list
-        that.setData({ 
-          fromItem:from
-        })
-         // 隐藏导航栏加载框
-        wx.hideNavigationBarLoading();
-        // 停止下拉动作
-        wx.stopPullDownRefresh();
       }
     })
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

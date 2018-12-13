@@ -107,9 +107,9 @@ Page({
     //事件处理函数
     onLoad: function (e) {
         var that = this;
-        // wx.showLoading({
-        //   title: '正在加载中'
-        // })
+        wx.showLoading({
+          title: '正在加载中'
+        })
         //寻人
         wx.request({
             url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
@@ -124,6 +124,7 @@ Page({
             that.setData({ 
                 fromItem1:from
             })
+             wx.hideLoading()
           }
         })
         // 寻物
@@ -139,6 +140,7 @@ Page({
             that.setData({ 
                 fromItem2:from
             })
+             wx.hideLoading()
           }
         })
         // 认人
@@ -154,6 +156,7 @@ Page({
             that.setData({ 
                 fromItem3:from
             })
+             wx.hideLoading()
           }
         })
         // 认领
@@ -169,6 +172,7 @@ Page({
             that.setData({ 
                 fromItem4:from
             })
+             wx.hideLoading()
           }
         })
         // 好人风采
@@ -184,6 +188,7 @@ Page({
             that.setData({ 
                 fromItem5:from
             })
+             wx.hideLoading()
           }
         })
         wx.getSystemInfo({

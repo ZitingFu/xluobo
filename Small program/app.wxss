@@ -33,6 +33,10 @@ i{
 .sjs{
 	background-image: url(https://img.qa.xluob.com/Small%20program/5.png);
 }
+.list_item2{
+	background-image: url(https://img.qa.xluob.com/Small%20program/Notime.png);
+	height:400px;
+}
 .sjx,.sjs{
 	width:8px;
 	height:7px;

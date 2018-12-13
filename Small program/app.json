@@ -1,13 +1,16 @@
 {
   "pages":[
+    "pages/Release/Release/Release",
     "pages/index/index/index",
     "pages/index/search/search",
-    "pages/Release/Release/Release",
+    "pages/index/peoplelist/peoplelist",  
+    "pages/index/matterlist/matterlist",  
+    "pages/index/Searchpeople/Searchpeople",  
+    "pages/index/Searchmatter/Searchmatter",  
+    "pages/index/Exhibition/Exhibition",  
     "pages/index/matterDetails/matterDetails",
     "pages/index/peopleDetails/peopleDetails",
-    "pages/me/me/me",
-    "pages/logs/logs/logs",
-    "pages/news/news/news"
+    "pages/me/me/me"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -195,23 +195,29 @@ Page({
             })
             //所有场所
             wx.request({
-              url: 'https://qb.xluob.com/mini/site/list',
+              url: 'https://qb.xluob.com/mini/genre/list',
               method:"post",
+              data:{
+                id:1
+              },
               success: function(res) {
-               var site = res.data.data.site
-                that.setData({ 
+                // console.log(res)
+               var site = res.data.data.genre
+                that.setData({
+                    id:1,
                     TypeItem:site
                 })
               }
             })
             //机构列表
             wx.request({
-              url: 'https://qb.xluob.com/mini/organization/index',
+              url: 'https://qb.xluob.com/mini/question/search',
               method:"post",
               data: {
-                 "code":"",
+                 "code":city,
                  "site":"",
-                 "sort":""
+                 "sort":"",
+                 "pn":page
               },
               success: function(res) {
                 console.log(res)
@@ -226,40 +232,6 @@ Page({
         });
       }
     })
-  },
-   // 上拉
-  onReachBottom: function(){
-    var that = this;
-    var city = that.data.city
-    var page = Number(that.data.page)+ 1
-    // 显示加载图标
-    // wx.showLoading({
-    //   title: '正在加载中'
-    // })
-    setTimeout(function(){
-        // wx.request({
-        //   url: 'https://qb.xluob.com/mini/organization/index',
-        //   method:"post",
-        //   data: {
-        //      "code":"",
-        //      "site":"",
-        //      "sort":"",
-        //      "pn":page
-        //   },
-        //   success: function(res) {
-        //    var from = res.data.data.list
-        //     console.log(res)
-        //     for (var i = 0; i < res.data.data.list.length; i++) {
-        //         from.push(res.data.data.list[i]);
-        //       }
-        //       that.setData({ 
-        //           listItem:from,
-        //           page:page
-        //       })
-        //      wx.hideLoading()
-        //   }
-        // })
-    },1500)
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
