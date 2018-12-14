@@ -1,7 +1,8 @@
 {
   "pages":[
-    "pages/Release/Release/Release",
     "pages/index/index/index",
+    "pages/details/ReleaseDetails/ReleaseDetails",
+    "pages/details/details/details",
     "pages/index/search/search",
     "pages/index/peoplelist/peoplelist",  
     "pages/index/matterlist/matterlist",  
@@ -10,6 +11,7 @@
     "pages/index/Exhibition/Exhibition",  
     "pages/index/matterDetails/matterDetails",
     "pages/index/peopleDetails/peopleDetails",
+    "pages/Release/Release/Release",
     "pages/me/me/me"
   ],
   "window":{

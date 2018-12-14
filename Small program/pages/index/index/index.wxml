@@ -1,4 +1,4 @@
-<!--index.wxml-->
+	<!--index.wxml-->
 <view class="container">
 	<view id="container_home">			
 		<!-- 轮播图 -->
@@ -47,7 +47,7 @@
 					</view>
 					<view class="f-right wi82 brbott-boe7e7e7 paddBo20 ">
 						<view class="fontSize30 .ma-bo7">{{item.name}}</view>
-						<view class="f999">发布数{{item.publish}}<i class="dian"></i>5已找到{{item.founded}}<i class="dian"></i>爱心值{{item.love}}</view>
+						<view class="f999">发布数{{item.publish}}<i class="dian"></i>已找到{{item.founded}}<i class="dian"></i>爱心值{{item.love}}</view>
 					</view>
 				</view>
 			</view>

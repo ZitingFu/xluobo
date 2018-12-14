@@ -7,6 +7,9 @@ Page({
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     notime:"https://img.qa.xluob.com/Small%20program/Notime.png",
+    fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
+    xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
+    jing:"https://img.qa.xluob.com/Small%20program/1.png",
     activeIndex:"0",
     type_id:"",
     TypeItem:"",
@@ -23,14 +26,25 @@ Page({
     page:1,
     boolean:false,
     boolean3:false,
+    boolean2:false,
     currentTab:0,
     number:0,
     open_num:8,
+    index: 0,
+    multiIndex: [0, 0, 0],
+    region: ['广东省', '广州市', '海珠区'],
+    customItem: '全部'
   },
   //事件处理函数
   bindViewTap: function(options){
     wx.navigateTo({
       url: '../logs/logs'
+    })
+  },
+  bindRegionChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      region: e.detail.value
     })
   },
   //图片放大
@@ -57,6 +71,23 @@ Page({
      if(that.data.boolean == true){
         that.setData({
            open_num:0
+        })
+     }
+     else{
+        that.setData({
+             open_num:99
+          })
+     }
+  },
+  open1:function(){
+     var that = this
+     that.setData({ 
+          boolean2:!that.data.boolean2,
+          boolean:false
+      })
+     if(that.data.boolean2 == true){
+        that.setData({
+           open_num:1
         })
      }
      else{
@@ -106,6 +137,7 @@ Page({
           },
           success: function(res) {
            var list = res.data.data.list
+           console.log(res)
            if(list.length==0){
               that.setData({ 
                  listItem:"",
@@ -209,7 +241,6 @@ Page({
                 })
               }
             })
-            //机构列表
             wx.request({
               url: 'https://qb.xluob.com/mini/question/search',
               method:"post",
@@ -220,6 +251,7 @@ Page({
                  "pn":page
               },
               success: function(res) {
+                console.log(123)
                 console.log(res)
                var list = res.data.data.list
                 that.setData({ 
@@ -232,6 +264,39 @@ Page({
         });
       }
     })
+  },
+   // 上拉
+  onReachBottom: function(){
+    var that = this;
+    var city = that.data.city
+    var page = Number(that.data.page)+ 1
+    // 显示加载图标
+    wx.showLoading({
+      title: '正在加载中'
+    })
+    setTimeout(function(){
+        wx.request({
+          url: 'https://qb.xluob.com/mini/question/search',
+          method:"post",
+          data: {
+             "code":"",
+             "site":"",
+             "sort":"",
+             "pn":page
+          },
+          success: function(res) {
+           var from = that.data.listItem
+            for (var i = 0; i < res.data.data.list.length; i++) {
+                from.push(res.data.data.list[i]);
+              }
+              that.setData({  
+                  listItem:from,
+                  page:page
+              })
+          }
+        })
+         wx.hideLoading()
+    },1500)
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

@@ -11,8 +11,11 @@
 	font-family: "Microsoft Yahei";
 	color: #333333;
 	/*background-color: red;*/
-} 
+}
 /*共同*/
+#Release,#me,#search,#Releaselist{
+	width: 100%;
+}
 view,p,h1,h2,h3,h4,h5,h6,ul,li {
 	margin: 0;
 	padding: 0;
@@ -36,6 +39,11 @@ i{
 .list_item2{
 	background-image: url(https://img.qa.xluob.com/Small%20program/Notime.png);
 	height:400px;
+}
+.clock{
+	width: 15px;
+	height:18px;
+	background-image:url(https://img.qa.xluob.com/Small%20program/Notime.png);
 }
 .sjx,.sjs{
 	width:8px;
@@ -87,8 +95,14 @@ i{
 .f333{
 	color:#333333;
 }
+.f4f4f4{
+	border-bottom:1px solid #f4f4f4;
+}
 .ff8030{
-	color:#ff8030
+	color:#ff8030;
+}
+.fca650{
+	color:#fca650;
 }
 .b-radius5{
 	border-radius:5px; 
@@ -138,6 +152,10 @@ i{
 }
 .width80{
 	width: 8rpx;
+}
+.time{
+	width:12px;
+	height:12px;
 }
 .wihe40{
 	width:40px;
@@ -215,13 +233,18 @@ i{
 .paddLe24{
 	padding-left:24rpx; 
 }
+.paddLe28{
+	padding-left:28rpx; 
+}
 .paddBo13{
 	padding-top:20rpx;
 }
 .paddTa13{
 	padding-top:20rpx;
  }
-
+.lin-h32{
+	line-height:32px;
+}
 .paddRi24{
 	padding-right:24rpx; 
 }
@@ -233,6 +256,13 @@ i{
 }
 .ma-bo7{
 	margin-bottom:15rpx;
+}
+.ma-bo4{
+	margin-bottom:4rpx;
+}
+.ma-bt{
+	padding:5px 10px;
+	margin-bottom:10px; 
 }
 image {
 	width:100%;
@@ -393,9 +423,6 @@ image {
 	font-size:12px;
 }
 /*......机构页面.......*/
-#Release,#me,#search{
-	width: 100%;
-}
 #search{
 	height:100%;
 }
@@ -481,4 +508,47 @@ li span{
 	line-height:25px;
 	float:right;
 	border-bottom:1px solid #ddd;
+}
+/*信息详情*/
+.Releaselist_center{
+	line-height: 25px;
+	color:#333;
+}
+#Releaselist .time{
+	width:12px;
+	height:12px;
+}
+#Releaselist .clock{
+	position: relative;
+	top:4px;
+}
+.Releaselist_item,.Releaselist_follow{
+	position: relative;
+}
+.follow{
+	text-align:content;
+	position: absolute;
+	height:28px;
+	line-height: 28px;
+	border-radius:20px;
+	background-color:#fda249;
+	right:12px;
+	top:20px;
+	font-size:12px;
+	padding:0 20px;
+	color:#fff;
+}
+.zan,.zan-center{
+	position: absolute;
+	font-size:12px;
+}
+.zan{
+	width:15px;
+	height:15px;
+	right:28px;
+	top:0px;
+}
+.zan-center{
+	right:12px;
+	top:0px;
 }

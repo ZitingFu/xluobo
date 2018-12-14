@@ -1,0 +1,121 @@
+<!--logs.wxml-->
+<view class="container log-list">
+	<view id="Releaselist">
+		<view class="list_item">
+			<view class="nearby-top brbott-tae7e7e7">
+				<view class="clearFix genre_name_top">
+					<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>寻人/寻物</view>
+					<text class="f-right f999">1天</text>
+				</view>
+				<text class="clearFix" style="width: 100%;">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</text>
+				<view class="list-imgbox">
+					<!-- 图片为6张 -->
+					<view class="SixImg clearFix">
+						<!-- 图片6张 -->
+						<!-- <view bindtap="imgtop" class="SixImg-img" wx:if="{{item.images.length != 0}}" wx:for="{{item.images}}" data-list="{{item.images}}" data-index='{{index}}'  wx:key="index" wx:for-item="iteming">
+					    	<image src="{{loge}}" alt=""></image>
+					    </view> -->
+					    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+					    	<image src="{{loge}}" alt=""></image>
+					    </view>
+					    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+					    	<image src="{{loge}}" alt=""></image>
+					    </view>
+					    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+					    	<image src="{{loge}}" alt=""></image>
+					    </view>
+					     <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+					    	<image src="{{loge}}" alt=""></image>
+					    </view>
+				    </view>
+				    <view class="fca650 lin-h32">
+				    	<image class="clock" src="{{clock}}" alt=""></image>
+				    	倒计时1天12
+				    </view>
+   			 	</view>
+			</view>
+		 	<view class="Releaselist_center brbott-boe7e7e7 brbott-tae7e7e7">
+		 		<view class="section">
+				  <view class="flex-wrp" style="flex-direction:column;">
+					    <view class="flex-item f4f4f4 paddLe28 lin-h32">备   注：54565</view>
+					    <view class="nearby-top">
+						    <view class="flex-item">联 系 人：545</view>
+						    <view class="flex-item">联系方式：3412</view>
+						    <view class="flex-item">发送和位置：是的</view>
+						    <view class="flex-item">信息编码:56564</view>
+					    </view>
+				  </view>
+				</view>
+		 	</view>
+		 	<view class="Releaselist_follow brbote7">
+				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7">
+					<view class="f-left bo-f000ff paddLe24 wihe40 ">
+						 <image  src="{{loge}}" style="border:1rpx solid #ddd;"></image>
+					</view>
+					<view class="f-right wi82 paddBo20">
+						<view class="fontSize30 .ma-bo4">榆林啥地方将开始</view>
+						<view class="f999">发布数5<i class="dian"></i>已找到5<i class="dian"></i>爱心值5</view>
+					</view>
+					<text class="follow">关注</text>
+				</view>
+	   		</view>
+	   		<view class="Releaselist_comment">
+				<view class="brbott-boe7e7e7 ma-bt">评论</view>
+				<view class="Releaselist_item paddBo20">
+					<view class="nearby-item clearFix">
+						<view class="f-left bo-f000ff paddLe24 wihe40 ">
+							 <image src="{{loge}}" style="border:1rpx solid #ddd;"></image>
+						</view>
+						<view class="f-right wi82 paddBo20">
+							<view class="fontSize30 .ma-bo4">榆林啥地方将开始</view>
+							<view class="f999">3天前</view>
+						</view>
+							<image class="zan" src="{{zan}}"></image>
+							<text class="zan-center">1</text>	
+					</view>
+					<view class="nearby-item clearFix brbott-boe7e7e7">
+						<view class="f-right wi82 paddBo20 paddLe24">
+							<view class="fontSize30 .ma-bo4 ">榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始</view>
+						</view>
+					</view>
+				</view>
+				<view class="Releaselist_item paddBo20">
+					<view class="nearby-item clearFix">
+						<view class="f-left bo-f000ff paddLe24 wihe40 ">
+							 <image src="{{loge}}" style="border:1rpx solid #ddd;"></image>
+						</view>
+						<view class="f-right wi82 paddBo20">
+							<view class="fontSize30 .ma-bo4">榆林啥地方将开始</view>
+							<view class="f999">3天前</view>
+						</view>
+							<image class="zan" src="{{zan}}"></image>
+							<text class="zan-center">1</text>	
+					</view>
+					<view class="nearby-item clearFix brbott-boe7e7e7">
+						<view class="f-right wi82 paddBo20 paddLe24">
+							<view class="fontSize30 .ma-bo4 ">榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始</view>
+						</view>
+					</view>
+				</view>
+				<view class="Releaselist_item paddBo20">
+					<view class="nearby-item clearFix">
+						<view class="f-left bo-f000ff paddLe24 wihe40 ">
+							 <image src="{{loge}}" style="border:1rpx solid #ddd;"></image>
+						</view>
+						<view class="f-right wi82 paddBo20">
+							<view class="fontSize30 .ma-bo4">榆林啥地方将开始</view>
+							<view class="f999">3天前</view>
+						</view>
+							<image class="zan" src="{{zan}}"></image>
+							<text class="zan-center">1</text>	
+					</view>
+					<view class="nearby-item clearFix brbott-boe7e7e7">
+						<view class="f-right wi82 paddBo20 paddLe24">
+							<view class="fontSize30 .ma-bo4 ">榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始榆林啥地方将开始</view>
+						</view>
+					</view>
+				</view>
+	   		</view>
+		</view>
+	</view>
+</view>

@@ -6,3 +6,14 @@
 .log-item {
   margin: 10rpx;
 }
+.p33{
+	padding:0 33px;
+}
+.init{
+	width: 3px;
+	height:10px;
+	background-color:#fda249;
+	margin-right:6px; 
+}
+
+

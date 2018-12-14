@@ -22,31 +22,28 @@ Page({
     indicator:"#fff",
     page:1,
     boolean:false,
+    boolean1:false,
     boolean3:false,
     currentTab:0,
     number:0,
     open_num:8,
+    index: 0,
+    multiIndex: [0, 0, 0],
+    region: ['广东省', '广州市', '海珠区'],
+    customItem: '全部'
   },
-  //事件处理函数
-  bindViewTap: function(options){
-    wx.navigateTo({
-      url: '../logs/logs'
+  bindRegionChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      region: e.detail.value
     })
   },
-  //图片放大
-  imgtop:function(e){
-    var imgList = e.currentTarget.dataset.list;//获取data-list
-    var index = e.currentTarget.dataset.index
-    var arry = []
-    for(var a=0;a<imgList.length;a++){
-      var imgList2 = imgList[a].s
-      arry.push(imgList2)
-    }
-      wx.previewImage({
-        current:arry[index].s,
-        urls:arry
-       })
-  },
+  //事件处理函数
+  // bindViewTap: function(options){
+  //   wx.navigateTo({
+  //     url: '../logs/logs'
+  //   })
+  // },
   // 机构类型打开/关闭
   open:function(){
      var that = this
@@ -65,11 +62,28 @@ Page({
           })
      }
   },
+  open1:function(){
+     var that = this
+     that.setData({ 
+          boolean2:!that.data.boolean2,
+          boolean:false
+      })
+     if(that.data.boolean2 == true){
+        that.setData({
+           open_num:1
+        })
+     }
+     else{
+        that.setData({
+             open_num:99
+          })
+     }
+  },
   open3:function(){
     var that = this
      that.setData({ 
-          boolean:false,
-          boolean3:!that.data.boolean3
+          boolean3:!that.data.boolean3,
+          boolean:false
       })
       if(that.data.boolean3 == true){
         that.setData({
@@ -233,32 +247,31 @@ Page({
     var city = that.data.city
     var page = Number(that.data.page)+ 1
     // 显示加载图标
-    // wx.showLoading({
-    //   title: '正在加载中'
-    // })
+    wx.showLoading({
+      title: '正在加载中'
+    })
     setTimeout(function(){
-        // wx.request({
-        //   url: 'https://qb.xluob.com/mini/organization/index',
-        //   method:"post",
-        //   data: {
-        //      "code":"",
-        //      "site":"",
-        //      "sort":"",
-        //      "pn":page
-        //   },
-        //   success: function(res) {
-        //    var from = res.data.data.list
-        //     console.log(res)
-        //     for (var i = 0; i < res.data.data.list.length; i++) {
-        //         from.push(res.data.data.list[i]);
-        //       }
-        //       that.setData({ 
-        //           listItem:from,
-        //           page:page
-        //       })
-        //      wx.hideLoading()
-        //   }
-        // })
+        wx.request({
+          url: 'https://qb.xluob.com/mini/organization/index',
+          method:"post",
+          data: {
+             "code":"",
+             "site":"",
+             "sort":"",
+             "pn":page
+          },
+          success: function(res) {
+           var from = that.data.listItem
+            for (var i = 0; i < res.data.data.list.length; i++) {
+                from.push(res.data.data.list[i]);
+              }
+              that.setData({ 
+                  listItem:from,
+                  page:page
+              })
+          }
+        })
+         wx.hideLoading()
     },1500)
   },
   getUserInfo: function(e) {

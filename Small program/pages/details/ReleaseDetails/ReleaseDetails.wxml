@@ -1,0 +1,203 @@
+<!--logs.wxml-->
+<view class="container log-list">
+	<view id="Releaselist">
+		<view class="list_item brbott-tae7e7e7">
+		 	<view class="Releaselist_follow brbote7">
+				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-boe7e7e7">
+					<view class="f-left bo-f000ff paddLe24 wihe40">
+						 <image  src="{{loge}}" style="border:1rpx solid #ddd;"></image>
+					</view>
+					<view class="f-right wi82 paddBo20">
+						<view class="fontSize30 .ma-bo4">榆林啥地方将开始</view>
+						<view class="f999">发布数5<i class="dian"></i>已找到5<i class="dian"></i>爱心值5</view>
+					</view>
+					<text class="follow">关注</text>
+				</view>
+	   		</view>
+		</view>
+		<view class="Releaselist_center brbote7">
+			<view class="brbott-boe7e7e7 nearby-top">
+				<view class="clearFix height47">
+					<view class="f-left f333 fontSize30"><i class="init"></i>发布信息</view>
+				</view>
+				<view class="box p33">
+					<view class="column">
+					    <view class="item">
+							<view>1000</view>
+							<view>物品认领</view>
+					    </view>
+					    <view class="item">
+							<view>1000</view>
+							<view>人口认领</view>
+					    </view>
+					    <view class="item">
+							<view>1000</view>
+							<view>认领成功</view>
+					    </view>
+				    </view>
+		    	</view>
+			</view>
+			<view class="brbott-boe7e7e7 nearby-top">
+				<view class="clearFix height47">
+					<view class="f-left f333 fontSize30"><i class="init"></i>联系方式</view>
+				</view>
+				<view class="flex-wrp" style="flex-direction:column;">
+					    <view class="nearby-top">
+						    <view class="flex-item">联系电话：18220908313</view>
+						    <view class="flex-item">联系地址：西安市司法局的疯狂东方健</view>
+					    </view>
+				 </view>
+			</view>
+		</view>
+		<!-- 附近机构 -->
+		<view class="nearby clearFix">
+			<view class="nearby-top clearFix height47 brbott-boe7e7e7">
+				<view class="f-left f333 fontSize30">最近发布</view>
+				<text class="f-right f999" bindtap="all">查看全部 ></text>
+			</view>
+			<view class="Releaselist_list">
+				<view class="nearby-top brbott-boe7e7e7">
+					<view class="clearFix genre_name_top">
+						<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>寻人/寻物</view>
+						<text class="f-right f999">1天</text>
+					</view>
+					<text class="clearFix" style="width: 100%;">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</text>
+					<view class="list-imgbox">
+						<!-- 图片为6张 -->
+						<view class="SixImg clearFix">
+							<!-- 图片6张 -->
+							<!-- <view bindtap="imgtop" class="SixImg-img" wx:if="{{item.images.length != 0}}" wx:for="{{item.images}}" data-list="{{item.images}}" data-index='{{index}}'  wx:key="index" wx:for-item="iteming">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view> -->
+						    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+						    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+						    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+						     <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+					    </view>
+					    <view class="nearby-bottom paddBo13 paddTa13 clearFix">
+		   			 		<view class="clearFix height40">
+								<view class="f-left f333 fontSize30 wi70 hidden">
+									<!-- <view  class="wihe20 f-left paddRi14" style="top:7px;">
+										<image wx:if="{{item.avatar.length != 0}}" src="{{item.avatar.s}}" alt=""></image>
+									 	<image wx:else src="{{loge}}"></image>
+									</view> -->
+									<view  class="wihe20 f-left paddRi14" style="top:7px;">
+									 	<image src="{{loge}}"></image>
+									</view>
+									<view class="f-left hidden wi70" style="line-height: 40px">123123</view>
+								</view>
+								<view class="f-right wi23 f999 clearFix">
+									<view class="wihe20 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
+									<view class="f-left length">{{item.comment_count}}</view>
+									<view class="f-right fenxi"><image src="{{fexi}}" alt=""></image></view>
+								</view>
+							</view>
+		   			 	</view>
+				 	</view>
+				</view>
+				<view class="nearby-top brbott-boe7e7e7">
+					<view class="clearFix genre_name_top">
+						<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>寻人/寻物</view>
+						<text class="f-right f999">1天</text>
+					</view>
+					<text class="clearFix" style="width: 100%;">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</text>
+					<view class="list-imgbox">
+						<!-- 图片为6张 -->
+						<view class="SixImg clearFix">
+							<!-- 图片6张 -->
+							<!-- <view bindtap="imgtop" class="SixImg-img" wx:if="{{item.images.length != 0}}" wx:for="{{item.images}}" data-list="{{item.images}}" data-index='{{index}}'  wx:key="index" wx:for-item="iteming">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view> -->
+						    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+						    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+						    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+						     <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+					    </view>
+					    <view class="nearby-bottom paddBo13 paddTa13 clearFix">
+		   			 		<view class="clearFix height40">
+								<view class="f-left f333 fontSize30 wi70 hidden">
+									<!-- <view  class="wihe20 f-left paddRi14" style="top:7px;">
+										<image wx:if="{{item.avatar.length != 0}}" src="{{item.avatar.s}}" alt=""></image>
+									 	<image wx:else src="{{loge}}"></image>
+									</view> -->
+									<view  class="wihe20 f-left paddRi14" style="top:7px;">
+									 	<image src="{{loge}}"></image>
+									</view>
+									<view class="f-left hidden wi70" style="line-height: 40px">123123</view>
+								</view>
+								<view class="f-right wi23 f999 clearFix">
+									<view class="wihe20 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
+									<view class="f-left length">{{item.comment_count}}</view>
+									<view class="f-right fenxi"><image src="{{fexi}}" alt=""></image></view>
+								</view>
+							</view>
+		   			 	</view>
+				 	</view>
+				</view>
+				<view class="nearby-top brbott-boe7e7e7">
+					<view class="clearFix genre_name_top">
+						<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>寻人/寻物</view>
+						<text class="f-right f999">1天</text>
+					</view>
+					<text class="clearFix" style="width: 100%;">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</text>
+					<view class="list-imgbox">
+						<!-- 图片为6张 -->
+						<view class="SixImg clearFix">
+							<!-- 图片6张 -->
+							<!-- <view bindtap="imgtop" class="SixImg-img" wx:if="{{item.images.length != 0}}" wx:for="{{item.images}}" data-list="{{item.images}}" data-index='{{index}}'  wx:key="index" wx:for-item="iteming">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view> -->
+						    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+						    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+						    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+						     <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
+						    	<image src="{{loge}}" alt=""></image>
+						    </view>
+					    </view>
+					    <view class="nearby-bottom paddBo13 paddTa13 clearFix">
+		   			 		<view class="clearFix height40">
+								<view class="f-left f333 fontSize30 wi70 hidden">
+									<!-- <view  class="wihe20 f-left paddRi14" style="top:7px;">
+										<image wx:if="{{item.avatar.length != 0}}" src="{{item.avatar.s}}" alt=""></image>
+									 	<image wx:else src="{{loge}}"></image>
+									</view> -->
+									<view  class="wihe20 f-left paddRi14" style="top:7px;">
+									 	<image src="{{loge}}"></image>
+									</view>
+									<view class="f-left hidden wi70" style="line-height: 40px">123123</view>
+								</view>
+								<view class="f-right wi23 f999 clearFix">
+									<view class="wihe20 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
+									<view class="f-left length">{{item.comment_count}}</view>
+									<view class="f-right fenxi"><image src="{{fexi}}" alt=""></image></view>
+								</view>
+							</view>
+		   			 	</view>
+				 	</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

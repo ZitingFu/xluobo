@@ -162,6 +162,7 @@ Page({
         myAmapFun.getRegeo({
           success: function (data) {
             var city = data[0].regeocodeData.addressComponent.adcode
+            console.log(city)
             that.setData({
               city:city
             })

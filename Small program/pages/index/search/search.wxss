@@ -43,7 +43,9 @@
     height: 25px;
     background-color:red;
 }
-
+#search .weui-tab__panel{
+    padding-top:100px;
+}
 /**/
 .page__bd{
     height: 100%;
