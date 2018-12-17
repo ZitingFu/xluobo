@@ -50,6 +50,12 @@ Page({
       url:'../search/search'
     })
   },
+  ckdetails:function(e){
+    var id = e.currentTarget.dataset.usid;
+      wx.navigateTo({
+        url: '../../details/details/details?id='+id
+      })
+  },
   //寻人，寻物
   Latelytop:function(e){
     var id = e.currentTarget.dataset.id
@@ -162,7 +168,6 @@ Page({
         myAmapFun.getRegeo({
           success: function (data) {
             var city = data[0].regeocodeData.addressComponent.adcode
-            console.log(city)
             that.setData({
               city:city
             })
@@ -215,7 +220,7 @@ Page({
               url: 'https://qb.xluob.com/mini/index/nearby',
               method:"post",
               data: {
-                  "pn":page,
+                  "pn":1,
                   "area":city
               },
               success: function(res) {
@@ -230,7 +235,7 @@ Page({
               url: 'https://qb.xluob.com/mini/index/nearby',
               method:"post",
               data: {
-                  "pn":page,
+                  "pn":1,
                   "area":city
               },
               success: function(res) {
@@ -254,10 +259,11 @@ Page({
               url: 'https://qb.xluob.com/mini/index/newquestion',
               method:"post",
               data: {
-                  "pn":page,
+                  "pn":1,
                   "area":city
               },
               success: function(res) {
+                console.log(res)
                 var from = res.data.data.list
                 if(from.length==0){
                     that.setData({ 

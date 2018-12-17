@@ -38,12 +38,12 @@ Page({
       region: e.detail.value
     })
   },
-  //事件处理函数
-  // bindViewTap: function(options){
-  //   wx.navigateTo({
-  //     url: '../logs/logs'
-  //   })
-  // },
+  ckdetails:function(e){
+    var id = e.currentTarget.dataset.usid;
+     wx.navigateTo({
+      url: '../../details/ReleaseDetails/ReleaseDetails?id='+id
+    })
+  },
   // 机构类型打开/关闭
   open:function(){
      var that = this
@@ -228,7 +228,6 @@ Page({
                  "sort":""
               },
               success: function(res) {
-                console.log(res)
                var list = res.data.data.list
                 that.setData({ 
                   listItem:list

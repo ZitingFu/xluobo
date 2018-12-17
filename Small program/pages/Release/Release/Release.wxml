@@ -46,7 +46,7 @@
    		<view class="Release-center {{activeIndex == 1 ? 'notime' : ''}}" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
-					<view class="nearby-item clearFix paddTa20" bindtap="details"  wx:for="{{listItem}}" wx:key="index">
+					<view class="nearby-item clearFix paddTa20" bindtap="ckdetails" data-usid="{{item.id}}"  wx:for="{{listItem}}" wx:key="index">
 						<view class="f-left bo-f000ff paddLe24 wihe40">
 							 <image wx:if="{{item.avatar.length>0}}" src="{{item.avatar.b}}" ></image>
 							 <image wx:else src="{{loge}}" style="border:1rpx solid #ddd;"></image>

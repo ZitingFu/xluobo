@@ -5,6 +5,7 @@ const app = getApp()
 Page({
   data: {
     fromItem:"",
+    recent_post:"",
     clock:"https://img.qa.xluob.com/Small%20program/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181214163845.png",
     fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
     xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
@@ -32,18 +33,20 @@ Page({
     var that = this
     var city = that.setData.city
     var page = Number(that.data.page)
+    var id = options.id
       wx.request({
-        url: 'https://qb.xluob.com/mini/index/nearby',
+        url: 'https://qb.xluob.com/mini/passport/center',
         method:"post",
         data: {
-            "pn":page,
-            "area":610113
+            "id":id
         },
         success: function(res) {
           console.log(res)
-          var from = res.data.data.list
+          var from = res.data.data.info
+          var recent_post = res.data.data.recent_post
           that.setData({ 
-              fromItem1:from
+              fromItem:from,
+              recent_post:recent_post
           })
           wx.hideLoading()
         }

@@ -552,3 +552,6 @@ li span{
 	right:12px;
 	top:0px;
 }
+.Releaselist_comment{
+	padding-bottom:50px;
+}
