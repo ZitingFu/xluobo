@@ -40,7 +40,7 @@
 				<text class="f-right f999" bindtap="all">全部 ></text>
 			</view>
 			<view class="nearby-center clearFix height80 brbott-tae7e7e7">
-				<view class="nearby-item clearFix paddTa20" wx:for="{{listItem}}" wx:key="index">
+				<view class="nearby-item clearFix paddTa20" wx:for="{{listItem}}" bindtap="cktype" data-stype="{{item.id}}" wx:key="index">
 					<view class="f-left bo-f000ff paddLe24 wihe40">
 						 <image wx:if="{{item.avatar.length>0}}" src="{{items.avatar.s}}" ></image>
 						 <image wx:else src="{{loge}}" style="border:1rpx solid #ddd;"></image>

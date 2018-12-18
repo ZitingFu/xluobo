@@ -1,0 +1,6 @@
+{
+ "navigationBarTitleText": "三级联动",
+  "enablePullDownRefresh":true,
+  "backgroundTextStyle":"#ffffff",
+  "onReachBottomDistance":50
+}

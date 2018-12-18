@@ -1,10 +1,11 @@
 {
   "pages":[
+    "pages/Release/Release/Release",
+    "pages/details/e/e",
     "pages/index/index/index",
     "pages/details/ReleaseDetails/ReleaseDetails",
     "pages/details/details/details",
     "pages/index/search/search",
-    "pages/Release/Release/Release",
     "pages/index/peoplelist/peoplelist",  
     "pages/index/matterlist/matterlist",  
     "pages/index/Searchpeople/Searchpeople",  

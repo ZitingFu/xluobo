@@ -14,6 +14,7 @@ Page({
     zan:"https://img.qa.xluob.com/Small%20program/xxxq_icon_dashang%402x.png",
     zhfa:"",
     page:1,
+    _t:""
   },
   //图片放大
   imgtop:function(e){
@@ -30,18 +31,39 @@ Page({
        })
   },
   onLoad: function (options) {
+    wx.login({
+      success: res => {
+      // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if(res.code){
+          wx.request({
+            url: 'https://qb.xluob.com/mini/passport/auth', //仅为示例，并非真实的接口地址
+            method: "POST",
+            data: {
+              code: res.code
+            },
+          success: function (res) {
+              that.setData({  
+                _t:res.data.data._t
+              })
+            }
+          })
+        }
+      }
+    })
     var that = this
     var city = that.setData.city
     var page = Number(that.data.page)
     var id = options.id
+    var _t = that.data._t
+    console.log(that.data)
       wx.request({
         url: 'https://qb.xluob.com/mini/passport/center',
         method:"post",
         data: {
-            "id":id
+            "id":id,
+            "_t":_t
         },
         success: function(res) {
-          console.log(res)
           var from = res.data.data.info
           var recent_post = res.data.data.recent_post
           that.setData({ 
@@ -53,7 +75,6 @@ Page({
       })
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

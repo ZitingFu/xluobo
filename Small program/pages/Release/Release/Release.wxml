@@ -21,12 +21,13 @@
 					</view>
 			     	<view class="item" data-open="1" bindtap="open1">
 						<select name="区域" id="" >
-				     		<view class="section">
+							<view class="section">
 							  <picker
-							    mode="region"
-							    bindchange="bindRegionChange"
-							    value="{{region}}"
-							    custom-item="{{customItem}}"
+							    mode="multiSelector"
+							    bindchange="bindMultiPickerChange"
+							    bindcolumnchange="bindMultiPickerColumnChange"
+							    value="{{multiIndex}}"
+							    range="{{multiArray}}"
 							  >
 							    <view class="picker">
 							      <option value="">区域<i class="{{open_num==1?'sjs':'sjx'}}"></i></option>
@@ -62,6 +63,6 @@
    		<!-- 弹出框 -->
    		<view class="Popup" bindtap="open" wx:if="{{boolean}}"></view>
    		<view class="Popup" bindtap="open3" wx:if="{{boolean3}}"></view>
+		<!--三级联动 -->
 	</view>
-	<!--三级联动 -->
 </view>

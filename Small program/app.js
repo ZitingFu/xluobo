@@ -6,29 +6,29 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     // 登录
-    wx.login({
-      success: res => {
-      // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if(res.code){
-          wx.request({
-            url: 'https://qb.xluob.com/mini/passport/auth', //仅为示例，并非真实的接口地址
-            method: "POST",
-            data: {
-              code: res.code
-            },
-          success: function (res) {
-            // console.log(res.data.data._t)
-              // if (res.data.openid){
-              //   wx.setStorage({
-              //     key:"tokenId",
-              //     data:res.data.openid,
-              //   })
-              // }
-            }
-          })
-        }
-      }
-    })
+    // wx.login({
+    //   success: res => {
+    //   // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    //     if(res.code){
+    //       wx.request({
+    //         url: 'https://qb.xluob.com/mini/passport/auth', //仅为示例，并非真实的接口地址
+    //         method: "POST",
+    //         data: {
+    //           code: res.code
+    //         },
+    //       success: function (res) {
+    //         console.log(res.data.data._t)
+    //           // if (res.data.openid){
+    //           //   wx.setStorage({
+    //           //     key:"tokenId",
+    //           //     data:res.data.openid,
+    //           //   })
+    //           // }
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
     // 获取用户信息
     wx.getSetting({
       success: res => {
