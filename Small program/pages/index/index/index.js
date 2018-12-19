@@ -159,7 +159,6 @@ Page({
         }
       }
     })
-
     var that = this
     var city = that.data.city
     var page = Number(that.data.page)

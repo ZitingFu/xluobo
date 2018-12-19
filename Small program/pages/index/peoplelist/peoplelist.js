@@ -113,157 +113,67 @@ Page({
           })
      }
   },
-  //排序
   Type_top_number:function(e){
-     wx.showLoading({
-        title: '正在加载...',
-      })
-      var that = this
-      var number = e.currentTarget.dataset.number
-      var type_id =  that.data.type_id
-      var code = that.data.city
-      that.setData({ 
-          number:number,
-          boolean3:false
-      })
-      setTimeout(function(){
-        wx.request({
-          url: 'https://qb.xluob.com/mini/organization/index',
-          method:"post",
-          data: {
-             site:type_id,
-             code:code,
-             sort:number
-          },
-          success: function(res) {
-           var list = res.data.data.list
-           console.log(res)
-           if(list.length==0){
-              that.setData({ 
-                 listItem:"",
-                activeIndex:1
-              })
-           }else{
-              that.setData({ 
-                listItem:list,
-                activeIndex:0
-              })
-           }
-          }
-        })
-        wx.hideLoading()  
-      },1000)
+    var that = this
+    app.Type_top_number(e,that)
   },
-  // 点击机构选项发送请求
-  Type_top:function(e){
-      wx.showLoading({
-        title: '正在加载...',
-      })
-      var that = this
-      var current = e.currentTarget.dataset.currenttab
-      var type_id = e.currentTarget.dataset.type_id
-      var sort = that.data.number
-      var code = that.data.city
-      that.setData({ 
-          currentTab:current,
-          type_id:type_id,
-          boolean:false
-      })
-      setTimeout(function(){
-        wx.request({
-          url: 'https://qb.xluob.com/mini/organization/index',
-          method:"post",
-          data: {
-             site:type_id,
-             code:code,
-             sort:sort
-          },
-          success: function(res) {
-           var list = res.data.data.list
-           if(list.length == 0){
-             that.setData({ 
-                listItem:"",
-                activeIndex:1
-              })
-           }
-           else{
-            that.setData({ 
-                listItem:list,
-                activeIndex:0
-            })
-           }
-          }
-        })
-         wx.hideLoading()
-      },1000)
+  Type_top:function(e,that){
+     var that = this
+     app.Type_top(e,that)
   },
   onLoad: function (options) {
     var that = this
     var city = that.setData.city
     var page = Number(that.data.page)
-     // 引入高德地图
-    wx.showLoading({
-      title: '正在加载...',
-    })
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
-        var markersData = {
-          latitude: latitude,//纬度
-          longitude: longitude,//经度
-          key: that.data.MapKey
-        };
-        var addArr = [];
-        var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
-        myAmapFun.getRegeo({
-          success: function (data) {
-            var city = data[0].regeocodeData.addressComponent.adcode
-            that.setData({
-              city:city
-            })
-            //所有场所
-            wx.request({
-              url: 'https://qb.xluob.com/mini/genre/list',
-              method:"post",
-              data:{
-                id:1
-              },
-              success: function(res) {
-                // console.log(res)
-               var site = res.data.data.genre
-                that.setData({
-                    id:1,
-                    TypeItem:site
-                })
-              }
-            })
-            wx.request({
-              url: 'https://qb.xluob.com/mini/question/search',
-              method:"post",
-              data: {
-                 "code":city,
-                 "site":"",
-                 "sort":"",
-                 "pn":page
-              },
-              success: function(res) {
-                console.log(123)
-                console.log(res)
-               var list = res.data.data.list
-                that.setData({ 
-                  listItem:list
-                })
-              }
-            })
-            wx.hideLoading()
-          }
-        });
-      }
-    })
+    setTimeout(function(){
+      var _t = app.data._t
+      var citynamelist =  app.data.citynamelist
+      var citycode = app.data.citycode
+      var city = app.data.city
+      that.setData({
+        _t:_t,
+        citynamelist:citynamelist,
+        citycode:citycode,
+        multiArray:[
+              citynamelist,
+            ["全部省","北京市"], 
+            [],
+          ]
+      })
+      //所有场所
+      wx.request({
+        url: 'https://qb.xluob.com/mini/genre/list',
+        method:"post",
+        data:{
+          id:1
+        },
+        success: function(res) {
+          // console.log(res)
+         var site = res.data.data.genre
+          that.setData({
+              id:1,
+              TypeItem:site
+          })
+        }
+      })
+      wx.request({
+        url: 'https://qb.xluob.com/mini/question/search',
+        method:"post",
+        data: {
+           "code":city,
+           "site":"",
+           "sort":"",
+           "pn":page
+        },
+        success: function(res) {
+         var list = res.data.data.list
+          that.setData({ 
+            listItem:list
+          })
+        }
+      })
+      wx.hideLoading()
+    },1500)
   },
    // 上拉
   onReachBottom: function(){
