@@ -47,6 +47,7 @@ Page({
         method:"post",
         data: {
             "id":id
+             // "id":268471571
         },
         success: function(res) {
           console.log(res)

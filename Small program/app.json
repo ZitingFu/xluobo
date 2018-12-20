@@ -1,16 +1,16 @@
 {
   "pages":[
     "pages/index/index/index",
-    "pages/index/peoplelist/peoplelist",  
-    "pages/Release/Release/Release",
-    "pages/details/e/e",
-    "pages/details/ReleaseDetails/ReleaseDetails",
     "pages/details/details/details",
-    "pages/index/search/search",
+    "pages/details/ReleaseDetails/ReleaseDetails",
+    "pages/Release/Release/Release",
+    "pages/index/Exhibition/Exhibition",  
+    "pages/index/peoplelist/peoplelist",  
     "pages/index/matterlist/matterlist",  
+    "pages/details/e/e",
+    "pages/index/search/search",
     "pages/index/Searchpeople/Searchpeople",  
     "pages/index/Searchmatter/Searchmatter",  
-    "pages/index/Exhibition/Exhibition",  
     "pages/index/matterDetails/matterDetails",
     "pages/index/peopleDetails/peopleDetails",
     "pages/me/me/me"

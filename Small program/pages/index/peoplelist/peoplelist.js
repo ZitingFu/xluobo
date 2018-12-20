@@ -25,29 +25,49 @@ Page({
     indicator:"#fff",
     page:1,
     boolean:false,
+    boolean1:false,
     boolean3:false,
-    boolean2:false,
     currentTab:0,
-    number:0,
+    currentTab2:0,
+    number:"",
     open_num:8,
     index: 0,
-    multiIndex: [0, 0, 0],
-    region: ['广东省', '广州市', '海珠区'],
-    customItem: '全部'
+    TypeItem3:"",
+    citynamelist:"",
+    multiArray: [
+          ['全部市', '全部市'],
+          ['全部省', ], 
+          ['全部区',],
+    ],
+    multiIndex:[0, 0, 0],
+    _t:"",
   },
-  //事件处理函数
-  bindViewTap: function(options){
-    wx.navigateTo({
-      url: '../logs/logs'
+  bindMultiPickerChange(e) {
+    var that = this;
+    app.bindMultiPickerChange(e,that)
+  },
+  bindMultiPickerColumnChange(e) {
+    var that = this;
+    app.bindMultiPickerColumnChange(e,that)
+  },
+  ckdetails:function(e){
+    var id = e.currentTarget.dataset.usid;
+     wx.navigateTo({
+      url: '../../details/ReleaseDetails/ReleaseDetails?id='+id
     })
   },
-  bindRegionChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      region: e.detail.value
-    })
+  open:function(that){
+    var that = this
+    app.open(that)
   },
-  //图片放大
+  open1:function(that){
+    var that = this
+    app.open1(that)
+  },
+  open3:function(that){
+    var that = this
+    app.open3(that)
+  },
   imgtop:function(e){
     var imgList = e.currentTarget.dataset.list;//获取data-list
     var index = e.currentTarget.dataset.index
@@ -61,57 +81,11 @@ Page({
         urls:arry
        })
   },
-  // 机构类型打开/关闭
-  open:function(){
-     var that = this
-     that.setData({ 
-          boolean:!that.data.boolean,
-          boolean3:false
+  ckdetails:function(e){
+    var id = e.currentTarget.dataset.usid;
+      wx.navigateTo({
+        url: '../../details/details/details?id='+id
       })
-     if(that.data.boolean == true){
-        that.setData({
-           open_num:0
-        })
-     }
-     else{
-        that.setData({
-             open_num:99
-          })
-     }
-  },
-  open1:function(){
-     var that = this
-     that.setData({ 
-          boolean2:!that.data.boolean2,
-          boolean:false
-      })
-     if(that.data.boolean2 == true){
-        that.setData({
-           open_num:1
-        })
-     }
-     else{
-        that.setData({
-             open_num:99
-          })
-     }
-  },
-  open3:function(){
-    var that = this
-     that.setData({ 
-          boolean:false,
-          boolean3:!that.data.boolean3
-      })
-      if(that.data.boolean3 == true){
-        that.setData({
-           open_num:2
-        })
-     }
-     else{
-        that.setData({
-             open_num:99
-          })
-     }
   },
   Type_top_number:function(e){
     var that = this
@@ -122,58 +96,77 @@ Page({
      app.Type_top(e,that)
   },
   onLoad: function (options) {
+    wx.showLoading({
+      title: '正在加载...',
+    })
     var that = this
     var city = that.setData.city
     var page = Number(that.data.page)
     setTimeout(function(){
-      var _t = app.data._t
-      var citynamelist =  app.data.citynamelist
-      var citycode = app.data.citycode
-      var city = app.data.city
-      that.setData({
-        _t:_t,
-        citynamelist:citynamelist,
-        citycode:citycode,
-        multiArray:[
+        var _t = app.data._t
+        var citynamelist =  app.data.citynamelist
+        // console.log(citynamelist)
+        var citycode = app.data.citycode
+        var city = app.data.city
+        var type_id = app.data.type_id
+        that.setData({
+          type_id:type_id,
+          _t:_t,
+          citynamelist:citynamelist,
+          citycode:citycode,
+          multiArray:[
               citynamelist,
-            ["全部省","北京市"], 
-            [],
-          ]
-      })
-      //所有场所
-      wx.request({
-        url: 'https://qb.xluob.com/mini/genre/list',
-        method:"post",
-        data:{
-          id:1
-        },
-        success: function(res) {
-          // console.log(res)
-         var site = res.data.data.genre
-          that.setData({
-              id:1,
-              TypeItem:site
+              ["全部省","北京市"], 
+              ["全部区"],
+            ]
+        })
+          wx.request({
+            url: 'https://qb.xluob.com/mini/genre/list',
+            method:"post",
+            data:{
+              id:1
+            },
+            success: function(res) {
+              console.log(res)
+             var site = res.data.data.genre
+              that.setData({
+                  id:1,
+                  TypeItem3:site
+              })
+            }
           })
-        }
-      })
-      wx.request({
-        url: 'https://qb.xluob.com/mini/question/search',
-        method:"post",
-        data: {
-           "code":city,
-           "site":"",
-           "sort":"",
-           "pn":page
-        },
-        success: function(res) {
-         var list = res.data.data.list
-          that.setData({ 
-            listItem:list
+          //所有场所
+          wx.request({
+            url: 'https://qb.xluob.com/mini/site/list',
+            method:"post",
+            success: function(res) {
+              console.log(res)
+             var site = res.data.data.site
+              that.setData({ 
+                  TypeItem:site
+              })
+            }
           })
-        }
-      })
-      wx.hideLoading()
+          //机构列表
+           wx.request({
+            url: 'https://qb.xluob.com/mini/question/search',
+            method:"post",
+            data: {
+                "genre":1,
+               "code":city,
+               "site":"",
+               "pn":page
+            },
+            success: function(res) {
+              console.log(res)
+             var list = res.data.data.list
+              that.setData({ 
+                listItem:list
+              })
+            }
+          })
     },1500)
+    wx.hideLoading()
   },
    // 上拉
   onReachBottom: function(){
@@ -199,13 +192,13 @@ Page({
             for (var i = 0; i < res.data.data.list.length; i++) {
                 from.push(res.data.data.list[i]);
               }
-              that.setData({  
+              that.setData({ 
                   listItem:from,
                   page:page
               })
+            wx.hideLoading()
           }
         })
-         wx.hideLoading()
     },1500)
   },
   getUserInfo: function(e) {

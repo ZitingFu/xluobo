@@ -69,4 +69,20 @@
 	   		</view>
 		</view>
 	</view>
+	<!-- 底部 -->
+	<view class="bottom">
+		<view class="box">
+			<view class="column">
+			    <view class="item wi80">
+			    	<view class="comment">
+					  	<input class="" placeholder="写评论" auto-focus/>
+					</view>
+			    </view>
+			    <view class="item">
+			    	<!-- <image class="Star"  src="{{clock}}"></image> -->
+			    	<view class="sub">发送</view>
+		     	</view>
+		    </view>
+    	</view>
+	</view>
 </view>

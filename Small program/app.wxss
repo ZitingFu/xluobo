@@ -13,7 +13,7 @@
 	/*background-color: red;*/
 }
 /*共同*/
-#Release,#me,#search,#Releaselist{
+#details,#Release,#me,#search,#Releaselist,#peoplelist,#ReleaseDetails{
 	width: 100%;
 }
 view,p,h1,h2,h3,h4,h5,h6,ul,li {
@@ -218,6 +218,9 @@ i{
 .wi80{
 	width: 80%;
 }
+.wi84{
+	width: 84%;
+}
 .paddTa30{
 	padding-top:30rpx;
 }
@@ -393,11 +396,12 @@ image {
 }
 .length{
 	padding-left:5px;
-	padding-right:15px;  
+	padding-right:0px;  
 }
 .xinxi{
 	position: relative;
 	top:11rpx;
+	left:0px;
 }
 .fenxi{
 	width:23px;
@@ -405,6 +409,7 @@ image {
 	position:relative;
 	top:16rpx;
 	right:2rpx;
+	display:none;
 }
 .jing{
 	width:20rpx;
@@ -485,7 +490,23 @@ image {
 	/*float: left;*/
 	border-radius:4px;
 }
-
+/*.....peoplelist.....*/
+#peoplelist .organ_Type_number li{
+	padding:0px 0px;
+	width:22%;
+	height: 32px;
+	display:inline-block;
+	line-height: 32px;
+	margin:6px 5px; 
+	box-sizing: border-box;
+	text-align:center;
+	line-height: 32px;
+	border:1px solid #e7e7e7;
+	border-radius:4px;
+}
+#peoplelist .organ_Type_number{
+	text-align:left;
+}
 /*......我的.......*/
 #me{
 	/*background-color:#ddd;*/
@@ -510,6 +531,29 @@ li span{
 	border-bottom:1px solid #ddd;
 }
 /*信息详情*/
+.bottom .comment{
+	width:100%;
+	position: relative;
+	top:-6px;
+	height:27px;
+	background-color:#f3f5f9;
+	border:1px solid #e1e1e1;
+	border-radius: 10px;
+	margin-left:12px; 
+}
+.sub{
+	text-align:center;
+	width:40px;
+	border-radius:4px;
+	line-height:20px;
+	background-color:#fda249; 
+	position: relative;
+	top:-3px;
+	left:-10px;
+	padding:2px 4px;
+	color: #fff;
+}
+/*#details .bottom*/
 .Releaselist_center{
 	line-height: 25px;
 	color:#333;
@@ -555,3 +599,45 @@ li span{
 .Releaselist_comment{
 	padding-bottom:50px;
 }
+/*机构详情*/
+#ReleaseDetails .follow2{
+	margin-left:13px;
+	background-color:#fda249;
+	padding:4px 9px; 
+	border-radius:13px;
+	color:#fff;
+	/*float: left;*/
+	/*right:150px;
+	top:36px;
+	padding:0 15px;
+	margin-left:15px; */
+}
+#ReleaseDetails .bottom .item{
+	width:50%;
+	text-align:center;
+	border-right:1px solid #e7e7e7;
+}
+.follow2No{
+	margin-right:7px;	
+}
+.bottom{
+	padding:16px 0;
+	width: 100%;
+	position: fixed;
+	bottom:0;
+	left:0;
+	height:16px;
+	line-height:16px;
+	color:#000;
+	box-shadow: 2px 5px 41px 2px #999;
+	background-color:#fff;
+}
+.love,.phone{
+	width: 12px;
+	height:12px;
+	margin-right:3px; 
+}
+/*.large{
+	padding: 
+}
+*/

@@ -12,6 +12,8 @@ Page({
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
     jing:"https://img.qa.xluob.com/Small%20program/1.png",
     zan:"https://img.qa.xluob.com/Small%20program/xxxq_icon_dashang%402x.png",
+    love:"https://img.qa.xluob.com/Small%20program/jgxq_icon_guanzhu.png",
+    phone:"https://img.qa.xluob.com/Small%20program/jgxq_icon_tel.png",
     zhfa:"",
     page:1,
     _t:""
@@ -60,10 +62,12 @@ Page({
         url: 'https://qb.xluob.com/mini/passport/center',
         method:"post",
         data: {
-            "id":id,
+            // "id":2740,
+            id:id,
             "_t":_t
         },
         success: function(res) {
+          console.log(res)
           var from = res.data.data.info
           var recent_post = res.data.data.recent_post
           that.setData({ 

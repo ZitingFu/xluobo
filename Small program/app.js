@@ -26,7 +26,6 @@ App({
     multiIndex.push(that.data.newcity)
     multiIndex.push(that.data.newresede)
     multiIndex.push(that.data.newarea)
-    console.log(multiIndex)
     wx.showLoading({
       title: '正在加载...',
     })
@@ -35,7 +34,7 @@ App({
       if(multiIndex[2] !== undefined){
         setTimeout(function(){
           wx.request({
-            url: 'https://qb.xluob.com/mini/organization/index',
+            url: 'https://qb.xluob.com/mini/question/search',
             method:"post",
             data: {
                site:site,
@@ -65,12 +64,12 @@ App({
         if(multiIndex[1] !== undefined){
           setTimeout(function(){
             wx.request({
-              url: 'https://qb.xluob.com/mini/organization/index',
+              url: 'https://qb.xluob.com/mini/question/search',
               method:"post",
               data: {
-                  site:site,
-                  code:multiIndex[1],
-                  sort:sort
+                  "site":site,
+                  "code":multiIndex[1],
+                  "sort":sort
               },
               success: function(res) {
                 var list = res.data.data.list
@@ -94,12 +93,12 @@ App({
         else{
           setTimeout(function(){
             wx.request({
-              url: 'https://qb.xluob.com/mini/organization/index',
+              url: 'https://qb.xluob.com/mini/question/search',
               method:"post",
               data: {
-                  site:site,
-                  code:multiIndex[0],
-                  sort:sort
+                  "site":site,
+                  "code":multiIndex[0],
+                  "sort":sort
               },
               success: function(res) {
                var list = res.data.data.list
@@ -140,6 +139,7 @@ App({
            "code":ccode1
         },
         success: function(res) {
+          console.log(res)
           var res = res.data.data.city
           var province = []
           var provincede = []
@@ -222,21 +222,24 @@ App({
      wx.showLoading({
         title: '正在加载...',
       })
+      var current2 = e.currentTarget.dataset.currenttab2
       var number = e.currentTarget.dataset.number
       var type_id = that.data.type_id
-      var code = that.data.city
-      that.setData({ 
+      var code = (that.data.multiIndex[0])
+      that.setData({
+          currentTab2:current2,
           number:number,
           boolean3:false
       })
       setTimeout(function(){
         wx.request({
-          url: 'https://qb.xluob.com/mini/organization/index',
+          url: 'https://qb.xluob.com/mini/question/search',
           method:"post",
           data: {
-             site:type_id,
-             code:code,
-             sort:number
+            "genre":number,
+            "code":code,
+            "pn":1,
+            "site":type_id
           },
           success: function(res) {
            var list = res.data.data.list
@@ -261,11 +264,11 @@ App({
       wx.showLoading({
         title: '正在加载...',
       })
+
       var current = e.currentTarget.dataset.currenttab
       var type_id = e.currentTarget.dataset.type_id
       var sort = that.data.number
-      var code = that.data.city
-      console.log(type_id)
+      var code = (that.data.multiIndex[0])
       that.setData({ 
           currentTab:current,
           type_id:type_id,
@@ -273,12 +276,13 @@ App({
       })
       setTimeout(function(){
         wx.request({
-          url: 'https://qb.xluob.com/mini/organization/index',
+          url: 'https://qb.xluob.com/mini/question/search',
           method:"post",
           data: {
-             site:type_id,
-             code:code,
-             sort:sort
+            "genre":type_id,
+            "code":code,
+            "pn":1,
+            "site":sort
           },
           success: function(res) {
            var list = res.data.data.list
@@ -356,7 +360,6 @@ App({
     // 登录
     wx.login({
       success: res => {
-         // console.log('getUserInfo success:', res);
           this.globalData.userInfo = res.userInfo
         if(res.code){
           wx.request({
@@ -366,10 +369,6 @@ App({
               code:res.code
             },
           success: function (res) {
-            // if (this.userInfoReadyCallback) {
-            //   this.userInfoReadyCallback(res)
-            //   console.log(res)
-            // }
             var _t = res.data.data._t
             that.data._t = _t
               wx.request({
@@ -394,9 +393,6 @@ App({
             } 
           })
         }
-        // if (this.userInfoReadyCallback) {
-        //   this.userInfoReadyCallback(res)
-        // }
       }
     })
     // 获取用户信息
@@ -421,36 +417,6 @@ App({
       }
     })
   },
-  // onLoad:function(options){
-  //   wx.showLoading({
-  //     title: '正在加载...',
-  //   })
-  //   var that = this
-  //   // 引入高德地图
-  //   wx.getLocation({
-  //     type: 'wgs84',
-  //     success: function (res) {
-  //       var latitude = res.latitude
-  //       var longitude = res.longitude
-  //       var speed = res.speed
-  //       var accuracy = res.accuracy
-  //       var markersData = {
-  //         latitude: latitude,//纬度
-  //         longitude: longitude,//经度
-  //         key: that.data.MapKey
-  //       };
-  //       var myAmapFun = new amapFile.AMapWX({key:that.data.MapKey});
-  //       myAmapFun.getRegeo({
-  //         success: function (data) {
-  //           var city = data[0].regeocodeData.addressComponent.adcode
-  //           that.data.city = city
-  //           wx.hideLoading()
-  //         }
-  //       });
-  //     }
-  //   })
-  //   console.log(that.data.city)
-  // },
   globalData: { 
     userInfo: null
   }

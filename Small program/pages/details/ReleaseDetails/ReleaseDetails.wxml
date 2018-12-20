@@ -1,6 +1,6 @@
 <!--logs.wxml-->
 <view class="container log-list">
-	<view id="Releaselist">
+	<view id="ReleaseDetails">
 		<view class="list_item brbott-tae7e7e7">
 		 	<view class="Releaselist_follow brbote7">
 				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-boe7e7e7">
@@ -9,9 +9,9 @@
 					</view>
 					<view class="f-right wi82 paddBo20">
 						<view class="fontSize30 .ma-bo4">{{fromItem.name}}</view>
-						<view class="f999">发布数{{fromItem.num}}<i class="dian"></i>已找到{{fromItem.founded}}<i class="dian"></i>爱心值{{fromItem.love}}</view>
+						<view class="f999">爱心值{{fromItem.love}}<text class="follow2"><text class="follow2No">{{fromItem.city}}</text>No.{{fromItem.num}}</text></view>
 					</view>
-					<text class="follow">关注</text>
+					
 				</view>
 	   		</view>
 		</view>
@@ -95,6 +95,24 @@
 				 	</view>
 				</view>
 			</view>
+		</view>
+		<!-- 底部 -->
+		<view class="bottom">
+			<view class="box">
+				<view class="column">
+				    <view class="item">
+				    	<image class="love" src="{{love}}"></image>
+						已关注
+				    </view>
+				   <!--  <view class="item">
+						私信
+					</view>  -->
+				    <view class="item">
+				    	<image class="phone" src="{{phone}}"></image>
+						电话联系
+			     	</view>
+			    </view>
+	    	</view>
 		</view>
 	</view>
 </view>
