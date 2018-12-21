@@ -25,8 +25,8 @@
 								<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem1}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
-											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.name}}</view>
-											<text class="f-right f999">1天</text>
+											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
+											<text class="f-right f999">{{item.time}}</text>
 										</view>
 										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
 										<view class="list-imgbox">
@@ -73,8 +73,8 @@
 								<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem2}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
-											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.name}}</view>
-											<text class="f-right f999">1天</text>
+											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
+											<text class="f-right f999">{{item.time}}</text>
 										</view>
 										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
 										<view class="list-imgbox">
@@ -121,8 +121,8 @@
 								<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem3}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
-											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.name}}</view>
-											<text class="f-right f999">1天</text>
+											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
+											<text class="f-right f999">{{item.time}}</text>
 										</view>
 										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
 										<view class="list-imgbox">
@@ -169,8 +169,8 @@
 								<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem4}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
-											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.name}}</view>
-											<text class="f-right f999">1天</text>
+											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
+											<text class="f-right f999">{{item.time}}</text>
 										</view>
 										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
 										<view class="list-imgbox">
@@ -217,8 +217,8 @@
 								<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem5}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
-											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.name}}</view>
-											<text class="f-right f999">1天</text>
+											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
+											<text class="f-right f999">{{item.time}}</text>
 										</view>
 										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
 										<view class="list-imgbox">

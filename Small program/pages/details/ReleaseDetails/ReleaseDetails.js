@@ -5,6 +5,7 @@ const app = getApp()
 Page({
   data: {
     fromItem:"",
+    followid:true,
     recent_post:"",
     clock:"https://img.qa.xluob.com/Small%20program/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181214163845.png",
     fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
@@ -16,7 +17,25 @@ Page({
     phone:"https://img.qa.xluob.com/Small%20program/jgxq_icon_tel.png",
     zhfa:"",
     page:1,
-    _t:""
+    _t:"",
+    id:""
+  },
+  follow:function(){
+    var that = this
+    that.setData({
+      followid:!that.data.followid
+    })
+    wx.request({
+      url: 'https://qb.xluob.com/mini/favorite/fav',
+      method:"post",
+        data: {
+            "id":that.data.id,
+            "_t":app.data._t,
+            "type":3
+        },
+      success: function(res) {
+      }
+    })
   },
   //图片放大
   imgtop:function(e){
@@ -44,6 +63,7 @@ Page({
               code: res.code
             },
           success: function (res) {
+            console.log(res)
               that.setData({  
                 _t:res.data.data._t
               })
@@ -56,20 +76,32 @@ Page({
     var city = that.setData.city
     var page = Number(that.data.page)
     var id = options.id
+    that.setData({ 
+        id:id
+    })
     var _t = that.data._t
-    console.log(that.data)
       wx.request({
         url: 'https://qb.xluob.com/mini/passport/center',
         method:"post",
         data: {
             // "id":2740,
             id:id,
-            "_t":_t
+            "_t":app.data._t
         },
         success: function(res) {
-          console.log(res)
           var from = res.data.data.info
           var recent_post = res.data.data.recent_post
+          var fav = res.data.data.fav
+           if(fav == 99){
+              that.setData({ 
+                  followid:true
+              })
+           }
+           else{
+              that.setData({ 
+                  followid:false
+              })
+           }
           that.setData({ 
               fromItem:from,
               recent_post:recent_post

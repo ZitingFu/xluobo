@@ -38,7 +38,9 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    _t:""
+    _t:"",
+    create_time1:"",
+    create_time2:""
   },
   all:function(){
     wx.switchTab ({
@@ -149,7 +151,6 @@ Page({
               code: res.code
             },
           success: function (res) {
-            console.log("_t")
             var _t = res.data.data._t
               that.setData({  
                 _t:_t
@@ -240,8 +241,6 @@ Page({
                   "_t":_t
               },
               success: function(res) {
-                console.log("附近机构")
-                console.log(res)
                var list = res.data.data.list
                  that.setData({ 
                     listItem:list
@@ -260,13 +259,24 @@ Page({
               },
               success: function(res) {
                 var from = res.data.data.list
+                
                 if(from.length==0){
                     that.setData({ 
                       boolean1:0
                     })
                 }
                 else{
-                  that.setData({ 
+                  var d = []
+                  var now = res.data.data.now
+                  for(var a=0;a<from.length;a++){
+                    var create_time = Number(from[a].create_time)
+                    var expire = Number(from[a].expire*86400)
+                    var end = Number(create_time+expire)
+                    var difference = Math.ceil(Number(end-now)/86400)
+                    d.push(difference)
+                  }
+                  that.setData({
+                      create_time1:d,
                       fromItem1:from,
                       boolean1:1
                   })
@@ -284,7 +294,6 @@ Page({
                    "_t":_t
               },
               success: function(res) {
-                console.log(res)
                 var from = res.data.data.list
                 if(from.length==0){
                     that.setData({ 
@@ -292,7 +301,19 @@ Page({
                     })
                 }
                 else{
+                // 倒计时 = 发布时间+天数-现在的时间
+                // 现在时间
+                var d = []
+                var now = res.data.data.now
+                for(var a=0;a<from.length;a++){
+                  var create_time = Number(from[a].create_time)
+                  var expire = Number(from[a].expire*86400)
+                  var end = Number(create_time+expire)
+                  var difference = Math.ceil(Number(end-now)/86400)
+                  d.push(difference)
+                }
                   that.setData({ 
+                      create_time2:d,
                       fromItem2:from,
                       boolean2:1
                   })
@@ -466,7 +487,6 @@ Page({
     
   },
   getUserInfo: function(e) {
-    // console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

@@ -431,6 +431,23 @@ image {
 #search{
 	height:100%;
 }
+#search .banner_sousuo{
+	width:81%;
+	padding-top:0rpx;
+	padding-top:10rpx;
+    padding-bottom:10rpx;
+	top:3px;
+}
+#Releaselist .bottom .column {
+	text-align:left;
+	margin-left:8px; 
+}
+.bind-s{
+    position:relative;
+    font-size:24rpx;
+    top:13px;
+    right:14px;
+}
 #Release{
 	position: relative;
 }
@@ -532,13 +549,14 @@ li span{
 }
 /*信息详情*/
 .bottom .comment{
+	padding-left:8px; 
 	width:100%;
 	position: relative;
 	top:-6px;
 	height:27px;
 	background-color:#f3f5f9;
 	border:1px solid #e1e1e1;
-	border-radius: 10px;
+	border-radius:4px;
 	margin-left:12px; 
 }
 .sub{

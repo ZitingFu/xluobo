@@ -100,9 +100,10 @@
 		<view class="bottom">
 			<view class="box">
 				<view class="column">
-				    <view class="item">
+				    <view class="item" bindtap="follow">
 				    	<image class="love" src="{{love}}"></image>
-						已关注
+				    	<span wx:if="{{followid == true}}">关注</span>
+						<span wx:if="{{followid == false}}">已关注</span>
 				    </view>
 				   <!--  <view class="item">
 						私信

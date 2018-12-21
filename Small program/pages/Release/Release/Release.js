@@ -81,7 +81,6 @@ Page({
     setTimeout(function(){
         var _t = app.data._t
         var citynamelist =  app.data.citynamelist
-        console.log(citynamelist)
         var citycode = app.data.citycode
         var city = app.data.city
         that.setData({

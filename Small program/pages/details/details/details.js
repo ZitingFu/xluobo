@@ -4,6 +4,7 @@ var amapFile = require('../../../utils/amap-wx.js');
 const app = getApp()
 Page({
   data: {
+    id:"",
     fromItem:"",
     clock:"https://img.qa.xluob.com/Small%20program/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181214163845.png",
     fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
@@ -17,12 +18,55 @@ Page({
     createTime:true
   },
   ckReleaseDetails:function(e){
-    console.log(45)
       var usid = e.currentTarget.dataset.usid;
       wx.navigateTo({
        url: '../../details/ReleaseDetails/ReleaseDetails?id='+usid
       })
   },
+  follow:function(){
+    var that = this
+    that.setData({
+      followid:!that.data.followid
+    })
+    wx.request({
+        url: 'https://qb.xluob.com/mini/favorite/fav',
+        method:"post",
+        data: {
+            "id":that.data.id,
+            "_t":app.data._t,
+            "type":1
+        },
+        success: function(res) {
+          console.log(res)
+        }
+    })
+  },
+  search:function(e){
+      var that = this
+      console.log(e)
+      //  that.setData({
+      //     name:e.detail.value.content,
+      //   })
+      // console.log(123)
+      // console.log(name)
+      // wx.request({
+      //   url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+      //   method:"post",
+      //   data: {
+      //     "content":name,
+      //     "q_id":that.data.id,
+      //     "_t":app.data._t
+      //   },
+      //   success: function(res) {
+      //     var from = res.data.data.list
+      //     console.log(res)
+      //     // that.setData({ 
+      //     //     fromItem1:from
+      //     // })
+      //     // wx.hideLoading()
+      //   }
+      // })
+    },
   //图片放大
   imgtop:function(e){
     var imgList = e.currentTarget.dataset.list;//获取data-list
@@ -42,16 +86,30 @@ Page({
     var city = that.setData.city
     var page = Number(that.data.page)
     var id = options.id
+      that.setData({ 
+          id:id
+      })
       wx.request({
         url: 'https://qb.xluob.com/mini/question/info',
         method:"post",
         data: {
-            "id":id
-             // "id":268471571
+            "id":id,
+             "_t":app.data._t
         },
         success: function(res) {
-          console.log(res)
            var from = res.data.data.info
+           var fav = res.data.data.fav
+           console.log(fav)
+           if(fav == 99){
+              that.setData({ 
+                  followid:true
+              })
+           }
+           else{
+              that.setData({ 
+                 followid:false
+              })
+           }
             if(JSON.stringify(from.food_cate) == "{}"){
                 that.setData({ 
                     createTime:false
@@ -77,15 +135,22 @@ Page({
                 var create_time = Number(res.data.data.info.create_time)
                 var end = Number(create_time+expire)
                 var end2 = new Date(format(end)).getTime()
-                //现在
-                setInterval(function (){
-                  now = now+1
-                  var now2 = new Date(format(now)).getTime()
-                  var total_end = (end2 - now2)/1000;
-                  that.setData({ 
-                    create_time:timeCountDown(total_end)
-                  })
-                },1000)
+                var difference = Number(end - now)
+                if(difference<0){
+                    that.setData({ 
+                      createTime:false
+                    })
+                }
+                else{
+                  setInterval(function (){
+                    now = now+1
+                    var now2 = new Date(format(now)).getTime()
+                    var total_end = (end2 - now2)/1000;
+                    that.setData({ 
+                      create_time:timeCountDown(total_end)
+                    })
+                  },1000)
+                }
             }
             function add0(m){return m<10?'0'+m:m }
                 function format(timestamp){

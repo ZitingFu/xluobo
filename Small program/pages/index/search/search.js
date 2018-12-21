@@ -169,10 +169,11 @@ Page({
             },
           success: function(res) {
             var from = res.data.data.list
+            console.log(from) 
             that.setData({ 
                 fromItem4:from
             })
-             wx.hideLoading()
+            wx.hideLoading()
           }
         })
         // 好人风采
