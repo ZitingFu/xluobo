@@ -1,4 +1,4 @@
-var amapFile = require('../../../utils/amap-wx.js');
+var amapFile = require('../../../../utils/amap-wx.js');
 //index.js
 //获取应用实例
 const app = getApp()

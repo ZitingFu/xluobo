@@ -2,45 +2,47 @@
 <view class="container log-list">
 	<view></view>
 	<view id="me">
-   		<view class="me-top">
+   		<view class="me-top brbote7" bindtap="UserName">
 			<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-tae7e7e7">
 				<view class="f-left bo-f000ff paddLe24 wihe40 ">
 					 <image  src="{{loge}}" style="border:1rpx solid #ddd;"></image>
 				</view>
 				<view class="f-right wi82  paddBo20">
 					<view class="fontSize30 .ma-bo7">榆林啥地方将开始</view>
-					<view class="f999">认证机构</view>
+					<view class="f999"><span class="bindphone">绑定手机号码</span></view>
+					<i class="f-right rightimg"></i>
 				</view>
 			</view>
    		</view>
    		<view class="me-center">
    			<ul>
-			<li>
-				<image src="{{loge}}" alt=""></image>
+			<li bindtap="comment">
+				<image src="../../../images/icon_pinglun.png" alt=""></image>
 				<span>
 					我的评论
-					<i class="f-right">></i>
+					<i class="f-right rightimg"></i>
 				</span>
 			</li>
-			<li>
-				<image src="{{loge}}" alt=""></image>
+			<li bindtap="follow">
+				<image src="../../../images/icon_guanzhu.png" alt=""></image>
 				<span>
 					我的关注
-					<i class="f-right"></i>
+					<i class="f-right rightimg"></i>
 				</span>
 			</li>
-			<li>
-				<image src="{{loge}}" alt=""></image>
+			<li class="brbote7" bindtap="collection">
+				<image src="../../../images/icon_shoucang.png" alt=""></image>
 				<span>
 					我的收藏
-					<i class="f-right"></i>
+					<i class="f-right rightimg"></i>
 				</span>
 			</li>
-			<li>
-				<image src="{{loge}}" alt=""></image>
+			<li class="brbote7">
+				<image src="../../../images/kf.png" alt=""></image>
 				<span>
 					在线客服
-					<i class="f-right"></i>
+					<contact-button class="button-image" size="22" />
+					<i class="f-right rightimg"></i>
 				</span>
 			</li>
    			</ul>

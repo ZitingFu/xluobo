@@ -101,7 +101,8 @@
 			<view class="box">
 				<view class="column">
 				    <view class="item" bindtap="follow">
-				    	<image class="love" src="{{love}}"></image>
+				    	<image wx:if="{{followid == false}}" class="love" src="{{love}}"></image>
+				    	<image wx:if="{{followid == true}}" class="love" src="https://img.qa.xluob.com/Small%20program/love.jpg"></image>
 				    	<span wx:if="{{followid == true}}">关注</span>
 						<span wx:if="{{followid == false}}">已关注</span>
 				    </view>

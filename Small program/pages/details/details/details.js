@@ -15,7 +15,8 @@ Page({
     zhfa:"",
     page:1,
     create_time:"",
-    createTime:true
+    createTime:true,
+    name:""
   },
   ckReleaseDetails:function(e){
       var usid = e.currentTarget.dataset.usid;
@@ -41,31 +42,33 @@ Page({
         }
     })
   },
-  search:function(e){
+  sear:function(e){
+    var that = this
+    var name = e.detail.value;
+    that.setData({ 
+          name:name
+    })
+    console.log(name)
+  },
+  search:function(){
       var that = this
-      console.log(e)
-      //  that.setData({
-      //     name:e.detail.value.content,
-      //   })
-      // console.log(123)
-      // console.log(name)
-      // wx.request({
-      //   url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
-      //   method:"post",
-      //   data: {
-      //     "content":name,
-      //     "q_id":that.data.id,
-      //     "_t":app.data._t
-      //   },
-      //   success: function(res) {
-      //     var from = res.data.data.list
-      //     console.log(res)
-      //     // that.setData({ 
-      //     //     fromItem1:from
-      //     // })
-      //     // wx.hideLoading()
-      //   }
-      // })
+      wx.request({
+        url: 'https://qb.xluob.com/mini/comments/create',
+        method:"post",
+        data: {
+          "content":that.data.name,
+          "q_id":that.data.id,
+          "_t":app.data._t
+        },
+        success: function(res) {
+          var from = res.data.data.list
+          console.log(res)
+          // that.setData({ 
+          //     fromItem1:from
+          // })
+          // wx.hideLoading()
+        }
+      })
     },
   //图片放大
   imgtop:function(e){

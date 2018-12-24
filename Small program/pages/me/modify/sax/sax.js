@@ -1,31 +1,25 @@
-var amapFile = require('../../../utils/amap-wx.js');
+var amapFile = require('../../../../utils/amap-wx.js');
 //index.js
 //获取应用实例
 const app = getApp()
 Page({
   data: {
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
-    city:""
+    city:"",
+      radioItems: [
+          {name: '男', value: '0'},
+          {name: '女', value: '1', checked: true}
+      ]
   },
-  UserName:function(){
-    wx.navigateTo({
-      url:'../UserName/UserName'
-    })
-  },
-  comment:function(){
-    wx.navigateTo({
-      url:'../meComment/meComment'
-    })
-  },
-  follow:function(){
-    wx.navigateTo({
-      url:'../meFollow/meFollow'
-    })
-  },
-  collection:function(){
-    wx.navigateTo({
-      url:'../meCollection/meCollection'
-    })
+  radioChange: function (e) {
+      console.log('radio发生change事件，携带value值为：', e.detail.value);
+      var radioItems = this.data.radioItems;
+      for (var i = 0, len = radioItems.length; i < len; ++i) {
+          radioItems[i].checked = radioItems[i].value == e.detail.value;
+      }
+      this.setData({
+          radioItems: radioItems
+      });
   },
   onLoad: function (options) {
     var that = this

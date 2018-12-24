@@ -1,0 +1,10 @@
+<!--logs.wxml-->
+<view class="container log-list">
+	<view></view>
+	<view id="phone">
+   		<view class=" banner_sousuo" bindtap="search">
+		  	<input class="binner_input" placeholder="修改手机号" auto-focus/>
+		</view>
+		<button>更换手机号码</button>
+	</view>
+</view>

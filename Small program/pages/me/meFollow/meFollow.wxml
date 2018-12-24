@@ -1,0 +1,31 @@
+<!--logs.wxml-->
+<view class="container log-list">
+	<view class=""></view>
+	<view id="meFollow">
+   		<view class="Release-center brbott-tae7e7e7">
+   		 	<view class="nearby clearFix">
+				<view class="nearby-center clearFix">
+					<view class="nearby-center clearFix">
+						<view class="container">
+							<view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="">
+							<view class="content">
+								<view class="nearby-item clearFix paddTa20">
+									<view class="f-left bo-f000ff paddLe24 wihe40">
+										 <!-- <image wx:if="{{item.avatar.length>0}}" src="{{item.avatar.b}}" ></image> -->
+										 <image  src="{{loge}}" style="border:1rpx solid #ddd;"></image>
+									</view>
+									<view class="f-right wi82 paddBo20">
+										<view class="fontSize30 .ma-bo7">西安的时间考虑从v</view>
+										<view class="f999">发布数5<i class="dian"></i>已找到5<i class="dian"></i>爱心值5</view>
+									</view>
+								</view>
+							</view>
+							<view class="del" catchtap="del" data-index="{{index}}">取消关注</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+   		</view>
+	</view>
+</view>

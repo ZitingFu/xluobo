@@ -13,8 +13,19 @@
 	/*background-color: red;*/
 }
 /*共同*/
-#details,#Release,#me,#search,#Releaselist,#peoplelist,#ReleaseDetails{
+#details,#meFollow,#meCollection,#meComment,#Release,#me,#search,#Releaselist,#peoplelist,#ReleaseDetails,#UserName,#phone,#sax,#UserNameTop{
 	width: 100%;
+}
+#me,#UserName,#sax,#meComment{
+	position: absolute;
+	top:0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: #e7e7e7;
+}
+#me .me-top,#me .me-center,#meComment .nearby-item{
+	background-color: #fff;
 }
 view,p,h1,h2,h3,h4,h5,h6,ul,li {
 	margin: 0;
@@ -88,6 +99,9 @@ i{
 }
 .brbote7{
 	border-bottom:10px solid #e7e7e7;
+}
+.f3f5f9{
+	border-bottom:10px solid #f3f5f9;
 }
 .f999{
 	color:#999999;
@@ -525,27 +539,83 @@ image {
 	text-align:left;
 }
 /*......我的.......*/
-#me{
-	/*background-color:#ddd;*/
-}
 li{	
 	padding:5px 10px;
 	display:block;
-	height:30px;
+	height:45px;
 }
 li image{
-	width:30px;
-	height:100%;
+	width:23px;
+	height:22px;
 	position: relative;
 	float:left;
+	top:12px;
 }
 li span{
 	display:inline-block;
-	width:90%;
-	height:25px;
-	line-height:25px;
+	width:91%;
+	height:49.5px;
+	line-height:45px;
 	float:right;
 	border-bottom:1px solid #ddd;
+}
+.bindphone{
+	display:inline-block;
+	width: 90px;
+	text-align:center;
+	height:25px;
+	line-height:25px;
+	border:1px solid #999;
+	border-radius:14px;
+}
+/*UserName*/
+#UserName li{
+	border-bottom:1px solid #ddd;
+}
+.UserName-top{
+	padding:0 12px; 
+	height:70px;
+	line-height: 70px;
+	background-color:#fff;
+	border-top:1px solid #f1f1f2;
+	margin-bottom:10px; 
+}
+#UserName .rightimg{
+	margin-left:8px; 
+}
+.UserName-top image{
+	width: 36px;
+	height:36px;
+}
+.UserName-right{
+	position: relative;
+	top:18px;
+}
+.UserName_conter{
+	background-color:#fff;
+}
+.UserName_conter li{
+	height:45px;
+	line-height: 45px;
+}
+.UserName_conter .UserName-right{
+	top:1px;
+}
+/**/
+
+.me-top .rightimg{
+	top:-28px;
+	right:8px;
+}
+.rightimg{
+	width:7px;
+	height:13px;
+	display:inline-block;
+	background-image:url(https://img.qa.xluob.com/Small%20program/right.png);
+	background-size:100% 100%;
+	background-position:none-position;
+	position: relative;
+	top:18px;
 }
 /*信息详情*/
 .bottom .comment{
@@ -655,7 +725,31 @@ li span{
 	height:12px;
 	margin-right:3px; 
 }
-/*.large{
-	padding: 
+/*modify*/
+#phone button,#UserName button{
+	background-color:#fc9937; 
+	color:#fff;
+	width: 90%;
+	margin:185px auto;
 }
-*/
+/*我的评论*/
+#meComment .nearby-item{
+	padding:0 12px; 
+	padding-top:14px;
+	padding-bottom:25px;
+	font-size:14px;  
+}
+#meComment .image{
+	width: 75px;
+	height:75px;
+}
+.f6f6f6{
+	background-color:#f6f6f6;
+}
+.center-right{
+	height:78px;
+	padding-left:8px; 
+	font-size:14px;
+	padding: 8px;
+	box-sizing: border-box;
+}

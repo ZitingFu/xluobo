@@ -1,0 +1,10 @@
+<!--logs.wxml-->
+<view class="container log-list">
+	<view></view>
+	<view id="UserName">
+   		<view class=" banner_sousuo" bindtap="search">
+		  	<input class="binner_input" placeholder="修改用户名" auto-focus/>
+		</view>
+		<button>更换用户名</button>
+	</view>
+</view>

@@ -80,6 +80,10 @@ Page({
         id:id
     })
     var _t = that.data._t
+    wx.showLoading({
+        title: '正在加载中'
+    })
+    setTimeout(function(){
       wx.request({
         url: 'https://qb.xluob.com/mini/passport/center',
         method:"post",
@@ -109,6 +113,7 @@ Page({
           wx.hideLoading()
         }
       })
+    },1500)
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

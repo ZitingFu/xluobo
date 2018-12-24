@@ -5,26 +5,34 @@ const app = getApp()
 Page({
   data: {
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
-    city:""
+    city:"",
+    loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
+    time1:""
+  },
+  UserNameTop:function(){
+    wx.navigateTo({
+      url:'../modify/UserNameTop/UserNameTop'
+    })
   },
   UserName:function(){
     wx.navigateTo({
-      url:'../UserName/UserName'
+      url:'../modify/UserName/UserName'
     })
   },
-  comment:function(){
+  sax:function(){
     wx.navigateTo({
-      url:'../meComment/meComment'
+      url:'../modify/sax/sax'
     })
   },
-  follow:function(){
-    wx.navigateTo({
-      url:'../meFollow/meFollow'
-    })
+  bindDateChange: function(e) {
+      console.log(e.detail.value)
+      this.setData({
+          time1: e.detail.value
+      })
   },
-  collection:function(){
+  phone:function(){
     wx.navigateTo({
-      url:'../meCollection/meCollection'
+      url:'../modify/phone/phone'
     })
   },
   onLoad: function (options) {

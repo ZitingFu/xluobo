@@ -1,0 +1,10 @@
+<!--logs.wxml-->
+<view class="container log-list">
+	<view></view>
+	<view id="UserNameTop">
+   		<view class=" banner_sousuo" bindtap="search">
+		  	<input class="binner_input" placeholder="搜索" auto-focus/>
+		</view>
+		<button>确定</button>	
+	</view>
+</view>

@@ -169,7 +169,6 @@ Page({
             },
           success: function(res) {
             var from = res.data.data.list
-            console.log(from) 
             that.setData({ 
                 fromItem4:from
             })

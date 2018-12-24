@@ -78,7 +78,7 @@
 			<view class="column" style="text-align:left;">
 			    <view class="item" style="width: 75%;">
 			    	<view class="comment">
-					  	<input class="" name="{{input}}" placeholder="发表评论" auto-focus/>
+					  	<input class="" bindinput="sear" name="{{input}}" placeholder="发表评论" auto-focus/>
 					</view>
 			    </view>
 			    <view class="item">
