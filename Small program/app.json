@@ -1,24 +1,24 @@
 {
   "pages":[
-    "pages/me/me/me",
+    "pages/me/UserName/UserName",
+    "pages/me/modify/UserName/UserName",
+    "pages/me/me/me", 
+    "pages/me/modify/sax/sax",
+    "pages/me/modify/phone/phone",
+    "pages/index/index/index",
+    "pages/me/meCollection/meCollection",
     "pages/me/meFollow/meFollow",
     "pages/me/meComment/meComment",
-    "pages/me/UserName/UserName",
-    "pages/me/meCollection/meCollection",
-    "pages/index/index/index",
+    "pages/details/details/details",
     "pages/index/search/search",
     "pages/index/peoplelist/peoplelist",  
     "pages/index/matterlist/matterlist",  
     "pages/index/Searchpeople/Searchpeople",  
     "pages/index/Searchmatter/Searchmatter",  
-    "pages/me/modify/UserName/UserName",
     "pages/index/Exhibition/Exhibition",  
     "pages/Release/Release/Release",
     "pages/details/ReleaseDetails/ReleaseDetails",
-    "pages/details/details/details",
-    "pages/me/modify/UserNameTop/UserNameTop",
-    "pages/me/modify/sax/sax",
-    "pages/me/modify/phone/phone"
+    "pages/me/modify/UserNameTop/UserNameTop"
   ],
   "window":{
     "backgroundTextStyle":"light",

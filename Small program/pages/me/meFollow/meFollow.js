@@ -8,6 +8,7 @@ Page({
     city:"",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
     _t:"",
+    usersItem:"",
     items: [],
     startX: 0, //开始坐标
     startY: 0
@@ -75,6 +76,23 @@ Page({
       this.setData({
         items: this.data.items
       });
+      setTimeout(function(){
+          wx.request({
+            url: 'https://qb.xluob.com/mini/favorite/fav3',
+            method:"post",
+            data:{
+             _t:app.data._t,
+             pn:1 
+            },
+            success:function(res){
+             console.log(res)
+             var users = res.data.data.users
+             that.setData({
+              usersItem:users
+             })
+            }
+          })
+      },1000)
   },
    // 上拉
   onReachBottom: function(){

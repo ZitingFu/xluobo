@@ -7,12 +7,27 @@ Page({
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
-    time1:""
+    time1:"",
+    infoItem:"",
+    loge:""
   },
   UserNameTop:function(){
-    wx.navigateTo({
-      url:'../modify/UserNameTop/UserNameTop'
+    var that=this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        console.log(res)
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths
+        console.log(tempFilePaths)
+        // this.setData({
+        //     loge:tempFilePaths
+        // })
+      }
     })
+    
   },
   UserName:function(){
     wx.navigateTo({
@@ -25,9 +40,18 @@ Page({
     })
   },
   bindDateChange: function(e) {
-      console.log(e.detail.value)
       this.setData({
           time1: e.detail.value
+      })
+      wx.request({
+        url: 'https://qb.xluob.com/mini/passport/edit',
+        method:"post",
+        data:{
+         "_t":app.data._t,
+         "birthday":e.detail.value
+        },
+        success:function(res){
+        }
       })
   },
   phone:function(){
@@ -38,35 +62,24 @@ Page({
   onLoad: function (options) {
     var that = this
     var city = that.setData.city
-     // 引入高德地图
-    wx.showLoading({
-      title: '正在加载...',
-    })
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
-        var markersData = {
-          latitude: latitude,//纬度
-          longitude: longitude,//经度
-          key: that.data.MapKey
-        };
-        var addArr = [];
-        var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
-        myAmapFun.getRegeo({
-          success: function (data) {
-            var city = data[0].regeocodeData.addressComponent.city
-            that.setData({
-              city:city
-            })
-            wx.hideLoading()
-          }
-        });
-      }
-    })
+    var that = this;
+       setTimeout(function(){
+          wx.request({
+            url: 'https://qb.xluob.com/mini/passport/center',
+            method:"post",
+            data:{
+             _t:app.data._t
+            },
+            success:function(res){
+             var info = res.data.data.info
+             console.log(info)
+             // var question = res.data.data.question
+             that.setData({
+              infoItem:info
+             })
+            }
+          })
+      },1000)
   },
   getUserInfo: function(e) {
     console.log(e)

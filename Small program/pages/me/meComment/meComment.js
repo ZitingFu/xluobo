@@ -8,6 +8,8 @@ Page({
     city:"",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
     _t:"",
+    listItem:"",
+    page:1
   },
   openConfirm: function () {
     wx.showModal({
@@ -26,10 +28,24 @@ Page({
     });
   },
   onLoad: function (options) {
-    // setTimeout(function(){
-       
-    // },1500)
-    // wx.hideLoading()
+    var that = this
+    setTimeout(function(){
+      wx.request({
+        url: 'https://qb.xluob.com/mini/passport/mycomments',
+        method:"post",
+        data:{
+          _t:app.data._t,
+          pn:1 
+        },
+        success:function(res){
+           var list = res.data.data.comments
+           console.log(list)
+            that.setData({
+              listItem:list
+            })
+        }
+      })
+    },1000)
   },
    // 上拉
   onReachBottom: function(){

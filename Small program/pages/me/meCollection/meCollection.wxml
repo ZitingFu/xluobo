@@ -5,30 +5,21 @@
    		<view class="Release-center" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
-					<view class="nearby-top brbott-tae7e7e7">
+					<view class="nearby-top brbott-tae7e7e7" wx:for="{{questionItem}}" wx:key="">
 						<view class="clearFix genre_name_top">
-							<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>寻人/寻物</view>
-							<text class="f-right f999">1天</text>
+							<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
+							<text class="f-right f999">{{item.time}}</text>
 						</view>
-						<text class="clearFix" style="width: 100%;">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</text>
+						<text class="clearFix" style="width: 100%;">{{item.content}}</text>
 						<view class="list-imgbox">
 							<!-- 图片为6张 -->
-							<view class="SixImg clearFix">
+							<view class="SixImg clearFix" >
 								<!-- 图片6张 -->
 								<!-- <view bindtap="imgtop" class="SixImg-img" wx:if="{{item.images.length != 0}}" wx:for="{{item.images}}" data-list="{{item.images}}" data-index='{{index}}'  wx:key="index" wx:for-item="iteming">
-							    	<image src="{{loge}}" alt=""></image>
+						    	<image wx:else src="{{iteming.s}}" alt=""></image>
 							    </view> -->
-							    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
-							    	<image src="{{loge}}" alt=""></image>
-							    </view>
-							    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
-							    	<image src="{{loge}}" alt=""></image>
-							    </view>
-							    <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
-							    	<image src="{{loge}}" alt=""></image>
-							    </view>
-							     <view bindtap="imgtop" class="SixImg-img" data-list="{{item.images}}">
-							    	<image src="{{loge}}" alt=""></image>
+							    <view bindtap="imgtop" class="SixImg-img" wx:if="{{item.images.length != 0}}" wx:for="{{item.images}}" data-list="{{item.images}}" data-index='{{index}}'  wx:key="index" wx:for-item="iteming">
+							    	<image src="{{iteming.s}}" alt=""></image>
 							    </view>
 						    </view>
 					    	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
@@ -36,10 +27,10 @@
 									<view class="f-left f333 fontSize30 wi70 hidden">
 										<view  class="wihe20 f-left paddRi14" style="top:7px;">
 											<!-- <image wx:if="{{item.avatar.length != 0}}" src="{{item.avatar.s}}" alt=""></image> -->
-										 	<image src="{{loge}}"></image>
+										 	<image src="{{item.avatar.s}}"></image>
 										</view>
 										<view class="f-left hidden wi70" style="line-height: 40px">
-											榆林市xxxxxx阿萨达速度
+											{{item.name}}
 										</view>
 									</view>
 									<view class="f-right wi23 f999 clearFix">

@@ -11,7 +11,6 @@ Page({
     xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
     jing:"https://img.qa.xluob.com/Small%20program/1.png",
-    zan:"https://img.qa.xluob.com/Small%20program/xxxq_icon_dashang%402x.png",
     zhfa:"",
     page:1,
     create_time:"",
@@ -58,18 +57,60 @@ Page({
         data: {
           "content":that.data.name,
           "q_id":that.data.id,
+          "type":0,
           "_t":app.data._t
         },
         success: function(res) {
           var from = res.data.data.list
-          console.log(res)
-          // that.setData({ 
-          //     fromItem1:from
-          // })
-          // wx.hideLoading()
+          wx.showLoading({
+            title: '正在加载...',
+          })
+          wx.request({
+              url: 'https://qb.xluob.com/mini/question/info',
+              method:"post",
+              data: {
+                  // "id":268471567,
+                  "id":that.data.id,
+                   "_t":app.data._t
+              },
+              success: function(res) {
+               that.setData({ 
+                    fromItem:res.data.data.info
+                })
+                wx.hideLoading()
+              }
+          })
         }
       })
-    },
+  },
+  Fabulous:function(e){
+    var that = this
+    var q_id =  e.currentTarget.dataset.q_id
+    wx.request({
+        url: 'https://qb.xluob.com/mini/question/EditLike',
+        method:"post",
+        data: {
+            "id":q_id,
+             "_t":app.data._t
+        },
+        success: function(res) {
+          var from = res.data.data.list
+          wx.request({
+              url: 'https://qb.xluob.com/mini/question/info',
+              method:"post",
+              data: {
+                  "id":that.data.id,
+                   "_t":app.data._t
+              },
+              success: function(res) {
+               that.setData({ 
+                    fromItem:res.data.data.info
+                })
+              }
+          })
+        } 
+    })
+  },
   //图片放大
   imgtop:function(e){
     var imgList = e.currentTarget.dataset.list;//获取data-list
@@ -96,13 +137,14 @@ Page({
         url: 'https://qb.xluob.com/mini/question/info',
         method:"post",
         data: {
-            "id":id,
+            // "id":268471567,
+            "id":that.data.id,  
              "_t":app.data._t
         },
         success: function(res) {
+          console.log(res)
            var from = res.data.data.info
            var fav = res.data.data.fav
-           console.log(fav)
            if(fav == 99){
               that.setData({ 
                   followid:true

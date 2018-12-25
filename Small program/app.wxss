@@ -323,19 +323,45 @@ image {
 	width: 100%;
 }
 /*banner*/
-.banner_sousuo{
-	width:90%;
+.banner_sousuo,.banner_sousuo1,.banner_sousuo2{
 	border:1px solid #ddd;
 	z-index:2;
 	position: absolute;
-	left:20rpx;
-	top:28rpx;
 	border-radius:10rpx;
 	padding-left:30rpx; 
 	background-color:#fff; 
 	padding-top:10rpx;
 	padding-bottom:10rpx;
-
+}
+.banner_sousuo{
+	left:20rpx;
+	width:90%;
+	top:28rpx;
+}
+.banner_sousuo1{
+	width:77%;
+	padding-left:62px; 
+	top:50px;
+	left:29rpx;
+}
+.banner_sousuo2{
+	width:53.5%;
+	padding-left:62px; 
+	top:100px;
+	left:29rpx;
+	padding-right: 98px;
+}
+.ag .Line{
+	top:2px;
+	left:-10px;
+}
+.Line{
+	width:1px;
+	height:16px;
+	position: absolute;
+	top:12px;
+	left:46px;
+	background-color:#c7c7c7;
 }
 .banner_input{
 	height:59rpx;
@@ -343,6 +369,29 @@ image {
 .banner{
 	position: relative;
 	height:338rpx;
+}
+.ag{
+	position: absolute;
+	right: 10px;
+	top:10px;
+	color:#fc9937;
+}
+.me-right1,.me-right2{
+	position: absolute;
+	left:15px;
+	background-size:100% 100%;
+}
+.me-right1{
+	width: 15px;
+	height:20px;
+	top:8px;
+	background-image:url(https://img.qa.xluob.com/logo/icon_plan.png);
+}
+.me-right2{
+	top:14px;
+	width:21px;
+	height:12px;
+	background-image:url(https://img.qa.xluob.com/logo/icon_duanxin.png);
 }
 .banner_image img{
 	width: 100%;
@@ -670,15 +719,22 @@ li span{
 	padding:0 20px;
 	color:#fff;
 }
-.zan,.zan-center{
+.zan,.zan2,.zan-center{
 	position: absolute;
 	font-size:12px;
 }
-.zan{
+.zan,.zan2{
 	width:15px;
 	height:15px;
 	right:28px;
 	top:0px;
+	background-size:100% 100%;
+}
+.zan{
+	background-image:url(https://img.qa.xluob.com/Small%20program/xxxq_icon_dashang%402x.png);
+}
+.zan2{
+	background-image:url(https://img.qa.xluob.com/logo/zan2.png);
 }
 .zan-center{
 	right:12px;

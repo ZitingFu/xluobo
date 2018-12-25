@@ -3,29 +3,16 @@
 		<view class="Release-center brbott-tae7e7e7" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
-					<view class="nearby-item clearFix paddTa20 brbote7" bindlongtap="openConfirm">
+					<view wx:for="{{listItem}}" wx:key="index" class="nearby-item clearFix paddTa20 brbote7" bindlongtap="openConfirm">
 						<view class="paddBo20">
-							附近的空间敌攻击哦地方级本科附近的空间敌攻击哦地方级本科附近的空间敌攻击哦地方级本科附近的空间敌攻击哦地方级本科
+							{{item.content}}
 						</view>	
 						<view class="f-left image" style="border:1px solid #ddd">
-							 <!-- <image wx:if="{{item.avatar.length>0}}" src="{{item.avatar.b}}" ></image> -->
-							 <image src="{{loge}}"></image>
+							<!--  <image wx:if="{{item.avatar.length>0}}" src="{{item.avatar.b}}" ></image> -->
+							 <image src="{{item.question.avatar.s}}"></image>
 						</view>
 						<view class="f-right wi80">
-							<view class="fontSize30 f6f6f6  center-right">西安的时间考虑从v西安的时间考虑从v西安的时间考虑从v西安的时间考虑从v西安的时间考虑从v</view>
-							<!-- <view class="f999"></view> -->
-						</view>
-					</view>
-					<view class="nearby-item clearFix paddTa20 brbote7" bindlongtap="openConfirm">
-						<view class="paddBo20">
-							附近的空间敌攻击哦地方级本科附近的空间敌攻击哦地方级本科附近的空间敌攻击哦地方级本科附近的空间敌攻击哦地方级本科
-						</view>	
-						<view class="f-left image" style="border:1px solid #ddd">
-							 <!-- <image wx:if="{{item.avatar.length>0}}" src="{{item.avatar.b}}" ></image> -->
-							 <image src="{{loge}}"></image>
-						</view>
-						<view class="f-right wi80">
-							<view class="f6f6f6  center-right">西安的时间考虑从v西安的时间考虑从v西安的时间考虑从v西安的时间考虑从v西安的时间考虑从v</view>
+							<view class="fontSize30 f6f6f6  center-right">{{item.question.content}}</view>
 							<!-- <view class="f999"></view> -->
 						</view>
 					</view>

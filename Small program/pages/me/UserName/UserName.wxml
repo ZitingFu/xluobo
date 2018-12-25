@@ -12,14 +12,15 @@
 				<li bindtap="UserName">
 					<i class="f-left">用户名</i>
 					<i class="f-right clearFix UserName-right">
-						<i class="f-left">西安市</i>
+						<i class="f-left">{{infoItem.name}}</i>
 						<i class="rightimg f-left"></i>
 					</i>
 				</li>
 				<li bindtap="sax">
 					<i class="f-left">性别</i>
 					<i class="f-right clearFix UserName-right">
-						<i class="f-left">女</i>
+						<i class="f-left" wx:if="{{infoItem.sex == 0}}">男</i>
+						<i class="f-left" wx:if="{{infoItem.sex == 1}}">女</i>
 						<i class="rightimg f-left"></i>
 					</i>
 				</li>
@@ -27,15 +28,15 @@
 				<li class="" bindtap="data1">
 					<i class="f-left" >出生日期</i>
 					<i class="f-right clearFix UserName-right">
-						<i class="f-left">{{time1}}</i>
+						<i class="f-left">{{infoItem.birthday}}</i>
 						<i class="rightimg f-left"></i>
 					</i>
 				</li>
     			</picker>
 				<li bindtap="phone">
-					<i class="f-left">绑定手机号</i>
+					<i class="f-left">修改手机号</i>
 					<i class="f-right clearFix UserName-right">
-						<i class="f-left">18220908313</i>
+						<i class="f-left">{{infoItem.phone}}</i>
 						<i class="rightimg f-left"></i>
 					</i>
 				</li>

@@ -60,7 +60,7 @@
 							<view class="fontSize30 .ma-bo4">{{item.user_name}}</view>
 							<view class="f999">{{item.tmp_time}}</view>
 						</view>
-							<image class="zan" src="{{zan}}"></image>
+							<i class="{{item.num_like==true?'zan':'zan2'}}" data-q_id="{{item.id}}" bindtap="Fabulous"></i>
 							<text class="zan-center">{{item.num_like}}</text>	
 					</view>
 					<view class="nearby-item clearFix brbott-boe7e7e7">

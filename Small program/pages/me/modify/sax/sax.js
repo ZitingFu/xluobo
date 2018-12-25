@@ -8,11 +8,10 @@ Page({
     city:"",
       radioItems: [
           {name: '男', value: '0'},
-          {name: '女', value: '1', checked: true}
+          {name: '女', value: '1'}
       ]
   },
   radioChange: function (e) {
-      console.log('radio发生change事件，携带value值为：', e.detail.value);
       var radioItems = this.data.radioItems;
       for (var i = 0, len = radioItems.length; i < len; ++i) {
           radioItems[i].checked = radioItems[i].value == e.detail.value;
@@ -20,39 +19,51 @@ Page({
       this.setData({
           radioItems: radioItems
       });
+      wx.request({
+        url: 'https://qb.xluob.com/mini/passport/edit',
+        method:"post",
+        data:{
+         "_t":app.data._t,
+         "sex":e.detail.value
+        },
+        success:function(res){
+         console.log(res)
+        }
+      })
   },
   onLoad: function (options) {
     var that = this
     var city = that.setData.city
-     // 引入高德地图
-    wx.showLoading({
-      title: '正在加载...',
-    })
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
-        var markersData = {
-          latitude: latitude,//纬度
-          longitude: longitude,//经度
-          key: that.data.MapKey
-        };
-        var addArr = [];
-        var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
-        myAmapFun.getRegeo({
-          success: function (data) {
-            var city = data[0].regeocodeData.addressComponent.city
-            that.setData({
-              city:city
-            })
-            wx.hideLoading()
-          }
-        });
-      }
-    })
+    var that = this;
+       setTimeout(function(){
+          wx.request({
+            url: 'https://qb.xluob.com/mini/passport/center',
+            method:"post",
+            data:{
+             _t:app.data._t
+            },
+            success:function(res){
+             var sex = res.data.data.info.sex
+             if(sex==0){
+               that.setData({
+                    radioItems: [
+                        {name: '男', value: '0',checked: true},
+                        {name: '女', value: '1' }
+                    ]
+               })
+             }
+             else{
+               that.setData({
+                    radioItems: [
+                        {name: '男', value: '0'},
+                        {name: '女', value: '1',checked: true}
+                    ]
+               })
+             }
+             
+            }
+          })
+      },1000)
   },
   getUserInfo: function(e) {
     console.log(e)
