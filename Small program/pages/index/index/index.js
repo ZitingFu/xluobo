@@ -405,7 +405,6 @@ Page({
   },
   //下拉
   onPullDownRefresh: function(){
-    // 显示顶部刷新图标
     wx.showNavigationBarLoading();
     var that = this;
     var city = that.setData.city

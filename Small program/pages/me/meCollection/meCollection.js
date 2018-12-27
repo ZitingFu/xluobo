@@ -13,7 +13,14 @@ Page({
     xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
     items: [],
     startX: 0, //开始坐标
-    startY: 0
+    startY: 0,
+    page:1
+  },
+  details:function(e){
+     var id = e.currentTarget.dataset.id
+    wx.navigateTo({
+         url:'../../details/details/details?id='+id
+    })
   },
   imgtop:function(e){
     var imgList = e.currentTarget.dataset.list;//获取data-list
@@ -54,27 +61,38 @@ Page({
     var that = this;
     var city = that.data.city
     var page = Number(that.data.page)+ 1
-    // 显示加载图标
-    // wx.showLoading({
-    //   title: '正在加载中'
-    // })
-      setTimeout(function(){
-          wx.request({
-            url: 'https://qb.xluob.com/mini/favorite/fav1',
-            method:"post",
-            data:{
-             _t:app.data._t,
-             pn:1 
-            },
-            success:function(res){
-             console.log(res)
-             // var users = res.data.data.users
-             // that.setData({
-             //  usersItem:users
-             // })
-            }
-          })
-      },1000)
+    wx.showLoading({
+      title: '正在加载中'
+    })
+    setTimeout(function(){
+        wx.request({
+          url: 'https://qb.xluob.com/mini/favorite/fav1',
+          method:"post",
+          data:{
+           _t:app.data._t,
+           pn:page 
+          },
+          success:function(res){
+           var question = res.data.data.question
+          if(question.length<1){
+            setTimeout(function(){
+              wx.showModal({
+                content:"没有数据了"
+              })
+              wx.hideLoading()
+            },1000)
+          }
+          var from = that.data.questionItem;
+          for (var i = 0; i < question.length; i++) {
+            from.push(question[i]);
+          }
+           that.setData({
+            questionItem:from
+           })
+            // wx.hideLoading()
+          }
+        })
+    },900)
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

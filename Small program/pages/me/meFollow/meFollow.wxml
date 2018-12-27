@@ -7,7 +7,7 @@
 				<view class="nearby-center clearFix">
 					<view class="nearby-center clearFix">
 						<view class="container">
-							<view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{usersItem}}" wx:key="index">
+							<view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{usersItem}}" wx:key="index" bindtap="details" data-id="{{item.id}}">
 							<view class="content">
 								<view class="nearby-item clearFix paddTa20" >
 									<view class="f-left bo-f000ff paddLe24 wihe40">

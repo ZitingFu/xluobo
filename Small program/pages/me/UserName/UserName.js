@@ -9,25 +9,58 @@ Page({
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
     time1:"",
     infoItem:"",
-    loge:""
+    loge:"",
+    img:[],
+    carWin_img_hidden:true, //展示照片的view是否隐藏
+    carWin_img:'' //存放照片路径的
   },
   UserNameTop:function(){
-    var that=this;
+    var that = this;
     wx.chooseImage({
       count: 1,
-      sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success(res) {
-        console.log(res)
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
-        console.log(tempFilePaths)
-        // this.setData({
-        //     loge:tempFilePaths
-        // })
-      }
+      success: function (res) {
+        var filePath = res.tempFilePaths;
+        that.setData({
+          carWin_img: filePath[0], //把照片路径存到变量中，
+          carWin_img_hidden: false //让展示照片的view显示
+        });
+        console.log(res.tempFilePaths)
+          wx.uploadFile({
+            url: 'https://qb.xluob.com/mini/upload/img',
+            type:'post',
+            filePath:res.tempFilePaths[0],
+            name: 'file',
+            header: { "Content-Type": "multipart/form-data" },
+            formData: {
+              //和服务器约定的token, 一般也可以放在header中
+              // 'session_token': wx.getStorageSync(app.data.session_key),
+              "image":res.tempFilePaths[0]
+            },
+            success: function (res) {
+              var data = res.data
+              console.log(res.data)
+              // console.log(res.data.url.b)
+              console.log(res.statusCode);
+              if (res.statusCode != 200) { 
+                wx.showModal({
+                  title: '提示',
+                  content: '上传失败',
+                  showCancel: false
+                })
+                return;
+              }
+              var ims = JSON.parse(res.data);
+              this.setData({
+                  time1: ims.data.url.s
+              })
+              console.log(ims.data.url.s)
+              // page.setData({  //上传成功修改显示头像
+              //   src: path[0]
+              // })
+            }
+          })
+        }
     })
-    
   },
   UserName:function(){
     wx.navigateTo({
@@ -43,6 +76,7 @@ Page({
       this.setData({
           time1: e.detail.value
       })
+      var that = this
       wx.request({
         url: 'https://qb.xluob.com/mini/passport/edit',
         method:"post",
@@ -51,6 +85,20 @@ Page({
          "birthday":e.detail.value
         },
         success:function(res){
+          wx.request({
+            url: 'https://qb.xluob.com/mini/passport/center',
+            method:"post",
+            data:{
+             "_t":app.data._t
+            },
+            success:function(res){
+              console.log(res)
+            var info = res.data.data.info;
+              that.setData({
+                infoItem:info
+              })
+            }
+          })
         }
       })
   },
@@ -68,18 +116,17 @@ Page({
             url: 'https://qb.xluob.com/mini/passport/center',
             method:"post",
             data:{
-             _t:app.data._t
+             "_t":app.data._t
             },
             success:function(res){
-             var info = res.data.data.info
-             console.log(info)
-             // var question = res.data.data.question
-             that.setData({
-              infoItem:info
-             })
+              console.log(res)
+            var info = res.data.data.info;
+              that.setData({
+                infoItem:info
+              })
             }
           })
-      },1000)
+      },1500)
   },
   getUserInfo: function(e) {
     console.log(e)

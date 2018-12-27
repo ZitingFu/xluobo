@@ -5,6 +5,7 @@ const app = getApp()
 Page({
   data: {
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
+    info:"",
     city:""
   },
   UserName:function(){
@@ -31,9 +32,9 @@ Page({
     var that = this
     var city = that.setData.city
      // 引入高德地图
-    wx.showLoading({
-      title: '正在加载...',
-    })
+    // wx.showLoading({
+    //   title: '正在加载...',
+    // })
     wx.getLocation({
       type: 'wgs84',
       success: function (res) {
@@ -59,6 +60,25 @@ Page({
         });
       }
     })
+     var that = this
+    var city = that.setData.city
+    var that = this;
+       setTimeout(function(){
+          wx.request({
+            url: 'https://qb.xluob.com/mini/passport/center',
+            method:"post",
+            data:{
+             _t:app.data._t
+            },
+            success:function(res){
+              console.log(res)
+             var info = res.data.data.info;
+              that.setData({
+                info:info
+              })
+            }
+          })
+      },1000)
   },
   getUserInfo: function(e) {
     console.log(e)

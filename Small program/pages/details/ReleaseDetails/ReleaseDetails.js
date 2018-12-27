@@ -88,8 +88,7 @@ Page({
         url: 'https://qb.xluob.com/mini/passport/center',
         method:"post",
         data: {
-            // "id":2740,
-            id:id,
+            "id":id,
             "_t":app.data._t
         },
         success: function(res) {

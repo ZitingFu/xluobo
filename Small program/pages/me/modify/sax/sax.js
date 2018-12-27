@@ -27,7 +27,34 @@ Page({
          "sex":e.detail.value
         },
         success:function(res){
-         console.log(res)
+         if(res.data.flag == 0){
+          wx.showModal({
+            title:'',
+            content:"修改成功了哦~",
+            confirmText:"好哒~",
+            cancelText:"取消",
+             success: function (res) {
+                if (res.confirm) {
+                    wx.navigateTo({
+                      url:'../../UserName/UserName'
+                    })
+                }
+                else{
+                    wx.navigateTo({
+                      url:'../../UserName/UserName'
+                    })
+                }
+             }
+          })
+         }
+         else{
+           wx.showModal({
+            title:'',
+            content:"对不起，修改失败~",
+            confirmText:"好哒~",
+            cancelText:"取消"
+          })
+         }
         }
       })
   },
@@ -66,7 +93,6 @@ Page({
       },1000)
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

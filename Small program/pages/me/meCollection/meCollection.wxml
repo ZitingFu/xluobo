@@ -5,7 +5,7 @@
    		<view class="Release-center" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
-					<view class="nearby-top brbott-tae7e7e7" wx:for="{{questionItem}}" wx:key="">
+					<view class="nearby-top brbott-tae7e7e7" data-id="{{item.id}}" wx:for="{{questionItem}}" wx:key="" bindtap="details">
 						<view class="clearFix genre_name_top">
 							<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 							<text class="f-right f999">{{item.time}}</text>

@@ -3,7 +3,7 @@
    		<view class="UserName-top clearFix" bindtap="UserNameTop">
 			<span class="f-left">头像</span>
 			<span class="f-right clearFix UserName-right">
-				<image class="f-left" src="{{loge}}"></image>
+				<image class="f-left" src="{{infoItem.avatar.b}}"></image>
 				<i class="rightimg f-left"></i>
 			</span>
    		</view>
@@ -25,7 +25,7 @@
 					</i>
 				</li>
 			 	<picker class="weui-btn brbote7" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-				<li class="" bindtap="data1">
+				<li class="">
 					<i class="f-left" >出生日期</i>
 					<i class="f-right clearFix UserName-right">
 						<i class="f-left">{{infoItem.birthday}}</i>

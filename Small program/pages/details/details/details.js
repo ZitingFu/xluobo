@@ -11,11 +11,19 @@ Page({
     xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
     jing:"https://img.qa.xluob.com/Small%20program/1.png",
+    option1:"https://img.qa.xluob.com/Small%20program/option.png",
     zhfa:"",
     page:1,
     create_time:"",
     createTime:true,
     name:""
+  },
+  mapp:function(e){
+    var latitude = e.currentTarget.dataset.latitude;
+    var longitude = e.currentTarget.dataset.longitude;
+    wx.navigateTo({
+       url: '../../map/map?latitude='+latitude+"&longitude="+longitude
+    })
   },
   ckReleaseDetails:function(e){
       var usid = e.currentTarget.dataset.usid;
@@ -137,7 +145,7 @@ Page({
         url: 'https://qb.xluob.com/mini/question/info',
         method:"post",
         data: {
-            // "id":268471567,
+            // "id":268471299,
             "id":that.data.id,  
              "_t":app.data._t
         },

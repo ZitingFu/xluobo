@@ -11,7 +11,14 @@ Page({
     usersItem:"",
     items: [],
     startX: 0, //开始坐标
-    startY: 0
+    startY: 0,
+    page:1
+  },
+  details:function(e){
+     var id = e.currentTarget.dataset.id
+    wx.navigateTo({
+        url: '../../details/ReleaseDetails/ReleaseDetails?id='+id
+    })
   },
   touchstart: function (e) {
     //开始触摸时 重置所有删除
@@ -65,8 +72,6 @@ Page({
   },
   onLoad: function (options) {
       var that = this;
-      //common是自己写的公共JS方法，可忽略
-      // common.sys_main(app, that, e);
       for (var i = 0; i < 3; i++) {
           this.data.items.push({
           content: i + " 向左滑动删除哦",
@@ -96,7 +101,38 @@ Page({
   },
    // 上拉
   onReachBottom: function(){
-  
+    var that = this;
+    var city = that.data.city
+    var page = Number(that.data.page)+ 1
+    setTimeout(function(){
+        wx.request({
+          url: 'https://qb.xluob.com/mini/favorite/fav3',
+          method:"post",
+          data:{
+           _t:app.data._t,
+           pn:Page 
+          },
+          success:function(res){
+           console.log(res)
+           var users = res.data.data.users
+           if(users.length<1){
+              setTimeout(function(){
+                wx.showModal({
+                  content:"没有数据了"
+                })
+                wx.hideLoading()
+              },1000)
+            }
+            var from = that.data.usersItem;
+            for (var i = 0; i < users.length; i++) {
+              from.push(users[i]);
+            }
+           that.setData({
+            usersItem:from
+           })
+          }
+        })
+    },900)
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

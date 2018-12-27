@@ -11,6 +11,12 @@ Page({
     listItem:"",
     page:1
   },
+  details:function(e){
+     var id = e.currentTarget.dataset.id
+    wx.navigateTo({
+         url:'../../details/details/details?id='+id
+    })
+  },
   openConfirm: function () {
     wx.showModal({
           title: '',
@@ -52,13 +58,38 @@ Page({
     var that = this;
     var city = that.data.city
     var page = Number(that.data.page)+ 1
-    // 显示加载图标
-    // wx.showLoading({
-    //   title: '正在加载中'
-    // })
+    wx.showLoading({
+      title: '正在加载中'
+    })
     setTimeout(function(){
-        
-    },1500)
+      var page = Number(that.data.page)+ 1
+      wx.request({
+        url: 'https://qb.xluob.com/mini/passport/mycomments',
+        method:"post",
+        data:{
+          _t:app.data._t,
+          pn:page 
+        },
+        success:function(res){
+           var list = res.data.data.comments
+           if(list.length<1){
+              setTimeout(function(){
+                wx.showModal({
+                  content:"没有数据了"
+                })
+                wx.hideLoading()
+              },1000)
+             }
+           var from = that.data.listItem;
+           for (var i = 0; i < list.length; i++) {
+              from.push(list[i]);
+            }
+            that.setData({
+              listItem:from
+            })
+        }
+      })
+    },900)
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

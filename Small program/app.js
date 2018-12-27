@@ -4,6 +4,7 @@ App({
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     _t:"",
+    session_key:"",
     index: 0,
     citynamelist:"",
     multiArray: [
@@ -352,6 +353,9 @@ App({
      }
   },
   onLaunch: function (options) {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
     var that = this
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -369,8 +373,11 @@ App({
               code:res.code
             },
           success: function (res) {
+            console.log(res)
+            var session_key = res.data.data.wechat.session_key
             var _t = res.data.data._t
             that.data._t = _t
+            that.data.session_key = session_key
               wx.request({
                 url: 'https://qb.xluob.com/mini/area/list',
                 method:"post",

@@ -28,7 +28,7 @@
 					    <view class="nearby-top">
 						    <view class="flex-item">联 系 人：{{fromItem.user_name}}</view>
 						    <view class="flex-item">联系方式：{{fromItem.phone}}</view>
-						    <view class="flex-item">发送位置：是的</view>
+						    <view class="flex-item" bindtap="mapp" data-latitude="{{fromItem.latitude}}" data-longitude="{{fromItem.longitude}}">发送位置：{{fromItem.city}}{{fromItem.area}}<image src="{{option1}}" class="option1" alt=""></image></view>
 						    <view class="flex-item">信息编码:{{fromItem.id}}</view>
 					    </view>
 				  </view>
