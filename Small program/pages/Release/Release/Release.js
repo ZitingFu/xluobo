@@ -1,4 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
+const config = require('../../../config');
+var that;
 //index.js
 //获取应用实例
 const app = getApp()
@@ -38,11 +40,11 @@ Page({
     _t:"",
   },
   bindMultiPickerChange(e) {
-    var that = this;
+    that = this;
     app.bindMultiPickerChange(e,that)
   },
   bindMultiPickerColumnChange(e) {
-    var that = this;
+    that = this;
     app.bindMultiPickerColumnChange(e,that)
   },
   ckdetails:function(e){
@@ -52,23 +54,23 @@ Page({
     })
   },
   open:function(that){
-    var that = this
+    that = this
     app.open(that)
   },
   open1:function(that){
-    var that = this
+    that = this
     app.open1(that)
   },
   open3:function(that){
-    var that = this
+    that = this
     app.open3(that)
   },
   Type_top_number:function(e){
-    var that = this
+    that = this
     app.Type_top_number(e,that)
   },
   Type_top:function(e,that){
-     var that = this
+     that = this
      app.Type_top(e,that)
   },
   onLoad: function (options) {
@@ -93,9 +95,10 @@ Page({
               ["全部区"],
             ]
         })
+        console.log(config)
          //所有场所
           wx.request({
-            url: 'https://qb.xluob.com/mini/site/list',
+            url:config.Allplace,
             method:"post",
             success: function(res) {
              var site = res.data.data.site
@@ -106,7 +109,7 @@ Page({
           })
           //机构列表
           wx.request({
-            url: 'https://qb.xluob.com/mini/organization/index',
+            url:config.ReleaseList,
             method:"post",
             data: {
                "code":"",
@@ -135,7 +138,7 @@ Page({
     })
     setTimeout(function(){
         wx.request({
-          url: 'https://qb.xluob.com/mini/organization/index',
+          url:config.ReleaseList,
           method:"post",
           data: {
              "code":"",

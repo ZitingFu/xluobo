@@ -45,7 +45,11 @@
 					<i class="f-right rightimg"></i>
 				</span>
 			</li>
+			<li> 
+				<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+			</li>
    			</ul>
    		</view>
+   		
 	</view>
 </view>

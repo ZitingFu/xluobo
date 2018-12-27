@@ -1,4 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
+const config = require('../../../config.js');
+var that;
 //index.js
 //获取应用实例
 const app = getApp()
@@ -43,11 +45,11 @@ Page({
     _t:"",
   },
   bindMultiPickerChange(e) {
-    var that = this;
+    that = this;
     app.bindMultiPickerChange(e,that)
   },
   bindMultiPickerColumnChange(e) {
-    var that = this;
+    that = this;
     app.bindMultiPickerColumnChange(e,that)
   },
   ckdetails:function(e){
@@ -57,15 +59,15 @@ Page({
     })
   },
   open:function(that){
-    var that = this
+    that = this
     app.open(that)
   },
   open1:function(that){
-    var that = this
+    that = this
     app.open1(that)
   },
   open3:function(that){
-    var that = this
+    that = this
     app.open3(that)
   },
   imgtop:function(e){
@@ -88,24 +90,23 @@ Page({
       })
   },
   Type_top_number:function(e){
-    var that = this
+    that = this
     app.Type_top_number(e,that)
   },
   Type_top:function(e,that){
-     var that = this
+     that = this
      app.Type_top(e,that)
   },
   onLoad: function (options) {
     wx.showLoading({
       title: '正在加载...',
     })
-    var that = this
+    that = this
     var city = that.setData.city
     var page = Number(that.data.page)
     setTimeout(function(){
         var _t = app.data._t
         var citynamelist =  app.data.citynamelist
-        // console.log(citynamelist)
         var citycode = app.data.citycode
         var city = app.data.city
         var type_id = app.data.type_id
@@ -121,7 +122,7 @@ Page({
             ]
         })
           wx.request({
-            url: 'https://qb.xluob.com/mini/genre/list',
+            url:config.Firstclassify,
             method:"post",
             data:{
               id:1
@@ -137,7 +138,7 @@ Page({
           })
           //所有场所
           wx.request({
-            url: 'https://qb.xluob.com/mini/site/list',
+            url:config.Allplace,
             method:"post",
             success: function(res) {
               console.log(res)
@@ -149,7 +150,7 @@ Page({
           })
           //机构列表
            wx.request({
-            url: 'https://qb.xluob.com/mini/question/search',
+            url:config.genrelist,
             method:"post",
             data: {
                 "genre":1,
@@ -170,7 +171,7 @@ Page({
   },
    // 上拉
   onReachBottom: function(){
-    var that = this;
+    that = this;
     var city = that.data.city
     var page = Number(that.data.page)+ 1
     // 显示加载图标
@@ -179,7 +180,7 @@ Page({
     })
     setTimeout(function(){
         wx.request({
-          url: 'https://qb.xluob.com/mini/question/search',
+          url:config.genrelist,
           method:"post",
           data: {
              "code":"",

@@ -1,4 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
+const config = require('../../../config');
+var that;
 //index.js
 //获取应用实例
 const app = getApp()
@@ -20,13 +22,19 @@ Page({
     _t:"",
     id:""
   },
+  dialphone:function(e){
+    var p = e.currentTarget.dataset.linkphone
+    wx.makePhoneCall({
+      phoneNumber:p,
+    })
+  },
   follow:function(){
     var that = this
     that.setData({
       followid:!that.data.followid
     })
     wx.request({
-      url: 'https://qb.xluob.com/mini/favorite/fav',
+      url:config.follow,
       method:"post",
         data: {
             "id":that.data.id,
@@ -52,27 +60,8 @@ Page({
        })
   },
   onLoad: function (options) {
-    wx.login({
-      success: res => {
-      // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if(res.code){
-          wx.request({
-            url: 'https://qb.xluob.com/mini/passport/auth', //仅为示例，并非真实的接口地址
-            method: "POST",
-            data: {
-              code: res.code
-            },
-          success: function (res) {
-            console.log(res)
-              that.setData({  
-                _t:res.data.data._t
-              })
-            }
-          })
-        }
-      }
-    })
-    var that = this
+    console.log(config)
+    that = this
     var city = that.setData.city
     var page = Number(that.data.page)
     var id = options.id
@@ -85,7 +74,7 @@ Page({
     })
     setTimeout(function(){
       wx.request({
-        url: 'https://qb.xluob.com/mini/passport/center',
+        url:config.melist,
         method:"post",
         data: {
             "id":id,

@@ -1,4 +1,5 @@
 var amapFile = require('../../utils/amap-wx.js');
+var that
 //index.js
 //获取应用实例
 const app = getApp()
@@ -18,7 +19,7 @@ Page({
     }]
   },
   onLoad: function (options) {
-    var that = this
+    that = this
     var latitude = options.latitude
     var longitude = options.longitude
     that.data.markers[0].latitude = latitude

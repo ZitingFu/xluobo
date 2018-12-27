@@ -1,4 +1,6 @@
-// var amapFile = require('../../../utils/amap-wx.js');
+var amapFile = require('../../../utils/amap-wx.js');
+const config = require('../../../config.js');
+var that;
 //index.js
 //获取应用实例
 const app = getApp()
@@ -24,7 +26,6 @@ Page({
           confirmText: "确定",
           cancelText: "取消",
           success: function (res) {
-              console.log(res);
               if (res.confirm) {
                   console.log(res.confirm)
               }else{
@@ -35,9 +36,10 @@ Page({
   },
   onLoad: function (options) {
     var that = this
+    console.log(config)
     setTimeout(function(){
       wx.request({
-        url: 'https://qb.xluob.com/mini/passport/mycomments',
+        url:config.mycomments,
         method:"post",
         data:{
           _t:app.data._t,

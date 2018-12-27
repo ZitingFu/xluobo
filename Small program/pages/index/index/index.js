@@ -1,10 +1,14 @@
 var amapFile = require('../../../utils/amap-wx.js');
+const config = require('../../../config.js');
 var sliderWidth = 65.75;
+const app = getApp();
+var that;
 //index.js
 //获取应用实例
-const app = getApp()
 Page({
   data: {
+    albumDisabled: true,
+    bindDisabled: false,
     notime:"https://img.qa.xluob.com/Small%20program/Notime.png",
     boolean1:"",
     boolean2:"",
@@ -119,10 +123,10 @@ Page({
   //3.如果不是同一个page=1
   //4.如果是同一个page不变,把现在的下标存入到init里面
   tabClick: function (e) {
-      this.setData({
-          sliderOffset: e.currentTarget.offsetLeft,
-          activeIndex: e.currentTarget.id
-      });
+    this.setData({
+        sliderOffset: e.currentTarget.offsetLeft,
+        activeIndex: e.currentTarget.id
+    });
     // 第一次
     var ckinit = this.data.init
     // 点击之后
@@ -140,27 +144,7 @@ Page({
     }
   },
   onLoad: function (options) {
-    wx.login({
-      success: res => {
-      // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        if(res.code){
-          wx.request({
-            url: 'https://qb.xluob.com/mini/passport/auth', //仅为示例，并非真实的接口地址
-            method: "POST",
-            data: {
-              code: res.code
-            },
-          success: function (res) {
-            var _t = res.data.data._t
-              that.setData({  
-                _t:_t
-              })
-            }
-          })
-        }
-      }
-    })
-    var that = this
+    that = this
     var city = that.data.city
     var page = Number(that.data.page)
     //之前
@@ -200,16 +184,17 @@ Page({
             that.setData({
               city:city
             })
-            var _t = that.data._t
+            console.log(config)
             //请求轮播图数据
             wx.request({
-              url: 'https://qb.xluob.com/mini/index/home',
+              url:config.Rotation,
               method:"post",
               data: {
                  "city":city,
-                 "_t":_t
+                 "_t":app.data._t
               },
               success: function(res) {
+                console.log(res)
                var banner = res.data.data.banner
                 that.setData({ 
                     bannerImages:banner
@@ -218,11 +203,11 @@ Page({
             })
             //请求一级分类数据
             wx.request({
-              url: "https://qb.xluob.com/mini/genre/list",
+              url:config.Firstclassify,
               method:"post",
               data: {
                 "id":0,
-                "_t":_t
+                "_t":app.data._t
               },
               success: function(res) {
                var genre = res.data.data.genre
@@ -234,11 +219,11 @@ Page({
             })
             //附近机构数据
             wx.request({
-              url: 'https://qb.xluob.com/mini/organization/nearbyorg',
+              url:config.nearbyOutfit,
               method:"post",
               data: {
                  "city":city,
-                  "_t":_t
+                  "_t":app.data._t
               },
               success: function(res) {
                var list = res.data.data.list
@@ -250,12 +235,12 @@ Page({
             })
             // 附近
             wx.request({
-              url: 'https://qb.xluob.com/mini/index/nearby',
+              url:config.nearby,
               method:"post",
               data: {
                   "pn":1,
                   "area":city,
-                   "_t":_t
+                   "_t":app.data._t
               },
               success: function(res) {
                 var from = res.data.data.list
@@ -286,12 +271,12 @@ Page({
             })
             // 最近
             wx.request({
-              url: 'https://qb.xluob.com/mini/index/newquestion',
+              url:config.LAtely,
               method:"post",
               data: {
                   "pn":1,
                   "area":city,
-                   "_t":_t
+                   "_t":app.data._t
               },
               success: function(res) {
                 var from = res.data.data.list
@@ -329,7 +314,7 @@ Page({
   },
   // 上拉
   onReachBottom: function(){
-    var that = this;
+    that = this;
     var city = that.data.city
     var page = Number(that.data.page)+ 1
     // 显示加载图标
@@ -341,7 +326,7 @@ Page({
       if(activeIndex == 0){
         // 附近
         wx.request({
-          url: 'https://qb.xluob.com/mini/index/nearby',
+          url:config.nearby,
           method:"post",
           data: {
               "pn":page,
@@ -372,7 +357,7 @@ Page({
       else if(activeIndex == 1){
         // 最近
         wx.request({
-          url: 'https://qb.xluob.com/mini/index/newquestion',
+          url:config.LAtely,
           method:"post",
           data: {
               "pn":page,
@@ -405,85 +390,8 @@ Page({
   },
   //下拉
   onPullDownRefresh: function(){
-    wx.showNavigationBarLoading();
-    var that = this;
-    var city = that.setData.city
-    var page = Number(that.data.page)
-     // 引入高德地图
-    wx.showLoading({
-      title: '正在加载...',
-    })
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
-        var markersData = {
-          latitude: latitude,//纬度
-          longitude: longitude,//经度
-          key: that.data.MapKey
-        };
-        var addArr = [];
-        var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
-        myAmapFun.getRegeo({
-          success: function (data) {
-            var city = data[0].regeocodeData.addressComponent.adcode
-            that.setData({
-              city:city
-            })
-            wx.hideLoading()
-          }
-        });
-      }
-    })
-    //请求轮播图数据
-    wx.request({
-      url: 'https://qb.xluob.com/mini/index/home',
-      method:"post",
-      data: {
-         "city":city
-      },
-      success: function(res) {
-       var banner = res.data.data.banner
-         that.setData({ 
-            bannerImages:banner
-          })
-          wx.hideLoading()
-      }
-    })
-    //请求一级分类数据
-    wx.request({
-      url: "https://qb.xluob.com/mini/genre/list",
-      method:"post",
-      data: {
-         "id":0
-      },
-      success: function(res) {
-       var genre = res.data.data.genre
-         that.setData({ 
-            genreImages:genre
-          })
-          wx.hideLoading()
-      }
-    })
-    //附近机构数据
-    wx.request({
-      url: 'https://qb.xluob.com/mini/organization/nearbyorg',
-      method:"post",
-      data: {
-         "city":city
-      },
-      success: function(res) {
-       var list = res.data.data.list
-         that.setData({ 
-            listItem:list
-          })
-          wx.hideLoading()
-      }
-    })
-    
+    that = this;
+    that.onLoad()
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

@@ -1,4 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
+const config = require('../../../config.js');
+var that;
 //index.js
 //获取应用实例
 const app = getApp()
@@ -6,7 +8,8 @@ Page({
   data: {
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     info:"",
-    city:""
+    city:"",
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   UserName:function(){
     wx.navigateTo({
@@ -29,59 +32,28 @@ Page({
     })
   },
   onLoad: function (options) {
-    var that = this
-    var city = that.setData.city
-     // 引入高德地图
-    // wx.showLoading({
-    //   title: '正在加载...',
-    // })
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
-        var markersData = {
-          latitude: latitude,//纬度
-          longitude: longitude,//经度
-          key: that.data.MapKey
-        };
-        var addArr = [];
-        var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
-        myAmapFun.getRegeo({
-          success: function (data) {
-            var city = data[0].regeocodeData.addressComponent.city
+    that = this
+    setTimeout(function(){
+        wx.request({
+          url:config.melist,
+          method:"post",
+          data:{
+           _t:app.data._t
+          },
+          success:function(res){
+            console.log(res)
+           var info = res.data.data.info;
             that.setData({
-              city:city
+              info:info
             })
-            wx.hideLoading()
           }
-        });
-      }
-    })
-     var that = this
-    var city = that.setData.city
-    var that = this;
-       setTimeout(function(){
-          wx.request({
-            url: 'https://qb.xluob.com/mini/passport/center',
-            method:"post",
-            data:{
-             _t:app.data._t
-            },
-            success:function(res){
-              console.log(res)
-             var info = res.data.data.info;
-              that.setData({
-                info:info
-              })
-            }
-          })
-      },1000)
+        })
+
+    },1500)
   },
   getUserInfo: function(e) {
-    console.log(e)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

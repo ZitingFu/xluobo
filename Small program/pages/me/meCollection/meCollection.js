@@ -1,5 +1,6 @@
-// var amapFile = require('../../../utils/amap-wx.js');
-//index.js
+var amapFile = require('../../../utils/amap-wx.js');
+const config = require('../../../config.js');
+var that;
 //获取应用实例
 const app = getApp()
 Page({
@@ -37,10 +38,11 @@ Page({
        }) 
   },
   onLoad: function (e) {
-      var that = this;
+       that = this;
+       console.log(config)
        setTimeout(function(){
           wx.request({
-            url: 'https://qb.xluob.com/mini/favorite/fav1',
+            url:config.meCollection,
             method:"post",
             data:{
              _t:app.data._t,
@@ -58,7 +60,7 @@ Page({
   },
    // 上拉
   onReachBottom: function(){
-    var that = this;
+    that = this;
     var city = that.data.city
     var page = Number(that.data.page)+ 1
     wx.showLoading({
@@ -66,7 +68,7 @@ Page({
     })
     setTimeout(function(){
         wx.request({
-          url: 'https://qb.xluob.com/mini/favorite/fav1',
+          url:config.meCollection,
           method:"post",
           data:{
            _t:app.data._t,
@@ -89,7 +91,7 @@ Page({
            that.setData({
             questionItem:from
            })
-            // wx.hideLoading()
+            wx.hideLoading()
           }
         })
     },900)

@@ -1,4 +1,6 @@
 var amapFile = require('../../../../utils/amap-wx.js');
+const config = require('../../../../config.js');
+var that;
 //index.js
 //获取应用实例
 const app = getApp()
@@ -9,17 +11,17 @@ Page({
     name:""
   },
   search:function(e){
-    var that = this
+    that = this
     var name = e.detail.value;
     this.setData({
       name:name,
     })
   },
   clockn:function(){
-    var that = this
+    that = this
     console.log(that.data.name)
     wx.request({
-        url: 'https://qb.xluob.com/mini/passport/edit',
+        url:config.passportEdit,
         method:"post",
         data:{
          "_t":app.data._t,
@@ -59,6 +61,7 @@ Page({
       })
   },
   onLoad: function (options) {
+    console.log(config)
     var that = this
     var city = that.setData.city
   },

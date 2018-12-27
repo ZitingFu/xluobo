@@ -1,4 +1,6 @@
 var amapFile = require('../../../../utils/amap-wx.js');
+const config = require('../../../../config.js');
+var that;
 //index.js
 //获取应用实例
 const app = getApp()
@@ -22,7 +24,7 @@ Page({
   sub:function(){
     var that = this
     wx.request({
-      url: 'https://qb.xluob.com/mini/passport/editphone',
+      url:config.editphone,
       method:"post",
       data: {
         "_t":app.data._t,
@@ -76,7 +78,7 @@ Page({
     else{
       console.log(that.data.name1)
       wx.request({
-          url: 'https://qb.xluob.com/mini/phone/code',
+          url:config.codephone,
           method:"post",
           data: {
               "phone":that.data.name1,
@@ -118,33 +120,7 @@ Page({
     })
   },
   onLoad: function (options) {
-    var that = this
-    var city = that.setData.city
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
-        var markersData = {
-          latitude: latitude,//纬度
-          longitude: longitude,//经度
-          key: that.data.MapKey
-        };
-        var addArr = [];
-        var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
-        myAmapFun.getRegeo({
-          success: function (data) {
-            var city = data[0].regeocodeData.addressComponent.city
-            that.setData({
-              city:city
-            })
-            wx.hideLoading()
-          }
-        });
-      }
-    })
+    console.log(config)
   },
   getUserInfo: function(e) {
     console.log(e)

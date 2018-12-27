@@ -1,5 +1,7 @@
 var amapFile = require('../../../utils/util.js');
+const config = require('../../../config.js');
 var sliderWidth = 96; 
+var that;
 //index.js
 //获取应用实例
 const app = getApp()
@@ -72,7 +74,7 @@ Page({
         })
     },  
     cancel:function(){
-        var that = this
+        that = this
         var text = ""
         that.setData({ 
             input:text
@@ -82,7 +84,7 @@ Page({
         var that = this
         var name = e.detail.value;
         wx.request({
-          url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+          url:config.searchpeople,
           method:"post",
           data: {
             "name":name,
@@ -106,30 +108,29 @@ Page({
     },
     //事件处理函数
     onLoad: function (e) {
-        var that = this;
+        that = this;
         wx.showLoading({
           title: '正在加载中'
         })
         //寻人
         wx.request({
-            url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+            url:config.searchpeople,
             method:"post",
             data: {
               "pn":1,
               "type":1
             },
-          success: function(res) {
-            var from = res.data.data.list
-            that.data.navData[0].fromItem = from
-            that.setData({ 
-                fromItem1:from
-            })
-             wx.hideLoading()
-          }
+            success: function(res) {
+              var from = res.data.data.list
+              that.data.navData[0].fromItem = from
+              that.setData({ 
+                  fromItem1:from
+              })
+            }
         })
         // 寻物
         wx.request({
-          url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+          url:config.searchpeople,
           method:"post",
           data: {
               "pn":1,
@@ -140,12 +141,11 @@ Page({
             that.setData({ 
                 fromItem2:from
             })
-             wx.hideLoading()
           }
         })
         // 认人
         wx.request({
-          url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+          url:config.searchpeople,
           method:"post",
           data: {
               "pn":1,
@@ -156,12 +156,11 @@ Page({
             that.setData({ 
                 fromItem3:from
             })
-             wx.hideLoading()
           }
         })
         // 认领
         wx.request({
-          url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+          url:config.searchpeople,
           method:"post",
           data: {
               "pn":1,
@@ -177,7 +176,7 @@ Page({
         })
         // 好人风采
         wx.request({
-          url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+          url:config.searchpeople,
           method:"post",
           data: {
               "pn":1,
@@ -188,7 +187,6 @@ Page({
             that.setData({ 
                 fromItem5:from
             })
-             wx.hideLoading()
           }
         })
         wx.getSystemInfo({
@@ -199,7 +197,6 @@ Page({
                 });
             }
         });
-        // 
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
@@ -234,20 +231,21 @@ Page({
                     windowWidth: res.windowWidth
                 })
             },
-        })       
+        })  
+        wx.hideLoading()      
     },
     onReachBottom:function(){
         wx.showLoading({
           title: '正在加载中'
         })
-        var that = this;
+        that = this;
         var page = Number(that.data.page)
         page = page + 1  
         var index = that.data.activeIndex
         setTimeout(function(){
             if(index==0){
                 wx.request({
-                    url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+                    url:config.searchpeople,
                     method:"post",
                     data: {
                         "pn":page,
@@ -268,7 +266,7 @@ Page({
             }
             else if(index==1){
                 wx.request({
-                    url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+                    url:config.searchpeople,
                     method:"post",
                     data: {
                         "pn":page,
@@ -289,7 +287,7 @@ Page({
             }
             else if(index==2){
                 wx.request({
-                    url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+                    url:config.searchpeople,
                     method:"post",
                     data: {
                         "pn":page,
@@ -310,7 +308,7 @@ Page({
             }
             else if(index==3){
                 wx.request({
-                    url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+                    url:config.searchpeople,
                     method:"post",
                     data: {
                         "pn":page,
@@ -331,7 +329,7 @@ Page({
             }
             else if(index==4){
                 wx.request({
-                    url: 'https://qb.xluob.com/mini/Benefit/searchbytype',
+                    url:config.searchpeople,
                     method:"post",
                     data: {
                         "pn":page,
@@ -350,6 +348,6 @@ Page({
                     }
                 })
             }
-        },1500)
+        },1000)
     }
 })

@@ -1,4 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
+const config = require('../../../config');
+var that;
 //index.js
 //获取应用实例
 const app = getApp()
@@ -32,12 +34,12 @@ Page({
       })
   },
   follow:function(){
-    var that = this
+    that = this
     that.setData({
       followid:!that.data.followid
     })
     wx.request({
-        url: 'https://qb.xluob.com/mini/favorite/fav',
+        url:config.follow,
         method:"post",
         data: {
             "id":that.data.id,
@@ -50,17 +52,17 @@ Page({
     })
   },
   sear:function(e){
-    var that = this
+    that = this
     var name = e.detail.value;
     that.setData({ 
           name:name
     })
     console.log(name)
   },
-  search:function(){
-      var that = this
+  sub:function(){
+      that = this
       wx.request({
-        url: 'https://qb.xluob.com/mini/comments/create',
+        url:config.commentsCreate,
         method:"post",
         data: {
           "content":that.data.name,
@@ -74,7 +76,7 @@ Page({
             title: '正在加载...',
           })
           wx.request({
-              url: 'https://qb.xluob.com/mini/question/info',
+              url:config.questioninfo,
               method:"post",
               data: {
                   // "id":268471567,
@@ -95,7 +97,7 @@ Page({
     var that = this
     var q_id =  e.currentTarget.dataset.q_id
     wx.request({
-        url: 'https://qb.xluob.com/mini/question/EditLike',
+        url:config.Fabulous,
         method:"post",
         data: {
             "id":q_id,
@@ -104,7 +106,7 @@ Page({
         success: function(res) {
           var from = res.data.data.list
           wx.request({
-              url: 'https://qb.xluob.com/mini/question/info',
+              url:config.questioninfo,
               method:"post",
               data: {
                   "id":that.data.id,
@@ -134,7 +136,8 @@ Page({
        })
   },
   onLoad: function (options) {
-    var that = this
+    console.log(config)
+    that = this
     var city = that.setData.city
     var page = Number(that.data.page)
     var id = options.id
@@ -142,7 +145,7 @@ Page({
           id:id
       })
       wx.request({
-        url: 'https://qb.xluob.com/mini/question/info',
+        url:config.questioninfo,
         method:"post",
         data: {
             // "id":268471299,

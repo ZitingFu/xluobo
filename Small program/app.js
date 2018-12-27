@@ -1,6 +1,8 @@
-//app.js
+const config = require('config');
+// const util = require('utils/utils');
 App({
   data:{
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     _t:"",
@@ -35,7 +37,7 @@ App({
       if(multiIndex[2] !== undefined){
         setTimeout(function(){
           wx.request({
-            url: 'https://qb.xluob.com/mini/question/search',
+            url:config.genrelist,
             method:"post",
             data: {
                site:site,
@@ -65,7 +67,7 @@ App({
         if(multiIndex[1] !== undefined){
           setTimeout(function(){
             wx.request({
-              url: 'https://qb.xluob.com/mini/question/search',
+              url:config.genrelist,
               method:"post",
               data: {
                   "site":site,
@@ -94,7 +96,7 @@ App({
         else{
           setTimeout(function(){
             wx.request({
-              url: 'https://qb.xluob.com/mini/question/search',
+              url:config.genrelist,
               method:"post",
               data: {
                   "site":site,
@@ -133,7 +135,7 @@ App({
           newcity:ccode1
       })
       wx.request({
-        url: 'https://qb.xluob.com/mini/area/list',
+        url:config.province,
         method:"post",
         data: {
            "_t":that.data._t,
@@ -172,7 +174,7 @@ App({
           newresede:areaid
       })
       wx.request({
-        url: 'https://qb.xluob.com/mini/area/list',
+        url:config.province,
         method:"post",
         data: {
            "_t":that.data._t,
@@ -234,7 +236,7 @@ App({
       })
       setTimeout(function(){
         wx.request({
-          url: 'https://qb.xluob.com/mini/question/search',
+          url:config.genrelist,
           method:"post",
           data: {
             "genre":number,
@@ -277,7 +279,7 @@ App({
       })
       setTimeout(function(){
         wx.request({
-          url: 'https://qb.xluob.com/mini/question/search',
+          url:config.genrelist,
           method:"post",
           data: {
             "genre":type_id,
@@ -366,63 +368,80 @@ App({
       success: res => {
           this.globalData.userInfo = res.userInfo
         if(res.code){
-          wx.request({
-            url: 'https://qb.xluob.com/mini/passport/auth',
-            method: "POST",
-            data: {
-              code:res.code
-            },
-          success: function (res) {
-            console.log(res)
-            var session_key = res.data.data.wechat.session_key
-            var _t = res.data.data._t
-            that.data._t = _t
-            that.data.session_key = session_key
-              wx.request({
-                url: 'https://qb.xluob.com/mini/area/list',
-                method:"post",
-                data:{
-                  "_t":that.data._t
-                },
-                success: function(res) {
-                  var cityname = res.data.data.city
-                  var citynamelist = []
-                  var citycode = []
-                  for(var a=0;a<cityname.length;a++){
-                    citynamelist.push(cityname[a].name)
-                    citycode.push(cityname[a].adcode)
-                  }
-                  citynamelist.unshift("全部市");
-                  that.data.citynamelist = citynamelist
-                  that.data.citycode = citycode
-                }
-              })
-            } 
+
+
+          
+          // wx.request({
+          //   url:config.login,
+          //   method: "POST",
+          //   data: {
+          //     code:res.code
+          //   },
+          //   success: function (res) {
+          //   var session_key = res.data.data.wechat.session_key
+          //   var _t = res.data.data._t
+          //   that.data._t = _t
+          //   that.data.session_key = session_key
+          //     wx.request({
+          //       url:config.province,
+          //       method:"post",
+          //       data:{
+          //         "_t":that.data._t
+          //       },
+          //       success: function(res) {
+          //         var cityname = res.data.data.city
+          //         var citynamelist = []
+          //         var citycode = []
+          //         for(var a=0;a<cityname.length;a++){
+          //           citynamelist.push(cityname[a].name)
+          //           citycode.push(cityname[a].adcode)
+          //         }
+          //         citynamelist.unshift("全部市");
+          //         that.data.citynamelist = citynamelist
+          //         that.data.citycode = citycode
+          //       }
+          //     })
+          //   } 
+          // })
+        }
+        else{
+          wx.showModal({
+              title: '提示',
+              content: '登录失败！',
+              showCancel: false
           })
+          console.log('登录失败！' + res.errMsg)
         }
       }
     })
     // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // console.log(res)
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
+    // wx.getSetting({
+    //   success: res => {
+    //     console.log(res.authSetting)
+    //     if (res.authSetting['scope.userInfo']) {
+    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+    //       wx.getUserInfo({
+    //         success: res => {
+    //           // encryptedData
+    //           // iv
+    //           console.log(res.userInfo)
+    //           // console.log(res)
+    //           // 可以将 res 发送给后台解码出 unionId
+    //           this.globalData.userInfo = res.userInfo
 
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
-      }
-    })
+    //           // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //           // 所以此处加入 callback 以防止这种情况
+    //           if (this.userInfoReadyCallback) {
+    //             this.userInfoReadyCallback(res)
+    //           }
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
+  },
+  bindGetUserInfo(e) {
+    console.log(e.detail.userInfo)
   },
   globalData: { 
     userInfo: null

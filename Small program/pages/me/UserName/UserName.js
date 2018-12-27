@@ -1,7 +1,10 @@
 var amapFile = require('../../../utils/amap-wx.js');
+const config = require('../../../config.js');
+var that;
 //index.js
 //获取应用实例
 const app = getApp()
+var infoItem;
 Page({
   data: {
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
@@ -15,7 +18,7 @@ Page({
     carWin_img:'' //存放照片路径的
   },
   UserNameTop:function(){
-    var that = this;
+    that = this;
     wx.chooseImage({
       count: 1,
       success: function (res) {
@@ -24,9 +27,8 @@ Page({
           carWin_img: filePath[0], //把照片路径存到变量中，
           carWin_img_hidden: false //让展示照片的view显示
         });
-        console.log(res.tempFilePaths)
           wx.uploadFile({
-            url: 'https://qb.xluob.com/mini/upload/img',
+            url:config.image,
             type:'post',
             filePath:res.tempFilePaths[0],
             name: 'file',
@@ -37,11 +39,7 @@ Page({
               "image":res.tempFilePaths[0]
             },
             success: function (res) {
-              var data = res.data
-              console.log(res.data)
-              // console.log(res.data.url.b)
-              console.log(res.statusCode);
-              if (res.statusCode != 200) { 
+              if(res.statusCode != 200) { 
                 wx.showModal({
                   title: '提示',
                   content: '上传失败',
@@ -50,13 +48,23 @@ Page({
                 return;
               }
               var ims = JSON.parse(res.data);
-              this.setData({
-                  time1: ims.data.url.s
-              })
               console.log(ims.data.url.s)
-              // page.setData({  //上传成功修改显示头像
-              //   src: path[0]
-              // })
+              var avatar = {
+                    s:ims.data.url.s,
+                    m:ims.data.url.m,
+                    b:ims.data.url.b
+              }
+              wx.request({
+                url:config.passportEdit,
+                method:"post",
+                data:{
+                  avatar:avatar,
+                  _t:app.data._t 
+                },
+                success: function(res) {
+                  console.log(res)
+                }
+              })
             }
           })
         }
@@ -72,33 +80,35 @@ Page({
       url:'../modify/sax/sax'
     })
   },
+  //生日
   bindDateChange: function(e) {
-      this.setData({
+      that = this
+      that.setData({
           time1: e.detail.value
       })
-      var that = this
       wx.request({
-        url: 'https://qb.xluob.com/mini/passport/edit',
+        url:config.passportEdit,
         method:"post",
         data:{
          "_t":app.data._t,
          "birthday":e.detail.value
         },
         success:function(res){
-          wx.request({
-            url: 'https://qb.xluob.com/mini/passport/center',
-            method:"post",
-            data:{
-             "_t":app.data._t
-            },
-            success:function(res){
-              console.log(res)
-            var info = res.data.data.info;
-              that.setData({
-                infoItem:info
-              })
-            }
-          })
+          that.onLoad()
+          // wx.request({
+          //   url:config.melist,
+          //   method:"post",
+          //   data:{
+          //    "_t":app.data._t
+          //   },
+          //   success:function(res){
+          //     console.log(res)
+          //   var info = res.data.data.info;
+          //     that.setData({
+          //       infoItem:info
+          //     })
+          //   }
+          // })
         }
       })
   },
@@ -108,12 +118,11 @@ Page({
     })
   },
   onLoad: function (options) {
-    var that = this
-    var city = that.setData.city
+    that = this
     var that = this;
        setTimeout(function(){
           wx.request({
-            url: 'https://qb.xluob.com/mini/passport/center',
+            url:config.melist,
             method:"post",
             data:{
              "_t":app.data._t
