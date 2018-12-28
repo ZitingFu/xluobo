@@ -2,7 +2,8 @@ const config = require('config');
 // const util = require('utils/utils');
 App({
   data:{
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    UserInfo_ud:false,
+    code:"",
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     _t:"",
@@ -354,70 +355,173 @@ App({
           })
      }
   },
-  onLaunch: function (options) {
-    wx.showShareMenu({
-      withShareTicket: true
+  getUserInfo:function(e,that,app){
+    var ud = e.currentTarget.dataset.ud
+   
+    wx.request({
+        url:config.login,
+        method:"post",
+        data: {
+            "encrypted_data":e.detail.encryptedData,
+            "code":app.data.code,
+            "iv":e.detail.iv
+        },
+        success: function(res) {
+          console.log(123)
+          console.log(res)
+          if(res.data.flag == 1){
+            wx.getStorage({key: '_t',
+                success: function (res) {
+                  app.data._t = res.data
+                  //个人页
+                  if(ud==0){
+                      wx.navigateTo({
+                        url:'../UserName/UserName'
+                      })
+                  }
+                  // 评论
+                  if(ud==1){
+                    wx.navigateTo({
+                       url:'../meComment/meComment'
+                    })
+                  }
+                  // 关注
+                  if(ud==2){
+                    wx.navigateTo({
+                       url:'../meFollow/meFollow'
+                    })
+                  }
+                  //我的收藏
+                  if(ud==3){
+                    wx.navigateTo({
+                      url:'../meCollection/meCollection'
+                    })
+                  }
+                  //详情收藏
+                  if(ud=="00"){
+                    that.setData({
+                      followid:!that.data.followid
+                    })
+                    wx.request({
+                        url:config.follow,
+                        method:"post",
+                        data: {
+                            "id":that.data.id,
+                            "_t":app.data._t,
+                            "type":1
+                        },
+                        success: function(res) {
+                          console.log(res)
+                        }
+                    })
+                  }
+                  //详情评论
+                  if(ud=="01"){
+                    wx.request({
+                      url:config.commentsCreate,
+                      method:"post",
+                      data: {
+                        "content":that.data.name,
+                        "q_id":that.data.id,
+                        "type":0,
+                        "_t":app.data._t
+                      },
+                      success: function(res) {
+                        console.log(res)
+                        var from = res.data.data.list
+                        wx.request({
+                            url:config.questioninfo,
+                            method:"post",
+                            data: {
+                                // "id":268471567,
+                                "id":that.data.id,
+                                 "_t":app.data._t
+                            },
+                            success: function(res) {
+                              console.log(res)
+                             that.setData({ 
+                                  fromItem:res.data.data.info
+                              })
+                            }
+                        })
+                      }
+                    })
+                  }
+                  //详情关注
+                  if(ud="10"){
+                    that.setData({
+                      followid:!that.data.followid
+                    })
+                    wx.request({
+                      url:config.follow,
+                      method:"post",
+                        data: {
+                            "id":that.data.id,
+                            "_t":app.data._t,
+                            "type":3
+                        },
+                      success: function(res) {
+                      }
+                    })
+                  }
+                },
+            })
+          }
+          else{
+            //1.存用户信息到本地存储
+            wx.setStorageSync('_t',res.data.data._t)
+            app.data._t = res.data.data._t
+          }
+          console.log(res.data.flag == 1)
+        }
     })
+  },
+  // 授权是否过期
+  onShow: function () {
+    wx.checkSession({ //检测当前用户的session_key是否过期
+      success: function () { //session_key 未过期，并且在本生命周期一直有效
+
+        console.log("授权未过期")
+        return ;
+      },
+      fail: function () { //session_key 已经失效，需要重新执行登录流程
+      console.log("授权过期")
+        wx.navigateTo({
+          url: "/pages/entrance/entrance" //重新授权
+        })
+      }
+    })
+  },
+  onLaunch: function (options) {
     var that = this
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    //获取省市区域
+    wx.request({
+      url:config.province,
+      method:"post",
+      success: function(res) {
+        var cityname = res.data.data.city
+        var citynamelist = []
+        var citycode = []
+        for(var a=0;a<cityname.length;a++){
+          citynamelist.push(cityname[a].name)
+          citycode.push(cityname[a].adcode)
+        }
+        citynamelist.unshift("全部市");
+        that.data.citynamelist = citynamelist
+        that.data.citycode = citycode
+      }
+    })
     // 登录
     wx.login({
       success: res => {
-          this.globalData.userInfo = res.userInfo
-        if(res.code){
-
-
-          
-          // wx.request({
-          //   url:config.login,
-          //   method: "POST",
-          //   data: {
-          //     code:res.code
-          //   },
-          //   success: function (res) {
-          //   var session_key = res.data.data.wechat.session_key
-          //   var _t = res.data.data._t
-          //   that.data._t = _t
-          //   that.data.session_key = session_key
-          //     wx.request({
-          //       url:config.province,
-          //       method:"post",
-          //       data:{
-          //         "_t":that.data._t
-          //       },
-          //       success: function(res) {
-          //         var cityname = res.data.data.city
-          //         var citynamelist = []
-          //         var citycode = []
-          //         for(var a=0;a<cityname.length;a++){
-          //           citynamelist.push(cityname[a].name)
-          //           citycode.push(cityname[a].adcode)
-          //         }
-          //         citynamelist.unshift("全部市");
-          //         that.data.citynamelist = citynamelist
-          //         that.data.citycode = citycode
-          //       }
-          //     })
-          //   } 
-          // })
-        }
-        else{
-          wx.showModal({
-              title: '提示',
-              content: '登录失败！',
-              showCancel: false
-          })
-          console.log('登录失败！' + res.errMsg)
-        }
+         that.data.code = res.code
+        this.globalData.userInfo = res.userInfo
       }
     })
     // 获取用户信息
     // wx.getSetting({
     //   success: res => {
-    //     console.log(res.authSetting)
+    //     console.log(res.authSetting['scope.userInfo'])
     //     if (res.authSetting['scope.userInfo']) {
     //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
     //       wx.getUserInfo({

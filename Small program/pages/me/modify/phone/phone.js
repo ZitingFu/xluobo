@@ -81,6 +81,7 @@ Page({
           url:config.codephone,
           method:"post",
           data: {
+              "_t":app.data._t,
               "phone":that.data.name1,
               "type":0
           },

@@ -2,41 +2,49 @@
 <view class="container log-list">
 	<view></view>
 	<view id="me">
-   		<view class="me-top brbote7" bindtap="UserName">
-			<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-tae7e7e7">
-				<view class="f-left bo-f000ff paddLe24 wihe50 ">
-					 <image  src="{{info.avatar.b}}" style="border:1rpx solid #ddd;"></image>
+   		<view class="me-top brbote7">
+			<button data-ud="0" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-tae7e7e7">
+					<view class="f-left bo-f000ff paddLe24 wihe50 ">
+						 <image  src="{{info.avatar.b}}" style="border:1rpx solid #ddd;"></image>
+					</view>
+					<view class="f-right wi82  paddBo20">
+						<view class="fontSize30 .ma-bo7">榆林啥地方将开始</view>
+						<view class="f999"><span class="bindphone">绑定手机号码</span></view>
+						<i class="f-right rightimg"></i>
+					</view>
 				</view>
-				<view class="f-right wi82  paddBo20">
-					<view class="fontSize30 .ma-bo7">榆林啥地方将开始</view>
-					<view class="f999"><span class="bindphone">绑定手机号码</span></view>
-					<i class="f-right rightimg"></i>
-				</view>
-			</view>
+			</button>
    		</view>
    		<view class="me-center">
    			<ul>
-			<li bindtap="comment">
+			<button data-ud="1" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+			<li >
 				<image src="../../../images/icon_pinglun.png" alt=""></image>
 				<span>
 					我的评论
 					<i class="f-right rightimg"></i>
 				</span>
 			</li>
-			<li bindtap="follow">
+			</button>
+			<button data-ud="2" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+			<li>
 				<image src="../../../images/icon_guanzhu.png" alt=""></image>
 				<span>
 					我的关注
 					<i class="f-right rightimg"></i>
 				</span>
 			</li>
-			<li class="brbote7" bindtap="collection">
+			</button>
+			<button data-ud="3" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+			<li class="brbote7">
 				<image src="../../../images/icon_shoucang.png" alt=""></image>
 				<span>
 					我的收藏
 					<i class="f-right rightimg"></i>
 				</span>
 			</li>
+			</button>
 			<li class="brbote7">
 				<image src="../../../images/kf.png" alt=""></image>
 				<span>
@@ -45,11 +53,7 @@
 					<i class="f-right rightimg"></i>
 				</span>
 			</li>
-			<li> 
-				<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-			</li>
    			</ul>
    		</view>
-   		
 	</view>
 </view>

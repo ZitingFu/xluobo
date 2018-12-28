@@ -6,6 +6,7 @@ var that;
 const app = getApp()
 Page({
   data: {
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     id:"",
     fromItem:"",
     clock:"https://img.qa.xluob.com/Small%20program/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181214163845.png",
@@ -33,24 +34,6 @@ Page({
        url: '../../details/ReleaseDetails/ReleaseDetails?id='+usid
       })
   },
-  follow:function(){
-    that = this
-    that.setData({
-      followid:!that.data.followid
-    })
-    wx.request({
-        url:config.follow,
-        method:"post",
-        data: {
-            "id":that.data.id,
-            "_t":app.data._t,
-            "type":1
-        },
-        success: function(res) {
-          console.log(res)
-        }
-    })
-  },
   sear:function(e){
     that = this
     var name = e.detail.value;
@@ -58,40 +41,6 @@ Page({
           name:name
     })
     console.log(name)
-  },
-  sub:function(){
-      that = this
-      wx.request({
-        url:config.commentsCreate,
-        method:"post",
-        data: {
-          "content":that.data.name,
-          "q_id":that.data.id,
-          "type":0,
-          "_t":app.data._t
-        },
-        success: function(res) {
-          var from = res.data.data.list
-          wx.showLoading({
-            title: '正在加载...',
-          })
-          wx.request({
-              url:config.questioninfo,
-              method:"post",
-              data: {
-                  // "id":268471567,
-                  "id":that.data.id,
-                   "_t":app.data._t
-              },
-              success: function(res) {
-               that.setData({ 
-                    fromItem:res.data.data.info
-                })
-                wx.hideLoading()
-              }
-          })
-        }
-      })
   },
   Fabulous:function(e){
     var that = this
@@ -136,7 +85,6 @@ Page({
        })
   },
   onLoad: function (options) {
-    console.log(config)
     that = this
     var city = that.setData.city
     var page = Number(that.data.page)
@@ -149,8 +97,7 @@ Page({
         method:"post",
         data: {
             // "id":268471299,
-            "id":that.data.id,  
-             "_t":app.data._t
+            "id":that.data.id
         },
         success: function(res) {
           console.log(res)
@@ -250,10 +197,7 @@ Page({
       })
   },
   getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    that = this
+    app.getUserInfo(e,that,app)
   }
 })

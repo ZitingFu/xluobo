@@ -28,23 +28,6 @@ Page({
       phoneNumber:p,
     })
   },
-  follow:function(){
-    var that = this
-    that.setData({
-      followid:!that.data.followid
-    })
-    wx.request({
-      url:config.follow,
-      method:"post",
-        data: {
-            "id":that.data.id,
-            "_t":app.data._t,
-            "type":3
-        },
-      success: function(res) {
-      }
-    })
-  },
   //图片放大
   imgtop:function(e){
     var imgList = e.currentTarget.dataset.list;//获取data-list
@@ -104,10 +87,7 @@ Page({
     },1500)
   },
   getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+   that = this
+    app.getUserInfo(e,that,app)
   }
 })

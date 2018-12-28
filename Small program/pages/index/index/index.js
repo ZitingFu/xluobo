@@ -7,8 +7,6 @@ var that;
 //获取应用实例
 Page({
   data: {
-    albumDisabled: true,
-    bindDisabled: false,
     notime:"https://img.qa.xluob.com/Small%20program/Notime.png",
     boolean1:"",
     boolean2:"",
@@ -144,6 +142,7 @@ Page({
     }
   },
   onLoad: function (options) {
+    console.log(app)
     that = this
     var city = that.data.city
     var page = Number(that.data.page)
@@ -279,6 +278,8 @@ Page({
                    "_t":app.data._t
               },
               success: function(res) {
+                console.log("最近")
+                console.log(res)
                 var from = res.data.data.list
                 if(from.length==0){
                     that.setData({ 
@@ -397,7 +398,7 @@ Page({
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      hasUserInfo: false
     })
   }
 })

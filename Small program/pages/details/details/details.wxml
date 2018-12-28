@@ -43,10 +43,10 @@
 						<view class="fontSize30 ma-bo4 hidden" style="width:59%">{{fromItem.user_name}}</view>
 						<view class="f999">发布数{{fromItem.issue_num}}<i class="dian"></i>已找到{{fromItem.find_num}}<i class="dian"></i>爱心值{{fromItem.love}}</view>
 					</view>
-					<span class="follow" catchtap="follow">
+					<button data-ud="00" class="follow" catchtap="getUserInfo" open-type="getUserInfo" >
 						<span wx:if="{{followid == true}}">收藏</span>
 						<span wx:if="{{followid == false}}">已收藏</span>
-					</span>
+					</button>
 				</view>
 	   		</view>
 	   		<view class="Releaselist_comment">
@@ -83,7 +83,7 @@
 			    </view>
 			    <view class="item">
 			    	<!-- <image class="Star"  src="{{clock}}"></image> -->
-			    	<view class="sub" bindtap="sub" >发送</view>
+			    	<view class="sub" data-ud="01" catchtap="getUserInfo" open-type="getUserInfo">发送</view>
 		     	</view>
 		    </view>
     	</view>

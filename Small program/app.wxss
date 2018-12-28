@@ -630,6 +630,7 @@ li span{
 	line-height:25px;
 	border:1px solid #999;
 	border-radius:14px;
+	font-size:12px;
 }
 /*UserName*/
 #UserName li{
@@ -822,4 +823,18 @@ li span{
 	font-size:14px;
 	padding: 8px;
 	box-sizing: border-box;
+}
+#me button{
+	font-size: 28rpx;
+	background-color: #fff;
+	border:none;
+	padding: 0;
+	margin: 0;
+	line-height: 1;
+	text-align:left;
+	border:none;
+	position:none;
+}
+#me .btn:after {
+  border:none;
 }

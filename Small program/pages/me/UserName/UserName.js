@@ -118,6 +118,7 @@ Page({
     })
   },
   onLoad: function (options) {
+    console.log(app.data._t)
     that = this
     var that = this;
        setTimeout(function(){
