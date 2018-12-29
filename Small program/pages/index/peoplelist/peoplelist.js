@@ -104,70 +104,67 @@ Page({
     that = this
     var city = that.setData.city
     var page = Number(that.data.page)
-    setTimeout(function(){
-        var _t = app.data._t
-        var citynamelist =  app.data.citynamelist
-        var citycode = app.data.citycode
-        var city = app.data.city
-        var type_id = app.data.type_id
+    var _t = app.data._t
+    var citynamelist =  app.data.citynamelist
+    var citycode = app.data.citycode
+    var city = app.data.city
+    var type_id = app.data.type_id
+    that.setData({
+      type_id:type_id,
+      _t:_t,
+      citynamelist:citynamelist,
+      citycode:citycode,
+      multiArray:[
+          citynamelist,
+          ["全部省","北京市"], 
+          ["全部区"],
+        ]
+    })
+    wx.request({
+      url:config.Firstclassify,
+      method:"post",
+      data:{
+        id:1
+      },
+      success: function(res) {
+        console.log(res)
+       var site = res.data.data.genre
         that.setData({
-          type_id:type_id,
-          _t:_t,
-          citynamelist:citynamelist,
-          citycode:citycode,
-          multiArray:[
-              citynamelist,
-              ["全部省","北京市"], 
-              ["全部区"],
-            ]
+            id:1,
+            TypeItem3:site
         })
-          wx.request({
-            url:config.Firstclassify,
-            method:"post",
-            data:{
-              id:1
-            },
-            success: function(res) {
-              console.log(res)
-             var site = res.data.data.genre
-              that.setData({
-                  id:1,
-                  TypeItem3:site
-              })
-            }
-          })
-          //所有场所
-          wx.request({
-            url:config.Allplace,
-            method:"post",
-            success: function(res) {
-              console.log(res)
-             var site = res.data.data.site
-              that.setData({ 
-                  TypeItem:site
-              })
-            }
-          })
-          //机构列表
-           wx.request({
-            url:config.genrelist,
-            method:"post",
-            data: {
-                "genre":1,
-               "code":city,
-               "site":"",
-               "pn":page
-            },
-            success: function(res) {
-              console.log(res)
-             var list = res.data.data.list
-              that.setData({ 
-                listItem:list
-              })
-            }
-          })
-    },1500)
-    wx.hideLoading()
+      }
+    })
+    //所有场所
+    wx.request({
+      url:config.Allplace,
+      method:"post",
+      success: function(res) {
+        console.log(res)
+       var site = res.data.data.site
+        that.setData({ 
+            TypeItem:site
+        })
+      }
+    })
+    //机构列表
+     wx.request({
+      url:config.genrelist,
+      method:"post",
+      data: {
+          "genre":1,
+         "code":city,
+         "site":"",
+         "pn":page
+      },
+      success: function(res) {
+       var list = res.data.data.list
+        that.setData({ 
+          listItem:list
+        })
+        wx.hideLoading()
+      }
+    })
   },
    // 上拉
   onReachBottom: function(){

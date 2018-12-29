@@ -55,12 +55,12 @@ var config = {
     follow:host+'/mini/favorite/fav',
     // 评论
     commentsCreate:host+'/mini/comments/create',
+    //删除评论
+    commentsDelete:host+'/mini/comments/delete',
     //机构详情页
     codephone:host+'/mini/phone/code',
     // 图片上传
     image:host+'/mini/upload/img'
-    //用户
-    // UserInfoUpdate: `https://${host}/user/update`, 
 };
 
 module.exports = config

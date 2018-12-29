@@ -1,5 +1,6 @@
 var amapFile = require('../../../../utils/amap-wx.js');
 const config = require('../../../../config.js');
+var name = wx.getStorageSync('_t')
 var that;
 //index.js
 //获取应用实例
@@ -25,7 +26,7 @@ Page({
         url:config.passportEdit,
         method:"post",
         data:{
-         "_t":app.data._t,
+         "_t":name,
          "sex":e.detail.value
         },
         success:function(res){
@@ -61,39 +62,35 @@ Page({
       })
   },
   onLoad: function (options) {
-    console.log(config)
     that = this
     var city = that.setData.city
-    var that = this;
-       setTimeout(function(){
-          wx.request({
-            url:config.melist,
-            method:"post",
-            data:{
-             _t:app.data._t
-            },
-            success:function(res){
-             var sex = res.data.data.info.sex
-             if(sex==0){
-               that.setData({
-                    radioItems: [
-                        {name: '男', value: '0',checked: true},
-                        {name: '女', value: '1' }
-                    ]
-               })
-             }
-             else{
-               that.setData({
-                    radioItems: [
-                        {name: '男', value: '0'},
-                        {name: '女', value: '1',checked: true}
-                    ]
-               })
-             }
-             
-            }
-          })
-      },1000)
+    wx.request({
+      url:config.melist,
+      method:"post",
+      data:{
+       "_t":name
+      },
+      success:function(res){
+       var sex = res.data.data.info.sex
+       if(sex==0){
+         that.setData({
+              radioItems: [
+                  {name: '男', value: '0',checked: true},
+                  {name: '女', value: '1' }
+              ]
+         })
+       }
+       else{
+         that.setData({
+              radioItems: [
+                  {name: '男', value: '0'},
+                  {name: '女', value: '1',checked: true}
+              ]
+         })
+       }
+       
+      }
+    })
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

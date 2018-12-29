@@ -1,7 +1,10 @@
 {
   "pages":[
     "pages/index/index/index",
+    "pages/index/peoplelist/peoplelist",  
+    "pages/index/matterlist/matterlist",  
     "pages/me/me/me", 
+    "pages/me/meComment/meComment",
     "pages/me/mesuess/mesuess",
     "pages/me/UserName/UserName",
     "pages/Release/Release/Release",
@@ -11,12 +14,9 @@
     "pages/me/modify/UserName/UserName",
     "pages/me/meCollection/meCollection",
     "pages/me/meFollow/meFollow",
-    "pages/me/meComment/meComment",
     "pages/index/Exhibition/Exhibition", 
     "pages/index/Searchpeople/Searchpeople",  
     "pages/index/Searchmatter/Searchmatter",  
-    "pages/index/peoplelist/peoplelist",  
-    "pages/index/matterlist/matterlist",  
     "pages/index/search/search",
     "pages/details/details/details",
     "pages/map/map"

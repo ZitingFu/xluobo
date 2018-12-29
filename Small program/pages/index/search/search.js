@@ -171,7 +171,6 @@ Page({
             that.setData({ 
                 fromItem4:from
             })
-            wx.hideLoading()
           }
         })
         // 好人风采
@@ -187,6 +186,7 @@ Page({
             that.setData({ 
                 fromItem5:from
             })
+           wx.hideLoading()
           }
         })
         wx.getSystemInfo({
@@ -231,8 +231,7 @@ Page({
                     windowWidth: res.windowWidth
                 })
             },
-        })  
-        wx.hideLoading()      
+        })        
     },
     onReachBottom:function(){
         wx.showLoading({

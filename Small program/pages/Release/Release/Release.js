@@ -80,52 +80,51 @@ Page({
     var that = this
     var city = that.setData.city
     var page = Number(that.data.page)
-    setTimeout(function(){
-        var _t = app.data._t
-        var citynamelist =  app.data.citynamelist
-        var citycode = app.data.citycode
-        var city = app.data.city
-        that.setData({
-          _t:_t,
-          citynamelist:citynamelist,
-          citycode:citycode,
-          multiArray:[
-              citynamelist,
-              ["全部省","北京市"], 
-              ["全部区"],
-            ]
+    // setTimeout(function(){
+    var _t = app.data._t
+    var citynamelist =  app.data.citynamelist
+    var citycode = app.data.citycode
+    var city = app.data.city
+    that.setData({
+      _t:_t,
+      citynamelist:citynamelist,
+      citycode:citycode,
+      multiArray:[
+          citynamelist,
+          ["全部省","北京市"], 
+          ["全部区"],
+        ]
+    })
+   //所有场所
+    wx.request({
+      url:config.Allplace,
+      method:"post",
+      success: function(res) {
+       var site = res.data.data.site
+        that.setData({ 
+            TypeItem:site
         })
-        console.log(config)
-         //所有场所
-          wx.request({
-            url:config.Allplace,
-            method:"post",
-            success: function(res) {
-             var site = res.data.data.site
-              that.setData({ 
-                  TypeItem:site
-              })
-            }
-          })
-          //机构列表
-          wx.request({
-            url:config.ReleaseList,
-            method:"post",
-            data: {
-               "code":"",
-               "site":"",
-               "sort":"",
-               "_t":that.data._t
-            },
-            success: function(res) {
-             var list = res.data.data.list
-              that.setData({ 
-                listItem:list
-              })
-            }
-          })
-    },1500)
-    wx.hideLoading()
+      }
+    })
+    //机构列表
+    wx.request({
+      url:config.ReleaseList,
+      method:"post",
+      data: {
+         "code":"",
+         "site":"",
+         "sort":"",
+         "_t":that.data._t
+      },
+      success: function(res) {
+        console.log(res)
+       var list = res.data.data.list
+        that.setData({ 
+          listItem:list
+        })
+        wx.hideLoading()
+      }
+    })
   },
    // 上拉
   onReachBottom: function(){

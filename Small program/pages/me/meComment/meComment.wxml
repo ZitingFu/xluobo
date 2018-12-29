@@ -3,13 +3,13 @@
 		<view class="Release-center brbott-tae7e7e7" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
-					<view wx:for="{{listItem}}" wx:key="index" class="nearby-item clearFix paddTa20 brbote7" bindlongtap="openConfirm" bindtap="details" data-id="{{item.q_id}}">
+					<view wx:for="{{listItem}}" wx:key="index" class="nearby-item clearFix paddTa20 brbote7" bindlongtap="openConfirm" bindtap="details" data-id="{{item.q_id}}" data-dd="{{item.id}}">
 						<view class="paddBo20">
 							{{item.content}}
 						</view>	
 						<view class="f-left image" style="border:1px solid #ddd">
-							<!--  <image wx:if="{{item.avatar.length>0}}" src="{{item.avatar.b}}" ></image> -->
-							 <image src="{{item.question.avatar.s}}"></image>
+							 <image wx:if="{{item.question.avatar.s}}" src="{{item.question.avatar.s}}"></image>
+							 <image wx:else src="{{loge}}"></image>
 						</view>
 						<view class="f-right wi80">
 							<view class="fontSize30 f6f6f6  center-right">{{item.question.content}}</view>

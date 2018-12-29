@@ -1,6 +1,7 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
 var that;
+var name = wx.getStorageSync('_t')
 //index.js
 //获取应用实例
 const app = getApp()
@@ -16,26 +17,27 @@ Page({
   },
   onLoad: function (options) {
     that = this
-    setTimeout(function(){
-    console.log(app.data._t)
-      that.setData({
-        code:app.data.code
-      })
-        wx.request({
-          url:config.melist,
-          method:"post",
-          data:{
-           _t:app.data._t
-          },
-          success:function(res){
-            console.log(res)
-           var info = res.data.data.info;
-            that.setData({
-              info:info
-            })
-          }
+    wx.showLoading({
+      title: '正在加载中'
+    })
+    that.setData({
+      code:name
+    })
+    wx.request({
+      url:config.melist,
+      method:"post",
+      data:{
+       "_t":name
+      },
+      success:function(res){
+        console.log(res)
+       var info = res.data.data.info;
+        that.setData({
+          info:info
         })
-    },1500)
+        wx.hideLoading()
+      }
+    })
   },
   getUserInfo: function(e) {
     that = this

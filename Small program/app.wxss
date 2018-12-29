@@ -331,6 +331,11 @@ image {
 .nav-item.active2{
     border-bottom:2px solid #FFF;
 }
+.container #search .content{
+	text-overflow: clip;
+   	overflow: hidden;
+   	height:20px;
+}
 /*共同*/
 /*......home.........*/
 #container_home{
@@ -517,7 +522,7 @@ image {
 }
 #Releaselist .bottom .column {
 	text-align:left;
-	margin-left:8px; 
+	margin-left:8px; 	
 }
 .bind-s{
     position:relative;
@@ -682,6 +687,9 @@ li span{
 	top:18px;
 }
 /*信息详情*/
+.Releaselist_list{
+	margin-bottom:65px;
+}
 .bottom .comment{
 	padding-left:8px; 
 	width:100%;
@@ -780,7 +788,7 @@ li span{
 	margin-right:7px;	
 }
 .bottom{
-	padding:16px 0;
+	padding:23px 0;
 	width: 100%;
 	position: fixed;
 	bottom:0;
@@ -834,6 +842,7 @@ li span{
 	text-align:left;
 	border:none;
 	position:none;
+	display:inline;
 }
 #me .btn:after {
   border:none;

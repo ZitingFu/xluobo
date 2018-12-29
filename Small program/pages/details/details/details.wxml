@@ -37,13 +37,14 @@
 		 	<view class="Releaselist_follow brbote7" data-usid="{{fromItem.user_id}}" bindtap="ckReleaseDetails">
 				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7">
 					<view class="f-left bo-f000ff paddLe24 wihe40 ">
-						 <image  src="{{loge}}" style="border:1rpx solid #ddd;"></image>
+						 <image wx:if="{{fromItem.avatar.s}}" src="{{fromItem.avatar.s}}" style="border:1rpx solid #ddd;"></image>
+						  <image wx:else src="{{loge}}" style="border:1rpx solid #ddd;"></image>
 					</view>
 					<view class="f-right wi82 paddBo20">
 						<view class="fontSize30 ma-bo4 hidden" style="width:59%">{{fromItem.user_name}}</view>
 						<view class="f999">发布数{{fromItem.issue_num}}<i class="dian"></i>已找到{{fromItem.find_num}}<i class="dian"></i>爱心值{{fromItem.love}}</view>
 					</view>
-					<button data-ud="00" class="follow" catchtap="getUserInfo" open-type="getUserInfo" >
+					<button data-ud="4" class="follow" catchtap="getUserInfo" open-type="getUserInfo" >
 						<span wx:if="{{followid == true}}">收藏</span>
 						<span wx:if="{{followid == false}}">已收藏</span>
 					</button>
@@ -54,7 +55,8 @@
 				<view class="Releaselist_item paddBo20" wx:key="index" wx:for="{{fromItem.comments}}" wx:if="{{fromItem.comments.length != 0}}">
 					<view class="nearby-item clearFix">
 						<view class="f-left bo-f000ff paddLe24 wihe40 ">
-							 <image src="{{item.avatar.b}}" style="border:1rpx solid #ddd;"></image>
+							 <image wx:if="{{item.avatar.b}}" src="{{item.avatar.b}}"></image>
+							 <image wx:else src="{{loge}}"></image>
 						</view>
 						<view class="f-right wi82 paddBo20">
 							<view class="fontSize30 .ma-bo4">{{item.user_name}}</view>
@@ -83,7 +85,7 @@
 			    </view>
 			    <view class="item">
 			    	<!-- <image class="Star"  src="{{clock}}"></image> -->
-			    	<view class="sub" data-ud="01" catchtap="getUserInfo" open-type="getUserInfo">发送</view>
+			    	<view class="sub" data-ud="5" catchtap="getUserInfo" open-type="getUserInfo">发送</view>
 		     	</view>
 		    </view>
     	</view>

@@ -5,7 +5,8 @@
 		 	<view class="Releaselist_follow brbote7">
 				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-boe7e7e7">
 					<view class="f-left bo-f000ff paddLe24 wihe40">
-						 <image  src="{{fromItem.avatar.s}}" style="border:1rpx solid #ddd;"></image>
+						 <image wx:if="{{fromItem.avatar.s}}" src="{{fromItem.avatar.s}}"></image>
+						 <image  wx:else src="{{loge}}"></image>
 					</view>
 					<view class="f-right wi82 paddBo20">
 						<view class="fontSize30 .ma-bo4">{{fromItem.name}}</view>
@@ -75,12 +76,9 @@
 					    <view class="nearby-bottom paddBo13 paddTa13 clearFix">
 		   			 		<view class="clearFix height40">
 								<view class="f-left f333 fontSize30 wi70 hidden">
-									<!-- <view  class="wihe20 f-left paddRi14" style="top:7px;">
-										<image wx:if="{{item.avatar.length != 0}}" src="{{item.avatar.s}}" alt=""></image>
-									 	<image wx:else src="{{loge}}"></image>
-									</view> -->
 									<view  class="wihe20 f-left paddRi14" style="top:7px;">
-									 	<image src="{{item.avatar.s}}"></image>
+									 	<image wx:if="{{item.avatar.s}}" src="{{item.avatar.s}}"></image>
+									 	<image wx:else src="{{loge}}"></image>
 									</view>
 									<view class="f-left hidden wi70" style="line-height: 40px">{{item.user_name}}</view>
 								</view>
@@ -99,7 +97,7 @@
 		<view class="bottom">
 			<view class="box">
 				<view class="column">
-				    <view class="item" data-ud="10" catchtap="getUserInfo" open-type="getUserInfo">
+				    <view class="item" data-ud="6" catchtap="getUserInfo" open-type="getUserInfo">
 				    	<image wx:if="{{followid == false}}" class="love" src="{{love}}"></image>
 				    	<image wx:if="{{followid == true}}" class="love" src="https://img.qa.xluob.com/Small%20program/love.jpg"></image>
 				    	<span wx:if="{{followid == true}}">关注</span>

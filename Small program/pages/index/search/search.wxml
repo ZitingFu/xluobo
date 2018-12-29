@@ -28,7 +28,7 @@
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999">{{item.time}}</text>
 										</view>
-										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
+										<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
 										<view class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view class="SixImg clearFix">
@@ -76,7 +76,7 @@
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999">{{item.time}}</text>
 										</view>
-										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
+										<text class="clearFix content" style="width: 100%;">{{item.content}}</text>
 										<view class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view class="SixImg clearFix">
@@ -124,7 +124,7 @@
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999">{{item.time}}</text>
 										</view>
-										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
+										<text class="clearFix content" style="width: 100%;">{{item.content}}</text>
 										<view class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view class="SixImg clearFix">
@@ -172,7 +172,7 @@
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999">{{item.time}}</text>
 										</view>
-										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
+										<text class="clearFix content" style="width: 100%;">{{item.content}}</text>
 										<view class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view class="SixImg clearFix">
@@ -220,7 +220,7 @@
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999">{{item.time}}</text>
 										</view>
-										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
+										<text class="clearFix content" style="width: 100%;">{{item.content}}</text>
 										<view class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view class="SixImg clearFix">

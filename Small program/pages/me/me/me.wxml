@@ -6,7 +6,7 @@
 			<button data-ud="0" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-tae7e7e7">
 					<view class="f-left bo-f000ff paddLe24 wihe50 ">
-						 <image  src="{{info.avatar.b}}" style="border:1rpx solid #ddd;"></image>
+						 <image  src="{{info.avatar.b}}"></image>
 					</view>
 					<view class="f-right wi82  paddBo20">
 						<view class="fontSize30 .ma-bo7">榆林啥地方将开始</view>

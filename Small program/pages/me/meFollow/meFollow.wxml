@@ -9,8 +9,8 @@
 						<view class="content">
 							<view class="brbott-boe7e7e7 nearby-item clearFix paddTa20" data-id="{{item.id}}" wx:for="{{usersItem}}" wx:key="index" bindtap="details">
 								<view class="f-left bo-f000ff paddLe24 wihe40">
-									 <!-- <image wx:if="{{item.avatar.length>0}}" src="{{item.avatar.b}}" ></image> -->
-									 <image  src="{{item.avatar.s}}" style="border:1rpx solid #ddd;"></image>
+									 <image wx:if="{{item.avatar.s}}" src="{{item.avatar.s}}"></image>
+									 <image wx:else src="{{loge}}"></image>
 								</view>
 								<view class="f-right wi82 paddBo20">
 									<view class="fontSize30 .ma-bo7">{{item.name}}</view>

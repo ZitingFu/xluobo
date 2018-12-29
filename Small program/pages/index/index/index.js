@@ -225,6 +225,7 @@ Page({
                   "_t":app.data._t
               },
               success: function(res) {
+                console.log(res)
                var list = res.data.data.list
                  that.setData({ 
                     listItem:list

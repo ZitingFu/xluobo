@@ -28,6 +28,11 @@ Page({
       phoneNumber:p,
     })
   },
+  all:function(){
+    // wx.navigateTo({
+    //   url:'../UserName/UserName'
+    // })
+  },
   //图片放大
   imgtop:function(e){
     var imgList = e.currentTarget.dataset.list;//获取data-list
@@ -43,7 +48,7 @@ Page({
        })
   },
   onLoad: function (options) {
-    console.log(config)
+    console.log(app.data._t)
     that = this
     var city = that.setData.city
     var page = Number(that.data.page)
@@ -55,36 +60,34 @@ Page({
     wx.showLoading({
         title: '正在加载中'
     })
-    setTimeout(function(){
-      wx.request({
-        url:config.melist,
-        method:"post",
-        data: {
-            "id":id,
-            "_t":app.data._t
-        },
-        success: function(res) {
-          var from = res.data.data.info
-          var recent_post = res.data.data.recent_post
-          var fav = res.data.data.fav
-           if(fav == 99){
-              that.setData({ 
-                  followid:true
-              })
-           }
-           else{
-              that.setData({ 
-                  followid:false
-              })
-           }
-          that.setData({ 
-              fromItem:from,
-              recent_post:recent_post
-          })
-          wx.hideLoading()
-        }
-      })
-    },1500)
+    wx.request({
+      url:config.melist,
+      method:"post",
+      data: {
+          "id":id,
+          "_t":app.data._t
+      },
+      success: function(res) {
+        var from = res.data.data.info
+        var recent_post = res.data.data.recent_post
+        var fav = res.data.data.fav
+         if(fav == 99){
+            that.setData({ 
+                followid:true
+            })
+         }
+         else{
+            that.setData({ 
+                followid:false
+            })
+         }
+        that.setData({ 
+            fromItem:from,
+            recent_post:recent_post
+        })
+        wx.hideLoading()
+      }
+    })
   },
   getUserInfo: function(e) {
    that = this

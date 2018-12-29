@@ -38,25 +38,23 @@ Page({
        }) 
   },
   onLoad: function (e) {
-       that = this;
-       console.log(config)
-       setTimeout(function(){
-          wx.request({
-            url:config.meCollection,
-            method:"post",
-            data:{
-             _t:app.data._t,
-             pn:1 
-            },
-            success:function(res){
-             console.log(res)
-             var question = res.data.data.question
-             that.setData({
-              questionItem:question
-             })
-            }
-          })
-      },1000)
+    that = this;
+    console.log(app.data._t)
+    wx.request({
+      url:config.meCollection,
+      method:"post",
+      data:{
+       _t:app.data._t,
+       pn:1 
+      },
+      success:function(res){
+       console.log(res)
+       var question = res.data.data.question
+       that.setData({
+        questionItem:question
+       })
+      }
+    })
   },
    // 上拉
   onReachBottom: function(){

@@ -1,6 +1,7 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
 var that;
+var name = wx.getStorageSync('_t')
 //index.js
 //获取应用实例
 const app = getApp()
@@ -13,7 +14,6 @@ Page({
     xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
     jing:"https://img.qa.xluob.com/Small%20program/1.png",
     activeIndex:"0",
-    type_id:"",
     TypeItem:"",
     listItem:"",
     fromItem:"",
@@ -104,68 +104,63 @@ Page({
     var that = this
     var city = that.setData.city
     var page = Number(that.data.page)
-    setTimeout(function(){
-        var _t = app.data._t
-        var citynamelist =  app.data.citynamelist
-        var citycode = app.data.citycode
-        var city = app.data.city
-        var type_id = app.data.type_id
+    var _t = app.data._t
+    var citynamelist =  app.data.citynamelist
+    var citycode = app.data.citycode
+    var city = app.data.city
+    that.setData({
+      _t:_t,
+      citynamelist:citynamelist,
+      citycode:citycode,
+      multiArray:[
+          citynamelist,
+          ["全部省","北京市"], 
+          ["全部区"],
+        ]
+    })
+    wx.request({
+      url:config.Firstclassify,
+      method:"post",
+      data:{
+        id:2
+      },
+      success: function(res) {
+       var site = res.data.data.genre
         that.setData({
-          type_id:type_id,
-          _t:_t,
-          citynamelist:citynamelist,
-          citycode:citycode,
-          multiArray:[
-              citynamelist,
-              ["全部省","北京市"], 
-              ["全部区"],
-            ]
+            id:2,
+            TypeItem3:site
         })
-        console.log(config)
-          wx.request({
-            url:config.Firstclassify,
-            method:"post",
-            data:{
-              id:2
-            },
-            success: function(res) {
-             var site = res.data.data.genre
-              that.setData({
-                  id:2,
-                  TypeItem3:site
-              })
-            }
-          })
-          //所有场所
-          wx.request({
-            url:config.Allplace,
-            method:"post",
-            success: function(res) {
-             var site = res.data.data.site
-              that.setData({ 
-                  TypeItem:site
-              })
-            }
-          })
-          //机构列表
-           wx.request({
-            url:config.genrelist,
-            method:"post",
-            data: {
-              "genre":2,
-              "code":city,
-              "site":"",
-              "pn":page
-            },
-            success: function(res) {
-             var list = res.data.data.list
-              that.setData({ 
-                listItem:list
-              })
-            }
-          })
-    },1500)
-    wx.hideLoading()
+      }
+    })
+    //所有场所
+    wx.request({
+      url:config.Allplace,
+      method:"post",
+      success: function(res) {
+       var site = res.data.data.site
+        that.setData({ 
+            TypeItem:site
+        })
+      }
+    })
+    //机构列表
+    wx.request({
+      url:config.genrelist,
+      method:"post",
+      data: {
+        "genre":2,
+        "code":city,
+        "site":"",
+        "pn":page
+      },
+      success: function(res) {
+       var list = res.data.data.list
+        that.setData({ 
+          listItem:list
+        })
+        wx.hideLoading()
+      }
+    })
   },
    // 上拉
   onReachBottom: function(){

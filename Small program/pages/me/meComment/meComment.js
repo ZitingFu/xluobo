@@ -1,6 +1,7 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
 var that;
+var name = wx.getStorageSync('_t')
 //index.js
 //获取应用实例
 const app = getApp()
@@ -19,41 +20,51 @@ Page({
          url:'../../details/details/details?id='+id
     })
   },
-  openConfirm: function () {
+  openConfirm: function (e) {
+    that = this
+    var dd = e.currentTarget.dataset.dd;
     wx.showModal({
-          title: '',
-          content: '是否确定要删除？',
-          confirmText: "确定",
-          cancelText: "取消",
-          success: function (res) {
-              if (res.confirm) {
-                  console.log(res.confirm)
-              }else{
-                  console.log(res.confirm)
-              }
-          }
+        title: '',
+        content: '是否确定要删除？',
+        confirmText: "确定",
+        cancelText: "取消",
+        success: function (res) {
+            if (res.confirm) {
+                wx.request({
+                  url:config.commentsDelete,
+                  method:"post",
+                  data:{
+                    "_t":name,
+                    "id":dd
+                  },
+                  success:function(res){
+                    that.onLoad()
+                    console.log(res)
+                  }
+                })
+            }
+        }
     });
   },
   onLoad: function (options) {
     var that = this
-    console.log(config)
-    setTimeout(function(){
-      wx.request({
-        url:config.mycomments,
-        method:"post",
-        data:{
-          _t:app.data._t,
-          pn:1 
-        },
-        success:function(res){
-           var list = res.data.data.comments
-           console.log(list)
-            that.setData({
-              listItem:list
-            })
-        }
-      })
-    },1000)
+    console.log(app.data._t)
+    wx.request({
+      url:config.mycomments,
+      method:"post",
+      data:{
+        "_t":name,
+        "pn":1 
+      },
+      success:function(res){
+        console.log(res)
+         var list = res.data.data.comments
+         console.log(list)
+          that.setData({
+            listItem:list
+          })
+      }
+    })
   },
    // 上拉
   onReachBottom: function(){
@@ -66,11 +77,11 @@ Page({
     setTimeout(function(){
       var page = Number(that.data.page)+ 1
       wx.request({
-        url: 'https://qb.xluob.com/mini/passport/mycomments',
+        url:config.mycomments,
         method:"post",
         data:{
-          _t:app.data._t,
-          pn:page 
+          "_t":name,
+          "pn":page 
         },
         success:function(res){
            var list = res.data.data.comments
@@ -89,6 +100,7 @@ Page({
             that.setData({
               listItem:from
             })
+            wx.hideLoading()
         }
       })
     },900)

@@ -75,8 +75,7 @@
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999" wx:if="{{create_time1[index]>0}}">距认领结束还剩：{{create_time2[index]}}天
 											</text>
-											<text class="f-right f999" wx:else>		
-												{{item.time}}
+											<text class="f-right f999" wx:else>	{{item.time}}
 											</text>
 										</view>
 										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
@@ -105,10 +104,10 @@
 						   			 		<view class="clearFix height40">
 												<view class="f-left f333 fontSize30 wi70 hidden">
 													<view  class="wihe20 f-left paddRi14" style="top:7px;">
-														<image wx:if="{{item.avatar.length != 0}}" src="{{item.avatar.s}}" alt=""></image>
+														<image wx:if="{{item.avatar.m}}" src="{{item.avatar.s}}" alt=""></image>
 													 	<image wx:else src="{{loge}}"></image>
 													</view>
-													<view class="f-left hidden wi70" style="line-height: 40px">{{item.user_name}}</view>
+													<view class="f-left hidden wi80" style="line-height: 40px">{{item.user_name}}</view>
 												</view>
 												<view class="f-right wi23 f999 clearFix">
 													<view class="wihe20 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
@@ -160,10 +159,10 @@
 						   			 		<view class="clearFix height40">
 												<view class="f-left f333 fontSize30 wi70 hidden">
 													<view  class="wihe20 f-left paddRi14" style="top:7px;">
-														<image wx:if="{{item.avatar.length != 0}}" src="{{item.avatar.s}}" alt=""></image>
+														<image wx:if="{{item.avatar.m}}" src="{{item.avatar.s}}" alt=""></image>
 													 	<image wx:else src="{{loge}}"></image>
 													</view>
-													<view class="f-left hidden wi70" style="line-height: 40px">{{item.user_name}}</view>
+													<view class="f-left hidden wi80" style="line-height: 40px">{{item.user_name}}</view>
 												</view>
 												<view class="f-right wi23 f999 clearFix">
 													<view class="wihe20 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>

@@ -1,6 +1,7 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config');
 var that;
+var set;
 //index.js
 //获取应用实例
 const app = getApp()
@@ -86,18 +87,22 @@ Page({
   },
   onLoad: function (options) {
     that = this
+    wx.showLoading({
+      title: '正在加载...',
+    })
     var city = that.setData.city
     var page = Number(that.data.page)
     var id = options.id
       that.setData({ 
           id:id
       })
+      var name = wx.getStorageSync('_t')
       wx.request({
         url:config.questioninfo,
         method:"post",
         data: {
-            // "id":268471299,
-            "id":that.data.id
+            "id":that.data.id,
+            "_t":name
         },
         success: function(res) {
           console.log(res)
@@ -137,6 +142,7 @@ Page({
                 // 发布时间
                 var create_time = Number(res.data.data.info.create_time)
                 var end = Number(create_time+expire)
+                console.log(end)
                 var end2 = new Date(format(end)).getTime()
                 var difference = Number(end - now)
                 if(difference<0){
@@ -145,13 +151,16 @@ Page({
                     })
                 }
                 else{
-                  setInterval(function (){
+                  wx.hideLoading()
+                  set = setInterval(function (){
                     now = now+1
                     var now2 = new Date(format(now)).getTime()
                     var total_end = (end2 - now2)/1000;
                     that.setData({ 
                       create_time:timeCountDown(total_end)
                     })
+                    console.log("出页面")
+                    console.log(that.data.create_time)
                   },1000)
                 }
             }
@@ -188,13 +197,14 @@ Page({
               return i; 
             } 
           // ............
-          
           that.setData({ 
               fromItem:from
           })
-          wx.hideLoading()
         }
       })
+  },
+  onUnload:function(){
+    clearInterval(set)
   },
   getUserInfo: function(e) {
     that = this

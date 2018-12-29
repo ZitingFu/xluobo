@@ -95,20 +95,6 @@ Page({
         },
         success:function(res){
           that.onLoad()
-          // wx.request({
-          //   url:config.melist,
-          //   method:"post",
-          //   data:{
-          //    "_t":app.data._t
-          //   },
-          //   success:function(res){
-          //     console.log(res)
-          //   var info = res.data.data.info;
-          //     that.setData({
-          //       infoItem:info
-          //     })
-          //   }
-          // })
         }
       })
   },
@@ -118,25 +104,22 @@ Page({
     })
   },
   onLoad: function (options) {
-    console.log(app.data._t)
     that = this
-    var that = this;
-       setTimeout(function(){
-          wx.request({
-            url:config.melist,
-            method:"post",
-            data:{
-             "_t":app.data._t
-            },
-            success:function(res){
-              console.log(res)
-            var info = res.data.data.info;
-              that.setData({
-                infoItem:info
-              })
-            }
-          })
-      },1500)
+    var name = wx.getStorageSync('_t')
+    wx.request({
+      url:config.melist,
+      method:"post",
+      data:{
+       "_t":name
+      },
+      success:function(res){
+        console.log(res)
+      var info = res.data.data.info;
+        that.setData({
+          infoItem:info
+        })
+      }
+    })
   },
   getUserInfo: function(e) {
     console.log(e)

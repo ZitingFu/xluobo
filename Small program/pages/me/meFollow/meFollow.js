@@ -1,6 +1,7 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
 var that;
+var name = wx.getStorageSync('_t')
 //index.js
 //获取应用实例
 const app = getApp()
@@ -23,25 +24,22 @@ Page({
     })
   },
   onLoad: function (options) {
-     that = this;
-     console.log(config)
-     setTimeout(function(){
-          wx.request({
-            url:config.meFollow,
-            method:"post",
-            data:{
-             _t:app.data._t,
-             pn:1 
-            },
-            success:function(res){
-             console.log(res)
-             var users = res.data.data.users
-             that.setData({
-              usersItem:users
-             })
-            }
-          })
-      },1000)
+    that = this;
+    wx.request({
+      url:config.meFollow,
+      method:"post",
+      data:{
+       "_t":name,
+       "pn":1 
+      },
+      success:function(res){
+       console.log(res)
+       var users = res.data.data.users
+       that.setData({
+        usersItem:users
+       })
+      }
+    })
   },
    // 上拉
   onReachBottom: function(){
@@ -53,8 +51,8 @@ Page({
           url:config.meFollow,
           method:"post",
           data:{
-           _t:app.data._t,
-           pn:Page 
+           "_t":app.data._t,
+           "pn":Page 
           },
           success:function(res){
            console.log(res)

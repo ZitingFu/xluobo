@@ -26,8 +26,8 @@
 			   			 		<view class="clearFix height40">
 									<view class="f-left f333 fontSize30 wi70 hidden">
 										<view  class="wihe20 f-left paddRi14" style="top:7px;">
-											<!-- <image wx:if="{{item.avatar.length != 0}}" src="{{item.avatar.s}}" alt=""></image> -->
-										 	<image src="{{item.avatar.s}}"></image>
+										 	<image wx:if="{{item.avatar.s}}" src="{{item.avatar.s}}"></image>
+										 	<image wx:else src="{{loge}}"></image>
 										</view>
 										<view class="f-left hidden wi70" style="line-height: 40px">
 											{{item.name}}
