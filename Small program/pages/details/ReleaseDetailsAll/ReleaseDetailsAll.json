@@ -1,0 +1,6 @@
+{
+ "navigationBarTitleText": "精准查找",
+  "enablePullDownRefresh":true,
+  "backgroundTextStyle":"#ffffff",
+  "onReachBottomDistance":50
+}

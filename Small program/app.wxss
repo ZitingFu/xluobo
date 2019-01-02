@@ -129,7 +129,13 @@ i{
 	border-radius:5px; 
 }
 .f005bc8{
-	color:#005bc8
+	color:#005bc8;
+}
+.bgf005bc8{
+	background-color:#005bc8;
+}
+.bgfc9937{
+	background-color:#fc9937;
 }
 .fontSize30{
 	font-size:30rpx;
@@ -216,6 +222,9 @@ i{
 .wi85{
 	width: 85%;
 }
+.wi80{
+	width: 80%;
+}
 .wi83{
 	width: 83%;
 }
@@ -233,6 +242,9 @@ i{
 }
 .wi20{
 	width: 20%;
+}
+.wi16{
+	width: 16%;
 }
 .wi30{
 	width: 30%;
@@ -332,9 +344,20 @@ image {
     border-bottom:2px solid #FFF;
 }
 .container #search .content{
-	text-overflow: clip;
-   	overflow: hidden;
-   	height:20px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
+.content{
+	padding:0px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
+#meCollection .content{
+	padding: 0px;
 }
 /*共同*/
 /*......home.........*/
@@ -638,6 +661,9 @@ li span{
 	font-size:12px;
 }
 /*UserName*/
+#UserName picker{
+	display:block;
+}
 #UserName li{
 	border-bottom:1px solid #ddd;
 }
@@ -653,12 +679,12 @@ li span{
 	margin-left:8px; 
 }
 .UserName-top image{
-	width: 36px;
-	height:36px;
+	width:50px;
+	height:50px;
 }
 .UserName-right{
 	position: relative;
-	top:18px;
+	top:6px;
 }
 .UserName_conter{
 	background-color:#fff;
@@ -804,12 +830,93 @@ li span{
 	height:12px;
 	margin-right:3px; 
 }
+/*ReleaseDetailsAll*/
+.organ_time{
+	height:214px;
+}
+.organ_time input{
+	padding: 0 7px;
+	width:129px;
+	height:30px;
+	border-radius:5px;
+	background-color:#f8f8f9;
+}
+.adv{
+	border:1px solid #fda249;
+}
+.adv2{
+	border-right:3px solid #fda249; 
+
+}
+.organ_time_img,.organ_time_imgri{
+	width: 7px;
+	height:4px;
+	background-image:url(https://img.qa.xluob.com/Small%20program/icon_xia_nor.png);
+	background-size:100% 100%;
+	position:relative;
+	z-index: 66;
+}
+.organ_time_img{
+	top:3px;
+	left:-14px;
+}
+.organ_time_imgri{
+	top:-15px;
+	right:6px;
+}
+.organ_time_top{
+	width:82%;
+	margin:12px auto 114px auto; 
+}
+picker{
+	display:inline-block;
+}
+.wi42CE{
+	display:inline-block;
+	width: 42px;
+	text-align:center;
+}
+.organ_time_buttom{
+	margin-right:36px; 
+	width: 137px;
+	height:30px;
+}
+.organ_time_buttom button{
+	text-align:center;
+	display:inline-block;
+	width: 60px;
+	height:30px;
+	font-size:12px;
+	color:#fff;
+}
+.organ_r{
+	/*border:1px solid red;*/
+	padding:8px 5px; 
+}
+.organ_l{
+	width:17%;
+	height:280px;
+	background-color:#f8f8f9;
+	padding-top:8px; 
+}
+.organ_l span{
+	display:block;
+	text-align:center;
+	margin-bottom:23px;
+}
+
+#peoplelist .organ_Type_number .organ_r li{
+	width:30%;
+	height:35px;
+	line-height:35px;
+}
 /*modify*/
 #phone button,#UserName button{
 	background-color:#fc9937; 
 	color:#fff;
 	width: 90%;
 	margin:185px auto;
+	display:inline-block;
 }
 /*我的评论*/
 #meComment .nearby-item{

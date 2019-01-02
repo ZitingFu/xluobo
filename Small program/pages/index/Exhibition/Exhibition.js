@@ -13,10 +13,8 @@ Page({
     xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
     jing:"https://img.qa.xluob.com/Small%20program/1.png",
     activeIndex:"0",
-    type_id:"",
     TypeItem:"",
     listItem:"",
-    fromItem:"",
     sjx:"https://img.qa.xluob.com/Small%20program/icon_xia_nor.png",
     sjs:"https://img.qa.xluob.com/Small%20program/5.png",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
@@ -41,8 +39,7 @@ Page({
           ['全部省', ], 
           ['全部区',],
     ],
-    multiIndex:[0, 0, 0],
-    _t:"",
+    multiIndex:[0, 0, 0]
   },
   bindMultiPickerChange(e) {
     that = this;
@@ -51,12 +48,6 @@ Page({
   bindMultiPickerColumnChange(e) {
     that = this;
     app.bindMultiPickerColumnChange(e,that)
-  },
-  ckdetails:function(e){
-    var id = e.currentTarget.dataset.usid;
-     wx.navigateTo({
-      url: '../../details/ReleaseDetails/ReleaseDetails?id='+id
-    })
   },
   open:function(that){
     that = this
@@ -104,14 +95,10 @@ Page({
     that = this
     var city = that.setData.city
     var page = Number(that.data.page)
-    var _t = app.data._t
     var citynamelist =  app.data.citynamelist
     var citycode = app.data.citycode
     var city = app.data.city
-    var type_id = app.data.type_id
     that.setData({
-      type_id:type_id,
-      _t:_t,
       citynamelist:citynamelist,
       citycode:citycode,
       multiArray:[

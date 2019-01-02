@@ -22,7 +22,7 @@
 			        <view class="weui-tab">
 			            <view class="weui-tab__panel">
 			                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-								<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem1}}" wx:key="index" x:for-index="idx2">
+								<view bindtap="ckdetails" class="list_item brbott-boe7e7e7" wx:for="{{fromItem1}}" wx:key="index" x:for-index="idx2" data-usid="{{item.id}}">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
@@ -70,13 +70,13 @@
 								</view>
 			                </view>
 			                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-								<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem2}}" wx:key="index" x:for-index="idx2">
+								<view bindtap="ckdetails" data-usid="{{item.id}}" class="list_item brbott-boe7e7e7" wx:for="{{fromItem2}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999">{{item.time}}</text>
 										</view>
-										<text class="clearFix content" style="width: 100%;">{{item.content}}</text>
+										<view class="clearFix content" style="width:100%;">{{item.content}}</view>
 										<view class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view class="SixImg clearFix">
@@ -118,13 +118,13 @@
 								</view>
 			                </view>
 			                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
-								<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem3}}" wx:key="index" x:for-index="idx2">
+								<view bindtap="ckdetails" data-usid="{{item.id}}" class="list_item brbott-boe7e7e7" wx:for="{{fromItem3}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999">{{item.time}}</text>
 										</view>
-										<text class="clearFix content" style="width: 100%;">{{item.content}}</text>
+										<view class="clearFix content" style="width:100%;">{{item.content}}</view>
 										<view class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view class="SixImg clearFix">
@@ -166,13 +166,13 @@
 								</view>
 			                </view>
 			                <view class="weui-tab__content" hidden="{{activeIndex != 3}}">
-								<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem4}}" wx:key="index" x:for-index="idx2">
+								<view bindtap="ckdetails" data-usid="{{item.id}}" class="list_item brbott-boe7e7e7" wx:for="{{fromItem4}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999">{{item.time}}</text>
 										</view>
-										<text class="clearFix content" style="width: 100%;">{{item.content}}</text>
+										<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
 										<view class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view class="SixImg clearFix">
@@ -214,13 +214,13 @@
 								</view>
 			                </view>
 			                <view class="weui-tab__content" hidden="{{activeIndex != 4}}">
-								<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem5}}" wx:key="index" x:for-index="idx2">
+								<view bindtap="ckdetails" data-usid="{{item.id}}" class="list_item brbott-boe7e7e7" wx:for="{{fromItem5}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999">{{item.time}}</text>
 										</view>
-										<text class="clearFix content" style="width: 100%;">{{item.content}}</text>
+										<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
 										<view class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view class="SixImg clearFix">

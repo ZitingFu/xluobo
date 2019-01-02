@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
+var name = wx.getStorageSync('_t')
 var that;
 //index.js
 //获取应用实例
@@ -34,8 +35,6 @@ Page({
             name: 'file',
             header: { "Content-Type": "multipart/form-data" },
             formData: {
-              //和服务器约定的token, 一般也可以放在header中
-              // 'session_token': wx.getStorageSync(app.data.session_key),
               "image":res.tempFilePaths[0]
             },
             success: function (res) {
@@ -48,7 +47,6 @@ Page({
                 return;
               }
               var ims = JSON.parse(res.data);
-              console.log(ims.data.url.s)
               var avatar = {
                     s:ims.data.url.s,
                     m:ims.data.url.m,
@@ -58,11 +56,11 @@ Page({
                 url:config.passportEdit,
                 method:"post",
                 data:{
-                  avatar:avatar,
-                  _t:app.data._t 
+                  "avatar":avatar,
+                  "_t":name 
                 },
                 success: function(res) {
-                  console.log(res)
+                  that.onLoad()
                 }
               })
             }
@@ -90,7 +88,7 @@ Page({
         url:config.passportEdit,
         method:"post",
         data:{
-         "_t":app.data._t,
+         "_t":name,
          "birthday":e.detail.value
         },
         success:function(res){
@@ -105,7 +103,6 @@ Page({
   },
   onLoad: function (options) {
     that = this
-    var name = wx.getStorageSync('_t')
     wx.request({
       url:config.melist,
       method:"post",

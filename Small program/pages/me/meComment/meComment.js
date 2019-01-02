@@ -10,7 +10,6 @@ Page({
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
-    _t:"",
     listItem:"",
     page:1
   },
@@ -48,7 +47,6 @@ Page({
   },
   onLoad: function (options) {
     var that = this
-    console.log(app.data._t)
     wx.request({
       url:config.mycomments,
       method:"post",

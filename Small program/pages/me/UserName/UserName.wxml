@@ -24,7 +24,7 @@
 						<i class="rightimg f-left"></i>
 					</i>
 				</li>
-			 	<picker class="weui-btn brbote7" mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+			 	<picker class="weui-btn brbote7" mode="date" value="{{date}}" start="" end="" bindchange="bindDateChange">
 				<li class="">
 					<i class="f-left" >出生日期</i>
 					<i class="f-right clearFix UserName-right">

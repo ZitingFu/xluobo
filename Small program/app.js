@@ -147,7 +147,8 @@ App({
           var res = res.data.data.city
           var province = []
           var provincede = []
-          for(var a=0;a<res.length;a++){
+          var resnum = res.length
+          for(var a=0;a<resnum;a++){
             province.push(res[a].name)
             provincede.push(res[a].adcode)
           }
@@ -357,7 +358,6 @@ App({
   },
   getUserInfo:function(e,that,app){
    var value = wx.getStorageSync('_t')
-    console.log()
     var ud = e.currentTarget.dataset.ud
         if(value.length != 0){
           app.data._t = value
@@ -417,6 +417,20 @@ App({
               success: function(res) {
                 console.log(res)
                 var from = res.data.data.list
+                 wx.request({
+                    url:config.questioninfo,
+                    method:"post",
+                    data: {
+                        // "id":268471567,
+                        "id":that.data.id,
+                         "_t":app.data._t
+                    },
+                    success: function(res) {
+                     that.setData({ 
+                          fromItem:res.data.data.info
+                      })
+                    }
+                })
               }
             })
           }
@@ -437,20 +451,6 @@ App({
               }
             })
           }
-          wx.request({
-              url:config.questioninfo,
-              method:"post",
-              data: {
-                  // "id":268471567,
-                  "id":that.data.id,
-                   "_t":app.data._t
-              },
-              success: function(res) {
-               that.setData({ 
-                    fromItem:res.data.data.info
-                })
-              }
-          })
         }
         else{
           console.log("第一次登陆")

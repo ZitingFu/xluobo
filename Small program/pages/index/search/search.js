@@ -1,6 +1,7 @@
 var amapFile = require('../../../utils/util.js');
 const config = require('../../../config.js');
 var sliderWidth = 96; 
+var name = wx.getStorageSync('_t')
 var that;
 //index.js
 //获取应用实例
@@ -54,6 +55,12 @@ Page({
         activeIndex: 0,
         sliderOffset: 0,
         sliderLeft:18.5
+    },
+    ckdetails:function(e){
+      var id = e.currentTarget.dataset.usid;
+       wx.navigateTo({
+         url: '../../details/details/details?id='+id
+      })
     },
     imgtop:function(e){
         var imgList = e.currentTarget.dataset.list;//获取data-list

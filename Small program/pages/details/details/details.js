@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config');
+var name = wx.getStorageSync('_t')
 var that;
 var set;
 //index.js
@@ -38,6 +39,7 @@ Page({
   sear:function(e){
     that = this
     var name = e.detail.value;
+    console.log(123)
     that.setData({ 
           name:name
     })
@@ -51,7 +53,7 @@ Page({
         method:"post",
         data: {
             "id":q_id,
-             "_t":app.data._t
+             "_t":name
         },
         success: function(res) {
           var from = res.data.data.list
@@ -60,7 +62,7 @@ Page({
               method:"post",
               data: {
                   "id":that.data.id,
-                   "_t":app.data._t
+                   "_t":name
               },
               success: function(res) {
                that.setData({ 
@@ -96,7 +98,6 @@ Page({
       that.setData({ 
           id:id
       })
-      var name = wx.getStorageSync('_t')
       wx.request({
         url:config.questioninfo,
         method:"post",
@@ -159,8 +160,6 @@ Page({
                     that.setData({ 
                       create_time:timeCountDown(total_end)
                     })
-                    console.log("出页面")
-                    console.log(that.data.create_time)
                   },1000)
                 }
             }
@@ -200,6 +199,7 @@ Page({
           that.setData({ 
               fromItem:from
           })
+           wx.hideLoading()
         }
       })
   },

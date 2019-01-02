@@ -1,6 +1,7 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
 var that;
+var name = wx.getStorageSync('_t')
 //获取应用实例
 const app = getApp()
 Page({
@@ -8,7 +9,6 @@ Page({
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
-    _t:"",
     questionItem:"",
     jing:"https://img.qa.xluob.com/Small%20program/1.png",
     xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
@@ -31,7 +31,6 @@ Page({
       var imgList2 = imgList[a].s
       arry.push(imgList2)
     }
-      console.log(arry)
       wx.previewImage({
         current:arry[index].s,
         urls:arry
@@ -39,13 +38,12 @@ Page({
   },
   onLoad: function (e) {
     that = this;
-    console.log(app.data._t)
     wx.request({
       url:config.meCollection,
       method:"post",
       data:{
-       _t:app.data._t,
-       pn:1 
+       "_t":name,
+       "pn":1 
       },
       success:function(res){
        console.log(res)
@@ -69,8 +67,8 @@ Page({
           url:config.meCollection,
           method:"post",
           data:{
-           _t:app.data._t,
-           pn:page 
+           "_t":name,
+           "pn":page 
           },
           success:function(res){
            var question = res.data.data.question

@@ -1,5 +1,6 @@
 var amapFile = require('../../../../utils/amap-wx.js');
 const config = require('../../../../config.js');
+var name = wx.getStorageSync('_t')
 var that;
 //index.js
 //获取应用实例
@@ -24,7 +25,7 @@ Page({
         url:config.passportEdit,
         method:"post",
         data:{
-         "_t":app.data._t,
+         "_t":name,
          "name":that.data.name
         },
         success:function(res){

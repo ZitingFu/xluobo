@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
+var name = wx.getStorageSync('_t')
 var sliderWidth = 65.75;
 const app = getApp();
 var that;
@@ -40,7 +41,6 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    _t:"",
     create_time1:"",
     create_time2:""
   },
@@ -142,7 +142,7 @@ Page({
     }
   },
   onLoad: function (options) {
-    console.log(app)
+    console.log(name)
     that = this
     var city = that.data.city
     var page = Number(that.data.page)
@@ -190,7 +190,7 @@ Page({
               method:"post",
               data: {
                  "city":city,
-                 "_t":app.data._t
+                 "_t":name
               },
               success: function(res) {
                 console.log(res)
@@ -206,7 +206,7 @@ Page({
               method:"post",
               data: {
                 "id":0,
-                "_t":app.data._t
+                "_t":name
               },
               success: function(res) {
                var genre = res.data.data.genre
@@ -222,7 +222,7 @@ Page({
               method:"post",
               data: {
                  "city":city,
-                  "_t":app.data._t
+                  "_t":name
               },
               success: function(res) {
                 console.log(res)
@@ -240,7 +240,7 @@ Page({
               data: {
                   "pn":1,
                   "area":city,
-                   "_t":app.data._t
+                   "_t":name
               },
               success: function(res) {
                 var from = res.data.data.list
@@ -276,7 +276,7 @@ Page({
               data: {
                   "pn":1,
                   "area":city,
-                   "_t":app.data._t
+                   "_t":name
               },
               success: function(res) {
                 console.log("最近")

@@ -1,12 +1,12 @@
 {
   "pages":[
     "pages/index/index/index",
+    "pages/me/UserName/UserName",
+    "pages/details/ReleaseDetailsAll/ReleaseDetailsAll",
     "pages/index/peoplelist/peoplelist",  
     "pages/index/matterlist/matterlist",  
     "pages/me/me/me", 
     "pages/me/meComment/meComment",
-    "pages/me/mesuess/mesuess",
-    "pages/me/UserName/UserName",
     "pages/Release/Release/Release",
     "pages/details/ReleaseDetails/ReleaseDetails",
     "pages/me/modify/phone/phone",

@@ -52,12 +52,6 @@ Page({
     that = this;
     app.bindMultiPickerColumnChange(e,that)
   },
-  ckdetails:function(e){
-    var id = e.currentTarget.dataset.usid;
-     wx.navigateTo({
-      url: '../../details/ReleaseDetails/ReleaseDetails?id='+id
-    })
-  },
   open:function(that){
     that = this
     app.open(that)

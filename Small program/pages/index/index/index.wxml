@@ -78,7 +78,7 @@
 											<text class="f-right f999" wx:else>	{{item.time}}
 											</text>
 										</view>
-										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
+										<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
 										<view class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view class="SixImg clearFix">
@@ -126,34 +126,52 @@
 			                	<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem2}}" wx:key="index" data-usid="{{item.id}}"  bindtap="ckdetails" x:for-index="idx2" wx:if="{{boolean2 == true}}">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
-											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
-											<text class="f-right f999" wx:if="{{create_time2[index]>0}}">距认领结束还剩：{{create_time2[index]}}天
-											</text>
-											<text class="f-right f999" wx:else>		
-												{{item.time}}
-											</text>
+											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view><text class="f-right f999" wx:if="{{create_time2[index]>0}}">{{item.time}} - 剩余:{{create_time2[index]}}天</text><text class="f-right f999" wx:else>{{item.time}}</text>
 										</view>
-										<text class="clearFix" style="width: 100%;">{{item.content}}</text>
+										<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
 										<view class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view class="SixImg clearFix">
 												<!-- 图片6张 -->
-												<view bindtap="imgtop" class="SixImg-img" wx:if="{{item.images.length != 0}}" wx:for="{{item.images}}" data-list="{{item.images}}" data-index='{{index}}'  wx:key="index" wx:for-item="iteming">
+												<view bindtap="imgtop"
+													  class="SixImg-img"
+													  wx:if="{{item.images.length > 4}}" 
+													  wx:for="{{item.images}}" 
+													  data-list="{{item.images}}" 
+													  data-index='{{index}}'  
+													  wx:key="index" 
+													  wx:for-item="iteming">
 											    	<image src="{{iteming.s}}" alt=""></image>
 											    </view>
 											    <!-- 图片1张 -->
-											   <!-- <view class="SixImg-img" wx:for="{{item.images}}" style="width:100%;height:500rpx;" wx:key="index" wx:for-item="iteming">
-											    	<image  src="{{iteming.s}}" alt=""></image>
-											    </view> -->
-											    <!-- video -->
-											    <!-- <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video> -->
-										    </view>
-										    <!-- 图片为一张 -->
-										   <!--  <view class="SixImg clearFix">
-											    <view class="OneImg-img">
-											    	<image src="{{one1}}" alt=""></image>
+											  	<view bindtap="imgtop"
+													  class="SixImg-img"
+													  wx:if="{{item.images.length == 1}}" 
+													  wx:for="{{item.images}}" 
+													  data-list="{{item.images}}" 
+													  data-index='{{index}}'  
+													  wx:key="index"
+													  style="width:80%;height:200px;" 
+													  wx:for-item="iteming">
+											    	<image src="{{iteming.s}}" alt=""></image>
 											    </view>
-										    </view> -->
+											    <!-- 图片4张 -->
+											    <view style="width:80%">
+												  	<view bindtap="imgtop"
+														  class="SixImg-img"
+														  wx:if="{{item.images.length == 4}}" 
+														  wx:for="{{item.images}}" 
+														  data-list="{{item.images}}" 
+														  data-index='{{index}}'  
+														  wx:key="index"
+														  style="width:111px;height:110px;"
+														  wx:for-item="iteming">
+												    	<image src="{{iteming.s}}" alt=""></image>
+												    </view>
+											    </view>
+											    <!-- video -->
+											    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video>
+										    </view>
 						   			 	</view>
 						   			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
 						   			 		<view class="clearFix height40">

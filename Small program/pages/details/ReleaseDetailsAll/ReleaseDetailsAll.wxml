@@ -2,41 +2,73 @@
 <view class="container log-list">
 	<view class=""></view>
 	<view id="peoplelist">
-		<!-- 机构类型 -->
+		<!-- 场所 -->
 		<view class="organ_Type" wx:if="{{boolean}}">
-			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
+			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}" data-name="{{item.name}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
 		</view>
+		<!-- 信息类型 -->
 		<view class="organ_Type_number" wx:if="{{boolean3}}" >
-			<li bindtap="Type_top_number" data-currenttab2="{{index}}" data-number="{{item.id}}" class="{{currentTab2 == index ?'active3':'active'}}" wx:for="{{TypeItem3}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
+			<view class="f-left organ_l">
+				<span class="{{item.id == num_?'adv2':''}}" data-id="{{item.id}}" bindtap="useid"  wx:for="{{genreImages}}" wx:key="index">{{item.name}}</span>
+			</view>
+			<view class="f-right wi80 organ_r">
+				<h6 style="display:block;padding-left:9px;">类型选择</h6>
+				<li bindtap="Type_top_number" data-name="{{item.name}}" data-currenttab2="{{index}}" data-number="{{item.id}}" class="{{currentTab2 == index ?'active3':'active'}}" wx:for="{{TypeItem3}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
+			</view>
+		</view>
+		<!-- 时间 -->
+		<view class="organ_Type_number organ_time" wx:if="{{boolean2}}" >
+			<view class="organ_time_top">
+				<picker
+				    mode="date"
+				    value="{{date}}"
+				    start="2015-09-01"
+				    end="2017-09-01"
+				    bindchange="bindDateChange"
+				    data-na="0"
+			  	>
+					<input type="text"  class="f-left {{na==0?'adv':''}}"  placeholder="起止时间" value="{{start}}" auto-focus/>
+					<i class="organ_time_img"></i>
+				</picker>
+				<view class="wi42CE">至</view>
+				<picker
+				    mode="date"
+				    value="{{date}}"
+				    start="2015-09-01"
+				    end="2017-09-01"
+				    bindchange="bindDateChange"
+				    data-na="1"
+				    class="f-right"
+			  	>
+					<input value="{{end}}" class="{{na==1?'adv':''}}"  type="text" placeholder="截止时间" auto-focus/>
+					<i class="organ_time_imgri f-right"></i>
+				</picker>
+			</view>
+			<view class="organ_time_buttom f-right clearFix">
+				<button class="weui-btn bgf005bc8 f-left" bindtap="Reset">重置</button>
+				<button class="bgfc9937 f-right" bindtap="sub">确认</button>
+			</view>
 		</view>
 		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7">
 			<view class="box">
 				<view class="column">
 					<view class="item" bindtap="open3" data-open="2">
 			      		<select name="排序" id="">
-				    		<option value="">物品类型<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
+				    		<option value="">{{typeLIst}}<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
 				    	</select>
 			      	</view>
 			     	<view class="item" data-open="1" bindtap="open1">
 						<select name="区域" id="" >
 							<view class="section">
-							  <picker
-							    mode="multiSelector"
-							    bindchange="bindMultiPickerChange"
-							    bindcolumnchange="bindMultiPickerColumnChange"
-							    value="{{multiIndex}}"
-							    range="{{multiArray}}"
-							  >
 							    <view class="picker">
-							      <option value="">区域<i class="{{open_num==1?'sjs':'sjx'}}"></i></option>
+							      <option value="">发布时间<i class="{{open_num==1?'sjs':'sjx'}}"></i></option>
 							    </view>
-							  </picker>
 							</view>
 				    	</select>
 			     	</view>
 			      	 <view class="item" bindtap="open" data-open="0">
 				    	<select name="机构类型" id="">
-				    		<option value="">场所<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
+				    		<option value="">{{place}}<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
 				    	</select>
 					</view>
 			    </view>
@@ -46,13 +78,13 @@
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
 					<view class="nearby-item clearFix paddTa20">
-						<view class="list_item brbott-boe7e7e7" wx:for="{{listItem}}"  wx:key="index" x:for-index="idx2" bindtap="ckdetails" data-usid="{{item.id}}">
+						<view class="list_item brbott-boe7e7e7" wx:for="{{listItem}}"  wx:key="index" x:for-index="idx2"  bindtap="ckdetails" data-usid="{{item.id}}">
 							<view class="nearby-top">
 								<view class="clearFix genre_name_top">
 									<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.gen_name}}</view>
 									<text class="f-right f999">{{item.time}}</text>
 								</view>
-								<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
+								<text class="clearFix"  style="width: 100%;">{{item.content}}</text>
 								<view class="list-imgbox">
 									<!-- 图片为6张 -->
 									<view class="SixImg clearFix">
@@ -99,6 +131,7 @@
    		<!-- 弹出框 -->
    		<view class="Popup" bindtap="open" wx:if="{{boolean}}"></view>
    		<view class="Popup" bindtap="open3" wx:if="{{boolean3}}"></view>
+   		<view class="Popup" bindtap="open1" wx:if="{{boolean2}}"></view>
 		<!--三级联动 -->
 	</view>
 </view>

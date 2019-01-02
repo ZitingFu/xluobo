@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config');
+var name = wx.getStorageSync('_t')
 var that;
 //index.js
 //获取应用实例
@@ -19,7 +20,6 @@ Page({
     phone:"https://img.qa.xluob.com/Small%20program/jgxq_icon_tel.png",
     zhfa:"",
     page:1,
-    _t:"",
     id:""
   },
   dialphone:function(e){
@@ -48,7 +48,7 @@ Page({
        })
   },
   onLoad: function (options) {
-    console.log(app.data._t)
+    console.log(name)
     that = this
     var city = that.setData.city
     var page = Number(that.data.page)
@@ -56,7 +56,6 @@ Page({
     that.setData({ 
         id:id
     })
-    var _t = that.data._t
     wx.showLoading({
         title: '正在加载中'
     })
@@ -65,7 +64,7 @@ Page({
       method:"post",
       data: {
           "id":id,
-          "_t":app.data._t
+          "_t":name
       },
       success: function(res) {
         var from = res.data.data.info

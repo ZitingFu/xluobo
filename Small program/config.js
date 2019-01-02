@@ -59,6 +59,8 @@ var config = {
     commentsDelete:host+'/mini/comments/delete',
     //机构详情页
     codephone:host+'/mini/phone/code',
+    // 机构起止,截止
+    organizationQuestion:host+'/mini/organization/question',
     // 图片上传
     image:host+'/mini/upload/img'
 };

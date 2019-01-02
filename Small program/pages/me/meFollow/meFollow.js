@@ -10,7 +10,6 @@ Page({
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
-    _t:"",
     usersItem:"",
     items: [],
     startX: 0, //开始坐标
@@ -51,7 +50,7 @@ Page({
           url:config.meFollow,
           method:"post",
           data:{
-           "_t":app.data._t,
+           "_t":name,
            "pn":Page 
           },
           success:function(res){
