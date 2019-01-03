@@ -1,7 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
 var that;
-var name = wx.getStorageSync('_t')
 //index.js
 //获取应用实例
 const app = getApp()
@@ -41,8 +40,7 @@ Page({
           ['全部省', ], 
           ['全部区',],
     ],
-    multiIndex:[0, 0, 0],
-    _t:"",
+    multiIndex:[0, 0, 0]
   },
   bindMultiPickerChange(e) {
     that = this;
@@ -74,7 +72,7 @@ Page({
     var arry = []
     for(var a=0;a<imgList.length;a++){
       var imgList2 = imgList[a].s
-      arry.push(imgList2)
+      arry.push(imgList2.replace("http","https"))
     }
       wx.previewImage({
         current:arry[index].s,
@@ -98,12 +96,10 @@ Page({
     var that = this
     var city = that.setData.city
     var page = Number(that.data.page)
-    var _t = app.data._t
     var citynamelist =  app.data.citynamelist
     var citycode = app.data.citycode
     var city = app.data.city
     that.setData({
-      _t:_t,
       citynamelist:citynamelist,
       citycode:citycode,
       multiArray:[
@@ -116,7 +112,7 @@ Page({
       url:config.Firstclassify,
       method:"post",
       data:{
-        id:2
+        "id":2
       },
       success: function(res) {
        var site = res.data.data.genre

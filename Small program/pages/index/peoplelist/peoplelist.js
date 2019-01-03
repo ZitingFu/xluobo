@@ -1,6 +1,5 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
-var name = wx.getStorageSync('_t')
 var that;
 //index.js
 //获取应用实例
@@ -68,7 +67,7 @@ Page({
     var arry = []
     for(var a=0;a<imgList.length;a++){
       var imgList2 = imgList[a].s
-      arry.push(imgList2)
+      arry.push(imgList2.replace("http","https"))
     }
       wx.previewImage({
         current:arry[index].s,
@@ -112,7 +111,7 @@ Page({
       url:config.Firstclassify,
       method:"post",
       data:{
-        id:1
+        "id":1
       },
       success: function(res) {
         console.log(res)

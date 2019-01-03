@@ -357,6 +357,7 @@ App({
      }
   },
   getUserInfo:function(e,that,app){
+  console.log(e.detail.encryptedData,app.data.code,e.detail.iv)
    var value = wx.getStorageSync('_t')
     var ud = e.currentTarget.dataset.ud
         if(value.length != 0){
@@ -451,9 +452,38 @@ App({
               }
             })
           }
+          //详情点赞
+          if(ud==7){
+            var q_id =  e.currentTarget.dataset.q_id
+            wx.request({
+                url:config.Fabulous,
+                method:"post",
+                data: {
+                    "id":q_id,
+                     "_t":wx.getStorageSync('_t')
+                },
+                success: function(res) {
+                  var from = res.data.data.list
+                  wx.request({
+                      url:config.questioninfo,
+                      method:"post",
+                      data: {
+                          "id":that.data.id,
+                           "_t":wx.getStorageSync('_t')
+                      },
+                      success: function(res) {
+                       that.setData({ 
+                            fromItem:res.data.data.info
+                        })
+                      }
+                  })
+                } 
+            })
+          }
         }
         else{
           console.log("第一次登陆")
+          console.log(e.detail.encryptedData,app.data.code,e.detail.iv)
           wx.request({
             url:config.login,
             method:"post",
@@ -463,36 +493,49 @@ App({
                 "iv":e.detail.iv
             },
             success: function(res) {
-              console.log(res)
               wx.setStorageSync('_t',res.data.data._t)
-              app.data._t = res.data.data._t
+              wx.request({
+                url:config.melist,
+                method:"post",
+                data:{
+                 "_t":wx.getStorageSync('_t')
+                },
+                success:function(res){
+                  console.log(res)
+                 var info = res.data.data.info;
+                  that.setData({
+                    info:info
+                  })
+                  wx.hideLoading()
+                }
+              })
             }
           })
         }
   },
   // 授权是否过期
-  onShow: function () {
-    wx.checkSession({
-      success: function () { 
-        return ;
-      },
-      fail: function () { 
-        wx.request({
-          url:config.login,
-          method:"post",
-          data: {
-              "encrypted_data":e.detail.encryptedData,
-              "code":app.data.code,
-              "iv":e.detail.iv
-          },
-          success: function(res) {
-            wx.setStorageSync('_t',res.data.data._t)
-            app.data._t = res.data.data._t
-          }
-        })
-      }
-    })
-  },
+  // onShow: function (e) {
+  //   wx.checkSession({
+  //     success: function () { 
+  //       return ;
+  //     },
+  //     fail: function () { 
+  //       wx.request({
+  //         url:config.login,
+  //         method:"post",
+  //         data: {
+  //             "encrypted_data":e.detail.encryptedData,
+  //             "code":app.data.code,
+  //             "iv":e.detail.iv
+  //         },
+  //         success: function(res) {
+  //           wx.setStorageSync('_t',res.data.data._t)
+  //           app.data._t = res.data.data._t
+  //         }
+  //       })
+  //     }
+  //   })
+  // },
   onLaunch: function (options) {
     var that = this
     //获取省市区域

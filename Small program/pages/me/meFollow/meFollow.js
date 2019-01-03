@@ -1,7 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
 var that;
-var name = wx.getStorageSync('_t')
 //index.js
 //获取应用实例
 const app = getApp()
@@ -28,7 +27,7 @@ Page({
       url:config.meFollow,
       method:"post",
       data:{
-       "_t":name,
+       "_t":wx.getStorageSync('_t'),
        "pn":1 
       },
       success:function(res){
@@ -50,7 +49,7 @@ Page({
           url:config.meFollow,
           method:"post",
           data:{
-           "_t":name,
+           "_t":wx.getStorageSync('_t'),
            "pn":Page 
           },
           success:function(res){

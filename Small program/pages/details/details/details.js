@@ -1,6 +1,5 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config');
-var name = wx.getStorageSync('_t')
 var that;
 var set;
 //index.js
@@ -39,38 +38,8 @@ Page({
   sear:function(e){
     that = this
     var name = e.detail.value;
-    console.log(123)
     that.setData({ 
           name:name
-    })
-    console.log(name)
-  },
-  Fabulous:function(e){
-    var that = this
-    var q_id =  e.currentTarget.dataset.q_id
-    wx.request({
-        url:config.Fabulous,
-        method:"post",
-        data: {
-            "id":q_id,
-             "_t":name
-        },
-        success: function(res) {
-          var from = res.data.data.list
-          wx.request({
-              url:config.questioninfo,
-              method:"post",
-              data: {
-                  "id":that.data.id,
-                   "_t":name
-              },
-              success: function(res) {
-               that.setData({ 
-                    fromItem:res.data.data.info
-                })
-              }
-          })
-        } 
     })
   },
   //图片放大
@@ -80,7 +49,8 @@ Page({
     var arry = []
     for(var a=0;a<imgList.length;a++){
       var imgList2 = imgList[a].image.s
-      arry.push(imgList2)
+      imgList2.replace("http","https")
+      arry.push(imgList2.replace("http","https"))
     }
       wx.previewImage({
         current:arry[index].s,
@@ -88,6 +58,7 @@ Page({
        })
   },
   onLoad: function (options) {
+    console.log(options)
     that = this
     wx.showLoading({
       title: '正在加载...',
@@ -102,8 +73,8 @@ Page({
         url:config.questioninfo,
         method:"post",
         data: {
-            "id":that.data.id,
-            "_t":name
+            "id":options.id,
+            "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
           console.log(res)

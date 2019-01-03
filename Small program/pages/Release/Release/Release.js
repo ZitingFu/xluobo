@@ -36,8 +36,7 @@ Page({
           ['全部省', ], 
           ['全部区',],
     ],
-    multiIndex: [110000, 0, 0],
-    _t:"",
+    multiIndex: [110000, 0, 0]
   },
   bindMultiPickerChange(e) {
     that = this;
@@ -81,12 +80,10 @@ Page({
     var city = that.setData.city
     var page = Number(that.data.page)
     // setTimeout(function(){
-    var _t = app.data._t
     var citynamelist =  app.data.citynamelist
     var citycode = app.data.citycode
     var city = app.data.city
     that.setData({
-      _t:_t,
       citynamelist:citynamelist,
       citycode:citycode,
       multiArray:[
@@ -114,7 +111,7 @@ Page({
          "code":"",
          "site":"",
          "sort":"",
-         "_t":that.data._t
+         "_t":wx.getStorageSync('_t')
       },
       success: function(res) {
         console.log(res)

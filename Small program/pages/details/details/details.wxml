@@ -6,16 +6,60 @@
 					<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{fromItem.genre_name}}</view>
 					<text class="f-right f999">{{fromItem.time}}</text>
 				</view>
-				<text class="clearFix" style="width: 100%;">{{fromItem.content}}</text>
+				<text class="clearFix content" style="width: 100%;">{{fromItem.content}}</text>
 				<view class="list-imgbox">
-					<!-- 图片为6张 -->
 					<view class="SixImg clearFix">
-					    <view bindtap="imgtop" wx:if="{{fromItem.images}}" class="SixImg-img"  wx:for="{{fromItem.images}}" data-list="{{fromItem.images}}" data-index='{{index}}'  wx:key="index" wx:for-item="iteming">
+						<!-- 图片为6张 -->
+					    <view bindtap="imgtop" 
+					    	  wx:if="{{fromItem.images.length > 4}}"
+					    	  class="SixImg-img"  
+					    	  wx:for="{{fromItem.images}}" 
+					    	  data-list="{{fromItem.images}}" 
+					    	  data-index='{{index}}'  
+					    	  wx:key="index" 
+					    	  wx:for-item="iteming">
 					    	<image src="{{iteming.image.s}}" alt=""></image>
+					    </view>
+					    <!-- 图片2.3张 -->
+						<view bindtap="imgtop" 
+					    	  wx:if="{{fromItem.images.length ==2 ||fromItem.images.length ==3}}"
+					    	  class="SixImg-img"  
+					    	  wx:for="{{fromItem.images}}" 
+					    	  data-list="{{fromItem.images}}" 
+					    	  data-index='{{index}}'  
+					    	  wx:key="index" 
+					    	  wx:for-item="iteming">
+					    	<image src="{{iteming.image.s}}" alt=""></image>
+					    </view>
+					    <!-- 图片为1张 -->
+					    <view bindtap="imgtop" 
+					    	  wx:if="{{fromItem.images.length == 1}}"
+					    	  class="SixImg-img"  
+					    	  wx:for="{{fromItem.images}}" 
+					    	  data-list="{{fromItem.images}}" 
+					    	  data-index='{{index}}'  
+					    	  wx:key="index" 
+					    	  style="width:80%;height:200px;" 
+					    	  wx:for-item="iteming">
+					    	<image src="{{iteming.image.s}}" alt=""></image>
+					    </view>
+					    <!-- 图片为4张 -->
+					    <view style="width:80%" class="clearFix">
+						    <view bindtap="imgtop" 
+						    	  wx:if="{{fromItem.images.length == 4}}"
+						    	  class="SixImg-img"  
+						    	  wx:for="{{fromItem.images}}" 
+						    	  data-list="{{fromItem.images}}" 
+						    	  data-index='{{index}}'  
+						    	  wx:key="index" 
+						    	  style="width:111px;height:110px;margin-right:5px"
+						    	  wx:for-item="iteming">
+						    	<image src="{{iteming.image.s}}" alt=""></image>
+						    </view>
 					    </view>
 					   <video objectFit="fill" wx:if="{{fromItem.video}}" style="margin-top:13px;" src="{{item.video}}"></video>
 				    	</view>
-				    <view class="fca650 lin-h32" wx:if="{{createTime}}">
+				    <view class="fca650 fontSize12 lin-h32" wx:if="{{createTime}}">
 				    	<image class="clock"  src="{{clock}}" alt=""></image>
 				    	倒计时：{{create_time}}
 				    </view>
@@ -24,34 +68,34 @@
 		 	<view class="Releaselist_center brbott-boe7e7e7 brbott-tae7e7e7">
 		 		<view class="section">
 				  <view class="flex-wrp" style="flex-direction:column;">
-					    <view class="flex-item f4f4f4 paddLe28 lin-h32">备   注：{{fromItem.q_remark}}</view>
+					    <view wx:if="{{fromItem.q_remark.length!=0}}" class="flex-item f4f4f4 fontSize14 paddLe28 lin-h32">备   注：{{fromItem.q_remark}}</view>
 					    <view class="nearby-top">
 						    <view class="flex-item">联 系 人：{{fromItem.user_name}}</view>
 						    <view class="flex-item">联系方式：{{fromItem.phone}}</view>
 						    <view class="flex-item" bindtap="mapp" data-latitude="{{fromItem.latitude}}" data-longitude="{{fromItem.longitude}}">发送位置：{{fromItem.city}}{{fromItem.area}}<image src="{{option1}}" class="option1" alt=""></image></view>
-						    <view class="flex-item">信息编码:{{fromItem.id}}</view>
+						    <view class="flex-item">信息编码：{{fromItem.id}}</view>
 					    </view>
 				  </view>
 				</view>
 		 	</view>
-		 	<view class="Releaselist_follow brbote7" data-usid="{{fromItem.user_id}}" bindtap="ckReleaseDetails">
-				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7">
-					<view class="f-left bo-f000ff paddLe24 wihe40 ">
-						 <image wx:if="{{fromItem.avatar.s}}" src="{{fromItem.avatar.s}}" style="border:1rpx solid #ddd;"></image>
-						  <image wx:else src="{{loge}}" style="border:1rpx solid #ddd;"></image>
+		 	<view class="Releaselist_follow brbote7" >
+				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7" >
+					<view class="f-left bo-f000ff paddLe24 wihe40 "data-usid="{{fromItem.user_id}}" bindtap="ckReleaseDetails" style="margin-right:3%; ">
+						 <image wx:if="{{fromItem.avatar.s}}" src="{{fromItem.avatar.s}}"></image>
+						  <image wx:else src="{{loge}}"></image>
 					</view>
-					<view class="f-right wi82 paddBo20">
+					<view class="f-left wi40 paddBo20" data-usid="{{fromItem.user_id}}" bindtap="ckReleaseDetails">
 						<view class="fontSize30 ma-bo4 hidden" style="width:59%">{{fromItem.user_name}}</view>
 						<view class="f999">发布数{{fromItem.issue_num}}<i class="dian"></i>已找到{{fromItem.find_num}}<i class="dian"></i>爱心值{{fromItem.love}}</view>
 					</view>
-					<button data-ud="4" class="follow" catchtap="getUserInfo" open-type="getUserInfo" >
+					<button data-ud="4" class="follow f-left wi50" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 						<span wx:if="{{followid == true}}">收藏</span>
 						<span wx:if="{{followid == false}}">已收藏</span>
 					</button>
 				</view>
 	   		</view>
 	   		<view class="Releaselist_comment">
-				<view class="brbott-boe7e7e7 ma-bt">评论</view>
+				<view class="brbott-boe7e7e7 ma-bt fontSize14">评论</view>
 				<view class="Releaselist_item paddBo20" wx:key="index" wx:for="{{fromItem.comments}}" wx:if="{{fromItem.comments.length != 0}}">
 					<view class="nearby-item clearFix">
 						<view class="f-left bo-f000ff paddLe24 wihe40 ">
@@ -62,8 +106,8 @@
 							<view class="fontSize30 .ma-bo4">{{item.user_name}}</view>
 							<view class="f999">{{item.tmp_time}}</view>
 						</view>
-							<i class="{{item.num_like==true?'zan':'zan2'}}" data-q_id="{{item.id}}" bindtap="Fabulous"></i>
-							<text class="zan-center">{{item.num_like}}</text>	
+						<button style="padding:0px;border:1px solid #fff" class="{{item.num_like==true?'zan':'zan2'}}" data-q_id="{{item.id}}" data-ud="7" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
+						<text class="zan-center">{{item.num_like}}</text>
 					</view>
 					<view class="nearby-item clearFix brbott-boe7e7e7">
 						<view class="f-right wi82 paddBo20 paddLe24">
@@ -80,12 +124,12 @@
 			<view class="column" style="text-align:left;">
 			    <view class="item" style="width: 75%;">
 			    	<view class="comment">
-					  	<input class="" bindinput="sear" name="{{input}}" placeholder="发表评论" auto-focus/>
+					  	<input class="" style="" bindinput="sear" name="{{input}}" placeholder="" auto-focus/>
 					</view>
 			    </view>
 			    <view class="item">
 			    	<!-- <image class="Star"  src="{{clock}}"></image> -->
-			    	<view class="sub" data-ud="5" catchtap="getUserInfo" open-type="getUserInfo">发送</view>
+			    	<button class="sub" data-ud="5" bindgetuserinfo="getUserInfo" open-type="getUserInfo">发送</button>
 		     	</view>
 		    </view>
     	</view>

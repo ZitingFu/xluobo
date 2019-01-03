@@ -1,7 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
 var that;
-var name = wx.getStorageSync('_t')
 //获取应用实例
 const app = getApp()
 Page({
@@ -29,7 +28,7 @@ Page({
     var arry = []
     for(var a=0;a<imgList.length;a++){
       var imgList2 = imgList[a].s
-      arry.push(imgList2)
+      arry.push(imgList2.replace("http","https"))
     }
       wx.previewImage({
         current:arry[index].s,
@@ -42,7 +41,7 @@ Page({
       url:config.meCollection,
       method:"post",
       data:{
-       "_t":name,
+       "_t":wx.getStorageSync('_t'),
        "pn":1 
       },
       success:function(res){
@@ -67,7 +66,7 @@ Page({
           url:config.meCollection,
           method:"post",
           data:{
-           "_t":name,
+           "_t":wx.getStorageSync('_t'),
            "pn":page 
           },
           success:function(res){

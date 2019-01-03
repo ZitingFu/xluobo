@@ -1,6 +1,5 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
-var name = wx.getStorageSync('_t')
 var that;
 //index.js
 //获取应用实例
@@ -143,7 +142,7 @@ Page({
           "site":that.data.type_id,
           "start":that.data.start,
           "end":that.data.end,
-          "_t":name
+          "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
           console.log(res)
@@ -183,7 +182,7 @@ Page({
     var arry = []
     for(var a=0;a<imgList.length;a++){
       var imgList2 = imgList[a].s
-      arry.push(imgList2)
+      arry.push(imgList2.replace("http","https"))
     }
       wx.previewImage({
         current:arry[index].s,
@@ -224,7 +223,7 @@ Page({
         method:"post",
         data: {
           "id":0,
-          "_t":name
+          "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
          var genre = res.data.data.genre
@@ -292,7 +291,7 @@ Page({
           url:config.genrelist,
           method:"post",
           data: {
-            "_t":name,
+            "_t":wx.getStorageSync('_t'),
             "genre":that.data.number,
             "site":that.data.type_id,
             "start":that.data.start,

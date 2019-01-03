@@ -1,6 +1,5 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
-var name = wx.getStorageSync('_t')
 var that;
 //index.js
 //获取应用实例
@@ -57,7 +56,7 @@ Page({
                 method:"post",
                 data:{
                   "avatar":avatar,
-                  "_t":name 
+                  "_t":wx.getStorageSync('_t') 
                 },
                 success: function(res) {
                   that.onLoad()
@@ -88,7 +87,7 @@ Page({
         url:config.passportEdit,
         method:"post",
         data:{
-         "_t":name,
+         "_t":wx.getStorageSync('_t'),
          "birthday":e.detail.value
         },
         success:function(res){
@@ -107,7 +106,7 @@ Page({
       url:config.melist,
       method:"post",
       data:{
-       "_t":name
+       "_t":wx.getStorageSync('_t')
       },
       success:function(res){
         console.log(res)

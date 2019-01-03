@@ -81,7 +81,7 @@ Page({
     var arry = []
     for(var a=0;a<imgList.length;a++){
       var imgList2 = imgList[a].s
-      arry.push(imgList2)
+      arry.push(imgList2.replace("http","https"))
     }
       wx.previewImage({
         current:arry[index].s,
@@ -111,7 +111,7 @@ Page({
       url:config.Firstclassify,
       method:"post",
       data:{
-        id:5
+        "id":5
       },
       success: function(res) {
        var site = res.data.data.genre

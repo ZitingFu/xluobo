@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/index/index/index",
-    "pages/me/UserName/UserName",
     "pages/details/ReleaseDetailsAll/ReleaseDetailsAll",
+    "pages/me/UserName/UserName",
     "pages/index/peoplelist/peoplelist",  
     "pages/index/matterlist/matterlist",  
     "pages/me/me/me", 

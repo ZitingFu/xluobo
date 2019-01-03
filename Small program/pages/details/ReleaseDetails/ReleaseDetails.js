@@ -1,12 +1,12 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config');
-var name = wx.getStorageSync('_t')
 var that;
 //index.js
 //获取应用实例
 const app = getApp()
 Page({
   data: {
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     fromItem:"",
     followid:true,
     recent_post:"",
@@ -29,9 +29,9 @@ Page({
     })
   },
   all:function(){
-    // wx.navigateTo({
-    //   url:'../UserName/UserName'
-    // })
+    wx.navigateTo({
+      url:'../ReleaseDetailsAll/ReleaseDetailsAll'
+    })
   },
   //图片放大
   imgtop:function(e){
@@ -40,7 +40,7 @@ Page({
     var arry = []
     for(var a=0;a<imgList.length;a++){
       var imgList2 = imgList[a].s
-      arry.push(imgList2)
+      arry.push(imgList2.replace("http","https"))
     }
       wx.previewImage({
         current:arry[index].s,
@@ -48,7 +48,6 @@ Page({
        })
   },
   onLoad: function (options) {
-    console.log(name)
     that = this
     var city = that.setData.city
     var page = Number(that.data.page)
@@ -64,7 +63,7 @@ Page({
       method:"post",
       data: {
           "id":id,
-          "_t":name
+          "_t":wx.getStorageSync('_t')
       },
       success: function(res) {
         var from = res.data.data.info

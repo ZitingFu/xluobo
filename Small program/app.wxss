@@ -60,8 +60,12 @@ i{
 }
 .clock{
 	width: 15px;
-	height:18px;
+	height:14px;
 	background-image:url(https://img.qa.xluob.com/Small%20program/Notime.png);
+}
+.one_classify{
+	font-size:14px;
+	color:#333;
 }
 .sjx,.sjs{
 	width:8px;
@@ -69,10 +73,14 @@ i{
 	margin-left:5px; 
 	background-size:100% 100%;
 }
+option{
+	font-size:12px;
+}
 .active{
     border-bottom:3px solid #ff8030;
     padding-bottom:10px; 
     border-radius:2px;
+    color:#505050;
 }
 .active2{
 	/*background-color:#cecece;*/
@@ -140,11 +148,20 @@ i{
 .fontSize30{
 	font-size:30rpx;
 }
+.fontSize15{
+	font-size:15px;
+}
 .fontSize24{
 	font-size:28rpx;
 }
+.fontSize12{
+	font-size:12px;
+}
 .fontSize28{
 	font-size:24rpx;
+}
+.fontSize14{
+	font-size:14px;
 }
 .height90{
 	height:90px;
@@ -224,6 +241,7 @@ i{
 }
 .wi80{
 	width: 80%;
+	box-sizing: border-box;
 }
 .wi83{
 	width: 83%;
@@ -348,6 +366,7 @@ image {
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 3;
 	overflow: hidden;
+	font-size:14px;
 }
 .content{
 	padding:0px;
@@ -355,8 +374,10 @@ image {
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 3;
 	overflow: hidden;
+	font-size:14px;
 }
 #meCollection .content{
+	font-size:14px;
 	padding: 0px;
 }
 /*共同*/
@@ -466,6 +487,12 @@ image {
 .nearby-top{
 	padding:0px 28rpx;
 	/*padding-top:10px;  */
+}
+.nearby-top .flex-item{
+	font-size:14px;
+}
+.nearby-top .f999{
+	font-size:12px;
 }
 /*附近关注最新*/
 .genre_name_top{
@@ -712,6 +739,15 @@ li span{
 	position: relative;
 	top:18px;
 }
+button::after{
+	border:none;
+}
+input{
+	outline:none;
+	border:none;
+	list-style: none;
+}
+
 /*信息详情*/
 .Releaselist_list{
 	margin-bottom:65px;
@@ -729,7 +765,7 @@ li span{
 }
 .sub{
 	text-align:center;
-	width:40px;
+	width:47px;
 	border-radius:4px;
 	line-height:20px;
 	background-color:#fda249; 
@@ -738,6 +774,7 @@ li span{
 	left:-10px;
 	padding:2px 4px;
 	color: #fff;
+	font-size:12px;
 }
 /*#details .bottom*/
 .Releaselist_center{
@@ -750,7 +787,7 @@ li span{
 }
 #Releaselist .clock{
 	position: relative;
-	top:4px;
+	top:2px;
 }
 .Releaselist_item,.Releaselist_follow{
 	position: relative;
@@ -773,8 +810,8 @@ li span{
 	font-size:12px;
 }
 .zan,.zan2{
-	width:15px;
-	height:15px;
+	width:18px;
+	height:18px;
 	right:28px;
 	top:0px;
 	background-size:100% 100%;
@@ -799,11 +836,6 @@ li span{
 	padding:4px 9px; 
 	border-radius:13px;
 	color:#fff;
-	/*float: left;*/
-	/*right:150px;
-	top:36px;
-	padding:0 15px;
-	margin-left:15px; */
 }
 #ReleaseDetails .bottom .item{
 	width:50%;
@@ -865,7 +897,7 @@ li span{
 	right:6px;
 }
 .organ_time_top{
-	width:82%;
+	width:91%;
 	margin:12px auto 114px auto; 
 }
 picker{
@@ -877,7 +909,7 @@ picker{
 	text-align:center;
 }
 .organ_time_buttom{
-	margin-right:36px; 
+	margin-right:19px; 
 	width: 137px;
 	height:30px;
 }
@@ -892,23 +924,29 @@ picker{
 .organ_r{
 	/*border:1px solid red;*/
 	padding:8px 5px; 
+	box-sizing: border-box;
 }
 .organ_l{
 	width:17%;
 	height:280px;
 	background-color:#f8f8f9;
 	padding-top:8px; 
+	color:#505050;
 }
 .organ_l span{
 	display:block;
 	text-align:center;
 	margin-bottom:23px;
+	font-size:14px;
 }
 
 #peoplelist .organ_Type_number .organ_r li{
-	width:30%;
+	width:29%;
 	height:35px;
 	line-height:35px;
+	font-size:12px;
+	box-sizing: border-box;
+	/*color:#505050;*/
 }
 /*modify*/
 #phone button,#UserName button{

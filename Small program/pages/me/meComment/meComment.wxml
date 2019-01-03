@@ -7,7 +7,7 @@
 						<view class="paddBo20">
 							{{item.content}}
 						</view>	
-						<view class="f-left image" style="border:1px solid #ddd">
+						<view class="f-left image" style="border:1px solid #ddd;width:19%;">
 							 <image wx:if="{{item.question.avatar.s}}" src="{{item.question.avatar.s}}"></image>
 							 <image wx:else src="{{loge}}"></image>
 						</view>

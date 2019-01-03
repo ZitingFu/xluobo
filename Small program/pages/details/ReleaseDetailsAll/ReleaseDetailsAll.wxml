@@ -12,38 +12,46 @@
 				<span class="{{item.id == num_?'adv2':''}}" data-id="{{item.id}}" bindtap="useid"  wx:for="{{genreImages}}" wx:key="index">{{item.name}}</span>
 			</view>
 			<view class="f-right wi80 organ_r">
-				<h6 style="display:block;padding-left:9px;">类型选择</h6>
+				<h6 style="display:block;padding-left:9px;font-size:15px;color:#333;">类型选择</h6>
 				<li bindtap="Type_top_number" data-name="{{item.name}}" data-currenttab2="{{index}}" data-number="{{item.id}}" class="{{currentTab2 == index ?'active3':'active'}}" wx:for="{{TypeItem3}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
 			</view>
 		</view>
 		<!-- 时间 -->
 		<view class="organ_Type_number organ_time" wx:if="{{boolean2}}" >
 			<view class="organ_time_top">
-				<picker
-				    mode="date"
-				    value="{{date}}"
-				    start="2015-09-01"
-				    end="2017-09-01"
-				    bindchange="bindDateChange"
-				    data-na="0"
-			  	>
-					<input type="text"  class="f-left {{na==0?'adv':''}}"  placeholder="起止时间" value="{{start}}" auto-focus/>
-					<i class="organ_time_img"></i>
-				</picker>
-				<view class="wi42CE">至</view>
-				<picker
-				    mode="date"
-				    value="{{date}}"
-				    start="2015-09-01"
-				    end="2017-09-01"
-				    bindchange="bindDateChange"
-				    data-na="1"
-				    class="f-right"
-			  	>
-					<input value="{{end}}" class="{{na==1?'adv':''}}"  type="text" placeholder="截止时间" auto-focus/>
-					<i class="organ_time_imgri f-right"></i>
-				</picker>
-			</view>
+				<view class="box">
+					<view class="column" style="text-align:left;">
+				     	<view class="item">
+							<picker
+							    mode="date"
+							    value="{{date}}"
+							    start="2015-09-01"
+							    end="2017-09-01"
+							    bindchange="bindDateChange"
+							    data-na="0"
+						  	>
+								<input type="text"  class="f-left {{na==0?'adv':''}}"  placeholder="起止时间" value="{{start}}" auto-focus/>
+								<i class="organ_time_img"></i>
+							</picker>
+				     	</view>
+				      	<view class="item">至</view>
+				      	<view class="item">
+				      		<picker
+							    mode="date"
+							    value="{{date}}"
+							    start="2015-09-01"
+							    end="2017-09-01"
+							    bindchange="bindDateChange"
+							    data-na="1"
+							    class="f-right"
+						  	>
+								<input value="{{end}}" class="{{na==1?'adv':''}}"  type="text" placeholder="截止时间" auto-focus/>
+								<i class="organ_time_imgri f-right"></i>
+							</picker>
+				      	</view>
+				    </view>  	
+			    </view>
+	   		 </view>
 			<view class="organ_time_buttom f-right clearFix">
 				<button class="weui-btn bgf005bc8 f-left" bindtap="Reset">重置</button>
 				<button class="bgfc9937 f-right" bindtap="sub">确认</button>
@@ -84,27 +92,61 @@
 									<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.gen_name}}</view>
 									<text class="f-right f999">{{item.time}}</text>
 								</view>
-								<text class="clearFix"  style="width: 100%;">{{item.content}}</text>
+								<view class="clearFix content"  style="width: 100%;">{{item.content}}</view>
 								<view class="list-imgbox">
 									<!-- 图片为6张 -->
 									<view class="SixImg clearFix">
 										<!-- 图片6张 -->
-										<view bindtap="imgtop" class="SixImg-img" wx:if="{{item.images.length != 0}}" wx:for="{{item.images}}" data-list="{{item.images}}" data-index='{{index}}'  wx:key="index" wx:for-item="iteming">
+										<view catchtap="imgtop"
+											  class="SixImg-img"
+											  wx:if="{{item.images.length > 4}}" 
+											  wx:for="{{item.images}}" 
+											  data-list="{{item.images}}" 
+											  data-index='{{index}}'  
+											  wx:key="index" 
+											  wx:for-item="iteming">
+									    	<image src="{{iteming.s}}" alt=""></image>
+									    </view>
+									    <!-- 图片2.3张 -->
+										<view catchtap="imgtop"
+											  class="SixImg-img"
+											  wx:if="{{item.images.length ==2 || item.images.length == 3}}" 
+											  wx:for="{{item.images}}" 
+											  data-list="{{item.images}}" 
+											  data-index='{{index}}'  
+											  wx:key="index" 
+											  wx:for-item="iteming">
 									    	<image src="{{iteming.s}}" alt=""></image>
 									    </view>
 									    <!-- 图片1张 -->
-									   <!-- <view class="SixImg-img" wx:for="{{item.images}}" style="width:100%;height:500rpx;" wx:key="index" wx:for-item="iteming">
-									    	<image  src="{{iteming.s}}" alt=""></image>
-									    </view> -->
+									  	<view catchtap="imgtop"
+											  class="SixImg-img"
+											  wx:if="{{item.images.length == 1}}" 
+											  wx:for="{{item.images}}" 
+											  data-list="{{item.images}}" 
+											  data-index='{{index}}'  
+											  wx:key="index"
+											  style="width:80%;height:200px;" 
+											  wx:for-item="iteming">
+									    	<image src="{{iteming.s}}" alt=""></image>
+									    </view>
+									    <!-- 图片4张 -->
+									    <view style="width:80%" class="clearFix">
+										  	<view catchtap="imgtop"
+												  class="SixImg-img"
+												  wx:if="{{item.images.length == 4}}" 
+												  wx:for="{{item.images}}" 
+												  data-list="{{item.images}}" 
+												  data-index='{{index}}'  
+												  wx:key="index"
+												  style="width:111px;height:110px;margin-right:5px"
+												  wx:for-item="iteming">
+										    	<image src="{{iteming.s}}" alt=""></image>
+										    </view>
+									    </view>
 									    <!-- video -->
 									    <!-- <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video> -->
 								    </view>
-								    <!-- 图片为一张 -->
-								   <!--  <view class="SixImg clearFix">
-									    <view class="OneImg-img">
-									    	<image src="{{one1}}" alt=""></image>
-									    </view>
-								    </view> -->
 				   			 	</view>
 				   			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
 				   			 		<view class="clearFix height40">
