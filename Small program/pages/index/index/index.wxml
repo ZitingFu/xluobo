@@ -45,7 +45,7 @@
 						 <image wx:if="{{item.avatar.length>0}}" src="{{items.avatar.s}}" ></image>
 						 <image wx:else src="{{loge}}" style="border:1rpx solid #ddd;"></image>
 					</view>
-					<view class="f-right wi82 brbott-boe7e7e7 paddBo20 ">
+					<view data-indexnum="{{rightlist}}" class="f-right wi82 paddBo20 {{rightlist == index?'rightlist2':'rightlist'}}">
 						<view class="fontSize30 .ma-bo7">{{item.name}}</view>
 						<view class="f999">发布数{{item.publish}}<i class="dian"></i>已找到{{item.founded}}<i class="dian"></i>爱心值{{item.love}}</view>
 					</view>
@@ -227,7 +227,7 @@
 													<view class="f-left hidden wi80" style="line-height: 40px">{{item.user_name}}</view>
 												</view>
 												<view class="f-right wi23 f999 clearFix">
-													<view class="wihe20 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
+													<view class="wihe18 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
 													<view class="f-left length">{{item.comment_count}}</view>
 													<view class="f-right fenxi"><image src="{{fexi}}" alt=""></image></view>
 												</view>

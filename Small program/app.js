@@ -357,7 +357,6 @@ App({
      }
   },
   getUserInfo:function(e,that,app){
-  console.log(e.detail.encryptedData,app.data.code,e.detail.iv)
    var value = wx.getStorageSync('_t')
     var ud = e.currentTarget.dataset.ud
         if(value.length != 0){

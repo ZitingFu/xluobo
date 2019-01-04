@@ -1,6 +1,5 @@
 <!--logs.wxml-->
 <view class="container log-list">
-	<view></view>
 	<view id="UserName">
    		<view class=" banner_sousuo">
 		  	<input class="binner_input" bindinput="search" placeholder="修改用户名" auto-focus/>

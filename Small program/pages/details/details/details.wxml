@@ -107,6 +107,7 @@
 							<view class="f999">{{item.tmp_time}}</view>
 						</view>
 						<button style="padding:0px;border:1px solid #fff" class="{{item.num_like==true?'zan':'zan2'}}" data-q_id="{{item.id}}" data-ud="7" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
+
 						<text class="zan-center">{{item.num_like}}</text>
 					</view>
 					<view class="nearby-item clearFix brbott-boe7e7e7">

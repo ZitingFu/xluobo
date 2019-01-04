@@ -1,12 +1,13 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
-var sliderWidth = 65.75;
+var sliderWidth = 58;
 const app = getApp();
 var that;
 //index.js
 //获取应用实例
 Page({
   data: {
+    rightlist:"",
     notime:"https://img.qa.xluob.com/Small%20program/Notime.png",
     boolean1:"",
     boolean2:"",
@@ -223,10 +224,16 @@ Page({
                   "_t":wx.getStorageSync('_t')
               },
               success: function(res) {
+                console.log("附近机构数据")
                 console.log(res)
                var list = res.data.data.list
+               var indearry = []
+               for(var a=0;a<list.length;a++){
+                  indearry.push(a)
+               }
                  that.setData({ 
-                    listItem:list
+                    listItem:list,
+                    rightlist:list.length-1
                   })
                  wx.hideLoading()
               }
@@ -242,7 +249,6 @@ Page({
               },
               success: function(res) {
                 var from = res.data.data.list
-                
                 if(from.length==0){
                     that.setData({ 
                       boolean1:0

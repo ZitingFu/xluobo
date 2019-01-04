@@ -22,7 +22,7 @@
 	left: 0;
 	bottom: 0;
 	right: 0;
-	background-color: #e7e7e7;
+	background-color: #f3f5f9;
 }
 #me .me-top,#me .me-center,#meComment .nearby-item{
 	background-color: #fff;
@@ -54,9 +54,17 @@ i{
 .sjs{
 	background-image: url(https://img.qa.xluob.com/Small%20program/5.png);
 }
+.list_item2,.notime{
+	height:350px;
+	background-size:50% 50%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
 .list_item2{
 	background-image: url(https://img.qa.xluob.com/Small%20program/Notime.png);
-	height:400px;
+}
+.notime {
+	background-image:url(https://img.qa.xluob.com/Small%20program/Notime.png);
 }
 .clock{
 	width: 15px;
@@ -113,7 +121,7 @@ option{
 	border-top:1px solid #e7e7e7;
 }
 .brbote7{
-	border-bottom:10px solid #e7e7e7;
+	border-bottom:10px solid #f3f5f9;
 }
 .f3f5f9{
 	border-bottom:10px solid #f3f5f9;
@@ -227,6 +235,11 @@ option{
 .wihe20{
 	width:20px;
 	height:23px;
+	position:relative;
+}
+.wihe18{
+	width:18px;
+	height:18px;
 	position:relative;
 }
 .bc_green{
@@ -532,7 +545,7 @@ image {
 }
 .xinxi{
 	position: relative;
-	top:11rpx;
+	top:3px;
 	left:0px;
 }
 .fenxi{
@@ -544,8 +557,8 @@ image {
 	display:none;
 }
 .jing{
-	width:20rpx;
-	height:20rpx;
+	width:13px;
+	height:13px;
 	padding-right:4px;
 	position:relative;
 	top:3rpx; 
@@ -555,8 +568,8 @@ image {
 	color: #005bc8;
 	height:25px;
 	line-height:25px;
-	border-radius:13px;
-	padding:0 15px;
+	border-radius:15px;
+	padding:0 10px;
 	font-size:12px;
 }
 /*......机构页面.......*/
@@ -587,7 +600,7 @@ image {
 	overflow: hidden;
 }
 .Release-top .box{
-	padding:0 54px; 
+	padding:0 27px; 
 }
 .item_type{
 	position: relative;
@@ -662,6 +675,12 @@ li{
 	display:block;
 	height:45px;
 }
+.rightlist{
+	border-bottom:1px solid #e7e7e7;
+}
+.rightlist2{
+	border-bottom:1px solid #fff;
+}
 li image{
 	width:23px;
 	height:22px;
@@ -675,7 +694,7 @@ li span{
 	height:49.5px;
 	line-height:45px;
 	float:right;
-	border-bottom:1px solid #ddd;
+	border-bottom:1px solid #e7e7e7;
 }
 .bindphone{
 	display:inline-block;
@@ -949,11 +968,11 @@ picker{
 	/*color:#505050;*/
 }
 /*modify*/
-#phone button,#UserName button{
+#phone button, #UserName button{
 	background-color:#fc9937; 
 	color:#fff;
-	width: 90%;
-	margin:185px auto;
+	width:94%;
+	margin:185px 3%;
 	display:inline-block;
 }
 /*我的评论*/

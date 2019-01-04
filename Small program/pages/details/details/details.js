@@ -77,6 +77,7 @@ Page({
             "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
+          console.log("详情")
           console.log(res)
            var from = res.data.data.info
            var fav = res.data.data.fav

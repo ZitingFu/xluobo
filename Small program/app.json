@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index/index",
+    "pages/me/modify/UserName/UserName",
     "pages/details/ReleaseDetailsAll/ReleaseDetailsAll",
     "pages/me/UserName/UserName",
     "pages/index/peoplelist/peoplelist",  
@@ -11,7 +12,6 @@
     "pages/details/ReleaseDetails/ReleaseDetails",
     "pages/me/modify/phone/phone",
     "pages/me/modify/sax/sax",
-    "pages/me/modify/UserName/UserName",
     "pages/me/meCollection/meCollection",
     "pages/me/meFollow/meFollow",
     "pages/index/Exhibition/Exhibition", 
