@@ -11,7 +11,14 @@ Page({
     code:"",
     info:"",
     city:"",
+    name:"点击登录",
+    img:"https://img.qa.xluob.com/Small%20program/img_touxiang.png",
     canIUse: wx.canIUse('button.open-type.getUserInfo')
+  },
+  bindphone:function(){
+    wx.navigateTo({
+      url:'../modify/phone/phone'
+    })
   },
   onLoad: function (options) {
     that = this
@@ -25,7 +32,6 @@ Page({
        "_t":wx.getStorageSync('_t')
       },
       success:function(res){
-        console.log(res)
        var info = res.data.data.info;
         that.setData({
           info:info

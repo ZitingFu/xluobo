@@ -1,7 +1,7 @@
 <view class="container log-list">
 	<view id="UserName">
    		<view class="UserName-top clearFix" bindtap="UserNameTop">
-			<span class="f-left">头像</span>
+			<span class="f-left fontSize15 f999">头像</span>
 			<span class="f-right clearFix UserName-right">
 				<image class="f-left" src="{{infoItem.avatar.b}}"></image>
 				<i class="rightimg f-left"></i>
@@ -9,34 +9,39 @@
    		</view>
    		<view class="UserName_conter">
 			<ul class="clearFix">
-				<li bindtap="UserName">
-					<i class="f-left">用户名</i>
+				<li bindtap="UserName" class="rightlist">
+					<i class="f-left fontSize15 f999">用户名</i>
 					<i class="f-right clearFix UserName-right">
-						<i class="f-left">{{infoItem.name}}</i>
+						<i  wx:if="{{infoItem.name !=''}}" class="f-left fontSize15 f333">{{infoItem.name}}</i>
+						<i  wx:else class="f-left fontSize15 f333">未设置</i>
 						<i class="rightimg f-left"></i>
 					</i>
 				</li>
-				<li bindtap="sax">
-					<i class="f-left">性别</i>
+				<li bindtap="sax" class="rightlist">
+					<i class="f-left fontSize15 f999">性别</i>
 					<i class="f-right clearFix UserName-right">
-						<i class="f-left" wx:if="{{infoItem.sex == 0}}">男</i>
-						<i class="f-left" wx:if="{{infoItem.sex == 1}}">女</i>
+						<i class="f-left fontSize15 f333" wx:if="{{infoItem.sex == 0}}">男</i>
+						<i class="f-left fontSize15 f333" wx:if="{{infoItem.sex == 1}}">女</i>
+						<i class="f-left fontSize15 f333" wx:if="{{infoItem.sex == ''}}">未设置</i>
 						<i class="rightimg f-left"></i>
 					</i>
 				</li>
-			 	<picker class="weui-btn brbote7" mode="date" value="{{date}}" start="" end="" bindchange="bindDateChange">
-				<li class="">
-					<i class="f-left" >出生日期</i>
+			 	<picker class="brbote7" mode="date" value="{{date}}" start="" end="" bindchange="bindDateChange">
+				<li class="rightlist">
+					<i class="f-left fontSize15 f999">出生日期</i>
 					<i class="f-right clearFix UserName-right">
-						<i class="f-left">{{infoItem.birthday}}</i>
+						<i wx:if="{{infoItem.birthday != ''}}" class="f-left fontSize15 f333">{{infoItem.birthday}}</i>
+						<i wx:else class="f-left fontSize15 f333">未设置</i>
 						<i class="rightimg f-left"></i>
 					</i>
 				</li>
     			</picker>
 				<li bindtap="phone">
-					<i class="f-left">修改手机号</i>
+					<i class="f-left fontSize15 f999">绑定手机号码</i>
 					<i class="f-right clearFix UserName-right">
-						<i class="f-left">{{infoItem.phone}}</i>
+						<i wx:if="{{infoItem.phone != ''}}" class="f-left f333 fontSize15">{{infoItem.phone}}</i>
+						<i wx:else class="f-left f333 fontSize15">未绑定</i>
+						<i class="f-left f333">{{infoItem.phone}}</i>
 						<i class="rightimg f-left"></i>
 					</i>
 				</li>

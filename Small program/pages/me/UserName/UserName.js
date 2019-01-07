@@ -15,7 +15,12 @@ Page({
     loge:"",
     img:[],
     carWin_img_hidden:true, //展示照片的view是否隐藏
-    carWin_img:'' //存放照片路径的
+    carWin_img:'', //存放照片路径的
+    avatar:"https://img.qa.xluob.com/Small%20program/img_touxiang.png",
+    phone:"未绑定",
+    data:"未设置",
+    sax:"未设置",
+    Nnume:""
   },
   UserNameTop:function(){
     that = this;
@@ -109,8 +114,9 @@ Page({
        "_t":wx.getStorageSync('_t')
       },
       success:function(res){
-        console.log(res)
       var info = res.data.data.info;
+       var name = info.name
+       var avatar = info.avatar.b
         that.setData({
           infoItem:info
         })
@@ -118,7 +124,6 @@ Page({
     })
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,

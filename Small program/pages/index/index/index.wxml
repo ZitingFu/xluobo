@@ -4,9 +4,11 @@
 		<!-- 轮播图 -->
 		<view class="banner">
 			<!-- 搜索 -->
-			<view class=" banner_sousuo" bindtap="search">
-			  <input class="binner_input" placeholder="搜索" auto-focus/>
-			</view>
+			<view class="banner_sousuo" bindtap="search">
+				<span class="banner_sousuo_span">搜索</span>
+				<!-- <span class="binner_input"></span> -->
+			  <!-- <input class="binner_input" placeholder="搜索" onkeypress="noPermitInput(event)" auto-focus/> -->
+			</view> 
 			<!-- 轮播 -->
 			<view class="banner_image">
 				<swiper class="banner" indicator-color="{{indicator}}" indicator-active-color="{{indicatorColor}}" circular="true" indicator-dots="true" autoplay="true" interval="3000">

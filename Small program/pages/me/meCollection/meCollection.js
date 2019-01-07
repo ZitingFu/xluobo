@@ -72,12 +72,12 @@ Page({
           success:function(res){
            var question = res.data.data.question
           if(question.length<1){
-            setTimeout(function(){
-              wx.showModal({
-                content:"没有数据了"
-              })
-              wx.hideLoading()
-            },1000)
+            // setTimeout(function(){
+            //   wx.showModal({
+            //     content:"没有数据了"
+            //   })
+            //   wx.hideLoading()
+            // },1000)
           }
           var from = that.data.questionItem;
           for (var i = 0; i < question.length; i++) {

@@ -30,7 +30,7 @@
 							    bindchange="bindDateChange"
 							    data-na="0"
 						  	>
-								<input type="text"  class="f-left {{na==0?'adv':''}}"  placeholder="起止时间" value="{{start}}" auto-focus/>
+								<input type="text" data-na="0" bindtap="bindDateInput"  class="f-left {{na==0?'adv':''}}"  placeholder="起止时间" value="{{start}}" onfocus="this.blur();" auto-focus/>
 								<i class="organ_time_img"></i>
 							</picker>
 				     	</view>
@@ -45,7 +45,7 @@
 							    data-na="1"
 							    class="f-right"
 						  	>
-								<input value="{{end}}" class="{{na==1?'adv':''}}"  type="text" placeholder="截止时间" auto-focus/>
+								<input value="{{end}}"  data-na="1" bindtap="bindDateInput" class="{{na==1?'adv':''}}"  type="text" placeholder="截止时间" auto-focus/>
 								<i class="organ_time_imgri f-right"></i>
 							</picker>
 				      	</view>
@@ -60,12 +60,12 @@
 		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7">
 			<view class="box">
 				<view class="column">
-					<view class="item" bindtap="open3" data-open="2">
+					<view class="item" bindtap="open3" data-open="2" class="{{open_num==2?'ff8030':''}}">
 			      		<select name="排序" id="">
 				    		<option value="">{{typeLIst}}<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
 				    	</select>
 			      	</view>
-			     	<view class="item" data-open="1" bindtap="open1">
+			     	<view class="item" data-open="1" bindtap="open1" class="{{open_num==1?'ff8030':''}}">
 						<select name="区域" id="" >
 							<view class="section">
 							    <view class="picker">
@@ -74,7 +74,7 @@
 							</view>
 				    	</select>
 			     	</view>
-			      	 <view class="item" bindtap="open" data-open="0">
+			      	 <view class="item" bindtap="open" data-open="0" class="{{open_num==0?'ff8030':''}}">
 				    	<select name="机构类型" id="">
 				    		<option value="">{{place}}<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
 				    	</select>

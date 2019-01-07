@@ -11,9 +11,9 @@ App({
     index: 0,
     citynamelist:"",
     multiArray: [
-          ['全部市', '全部省'],
-          ['全部省', '全部省'], 
-          ['全部区', ' '],
+          ['', ''],
+          ['', ''], 
+          ['', ' '],
     ],
     multiIndex: [0, 0, 0],
     citycode:"",
@@ -33,6 +33,7 @@ App({
     wx.showLoading({
       title: '正在加载...',
     })
+    console.log(multiIndex)
       var site = that.data.type_id
       var sort = that.data.number
       if(multiIndex[2] !== undefined){
@@ -152,7 +153,7 @@ App({
             province.push(res[a].name)
             provincede.push(res[a].adcode)
           }
-          province.unshift("全部省");
+          province.unshift("全部市");
           var citynamelist = that.data.citynamelist
           that.setData({ 
               multiArray:[
@@ -549,7 +550,7 @@ App({
           citynamelist.push(cityname[a].name)
           citycode.push(cityname[a].adcode)
         }
-        citynamelist.unshift("全部市");
+        citynamelist.unshift("全国");
         that.data.citynamelist = citynamelist
         that.data.citycode = citycode
       }

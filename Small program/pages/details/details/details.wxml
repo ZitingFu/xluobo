@@ -103,7 +103,7 @@
 							 <image wx:else src="{{loge}}"></image>
 						</view>
 						<view class="f-right wi82 paddBo20">
-							<view class="fontSize30 .ma-bo4">{{item.user_name}}</view>
+							<view class="fontSize30 hidden wi70 ma-bo4">{{item.user_name}}</view>
 							<view class="f999">{{item.tmp_time}}</view>
 						</view>
 						<button style="padding:0px;border:1px solid #fff" class="{{item.num_like==true?'zan':'zan2'}}" data-q_id="{{item.id}}" data-ud="7" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>

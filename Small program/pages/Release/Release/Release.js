@@ -33,7 +33,7 @@ Page({
     citynamelist:"",
     multiArray: [
           ['全部市', '全部市'],
-          ['全部省', ], 
+          ['全部市', ], 
           ['全部区',],
     ],
     multiIndex: [110000, 0, 0]
@@ -88,7 +88,7 @@ Page({
       citycode:citycode,
       multiArray:[
           citynamelist,
-          ["全部省","北京市"], 
+          ["全部市","北京市"], 
           ["全部区"],
         ]
     })
@@ -155,6 +155,31 @@ Page({
           }
         })
     },1500)
+  },
+  //下拉
+  onPullDownRefresh: function(){
+    that = this;
+    wx.request({
+      url:config.ReleaseList,
+      method:"post",
+      data: {
+         "code":"",
+         "site":"",
+         "sort":"",
+         "pn":page
+      },
+      success: function(res) {
+       var from = that.data.listItem
+        for (var i = 0; i < res.data.data.list.length; i++) {
+            from.push(res.data.data.list[i]);
+          }
+          that.setData({ 
+              listItem:from,
+              page:page
+          })
+      wx.stopPullDownRefresh();
+      }
+    })
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

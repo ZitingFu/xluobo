@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "首页",
-  "enablePullDownRefresh":true,
-  "backgroundTextStyle":"#ffffff",
-  "onReachBottomDistance":50
+   "enablePullDownRefresh":true,
+   "onReachBottomDistance":50,
+  "backgroundTextStyle":"#ffffff"
 }

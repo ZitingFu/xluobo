@@ -52,20 +52,20 @@
 		<!-- 附近机构 -->
 		<view class="nearby clearFix">
 			<view class="nearby-top clearFix height47 brbott-boe7e7e7">
-				<view class="f-left f333 fontSize30">最近发布</view>
-				<text class="f-right f999" bindtap="all">查看全部 ></text>
+				<view class="f-left f333 fontSize30">最新发布</view>
+				<text class="f-right f999" data-id="{{fromItem.id}}" bindtap="all">精确查找 ></text>
 			</view>
 			<view class="Releaselist_list">
-				<view class="nearby-top brbott-boe7e7e7" wx:for="{{recent_post}}" wx:key="index">
+				<view class="nearby-top brbott-boe7e7e7" data-dd="{{item.id}}" bindtap="ckdetails" wx:for="{{recent_post}}" wx:key="index">
 					<view class="clearFix genre_name_top">
 						<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.gen_name}}</view>
 						<text class="f-right f999">{{item.time}}</text>
 					</view>
-					<text class="clearFix" style="width: 100%;">{{item.content}}</text>
+					<text class="clearFix content" style="width: 100%;">{{item.content}}</text>
 					<view class="list-imgbox">
 						<view class="SixImg clearFix">
 							<!-- 图片为6张 -->
-						    <view bindtap="imgtop"
+						    <view catchtap="imgtop"
 						    	  wx:for="{{item.images}}" 
 						    	  wx:if="{{item.images.length > 4}}" 
 						    	  wx:key="index" 
@@ -76,7 +76,7 @@
 						    	<image src="{{iteming.s}}" alt=""></image>
 						    </view>
 						    <!-- 图片2.3张 -->
-							<view bindtap="imgtop"
+							<view catchtap="imgtop"
 								  class="SixImg-img"
 								  wx:if="{{item.images.length ==2 || item.images.length == 3}}" 
 								  wx:for="{{item.images}}" 
@@ -87,7 +87,7 @@
 						    	<image src="{{iteming.s}}" alt=""></image>
 						    </view>
 						  	<!--图片1张 -->
-						  	<view bindtap="imgtop"
+						  	<view catchtap="imgtop"
 						    	  wx:for="{{item.images}}" 
 						    	  wx:if="{{item.images.length == 1}}" 
 						    	  wx:key="index" 
@@ -100,7 +100,7 @@
 						    </view>
 						    <!--图片4张 -->
 						    <view style="width:80%" class="clearFix">
-							  	<view bindtap="imgtop"
+							  	<view catchtap="imgtop"
 							    	  wx:for="{{item.images}}" 
 							    	  wx:if="{{item.images.length == 4}}" 
 							    	  wx:key="index" 
@@ -143,7 +143,7 @@
 				    	<span wx:if="{{followid == true}}">关注</span>
 						<span wx:if="{{followid == false}}">已关注</span>
 				    </button>
-				   <!--  <view class="item">
+				    <!-- <view class="item">
 						私信
 					</view>  -->
 				    <view class="item" data-linkphone="{{fromItem.linkphone}}" bindtap="dialphone">

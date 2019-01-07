@@ -2,8 +2,6 @@ var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config');
 var that;
 var set;
-//index.js
-//获取应用实例
 const app = getApp()
 Page({
   data: {
@@ -39,10 +37,9 @@ Page({
     that = this
     var name = e.detail.value;
     that.setData({ 
-          name:name
+        name:name
     })
   },
-  //图片放大
   imgtop:function(e){
     var imgList = e.currentTarget.dataset.list;//获取data-list
     var index = e.currentTarget.dataset.index
@@ -58,7 +55,6 @@ Page({
        })
   },
   onLoad: function (options) {
-    console.log(options)
     that = this
     wx.showLoading({
       title: '正在加载...',
@@ -77,8 +73,6 @@ Page({
             "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
-          console.log("详情")
-          console.log(res)
            var from = res.data.data.info
            var fav = res.data.data.fav
            if(fav == 99){
@@ -115,7 +109,6 @@ Page({
                 // 发布时间
                 var create_time = Number(res.data.data.info.create_time)
                 var end = Number(create_time+expire)
-                console.log(end)
                 var end2 = new Date(format(end)).getTime()
                 var difference = Number(end - now)
                 if(difference<0){
@@ -137,7 +130,6 @@ Page({
             }
             function add0(m){return m<10?'0'+m:m }
                 function format(timestamp){
-                    //shijianchuo是整数，否则要parseInt转换
                     var time = new Date(timestamp*1000);
                     var y = time.getFullYear();
                     var m = time.getMonth()+1;

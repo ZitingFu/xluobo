@@ -16,7 +16,7 @@
 				<view class="column">
 				    <view class="item" bindtap="open" data-open="0">
 				    	<select name="机构类型" id="">
-				    		<option value="">机构类型<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
+				    		<option class="{{open_num==0?'ff8030':''}}" value="">机构类型<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
 				    	</select>
 					</view>
 			     	<view class="item" data-open="1" bindtap="open1">
@@ -30,7 +30,7 @@
 							    range="{{multiArray}}"
 							  >
 							    <view class="picker">
-							      <option value="">区域<i class="{{open_num==1?'sjs':'sjx'}}"></i></option>
+							      <option class="{{open_num==1?'ff8030':''}}" value="">区域<i class="{{open_num==1?'sjs':'sjx'}}"></i></option>
 							    </view>
 							  </picker>
 							</view>
@@ -38,7 +38,7 @@
 			     	</view>
 			      	<view class="item" bindtap="open3" data-open="2">
 			      		<select name="排序" id="">
-				    		<option value="">排序<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
+				    		<option class="{{open_num==2?'ff8030':''}}" value="">排序<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
 				    	</select>
 			      	</view>
 			    </view>

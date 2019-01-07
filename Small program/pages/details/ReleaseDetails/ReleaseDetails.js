@@ -28,9 +28,16 @@ Page({
       phoneNumber:p,
     })
   },
-  all:function(){
+   ckdetails:function(e){
+    var id = e.currentTarget.dataset.dd;
+      wx.navigateTo({
+        url: '../../details/details/details?id='+id
+      })
+  },
+  all:function(e){
+    var id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url:'../ReleaseDetailsAll/ReleaseDetailsAll'
+      url:'../ReleaseDetailsAll/ReleaseDetailsAll?id='+id
     })
   },
   //图片放大
@@ -66,6 +73,8 @@ Page({
           "_t":wx.getStorageSync('_t')
       },
       success: function(res) {
+        console.log("123")
+        console.log(res)
         var from = res.data.data.info
         var recent_post = res.data.data.recent_post
         var fav = res.data.data.fav

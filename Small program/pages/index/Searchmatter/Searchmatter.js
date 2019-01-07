@@ -151,12 +151,10 @@ Page({
       }
     })
   },
-   // 上拉
   onReachBottom: function(){
     that = this;
     var city = that.data.city
     var page = Number(that.data.page)+ 1
-    // 显示加载图标
     wx.showLoading({
       title: '正在加载中'
     })
@@ -183,6 +181,24 @@ Page({
         }
       })
     },1500)
+  },
+  onPullDownRefresh: function(){
+    that = this;
+    wx.request({
+      url:config.Firstclassify,
+      method:"post",
+      data:{
+        id:4
+      },
+      success: function(res) {
+       var site = res.data.data.genre
+        that.setData({
+            id:4,
+            TypeItem3:site
+        })
+      wx.stopPullDownRefresh();
+      }
+    })
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

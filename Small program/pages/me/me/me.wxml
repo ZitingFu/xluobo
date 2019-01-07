@@ -6,11 +6,13 @@
 			<button data-ud="0" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-tae7e7e7">
 					<view class="f-left bo-f000ff paddLe24 wihe50 ">
-						 <image  src="{{info.avatar.b}}"></image>
+						 <image wx:if="{{info.avatar.b.length>1}}"  src="{{info.avatar.b}}"></image>
+						 <image wx:else  src="{{img}}"></image>
 					</view>
-					<view class="f-right wi82  paddBo20">
-						<view class="fontSize30 .ma-bo7">榆林啥地方将开始</view>
-						<view class="f999"><span class="bindphone">绑定手机号码</span></view>
+					<view class="f-right paddBo20" style="width:79%;">
+						<view wx:if="{{info.name.length>1}}" class="fontSize15 .ma-bo7">{{info.name}}</view>
+						<view wx:else class="fontSize15 .ma-bo7">点击登录</view>
+						<view class="f999"><span catchtap="bindphone" class="bindphone">绑定手机号码</span></view>
 						<i class="f-right rightimg"></i>
 					</view>
 				</view>
@@ -21,7 +23,7 @@
 			<button data-ud="1" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 			<li >
 				<image src="../../../images/icon_pinglun.png" alt=""></image>
-				<span>
+				<span class="fontSize15 rightlist">
 					我的评论
 					<i class="f-right rightimg"></i>
 				</span>
@@ -30,7 +32,7 @@
 			<button data-ud="2" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 			<li>
 				<image src="../../../images/icon_guanzhu.png" alt=""></image>
-				<span>
+				<span class="fontSize15 rightlist">
 					我的关注
 					<i class="f-right rightimg"></i>
 				</span>
@@ -39,19 +41,20 @@
 			<button data-ud="3" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 			<li class="brbote7">
 				<image src="../../../images/icon_shoucang.png" alt=""></image>
-				<span>
+				<span class="fontSize15">
 					我的收藏
 					<i class="f-right rightimg"></i>
 				</span>
 			</li>
 			</button>
 			<li class="brbote7">
+				<button open-type="contact">
 				<image src="../../../images/kf.png" alt=""></image>
-				<span>
+				<span class="fontSize15">
 					在线客服
-					<contact-button class="button-image" size="22" />
-					<i class="f-right rightimg"></i>
+					<button open-type="contact" class="f-right rightimg"></button>
 				</span>
+				</button>
 			</li>
    			</ul>
    		</view>

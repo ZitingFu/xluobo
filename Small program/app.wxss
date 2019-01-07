@@ -399,6 +399,15 @@ image {
 	width: 100%;
 }
 /*banner*/
+.banner .banner_sousuo{
+	opacity: .5;
+	height:15px;
+}
+.banner_sousuo_span{
+	/*position:relative;
+	left: 5px;
+	top:5px;*/
+}
 .banner_sousuo,.banner_sousuo1,.banner_sousuo2{
 	border:1px solid #ddd;
 	z-index:2;
@@ -406,8 +415,8 @@ image {
 	border-radius:10rpx;
 	padding-left:30rpx; 
 	background-color:#fff; 
-	padding-top:10rpx;
-	padding-bottom:10rpx;
+	padding-top:8px;
+	padding-bottom:8px;
 }
 .banner_sousuo{
 	left:20rpx;
@@ -415,13 +424,19 @@ image {
 	top:28rpx;
 }
 .banner_sousuo1{
-	width:77%;
+	box-sizing: border-box;
+	width:92%;
 	padding-left:62px; 
-	top:50px;
+	top:40px;
+	padding-top:8px;
+	padding-bottom:8px;
 	left:29rpx;
 }
 .banner_sousuo2{
-	width:53.5%;
+	padding-top:8px;
+	padding-bottom:8px;
+	box-sizing: border-box;
+	width:92%;
 	padding-left:62px; 
 	top:100px;
 	left:29rpx;
@@ -694,7 +709,7 @@ li span{
 	height:49.5px;
 	line-height:45px;
 	float:right;
-	border-bottom:1px solid #e7e7e7;
+	/*border-bottom:1px solid #e7e7e7;*/
 }
 .bindphone{
 	display:inline-block;
@@ -711,7 +726,7 @@ li span{
 	display:block;
 }
 #UserName li{
-	border-bottom:1px solid #ddd;
+	/*border-bottom:1px solid #ddd;*/
 }
 .UserName-top{
 	padding:0 12px; 
@@ -859,6 +874,7 @@ input{
 #ReleaseDetails .bottom .item{
 	width:50%;
 	text-align:center;
+	border-radius:0px;
 	border-right:1px solid #e7e7e7;
 }
 .follow2No{
@@ -1007,6 +1023,9 @@ picker{
 	border:none;
 	position:none;
 	display:inline;
+}
+#me{
+	font-size:15px;
 }
 #me .btn:after {
   border:none;

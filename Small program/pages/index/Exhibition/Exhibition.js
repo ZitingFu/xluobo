@@ -151,7 +151,6 @@ Page({
       }
     })
   },
-   // 上拉
   onReachBottom: function(){
     var that = this;
     var city = that.data.city
@@ -184,6 +183,24 @@ Page({
         }
       })
     },1500)
+  },
+  onPullDownRefresh: function(){
+    that = this;
+    wx.request({
+      url:config.Firstclassify,
+      method:"post",
+      data:{
+        "id":5
+      },
+      success: function(res) {
+       var site = res.data.data.genre
+        that.setData({
+            id:5,
+            TypeItem3:site
+        })
+      wx.stopPullDownRefresh();
+      }
+    })
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

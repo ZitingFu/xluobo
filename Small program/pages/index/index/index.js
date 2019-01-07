@@ -183,7 +183,7 @@ Page({
               city:city
             })
             console.log(config)
-            //请求轮播图数据
+            //轮播图
             wx.request({
               url:config.Rotation,
               method:"post",
@@ -199,7 +199,7 @@ Page({
                 })
               }
             })
-            //请求一级分类数据
+            //一级分类
             wx.request({
               url:config.Firstclassify,
               method:"post",
@@ -215,7 +215,7 @@ Page({
                  wx.hideLoading()
               }
             })
-            //附近机构数据
+            //附近机构
             wx.request({
               url:config.nearbyOutfit,
               method:"post",
@@ -313,17 +313,16 @@ Page({
               }
             })
             wx.hideLoading()
+            wx.stopPullDownRefresh();
           }
         });
       }
     })
   },
-  // 上拉
   onReachBottom: function(){
     that = this;
     var city = that.data.city
     var page = Number(that.data.page)+ 1
-    // 显示加载图标
     wx.showLoading({
       title: '正在加载中'
     })
@@ -394,7 +393,6 @@ Page({
       }  
     },1500)
   },
-  //下拉
   onPullDownRefresh: function(){
     that = this;
     that.onLoad()

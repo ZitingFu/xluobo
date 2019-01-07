@@ -8,6 +8,7 @@ Page({
   data: {
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
+    passport_id:"",
     notime:"https://img.qa.xluob.com/Small%20program/Notime.png",
     fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
     xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
@@ -47,7 +48,7 @@ Page({
     ],
     multiIndex:[0, 0, 0],typeLIst:"信息类型",
     place:"场所",
-    na:""
+    na:5
   },
   bindMultiPickerChange(e) {
     that = this;
@@ -76,7 +77,6 @@ Page({
         "id":id
       },
       success: function(res) {
-        console.log(res)
        var site = res.data.data.genre
         that.setData({
             id:1,
@@ -86,7 +86,6 @@ Page({
     })
   },
   open:function(that){
-    console.log(123)
     that = this
     app.open(that)
     that.setData({ 
@@ -113,7 +112,6 @@ Page({
      }
   },
   open3:function(that){
-    console.log(456)
     that = this
     app.open3(that)
     that.setData({ 
@@ -145,7 +143,6 @@ Page({
           "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
-          console.log(res)
          var genre = res.data.data.genre
            that.setData({ 
               genreImages:genre
@@ -158,13 +155,17 @@ Page({
       })
     },1000)
   },
+  bindDateInput:function(e){
+    that = this
+    var na = e.currentTarget.dataset.na
+    that.setData({
+        na:na
+    })
+  },
   //日期
   bindDateChange(e) {
     that = this
     var na = e.currentTarget.dataset.na
-     that.setData({
-        na:na
-      })
     if(na==0){
       that.setData({
         start:e.detail.value
@@ -232,49 +233,54 @@ Page({
             })
         }
       })
-    wx.request({
-      url:config.Firstclassify,
-      method:"post",
-      data:{
-        "id":1
-      },
-      success: function(res) {
-       var site = res.data.data.genre
-        that.setData({
-            id:1,
-            TypeItem3:site
-        })
-      }
-    })
-    //所有场所
-    wx.request({
-      url:config.Allplace,
-      method:"post",
-      success: function(res) {
-       var site = res.data.data.site
-        that.setData({ 
-            TypeItem:site
-        })
-      }
-    })
-    //机构列表
-     wx.request({
-      url:config.genrelist,
-      method:"post",
-      data: {
-        "genre":1,
-        "code":city,
-        "site":"",
-        "pn":page
-      },
-      success: function(res) {
-       var list = res.data.data.list
-        that.setData({ 
-          listItem:list
-        })
-        wx.hideLoading()
-      }
-    })
+      //所有场所
+      wx.request({
+        url:config.Allplace,
+        method:"post",
+        success: function(res) {
+         var site = res.data.data.site
+          that.setData({ 
+              TypeItem:site
+          })
+        }
+      })
+      wx.request({
+        url:config.Firstclassify,
+        method:"post",
+        data:{
+          "id":1
+        },
+        success: function(res) {
+         var site = res.data.data.genre
+          that.setData({
+              id:1,
+              TypeItem3:site
+          })
+        }
+      })
+      console.log(options.id)
+      wx.request({
+        url:config.organizationQuestion,
+        method:"post",
+        data: {
+          "_t":wx.getStorageSync('_t'),
+          "genre":that.data.number,
+          "site":that.data.type_id,
+          "start":that.data.start,
+          "end":that.data.end,
+          "pn":page,
+          "passport_id":options.id
+        },
+        success: function(res) {
+          console.log(res)
+         var list = res.data.data.list
+          that.setData({ 
+            listItem:list,
+            passport_id:options.id
+          })
+          wx.hideLoading()
+        }
+      })
   },
    // 上拉
   onReachBottom: function(){
@@ -286,9 +292,8 @@ Page({
       title: '正在加载中'
     })
     setTimeout(function(){
-      console.log(name)
         wx.request({
-          url:config.genrelist,
+          url:config.organizationQuestion,
           method:"post",
           data: {
             "_t":wx.getStorageSync('_t'),
@@ -296,7 +301,8 @@ Page({
             "site":that.data.type_id,
             "start":that.data.start,
             "end":that.data.end,
-            "pn":page
+            "pn":page,
+            "passport_id":that.data.passport_id
           },
           success: function(res) {
            var from = that.data.listItem

@@ -10,13 +10,23 @@ Page({
     city:"",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
     listItem:"",
-    page:1
+    page:1,
+    startTime:"",
+    endTime:""
+  },
+  bindTouchStart: function(e) {
+    this.startTime = e.timeStamp;
+  },
+  bindTouchEnd: function(e) {
+    this.endTime = e.timeStamp;
   },
   details:function(e){
-     var id = e.currentTarget.dataset.id
-    wx.navigateTo({
-         url:'../../details/details/details?id='+id
-    })
+    var id = e.currentTarget.dataset.id
+    if(this.endTime - this.startTime < 350) {
+      wx.navigateTo({
+           url:'../../details/details/details?id='+id
+      })
+    }
   },
   openConfirm: function (e) {
     that = this

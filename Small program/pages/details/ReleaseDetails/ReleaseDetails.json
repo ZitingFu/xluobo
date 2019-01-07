@@ -1,6 +1,4 @@
 {
- "navigationBarTitleText": "机构信息详情",
-  "enablePullDownRefresh":true,
-  "backgroundTextStyle":"#ffffff",
-  "onReachBottomDistance":50
+ "navigationBarTitleText": "机构详情",
+  "backgroundTextStyle":"#ffffff"
 }
