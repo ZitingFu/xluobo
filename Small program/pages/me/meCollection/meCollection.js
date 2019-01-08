@@ -14,6 +14,7 @@ Page({
     items: [],
     startX: 0, //开始坐标
     startY: 0,
+    activeIndex:0,
     page:1
   },
   details:function(e){
@@ -47,9 +48,18 @@ Page({
       success:function(res){
        console.log(res)
        var question = res.data.data.question
-       that.setData({
-        questionItem:question
-       })
+        if(question.length==0){
+            that.setData({ 
+              questionItem:"",
+              activeIndex:1
+            })
+         }
+        else{
+            that.setData({
+              questionItem:question,
+              activeIndex:0
+            })
+        }
       }
     })
   },

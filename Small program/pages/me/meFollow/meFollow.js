@@ -33,9 +33,18 @@ Page({
       success:function(res){
        console.log(res)
        var users = res.data.data.users
-       that.setData({
-        usersItem:users
-       })
+       if(users.length==0){
+            that.setData({ 
+              usersItem:"",
+              activeIndex:1
+            })
+         }
+        else{
+            that.setData({
+              usersItem:users,
+              activeIndex:0
+            })
+        }
       }
     })
   },

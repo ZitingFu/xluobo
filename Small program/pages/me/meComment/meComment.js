@@ -9,6 +9,7 @@ Page({
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
+    activeIndex:0,
     listItem:"",
     page:1,
     startTime:"",
@@ -64,12 +65,21 @@ Page({
         "pn":1 
       },
       success:function(res){
+        console.log("没有评论")
         console.log(res)
-         var list = res.data.data.comments
-         console.log(list)
-          that.setData({
-            listItem:list
-          })
+        var list = res.data.data.comments
+        if(list.length==0){
+            that.setData({ 
+               listItem:"",
+              activeIndex:1
+            })
+         }
+        else{
+            that.setData({
+              listItem:list,
+              activeIndex:0
+            })
+        }
       }
     })
   },

@@ -44,7 +44,7 @@
 			    </view>
 	   		 </view>
    		 </view>
-   		<view class="Release-center {{activeIndex == 1 ? 'notime' : ''}}" >
+   		<view class="Release-center {{activeIndex == 1 ? 'renotime' : ''}}" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
 					<view class="nearby-item clearFix paddTa20" bindtap="ckdetails" data-usid="{{item.id}}"  wx:for="{{listItem}}" wx:key="index">

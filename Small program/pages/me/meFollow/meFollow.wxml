@@ -4,7 +4,7 @@
 	<view id="meFollow">
    		<view class="Release-center brbott-tae7e7e7">
    		 	<view class="nearby clearFix">
-				<view class="nearby-center clearFix">
+				<view class="nearby-center clearFix {{activeIndex == 1 ? 'notime4' : ''}}">
 					<view class="nearby-center clearFix">
 						<view class="content">
 							<view class="brbott-boe7e7e7 nearby-item clearFix paddTa20" data-id="{{item.id}}" wx:for="{{usersItem}}" wx:key="index" bindtap="details">

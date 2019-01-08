@@ -26,6 +26,7 @@ App({
     newarea:""
   },
   bindMultiPickerChange(e,that) {
+    console.log(123)
     var multiIndex = []
     multiIndex.push(that.data.newcity)
     multiIndex.push(that.data.newresede)
@@ -33,20 +34,20 @@ App({
     wx.showLoading({
       title: '正在加载...',
     })
-    console.log(multiIndex)
+    console.log(multiIndex[0])
       var site = that.data.type_id
       var sort = that.data.number
-      if(multiIndex[2] !== undefined){
-        setTimeout(function(){
+      setTimeout(function(){
           wx.request({
             url:config.genrelist,
             method:"post",
             data: {
                site:site,
-               code:multiIndex[2],
+               code:multiIndex[0],
                sort:sort
             },
             success: function(res) {
+              console.log(res)
               var list = res.data.data.list
               if(list.length==0){
                 that.setData({ 
@@ -60,71 +61,103 @@ App({
                     activeIndex:0
                   })
               }
+             wx.hideLoading()
+
             }
           })
-           wx.hideLoading()
-        },1000)
-      }
-      else{
-        if(multiIndex[1] !== undefined){
-          setTimeout(function(){
-            wx.request({
-              url:config.genrelist,
-              method:"post",
-              data: {
-                  "site":site,
-                  "code":multiIndex[1],
-                  "sort":sort
-              },
-              success: function(res) {
-                var list = res.data.data.list
-                if(list.length==0){
-                  that.setData({ 
-                     listItem:"",
-                    activeIndex:1
-                  })
-                }
-                else{
-                    that.setData({ 
-                      listItem:list,
-                      activeIndex:0
-                    })
-                }
-              }
-            })
-           wx.hideLoading()
-          },1000)
-        }
-        else{
-          setTimeout(function(){
-            wx.request({
-              url:config.genrelist,
-              method:"post",
-              data: {
-                  "site":site,
-                  "code":multiIndex[0],
-                  "sort":sort
-              },
-              success: function(res) {
-               var list = res.data.data.list
-                if(list.length==0){
-                  that.setData({ 
-                     listItem:"",
-                    activeIndex:1
-                  })
-                }
-                else{
-                    that.setData({ 
-                      listItem:list,
-                      activeIndex:0
-                    })
-                }
-              }
-            })
-           wx.hideLoading()
-          },1000)
-        }
-      }
+      },800)
+      // if(multiIndex[2] !== undefined){
+      //   setTimeout(function(){
+      //     wx.request({
+      //       url:config.genrelist,
+      //       method:"post",
+      //       data: {
+      //          site:site,
+      //          code:multiIndex[2],
+      //          sort:sort
+      //       },
+      //       success: function(res) {
+      //         console.log(1)
+      //         var list = res.data.data.list
+      //         if(list.length==0){
+      //           that.setData({ 
+      //              listItem:"",
+      //             activeIndex:1
+      //           })
+      //         }
+      //         else{
+      //             that.setData({ 
+      //               listItem:list,
+      //               activeIndex:0
+      //             })
+      //         }
+      //       }
+      //     })
+      //      wx.hideLoading()
+      //   },1000)
+      // }
+      // else{
+      //   if(multiIndex[1] !== undefined){
+      //     setTimeout(function(){
+      //       wx.request({
+      //         url:config.genrelist,
+      //         method:"post",
+      //         data: {
+      //             "site":site,
+      //             "code":multiIndex[1],
+      //             "sort":sort
+      //         },
+      //         success: function(res) {
+      //           console.log(2)
+      //           var list = res.data.data.list
+      //           if(list.length==0){
+      //             that.setData({ 
+      //                listItem:"",
+      //               activeIndex:1
+      //             })
+      //           }
+      //           else{
+      //               that.setData({ 
+      //                 listItem:list,
+      //                 activeIndex:0
+      //               })
+      //           }
+      //         }
+      //       })
+      //      wx.hideLoading()
+      //     },1000)
+      //   }
+      //   else{
+      //     setTimeout(function(){
+      //       wx.request({
+      //         url:config.genrelist,
+      //         method:"post",
+      //         data: {
+      //             "site":site,
+      //             "code":multiIndex[0],
+      //             "sort":sort
+      //         },
+      //         success: function(res) {
+      //           console.log(3)
+      //          var list = res.data.data.list
+      //           if(list.length==0){
+      //             that.setData({ 
+      //                listItem:"",
+      //               activeIndex:1
+      //             })
+      //           }
+      //           else{
+      //               that.setData({ 
+      //                 listItem:list,
+      //                 activeIndex:0
+      //               })
+      //           }
+      //         }
+      //       })
+      //      wx.hideLoading()
+      //     },1000)
+      //   }
+      // }
   },
   bindMultiPickerColumnChange(e,that) {
     if(e.detail.column==0){
@@ -180,7 +213,6 @@ App({
         url:config.province,
         method:"post",
         data: {
-           "_t":that.data._t,
            "code":areaid
         },
         success: function(res) {
@@ -248,6 +280,7 @@ App({
             "site":type_id
           },
           success: function(res) {
+            console.log(res)
            var list = res.data.data.list
            if(list.length==0){
               that.setData({ 
@@ -291,6 +324,7 @@ App({
             "site":sort
           },
           success: function(res) {
+            console.log(res)
            var list = res.data.data.list
            if(list.length == 0){
              that.setData({ 
@@ -543,6 +577,7 @@ App({
       url:config.province,
       method:"post",
       success: function(res) {
+        console.log(res)
         var cityname = res.data.data.city
         var citynamelist = []
         var citycode = []

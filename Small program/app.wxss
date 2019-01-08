@@ -54,22 +54,34 @@ i{
 .sjs{
 	background-image: url(https://img.qa.xluob.com/Small%20program/5.png);
 }
-.list_item2,.notime{
+.list_item2,.notime,.notime2,.notime3,.notime4,.renotime{
 	height:350px;
 	background-size:50% 50%;
 	background-repeat: no-repeat;
 	background-position: center center;
 }
 .list_item2{
-	background-image: url(https://img.qa.xluob.com/Small%20program/Notime.png);
+	background-image: url(https://img.qa.xluob.com/Small%20program/withoutnews%403x.png);
 }
-.notime {
-	background-image:url(https://img.qa.xluob.com/Small%20program/Notime.png);
+.notime{
+	background-image:url(https://img.qa.xluob.com/Small%20program/withoutnews%403x.png);
+}
+.notime2{
+	background-image:url(https://img.qa.xluob.com/Small%20program/img_wupinglun.png);
+}
+.notime3{
+	background-image:url(https://img.qa.xluob.com/Small%20program/img_wushoucang%402x.png);
+}
+.notime4{
+	background-image:url(https://img.qa.xluob.com/Small%20program/img_wuguanzhu.png);
+}
+.renotime{
+	background-image:url(https://img.qa.xluob.com/Small%20program/img_jigou.png);
 }
 .clock{
 	width: 15px;
 	height:14px;
-	background-image:url(https://img.qa.xluob.com/Small%20program/Notime.png);
+	background-image:url(https://img.qa.xluob.com/Small%20program/withoutnews%403x.png);
 }
 .one_classify{
 	font-size:14px;

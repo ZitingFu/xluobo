@@ -165,19 +165,18 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
-        var markersData = {
-          latitude: latitude,//纬度
-          longitude: longitude,//经度
-          key: that.data.MapKey
-        };
+        // var markersData = {
+        //   latitude: res.latitude,//纬度
+        //   longitude: res.longitude,//经度
+        //   key: that.data.MapKey
+        // };
         var addArr = [];
         var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
         myAmapFun.getRegeo({
           success: function (data) {
+            console.log(data)
+            var city = data[0].regeocodeData.addressComponent.city
+            // console.log(data[0].regeocodeData.addressComponent)
             var city = data[0].regeocodeData.addressComponent.adcode
             that.setData({
               city:city
@@ -215,6 +214,7 @@ Page({
                  wx.hideLoading()
               }
             })
+
             //附近机构
             wx.request({
               url:config.nearbyOutfit,
@@ -224,8 +224,6 @@ Page({
                   "_t":wx.getStorageSync('_t')
               },
               success: function(res) {
-                console.log("附近机构数据")
-                console.log(res)
                var list = res.data.data.list
                var indearry = []
                for(var a=0;a<list.length;a++){
@@ -238,6 +236,8 @@ Page({
                  wx.hideLoading()
               }
             })
+            console.log("城市")
+            console.log(city)
             // 附近
             wx.request({
               url:config.nearby,
@@ -248,6 +248,8 @@ Page({
                    "_t":wx.getStorageSync('_t')
               },
               success: function(res) {
+                console.log("附近数据")
+                console.log(res)
                 var from = res.data.data.list
                 if(from.length==0){
                     that.setData({ 

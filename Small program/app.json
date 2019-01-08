@@ -1,6 +1,8 @@
 {
   "pages":[
     "pages/index/index/index",
+    "pages/me/meFollow/meFollow",
+    "pages/me/meCollection/meCollection",
     "pages/me/meComment/meComment",
     "pages/me/UserName/UserName",
     "pages/me/me/me", 
@@ -13,8 +15,6 @@
     "pages/Release/Release/Release",
     "pages/details/ReleaseDetails/ReleaseDetails",
     "pages/me/modify/sax/sax",
-    "pages/me/meCollection/meCollection",
-    "pages/me/meFollow/meFollow",
     "pages/index/Searchpeople/Searchpeople",  
     "pages/index/Searchmatter/Searchmatter",  
     "pages/index/search/search",

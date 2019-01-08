@@ -8,7 +8,6 @@ Page({
   data: {
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
-    notime:"https://img.qa.xluob.com/Small%20program/Notime.png",
     fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
     xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
     jing:"https://img.qa.xluob.com/Small%20program/1.png",

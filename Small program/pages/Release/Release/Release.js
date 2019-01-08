@@ -8,7 +8,6 @@ Page({
   data: {
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
-    notime:"https://img.qa.xluob.com/Small%20program/Notime.png",
     activeIndex:"0",
     type_id:"",
     TypeItem:"",
@@ -26,7 +25,7 @@ Page({
     boolean:false,
     boolean1:false,
     boolean3:false,
-    currentTab:0,
+    currentTab:1,
     number:0,
     open_num:8,
     index: 0,
@@ -65,12 +64,95 @@ Page({
     app.open3(that)
   },
   Type_top_number:function(e){
+    console.log(456)
     that = this
-    app.Type_top_number(e,that)
+     wx.showLoading({
+        title: '正在加载...',
+      })
+      var current2 = e.currentTarget.dataset.currenttab2
+      var number = e.currentTarget.dataset.number
+      var type_id = that.data.type_id
+      var code = (that.data.multiIndex[0])
+      that.setData({
+          currentTab2:current2,
+          number:number,
+          boolean3:false
+      })
+      setTimeout(function(){
+        wx.request({
+          url:config.ReleaseList,
+          method:"post",
+          data: {
+            "site":number,
+            "code":code,
+            "pn":1,
+            "sort":type_id
+          },
+          success: function(res) {
+            console.log(res)
+           var list = res.data.data.list
+           if(list.length==0){
+              that.setData({ 
+                 listItem:"",
+                activeIndex:1
+              })
+           }else{
+              that.setData({ 
+                listItem:list,
+                activeIndex:0
+              })
+           }
+          }
+        })
+        wx.hideLoading()  
+      },1000)
   },
-  Type_top:function(e,that){
+  Type_top:function(e){
+    console.log(123)
      that = this
-     app.Type_top(e,that)
+      wx.showLoading({
+        title: '正在加载...',
+      })
+      var current = e.currentTarget.dataset.currenttab
+      var type_id = e.currentTarget.dataset.type_id
+      var sort = that.data.number
+      var code = (that.data.multiIndex[0])
+      that.setData({ 
+          currentTab:current,
+          type_id:type_id,
+          boolean:false
+      })
+      console.log(sort,type_id)
+      setTimeout(function(){
+        wx.request({
+          url:config.ReleaseList,
+          method:"post",
+          data: {
+            "site":type_id,
+            "code":"",
+            "pn":1,
+            "sort":sort
+          },
+          success: function(res) {
+            console.log("所有")
+            console.log(res)
+           var list = res.data.data.list
+           if(list.length == 0){
+             that.setData({ 
+                listItem:"",
+                activeIndex:1
+              })
+           }
+           else{
+            that.setData({ 
+                listItem:list,
+                activeIndex:0
+            })
+           }
+          }
+        })
+         wx.hideLoading()
+      },1000)
   },
   onLoad: function (options) {
     wx.showLoading({
@@ -116,9 +198,21 @@ Page({
       success: function(res) {
         console.log(res)
        var list = res.data.data.list
-        that.setData({ 
-          listItem:list
-        })
+        // that.setData({ 
+        //   listItem:list
+        // })
+        if(list.length==0){
+            that.setData({ 
+              listItem:"",
+              activeIndex:1
+            })
+         }
+        else{
+            that.setData({
+              listItem:list,
+              activeIndex:0
+            })
+        }
         wx.hideLoading()
       }
     })

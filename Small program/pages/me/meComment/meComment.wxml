@@ -1,6 +1,6 @@
 <view class="container log-list">
 	<view id="meComment">
-		<view class="Release-center brbott-tae7e7e7" >
+		<view class="Release-center brbott-tae7e7e7 {{activeIndex == 1 ? 'notime2' : ''}}" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
 					<view wx:for="{{listItem}}" wx:key="index" class="nearby-item clearFix paddTa20 brbote7" bindtouchstart="bindTouchStart" bindtouchend="bindTouchEnd" bindlongtap="openConfirm" bindtap="details" data-id="{{item.q_id}}" data-dd="{{item.id}}">
