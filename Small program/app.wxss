@@ -240,6 +240,10 @@ option{
 	width:28px;
 	height:25px;
 }
+.wihe15{
+	width:15px;
+	height:15px;
+}
 .wihe80{
 	width:80px;
 	height:80px;
@@ -583,12 +587,44 @@ image {
 	right:2rpx;
 	display:none;
 }
+.fx,.sc{
+	position:relative;
+}
+.fx{
+	/*width:23px;
+	height:22px;*/
+	top:-1px;
+}
+.sc{
+	top:0px;
+	margin-right:16px; 
+}
 .jing{
 	width:13px;
 	height:13px;
 	padding-right:4px;
 	position:relative;
 	top:3rpx; 
+}
+.Research{
+	width: 86%;
+	background-color:#f3f5f9;
+	margin:10px 5%;
+	padding:8px 0;
+	color:#999999; 
+	padding-left:15px;
+	border-radius:4px; 
+}
+
+.searchimg{
+	display:inline-block;
+	background-size: 100% 100%;
+	background-image:url(https://img.qa.xluob.com/Small%20program/sousuo_icon_sousuo%402x.png);
+}
+.Research .searchimg{
+	position: relative;
+	margin-right:6px; 
+	top:2px;
 }
 .genre_name{
 	background-color:#f3f5f9;
@@ -788,6 +824,15 @@ li span{
 button::after{
 	border:none;
 }
+.share{
+	font-size: 28rpx;
+	background-color: #fff;
+	border: none;
+	padding: 0;
+	margin: 0;
+	line-height: 1;
+	display:inline-block;
+}
 input{
 	outline:none;
 	border:none;
@@ -896,7 +941,7 @@ input{
 	padding:23px 0;
 	width: 100%;
 	position: fixed;
-	bottom:0;
+	bottom:0px;
 	left:0;
 	height:16px;
 	line-height:16px;
@@ -913,10 +958,11 @@ input{
 .organ_time{
 	height:214px;
 }
-.organ_time input{
+.organ_time .input{
 	padding: 0 7px;
 	width:129px;
 	height:30px;
+	line-height: 30px;
 	border-radius:5px;
 	background-color:#f8f8f9;
 }

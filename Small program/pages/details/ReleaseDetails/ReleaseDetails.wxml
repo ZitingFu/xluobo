@@ -55,7 +55,7 @@
 				<view class="f-left f333 fontSize30">最新发布</view>
 				<text class="f-right f999" data-id="{{fromItem.id}}" bindtap="all">精确查找 ></text>
 			</view>
-			<view class="Releaselist_list">
+			<view class="Releaselist_list {{activeIndex == 1 ? 'notime' : ''}}">
 				<view class="nearby-top brbott-boe7e7e7" data-dd="{{item.id}}" bindtap="ckdetails" wx:for="{{recent_post}}" wx:key="index">
 					<view class="clearFix genre_name_top">
 						<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.gen_name}}</view>

@@ -9,7 +9,6 @@ Page({
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     passport_id:"",
-    notime:"https://img.qa.xluob.com/Small%20program/Notime.png",
     fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
     xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
     jing:"https://img.qa.xluob.com/Small%20program/1.png",
@@ -39,8 +38,8 @@ Page({
     TypeItem3:"",
     genreImages:"",
     num_:1,
-    start:"",
-    end:"",
+    start:"开始时间",
+    end:"截止时间",
     multiArray: [
           ['全部市', '全部市'],
           ['全部省', ], 
@@ -52,11 +51,144 @@ Page({
   },
   bindMultiPickerChange(e) {
     that = this;
-    app.bindMultiPickerChange(e,that)
+       var multiIndex = []
+    multiIndex.push(that.data.newcity)
+    multiIndex.push(that.data.newresede)
+    multiIndex.push(that.data.newarea)
+    wx.showLoading({
+      title: '正在加载...',
+    })
+    var site = that.data.type_id
+    var sort = that.data.number
+    console.log(multiIndex[0])
+    setTimeout(function(){
+        wx.request({
+          url:config.ReleaseList,
+          method:"post",
+          data: {
+            "site":site,
+            "code":multiIndex[0],
+            "sort":sort,
+            "pn":1
+          },
+          success: function(res) {
+            console.log(res)
+            var list = res.data.data.list
+            if(list.length==0){
+              that.setData({ 
+                 listItem:"",
+                activeIndex:1
+              })
+            }
+            else{
+                that.setData({ 
+                  listItem:list,
+                  activeIndex:0
+                })
+            }
+           wx.hideLoading()
+
+          }
+        })
+    },800)
   },
   bindMultiPickerColumnChange(e) {
+   console.log(456)
     that = this;
-    app.bindMultiPickerColumnChange(e,that)
+    if(e.detail.column==0){
+      // console.log('picker发送选择改变，携带值为', e.detail.value)
+      var citycodelist = that.data.citycode
+      // 市
+      var index1 = e.detail.value-1  
+      var ccode1 = citycodelist[index1]
+      that.setData({
+          newcity:ccode1
+      })
+      wx.request({
+        url:config.province,
+        method:"post",
+        data: {
+           "_t":that.data._t,
+           "code":ccode1
+        },
+        success: function(res) {
+          console.log(res)
+          var res = res.data.data.city
+          var province = []
+          var provincede = []
+          var resnum = res.length
+          for(var a=0;a<resnum;a++){
+            province.push(res[a].name)
+            provincede.push(res[a].adcode)
+          }
+          province.unshift("全部市");
+          var citynamelist = that.data.citynamelist
+          that.setData({ 
+              multiArray:[
+                citynamelist,
+                province,
+                []
+              ],
+             province:province,
+             provincede:provincede
+          })
+        }
+      })
+    }
+    if(e.detail.column==1){
+      var area = that.data.provincede
+      var index2 = e.detail.value-1
+      for(var a=0;a<area.length;a++){
+        var areaid = (area[index2])
+      }
+      that.setData({
+          newresede:areaid
+      })
+      wx.request({
+        url:config.province,
+        method:"post",
+        data: {
+           "code":areaid
+        },
+        success: function(res) {
+          var res = res.data.data.city
+          var resce = []
+          var resede = []
+          for(var a=0;a<res.length;a++){
+            resce.push(res[a].name)
+            resede.push(res[a].adcode)
+          }
+           resce.unshift("全部区");
+          var citynamelist = that.data.citynamelist
+          var province = that.data.province
+          that.setData({ 
+              multiArray:[
+                citynamelist,
+                province,
+                resce
+              ],
+             province:province,
+             resede:resede
+          })
+        }
+      })
+    }
+    if(e.detail.column==2){
+      var index3 = e.detail.value-1
+      var resedelist = that.data.resede
+      for(var a=0;a<resedelist.length;a++){
+         var newarea = resedelist[index3]
+      }
+      that.setData({
+          newarea:newarea
+      })
+    }
+    const data = {
+      multiArray: that.data.multiArray,
+      multiIndex: that.data.multiIndex
+    }
+    data.multiIndex[e.detail.column] = e.detail.value
+    that.setData(data)
   },
   ckdetails:function(e){
     var id = e.currentTarget.dataset.usid;
@@ -130,6 +262,7 @@ Page({
         title: '正在加载...',
     })
     that = this
+    console.log(that.data.start,that.data.end)
     setTimeout(function(){
       wx.request({
         url:config.organizationQuestion,
@@ -197,15 +330,109 @@ Page({
       })
   },
   Type_top_number:function(e){
+    // console.log(that.data.number,that.data.type_id,that.data.start,that.data.end,that.data.passport_id)
     that = this
-    app.Type_top_number(e,that)
-    that.setData({ 
+    wx.showLoading({
+        title: '正在加载...',
+    })
+    var current2 = e.currentTarget.dataset.currenttab2
+    var number = e.currentTarget.dataset.number
+    var type_id = that.data.type_id
+    var code = (that.data.multiIndex[0])
+    that.setData({
+        currentTab2:current2,
+        number:number,
+        boolean3:false
+    })
+    console.log(that.data.number)
+    console.log(that.data.type_id)
+    console.log(that.data.passport_id)
+    setTimeout(function(){
+        wx.request({
+        url:config.organizationQuestion,
+        method:"post",
+        data: {
+          "_t":wx.getStorageSync('_t'),
+          "genre":that.data.number,
+          "site":that.data.type_id,
+          "start":that.data.start,
+          "end":that.data.end,
+          "pn":1,
+          "passport_id":that.data.passport_id
+        },
+        success: function(res) {
+          console.log(res)
+         var list = res.data.data.list
+         if(list.length==0){
+            that.setData({ 
+               listItem:"",
+              activeIndex:1
+            })
+         }
+        else{
+            that.setData({
+              listItem:list,
+              activeIndex:0
+            })
+        }
+          wx.hideLoading()
+        }
+      })
+        wx.hideLoading()  
+    },1000)
+     that.setData({ 
       typeLIst:e.currentTarget.dataset.name
     })
   },
   Type_top:function(e,that){
+    console.log(456)
     that = this
-    app.Type_top(e,that)
+      wx.showLoading({
+        title: '正在加载...',
+      })
+      var current = e.currentTarget.dataset.currenttab
+      var type_id = e.currentTarget.dataset.type_id
+      var sort = that.data.number
+      var code = (that.data.multiIndex[0])
+      that.setData({ 
+          currentTab:current,
+          type_id:type_id,
+          boolean:false
+      })
+      console.log(sort,type_id)
+      setTimeout(function(){
+        wx.request({
+        url:config.organizationQuestion,
+        method:"post",
+        data: {
+          "_t":wx.getStorageSync('_t'),
+          "genre":that.data.number,
+          "site":that.data.type_id,
+          "start":that.data.start,
+          "end":that.data.end,
+          "pn":1,
+          "passport_id":that.data.passport_id
+        },
+        success: function(res) {
+          console.log(res)
+         var list = res.data.data.list
+         if(list.length==0){
+            that.setData({ 
+               listItem:"",
+              activeIndex:1
+            })
+         }
+        else{
+            that.setData({
+              listItem:list,
+              activeIndex:0
+            })
+        }
+          wx.hideLoading()
+        }
+      })
+         wx.hideLoading()
+      },1000)
     that.setData({ 
       place:e.currentTarget.dataset.name
     })
@@ -274,10 +501,21 @@ Page({
         success: function(res) {
           console.log(res)
          var list = res.data.data.list
-          that.setData({ 
-            listItem:list,
-            passport_id:options.id
-          })
+         if(list.length==0){
+            that.setData({ 
+               listItem:"",
+              activeIndex:1
+            })
+         }
+        else{
+            that.setData({
+              listItem:list,
+              activeIndex:0
+            })
+        }
+        that.setData({ 
+          passport_id:options.id
+        })
           wx.hideLoading()
         }
       })

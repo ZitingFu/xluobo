@@ -66,98 +66,6 @@ App({
             }
           })
       },800)
-      // if(multiIndex[2] !== undefined){
-      //   setTimeout(function(){
-      //     wx.request({
-      //       url:config.genrelist,
-      //       method:"post",
-      //       data: {
-      //          site:site,
-      //          code:multiIndex[2],
-      //          sort:sort
-      //       },
-      //       success: function(res) {
-      //         console.log(1)
-      //         var list = res.data.data.list
-      //         if(list.length==0){
-      //           that.setData({ 
-      //              listItem:"",
-      //             activeIndex:1
-      //           })
-      //         }
-      //         else{
-      //             that.setData({ 
-      //               listItem:list,
-      //               activeIndex:0
-      //             })
-      //         }
-      //       }
-      //     })
-      //      wx.hideLoading()
-      //   },1000)
-      // }
-      // else{
-      //   if(multiIndex[1] !== undefined){
-      //     setTimeout(function(){
-      //       wx.request({
-      //         url:config.genrelist,
-      //         method:"post",
-      //         data: {
-      //             "site":site,
-      //             "code":multiIndex[1],
-      //             "sort":sort
-      //         },
-      //         success: function(res) {
-      //           console.log(2)
-      //           var list = res.data.data.list
-      //           if(list.length==0){
-      //             that.setData({ 
-      //                listItem:"",
-      //               activeIndex:1
-      //             })
-      //           }
-      //           else{
-      //               that.setData({ 
-      //                 listItem:list,
-      //                 activeIndex:0
-      //               })
-      //           }
-      //         }
-      //       })
-      //      wx.hideLoading()
-      //     },1000)
-      //   }
-      //   else{
-      //     setTimeout(function(){
-      //       wx.request({
-      //         url:config.genrelist,
-      //         method:"post",
-      //         data: {
-      //             "site":site,
-      //             "code":multiIndex[0],
-      //             "sort":sort
-      //         },
-      //         success: function(res) {
-      //           console.log(3)
-      //          var list = res.data.data.list
-      //           if(list.length==0){
-      //             that.setData({ 
-      //                listItem:"",
-      //               activeIndex:1
-      //             })
-      //           }
-      //           else{
-      //               that.setData({ 
-      //                 listItem:list,
-      //                 activeIndex:0
-      //               })
-      //           }
-      //         }
-      //       })
-      //      wx.hideLoading()
-      //     },1000)
-      //   }
-      // }
   },
   bindMultiPickerColumnChange(e,that) {
     if(e.detail.column==0){
@@ -422,6 +330,7 @@ App({
           }
           //详情收藏
           if(ud==4){
+            console.log(123)
             that.setData({
               followid:!that.data.followid
             })
@@ -440,6 +349,9 @@ App({
           }
           //详情评论
           if(ud==5){
+            that.setData({ 
+                bottom:0
+            })
             wx.request({
               url:config.commentsCreate,
               method:"post",
@@ -450,7 +362,13 @@ App({
                 "_t":app.data._t
               },
               success: function(res) {
-                console.log(res)
+                console.log("88")
+                if(res.data.flag==0){
+                  that.setData({ 
+                      bottom:1
+                  })
+                }
+                console.log()
                 var from = res.data.data.list
                  wx.request({
                     url:config.questioninfo,
@@ -461,6 +379,16 @@ App({
                          "_t":app.data._t
                     },
                     success: function(res) {
+                        var from = res.data.data.info
+                        if(from.comments.length==0){
+                          that.setData({ 
+                            activeIndex:0
+                          })
+                       }else{
+                          that.setData({ 
+                            activeIndex:1
+                          })
+                       }
                      that.setData({ 
                           fromItem:res.data.data.info
                       })
@@ -471,6 +399,7 @@ App({
           }
           //机构详情关注
           if(ud==6){
+            console.log(123)
             that.setData({
               followid:!that.data.followid
             })
@@ -512,6 +441,24 @@ App({
                       }
                   })
                 } 
+            })
+          }
+          // 详情关注
+          if(ud==8){
+            that.setData({
+              followid2:!that.data.followid2
+            })
+             var idd = e.currentTarget.dataset.idd
+            wx.request({
+              url:config.follow,
+              method:"post",
+                data: {
+                    "id":idd,
+                    "_t":app.data._t,
+                    "type":3
+                },
+              success: function(res) {
+              }
             })
           }
         }

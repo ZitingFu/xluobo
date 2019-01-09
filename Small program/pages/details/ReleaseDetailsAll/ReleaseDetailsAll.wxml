@@ -30,8 +30,8 @@
 							    bindchange="bindDateChange"
 							    data-na="0"
 						  	>
-								<input type="text" data-na="0" bindtap="bindDateInput"  class="f-left {{na==0?'adv':''}}"  placeholder="起止时间" value="{{start}}" onfocus="this.blur();" auto-focus/>
-								<i class="organ_time_img"></i>
+						  	<view data-na="0" bindtap="bindDateInput" class="picker input f-left {{na==0?'adv':''}}" >{{start}}</view>
+							<i class="organ_time_img"></i>
 							</picker>
 				     	</view>
 				      	<view class="item">至</view>
@@ -45,7 +45,7 @@
 							    data-na="1"
 							    class="f-right"
 						  	>
-								<input value="{{end}}"  data-na="1" bindtap="bindDateInput" class="{{na==1?'adv':''}}"  type="text" placeholder="截止时间" auto-focus/>
+						  		<view data-na="1" bindtap="bindDateInput" class="picker input {{na==1?'adv':''}}" >{{end}}</view>
 								<i class="organ_time_imgri f-right"></i>
 							</picker>
 				      	</view>

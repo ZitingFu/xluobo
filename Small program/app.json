@@ -1,6 +1,8 @@
 {
   "pages":[
+    "pages/Release/seach/seach",
     "pages/index/index/index",
+    "pages/Release/Release/Release",
     "pages/me/meFollow/meFollow",
     "pages/me/meCollection/meCollection",
     "pages/me/meComment/meComment",
@@ -12,7 +14,6 @@
     "pages/details/ReleaseDetailsAll/ReleaseDetailsAll",
     "pages/index/peoplelist/peoplelist",  
     "pages/index/matterlist/matterlist",  
-    "pages/Release/Release/Release",
     "pages/details/ReleaseDetails/ReleaseDetails",
     "pages/me/modify/sax/sax",
     "pages/index/Searchpeople/Searchpeople",  

@@ -8,7 +8,6 @@ Page({
   data: {
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
-    sef:"https://img.qa.xluob.com/Small%20program/sousuo_icon_sousuo%402x.png",
     activeIndex:"0",
     type_id:"",
     TypeItem:"",

@@ -1,7 +1,10 @@
 <!--logs.wxml-->
-<view class="container log-list">
-	<view class=""></view>
+<view class="container log-list brbott-tae7e7e7">
 	<view id="Release">
+		<view class="Research">
+			<span class="wihe15 searchimg"></span>
+			<span>搜索</span>
+		</view>
 		<!-- 机构类型 -->
 		<view class="organ_Type" wx:if="{{boolean}}">
 			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>

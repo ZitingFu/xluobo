@@ -161,7 +161,7 @@
 			                	<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem2}}" wx:key="index" data-usid="{{item.id}}"  bindtap="ckdetails" x:for-index="idx2" wx:if="{{boolean2 == true}}">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
-											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view><text class="f-right f999" wx:if="{{create_time2[index]>0}}">{{item.time}} - 剩余:{{create_time2[index]}}天</text><text class="f-right f999" wx:else>{{item.time}}</text>
+											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view><text class="f-right f999" wx:if="{{create_time2[index]>0}}">{{item.time}} - 剩余{{create_time2[index]}}天</text><text class="f-right f999" wx:else>{{item.time}}</text>
 										</view>
 										<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
 										<view class="list-imgbox">

@@ -88,15 +88,15 @@
 						<view class="fontSize30 ma-bo4 hidden" style="width:59%">{{fromItem.user_name}}</view>
 						<view class="f999">发布数{{fromItem.issue_num}}<i class="dian"></i>已找到{{fromItem.find_num}}<i class="dian"></i>爱心值{{fromItem.love}}</view>
 					</view>
-					<button data-ud="4" class="follow f-left wi50" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-						<span wx:if="{{followid == true}}">收藏</span>
-						<span wx:if="{{followid == false}}">已收藏</span>
+					<button data-ud="8" data-idd="{{fromItem.user_id}}" class="follow f-left wi50" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+						<span wx:if="{{followid2 == true}}">关注</span>
+						<span wx:if="{{followid2 == false}}">已关注</span>
 					</button>
 				</view>
 	   		</view>
 	   		<view class="Releaselist_comment">
 				<view class="brbott-boe7e7e7 ma-bt fontSize14">评论</view>
-				<view class="Releaselist_item paddBo20" wx:key="index" wx:for="{{fromItem.comments}}" wx:if="{{fromItem.comments.length != 0}}">
+				<view class="Releaselist_item paddBo20" wx:key="index" wx:for="{{fromItem.comments}}" wx:if="{{activeIndex==1}}">
 					<view class="nearby-item clearFix">
 						<view class="f-left bo-f000ff paddLe24 wihe40 ">
 							 <image wx:if="{{item.avatar.b}}" src="{{item.avatar.b}}"></image>
@@ -116,21 +116,41 @@
 						</view>
 					</view>
 				</view>
+				<view style="text-align:center;padding-top:50px;color:#999;font-size:14px;" wx:if="{{activeIndex==0}}">还没有评论</view>
 	   		</view>
 		</view>
 	</view>
 	<!-- 底部 -->
-	<view class="bottom">
+	<view class="bottom" wx:if="{{bottom==0}}">
+		<view class="box">
+			<view class="column" style="text-align:left;">
+			    <view class="item" style="width:73%;">
+			    	<view class="comment" bindtap="bindChange" style="line-height: 27px;">
+			    		<span style="color:#ddd">写评论</span>
+					</view>
+			    </view>
+			    <view class="item" style="width: 16%;">
+				<button data-ud="4" class="share" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+			    	<image wx:if="{{followid == true}}" class="wihe18 sc" src="{{sc}}"></image>
+			    	<image wx:if="{{followid == false}}" class="wihe18 sc" src="{{sx}}"></image>
+		    	</button>
+			    	<button class="share fx wihe18" open-type='share'>
+			    		<image style="width:88%;height: 88%" class=" " src="{{fx}}"></image>
+			    	</button>
+		     	</view>
+		    </view>
+    	</view>
+	</view>
+	<view wx:if="{{bottom==1}}" class="bottom">
 		<view class="box">
 			<view class="column" style="text-align:left;">
 			    <view class="item" style="width: 75%;">
 			    	<view class="comment">
-					  	<input class="" style="" bindinput="sear" name="{{input}}" placeholder="" auto-focus/>
+					  	<input cursor-spacing="20" class="" style="" bindinput="sear" name="{{input}}" placeholder="写评论" auto-focus/>
 					</view>
 			    </view>
 			    <view class="item">
-			    	<!-- <image class="Star"  src="{{clock}}"></image> -->
-			    	<button class="sub" data-ud="5" bindgetuserinfo="getUserInfo" open-type="getUserInfo">发送</button>
+			    	<button class="sub" data-ud="5" bindgetuserinfo="getUserInfo" open-type="getUserInfo">发布</button>
 		     	</view>
 		    </view>
     	</view>

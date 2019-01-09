@@ -20,6 +20,7 @@ Page({
     phone:"https://img.qa.xluob.com/Small%20program/jgxq_icon_tel.png",
     zhfa:"",
     page:1,
+    activeIndex:"0",
     id:""
   },
   dialphone:function(e){
@@ -73,10 +74,20 @@ Page({
           "_t":wx.getStorageSync('_t')
       },
       success: function(res) {
-        console.log("123")
-        console.log(res)
         var from = res.data.data.info
         var recent_post = res.data.data.recent_post
+        if(recent_post.length==0){
+              that.setData({ 
+                recent_post:"",
+                activeIndex:1
+              })
+            }
+            else{
+                that.setData({ 
+                  recent_post:recent_post,
+                  activeIndex:0
+                })
+            }
         var fav = res.data.data.fav
          if(fav == 99){
             that.setData({ 
@@ -89,8 +100,7 @@ Page({
             })
          }
         that.setData({ 
-            fromItem:from,
-            recent_post:recent_post
+            fromItem:from
         })
         wx.hideLoading()
       }

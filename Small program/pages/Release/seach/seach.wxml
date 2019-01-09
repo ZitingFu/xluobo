@@ -1,0 +1,13 @@
+<!--logs.wxml-->
+<view class="container log-list brbott-tae7e7e7">
+	<view id="Release">
+		<view class="Research">
+			<span class="wihe15 searchimg"></span>
+			<span>搜索</span>
+		</view>
+		<view class="nearby-top clearFix height47">
+			<view class="f-left f333 fontSize15">历史搜索</view>
+			<text class="f-right f999" bindtap="all">清空</text>
+		</view>
+	</view>
+</view>

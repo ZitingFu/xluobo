@@ -8,23 +8,34 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     id:"",
     fromItem:"",
+    fx:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
     clock:"https://img.qa.xluob.com/Small%20program/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181214163845.png",
     fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
     xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
     jing:"https://img.qa.xluob.com/Small%20program/1.png",
     option1:"https://img.qa.xluob.com/Small%20program/option.png",
+    sc:"https://img.qa.xluob.com/Small%20program/xxxq_icon_shoucang%402x.png",
+    sx:"https://img.qa.xluob.com/Small%20program/icon_yishoucang.png",
     zhfa:"",
     page:1,
+    bottom:0,
+    activeIndex:"0",
     create_time:"",
     createTime:true,
-    name:""
+    name:"",
+    followid2:""
   },
   mapp:function(e){
     var latitude = e.currentTarget.dataset.latitude;
     var longitude = e.currentTarget.dataset.longitude;
     wx.navigateTo({
        url: '../../map/map?latitude='+latitude+"&longitude="+longitude
+    })
+  },
+  bindChange:function(){
+    that.setData({ 
+        bottom:1
     })
   },
   ckReleaseDetails:function(e){
@@ -73,8 +84,20 @@ Page({
             "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
+          console.log(res)
+          console.log("55")
            var from = res.data.data.info
+            if(from.comments.length==0){
+              that.setData({ 
+                activeIndex:0
+              })
+           }else{
+              that.setData({ 
+                activeIndex:1
+              })
+           }
            var fav = res.data.data.fav
+           var followd = res.data.data.follow
            if(fav == 99){
               that.setData({ 
                   followid:true
@@ -83,6 +106,16 @@ Page({
            else{
               that.setData({ 
                  followid:false
+              })
+           }
+           if(followd == 99){
+              that.setData({ 
+                  followid2:true
+              })
+           }
+           else{
+              that.setData({ 
+                 followid2:false
               })
            }
             if(JSON.stringify(from.food_cate) == "{}"){
@@ -159,10 +192,10 @@ Page({
               } 
               return i; 
             } 
-          // ............
           that.setData({ 
-              fromItem:from
+            fromItem:from
           })
+          // ............
            wx.hideLoading()
         }
       })

@@ -7,14 +7,23 @@
 				<view class="nearby-center clearFix {{activeIndex == 1 ? 'notime4' : ''}}">
 					<view class="nearby-center clearFix">
 						<view class="content">
-							<view class="brbott-boe7e7e7 nearby-item clearFix paddTa20" data-id="{{item.id}}" wx:for="{{usersItem}}" wx:key="index" bindtap="details">
-								<view class="f-left bo-f000ff paddLe24 wihe40">
-									 <image wx:if="{{item.avatar.s}}" src="{{item.avatar.s}}"></image>
-									 <image wx:else src="{{loge}}"></image>
-								</view>
-								<view class="f-right wi82 paddBo20">
-									<view class="fontSize30 .ma-bo7">{{item.name}}</view>
-									<view class="f999">发布数{{item.publish}}<i class="dian"></i>已找到{{item.find}}<i class="dian"></i>爱心值{{item.love}}</view>
+							<view class="nearby-center clearFix">
+								<view class="container">
+									<view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="" data-id="{{item.id}}">
+									<view class="content">
+										<view class="nearby-item clearFix paddTa20" data-id="{{item.id}}" wx:key="index" bindtap="details">
+											<view class="f-left bo-f000ff paddLe24 wihe40">
+												 <image wx:if="{{item.avatar.s}}" src="{{item.avatar.s}}"></image>
+												 <image wx:else src="{{loge}}"></image>
+											</view>
+											<view class="f-right wi82 paddBo20">
+												<view class="fontSize30 .ma-bo7">{{item.name}}</view>
+												<view class="f999">发布数{{item.publish}}<i class="dian"></i>已找到{{item.find}}<i class="dian"></i>爱心值{{item.love}}</view>
+											</view>
+										</view>
+									</view>
+										<view class="del" catchtap="del" data-index="{{index}}">取消关注</view>
+									</view>
 								</view>
 							</view>
 						</view>
