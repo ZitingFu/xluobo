@@ -80,12 +80,6 @@ Page({
         })
     },  
     cancel:function(){
-      console.log(123)
-        that = this
-        var text = ""
-        that.setData({ 
-            input:text
-        })
       wx.switchTab ({
         url:'../../index/index/index'
       })

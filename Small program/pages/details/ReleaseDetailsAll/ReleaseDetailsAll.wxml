@@ -57,7 +57,7 @@
 				<button class="bgfc9937 f-right" bindtap="sub">确认</button>
 			</view>
 		</view>
-		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7">
+		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7" style="margin-top:0px;">
 			<view class="box">
 				<view class="column">
 					<view class="item" bindtap="open3" data-open="2" class="{{open_num==2?'ff8030':''}}">

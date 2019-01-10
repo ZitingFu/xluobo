@@ -1,5 +1,5 @@
 var amapFile = require('../../../utils/amap-wx.js');
-const config = require('../../../config');
+const config = require('../../../config.js');
 var that;
 //index.js
 //获取应用实例
@@ -15,6 +15,7 @@ Page({
     activeIndex:"0",
     TypeItem:"",
     listItem:"",
+    fromItem:"",
     sjx:"https://img.qa.xluob.com/Small%20program/icon_xia_nor.png",
     sjs:"https://img.qa.xluob.com/Small%20program/5.png",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
@@ -43,38 +44,31 @@ Page({
     place:"场所",
     mtype:"物品类型"
   },
-  lookup:function(){
-    wx.navigateTo ({
-      url:'../../index/lookup/lookup?id='+3
+  search:function(e){
+      var that = this
+      var name = e.detail.value;
+      wx.request({
+        url:config.searchpeople,
+        method:"post",
+        data: {
+          "name":name,
+          "pn":1,
+          "type":1
+        },
+        success: function(res) {
+          console.log(res)
+          var from = res.data.data.list
+          that.setData({ 
+              listItem:from
+          })
+          wx.hideLoading()
+        }
+      })
+    },
+  cancel:function(){
+    wx.switchTab ({
+      url:'../../index/index/index'
     })
-  },
-  bindMultiPickerChange(e) {
-    that = this;
-    app.bindMultiPickerChange(e,that)
-  },
-  bindMultiPickerColumnChange(e) {
-    that = this;
-    app.bindMultiPickerColumnChange(e,that)
-  },
-  open:function(that){
-    that = this
-    app.open(that)
-  },
-  open1:function(that){
-    that = this
-    app.open1(that)
-  },
-  open3:function(that){
-    that = this
-    app.open3(that)
-  },
-  Type_top_number:function(e){
-    that = this
-    app.Type_top_number(e,that)
-  },
-  Type_top:function(e,that){
-      that = this
-     app.Type_top(e,that)
   },
   imgtop:function(e){
     var imgList = e.currentTarget.dataset.list;//获取data-list
@@ -99,57 +93,25 @@ Page({
     wx.showLoading({
       title: '正在加载...',
     })
-    that = this
+    console.log()
+    var that = this
     var city = that.setData.city
     var page = Number(that.data.page)
     var citynamelist =  app.data.citynamelist
     var citycode = app.data.citycode
-    var city = app.data.city
-    that.setData({
-      citynamelist:citynamelist,
-      citycode:citycode,
-      multiArray:[
-          citynamelist,
-          ["全部省","北京市"], 
-          ["全部区"],
-        ]
-    })
-    wx.request({
-      url:config.Firstclassify,
-      method:"post",
-      data:{
-        id:3
-      },
-      success: function(res) {
-       var site = res.data.data.genre
-        that.setData({
-            id:3,
-            TypeItem3:site
-        })
-      }
-    })
-    //所有场所
-    wx.request({
-      url:config.Allplace,
-      method:"post",
-      success: function(res) {
-       var site = res.data.data.site
-        that.setData({ 
-            TypeItem:site
-        })
-      }
-    })
     //机构列表
     wx.request({
       url:config.genrelist,
       method:"post",
       data: {
-          "genre":3,
-         "code":city,
-         "site":"",
-         "pn":page
+        "genre":options.id,
+        "code":city,
+        "site":"",
+        "pn":page
       },
       success: function(res) {
+        console.log(123)
+        console.log(res)
        var list = res.data.data.list
         that.setData({ 
           listItem:list
@@ -159,7 +121,7 @@ Page({
     })
   },
   onReachBottom: function(){
-     that = this;
+    var that = this;
     var city = that.data.city
     var page = Number(that.data.page)+ 1
     wx.showLoading({
@@ -195,15 +157,15 @@ Page({
       url:config.Firstclassify,
       method:"post",
       data:{
-        id:3
+        "id":2
       },
       success: function(res) {
        var site = res.data.data.genre
         that.setData({
-            id:3,
+            id:2,
             TypeItem3:site
         })
-      wx.stopPullDownRefresh();
+        wx.stopPullDownRefresh();
       }
     })
   },

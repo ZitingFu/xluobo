@@ -38,7 +38,14 @@ Page({
           ['全部省', ], 
           ['全部区',],
     ],
-    multiIndex:[0, 0, 0]
+    multiIndex:[0, 0, 0],
+    place:"场所",
+    mtype:"物品类型"
+  },
+  lookup:function(){
+    wx.navigateTo ({
+      url:'../../index/lookup/lookup?id='+1
+    })
   },
   bindMultiPickerChange(e) {
     that = this;

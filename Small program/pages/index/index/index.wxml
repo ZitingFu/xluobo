@@ -5,9 +5,8 @@
 		<view class="banner">
 			<!-- 搜索 -->
 			<view class="banner_sousuo" bindtap="search">
-				<span class="banner_sousuo_span">搜索</span>
-				<!-- <span class="binner_input"></span> -->
-			  <!-- <input class="binner_input" placeholder="搜索" onkeypress="noPermitInput(event)" auto-focus/> -->
+				<span class="wihe13 searchimg" style="top:10px;position:absolute;"></span>
+				<span class="banner_sousuo_span" style="position:absolute;left:38px;">搜索</span>
 			</view> 
 			<!-- 轮播 -->
 			<view class="banner_image">
@@ -229,7 +228,7 @@
 													<view class="f-left hidden wi80" style="line-height: 40px">{{item.user_name}}</view>
 												</view>
 												<view class="f-right wi23 f999 clearFix">
-													<view class="wihe18 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
+													<view class="wihe13 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
 													<view class="f-left length">{{item.comment_count}}</view>
 													<view class="f-right fenxi"><image src="{{fexi}}" alt=""></image></view>
 												</view>

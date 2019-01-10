@@ -1,7 +1,7 @@
 <!--logs.wxml-->
 <view class="container log-list brbott-tae7e7e7">
 	<view id="Release">
-		<view class="Research">
+		<view class="Research" bindtap="Research">
 			<span class="wihe15 searchimg"></span>
 			<span>搜索</span>
 		</view>

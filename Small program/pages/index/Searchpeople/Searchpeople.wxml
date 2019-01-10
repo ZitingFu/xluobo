@@ -2,19 +2,25 @@
 <view class="container log-list">
 	<view class=""></view>
 	<view id="peoplelist">
+		<view class="search-top" bindtap="lookup">
+			<view class="banner_sousuo" bindtap="search">
+				<span class="wihe15 searchimg"></span>
+				<span class="banner_sousuo_span">搜索</span>
+			</view> 
+		</view>
 		<!-- 机构类型 -->
 		<view class="organ_Type" wx:if="{{boolean}}">
-			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
+			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  data-nam="{{item.name}}"  wx:key="index">{{item.name}}</li>
 		</view>
 		<view class="organ_Type_number" wx:if="{{boolean3}}" >
-			<li bindtap="Type_top_number" data-currenttab2="{{index}}" data-number="{{item.id}}" class="{{currentTab2 == index ?'active3':'active'}}" wx:for="{{TypeItem3}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
+			<li bindtap="Type_top_number" data-currenttab2="{{index}}" data-number="{{item.id}}" class="{{currentTab2 == index ?'active3':'active'}}" wx:for="{{TypeItem3}}" wx:for-index="index"  data-nam="{{item.name}}"  wx:key="index">{{item.name}}</li>
 		</view>
 		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7">
 			<view class="box">
 				<view class="column">
 					<view class="item" bindtap="open3" data-open="2" class="{{open_num==2?'ff8030':''}}">
 			      		<select name="排序" id="">
-				    		<option value="">物品类型<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
+				    		<option value="">{{mtype}}<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
 				    	</select>
 			      	</view>
 			     	<view class="item" data-open="1" bindtap="open1" class="{{open_num==1?'ff8030':''}}">
@@ -36,7 +42,7 @@
 			     	</view>
 			      	 <view class="item" bindtap="open" data-open="0" class="{{open_num==0?'ff8030':''}}">
 				    	<select name="机构类型" id="">
-				    		<option value="">场所<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
+				    		<option value="">{{place}}<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
 				    	</select>
 					</view>
 			    </view>

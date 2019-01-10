@@ -38,6 +38,11 @@ Page({
     ],
     multiIndex: [110000, 0, 0]
   },
+  Research:function(){
+    wx.navigateTo({
+        url: '../../Release/seach/seach'
+    })
+  },
   bindMultiPickerChange(e) {
     that = this;
     var multiIndex = []

@@ -1,13 +1,37 @@
 <!--logs.wxml-->
-<view class="container log-list brbott-tae7e7e7">
-	<view id="Release">
-		<view class="Research">
-			<span class="wihe15 searchimg"></span>
-			<span>搜索</span>
+<view class="container log-list">
+	<view id="Research">
+		<view class="search-top clearFix brbott-tae7e7e7">
+			<view class="banner_sousuo" style="width:80%">
+			  <input class="binner_input" confirm-type="search" bindconfirm="search" value="{{input}}" placeholder="搜索" auto-focus/>
+			  <span class="wihe15 searchimg"></span>
+			</view>
+			 <span class="f-right bind-s" bindtap="cancel">取消</span>
 		</view>
-		<view class="nearby-top clearFix height47">
-			<view class="f-left f333 fontSize15">历史搜索</view>
-			<text class="f-right f999" bindtap="all">清空</text>
+	   <view wx:if="{{seet==0}}" style="margin-top:10px">
+		   <view class="nearby-top clearFix height47 brbott-boe7e7e7 bgff">
+				<view class="f-left f333 fontSize15">历史搜索</view>
+				<text class="f-right fontSize15" style="color:#1065cb"  bindtap="clearSearchStorage">清空</text>
+			</view>
+			<view class="History bgff">
+				<span wx:for="{{namelist}}" wx:key="index" bindtap="btn" data-ia="{{index}}">{{item}}</span>
+			</view>	
 		</view>
-	</view>
+		<view wx:if="{{seet==1}}" class="Release-center {{activeIndex == 1 ? 'renotime' : ''}}" >
+   		 	<view class="nearby clearFix">
+				<view class="nearby-center clearFix brbott-tae7e7e7">
+					<view class="nearby-item brbott-boe7e7e7  clearFix paddTa20" bindtap="ckdetails" data-usid="{{item.id}}"  wx:for="{{listItem}}" wx:key="index">
+						<view class="f-left bo-f000ff paddLe24 wihe40">
+							 <image wx:if="{{item.avatar.b}}" src="{{item.avatar.b}}" ></image>
+							 <image wx:else src="{{loge}}"></image>
+						</view>
+						<view class="f-right wi82 paddBo20">
+							<view class="fontSize30 .ma-bo7">{{item.name}}</view>
+							<view class="f999">发布数{{item.publish}}<i class="dian"></i>已找到{{item.founded}}<i class="dian"></i>爱心值{{item.love}}</view>
+						</view>
+					</view>
+				</view>
+			</view>
+   		</view>
+    </view>
 </view>

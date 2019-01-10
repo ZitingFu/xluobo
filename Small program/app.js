@@ -23,7 +23,8 @@ App({
     resede:"",
     newcity:"",
     newresede:"",
-    newarea:""
+    newarea:"",
+    da:"88"
   },
   bindMultiPickerChange(e,that) {
     console.log(123)
@@ -163,11 +164,11 @@ App({
     data.multiIndex[e.detail.column] = e.detail.value
     that.setData(data)
   },
-   // //排序
   Type_top_number:function(e,that){
      wx.showLoading({
         title: '正在加载...',
       })
+      var nam = e.currentTarget.dataset.nam
       var current2 = e.currentTarget.dataset.currenttab2
       var number = e.currentTarget.dataset.number
       var type_id = that.data.type_id
@@ -175,7 +176,8 @@ App({
       that.setData({
           currentTab2:current2,
           number:number,
-          boolean3:false
+          boolean3:false,
+          mtype:nam
       })
       setTimeout(function(){
         wx.request({
@@ -208,10 +210,11 @@ App({
   },
   // 点击机构选项发送请求
   Type_top:function(e,that){
+    console.log(55)
       wx.showLoading({
         title: '正在加载...',
       })
-
+      var nam = e.currentTarget.dataset.nam
       var current = e.currentTarget.dataset.currenttab
       var type_id = e.currentTarget.dataset.type_id
       var sort = that.data.number
@@ -219,7 +222,8 @@ App({
       that.setData({ 
           currentTab:current,
           type_id:type_id,
-          boolean:false
+          boolean:false,
+          place:nam
       })
       setTimeout(function(){
         wx.request({

@@ -39,7 +39,14 @@ Page({
           ['全部省', ], 
           ['全部区',],
     ],
-    multiIndex:[0, 0, 0]
+    multiIndex:[0, 0, 0],
+    place:"场所",
+    mtype:"物品类型"
+  },
+  lookup:function(){
+    wx.navigateTo ({
+      url:'../../index/lookup/lookup?id='+5
+    })
   },
   bindMultiPickerChange(e) {
     that = this;
@@ -114,6 +121,7 @@ Page({
         "id":5
       },
       success: function(res) {
+        console.log(res)
        var site = res.data.data.genre
         that.setData({
             id:5,
@@ -126,6 +134,7 @@ Page({
       url:config.Allplace,
       method:"post",
       success: function(res) {
+        console.log(res)
        var site = res.data.data.site
         that.setData({ 
             TypeItem:site

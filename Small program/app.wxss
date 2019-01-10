@@ -13,10 +13,10 @@
 	/*background-color: red;*/
 }
 /*共同*/
-#map,#details,#meFollow,#meCollection,#meComment,#Release,#me,#search,#Releaselist,#peoplelist,#ReleaseDetails,#UserName,#phone,#sax,#UserNameTop{
+#map,#details,#Research,#meFollow,#meCollection,#meComment,#Release,#me,#search,#Releaselist,#peoplelist,#ReleaseDetails,#UserName,#phone,#sax,#UserNameTop{
 	width: 100%;
 }
-#me,#UserName,#sax,#meComment,#map{
+#me,#UserName,#sax,#meComment,#map,#Research{
 	position: absolute;
 	top:0;
 	left: 0;
@@ -38,6 +38,9 @@ view,p,h1,h2,h3,h4,h5,h6,ul,li {
 /*a:hover {
   text-decoration: none;
 }*/
+.Re_search{
+	background-color:#f3f5f9; 
+}
 .option1{
 	width:13px;
 	height:15px;
@@ -240,6 +243,10 @@ option{
 	width:28px;
 	height:25px;
 }
+.wihe13{
+	width:13px;
+	height:13px;
+}
 .wihe15{
 	width:15px;
 	height:15px;
@@ -409,6 +416,23 @@ image {
 	font-size:14px;
 	padding: 0px;
 }
+.History{
+	padding: 10px 14px;
+	padding-bottom:200px; 
+}
+.History span{
+	display:inline-block;
+	height:25px;
+	font-size:12px;
+	padding:5px 10px; 
+	line-height: 25px;
+	background-color:#f3f5f9;
+	color:#333;
+	margin-right:15px;
+	text-align:center;
+	border-radius:5px;
+	margin-bottom:15px; 
+}
 /*共同*/
 /*......home.........*/
 #container_home{
@@ -576,8 +600,8 @@ image {
 }
 .xinxi{
 	position: relative;
-	top:3px;
-	left:0px;
+	top:0px;
+	left:4px;
 }
 .fenxi{
 	width:23px;
@@ -671,7 +695,7 @@ image {
 .organ_Type{
 	position:absolute;
 	left:0px;
-	top:47px;
+	top:108px;
 	z-index:3;
 	width:100%;
 	background-color:#fff;
@@ -682,7 +706,7 @@ image {
 	position:absolute;
 	text-align:center;
 	left:0px;
-	top:47px;
+	top:108px;
 	z-index:3;
 	width:100%;
 	background-color:#fff;
@@ -694,7 +718,7 @@ image {
 .Popup{
 	position: fixed;
 	width: 100%;
-	top:52px;
+	top:120px;
 	left:0;
 	bottom:0;
 	z-index:2; 
@@ -716,6 +740,20 @@ image {
 	border-radius:4px;
 }
 /*.....peoplelist.....*/
+#peoplelist .Release-top{
+	margin-top:60px; 
+}
+#peoplelist  .banner_sousuo {
+	/*width: 80%;*/
+}
+#peoplelist .searchimg{
+	position:relative;
+	top:3px;
+	margin-right:9px; 
+}
+#peoplelist .bind-s{
+	top:27px;
+} 
 #peoplelist .organ_Type_number li{
 	padding:0px 0px;
 	width:22%;
@@ -1087,4 +1125,35 @@ picker{
 }
 #me .btn:after {
   border:none;
+}
+/*Research*/
+.bgff{
+	background-color: #fff;
+}
+#Research .banner_sousuo{
+	border:1px solid #fff;
+	background-color:#f3f5f9; 
+}
+#Research .search-top{
+	height:58px;
+	background-color:#fff;
+	padding-bottom:10px; 
+	padding-top:0px;
+}
+#Research .bind-s{
+	top:26px;
+}
+#Research .searchimg{
+	position: absolute;
+	top:13px;
+}
+#Research .binner_input{
+	margin-left:23px; 
+}
+#Research .Release-center{
+	background-color:#fff;
+}
+#Research .renotime{
+	height:90%;
+	background-size:40% 30%;
 }
