@@ -15,7 +15,8 @@ Page({
     startX: 0, //开始坐标
     startY: 0,
     activeIndex:0,
-    page:1
+    page:1,
+    fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png"
   },
   details:function(e){
      var id = e.currentTarget.dataset.id

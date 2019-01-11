@@ -87,6 +87,7 @@ Page({
       })
   },
   Type_top_number:function(e){
+    console.log(666)
     that = this
     app.Type_top_number(e,that)
   },

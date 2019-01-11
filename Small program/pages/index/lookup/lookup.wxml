@@ -25,7 +25,7 @@
 						<view class="list_item brbott-boe7e7e7" wx:for="{{listItem}}"  wx:key="index" x:for-index="idx2" bindtap="ckdetails" data-usid="{{item.id}}">
 							<view class="nearby-top">
 								<view class="clearFix genre_name_top">
-									<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
+									<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.gen_name}}</view>
 									<text class="f-right f999">{{item.time}}</text>
 								</view>
 								<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
@@ -93,7 +93,7 @@
 											<view class="f-left hidden wi70" style="line-height: 40px">{{item.user_name}}</view>
 										</view>
 										<view class="f-right wi23 f999 clearFix">
-											<view class="wihe20 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
+											<view class="wihe13 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
 											<view class="f-left length">{{item.comment_count}}</view>
 											<view class="f-right fenxi"><image src="{{fexi}}" alt=""></image></view>
 										</view>

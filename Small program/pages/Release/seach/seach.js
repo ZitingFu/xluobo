@@ -108,6 +108,12 @@ Page({
       url:'../../Release/Release/Release'
     })
   },
+  ckdetails:function(e){
+     var id = e.currentTarget.dataset.usid
+     wx.navigateTo({
+        url: '../../details/ReleaseDetails/ReleaseDetails?id='+id
+      })
+  },
   onLoad: function (options) { 
     that = this
     var num = wx.getStorageSync('name')

@@ -14,8 +14,8 @@ Page({
       id: 0,
       latitude: 39.956403,
       longitude: 116.837359,
-      width:22,
-      height:20
+      width:50,
+      height:50
     }]
   },
   onLoad: function (options) {

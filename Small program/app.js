@@ -173,11 +173,20 @@ App({
       var number = e.currentTarget.dataset.number
       var type_id = that.data.type_id
       var code = (that.data.multiIndex[0])
+      if(nam=="全部"){
+        that.setData({
+          mtype:"物品类型"
+        })
+      }
+      else{
+        that.setData({
+          mtype:nam
+        })
+      }
       that.setData({
           currentTab2:current2,
           number:number,
-          boolean3:false,
-          mtype:nam
+          boolean3:false
       })
       setTimeout(function(){
         wx.request({
@@ -366,13 +375,6 @@ App({
                 "_t":app.data._t
               },
               success: function(res) {
-                console.log("88")
-                if(res.data.flag==0){
-                  that.setData({ 
-                      bottom:1
-                  })
-                }
-                console.log()
                 var from = res.data.data.list
                  wx.request({
                     url:config.questioninfo,
@@ -521,6 +523,12 @@ App({
   //     }
   //   })
   // },
+  onShareAppMessage:function(){
+    console.log(123)
+    wx.showShareMenu({
+     withShareTicket: true
+    })
+  },
   onLaunch: function (options) {
     var that = this
     //获取省市区域

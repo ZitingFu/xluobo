@@ -124,9 +124,11 @@
 											<view class="f-left hidden wi70" style="line-height: 40px">{{item.user_name}}</view>
 										</view>
 										<view class="f-right wi23 f999 clearFix">
-											<view class="wihe20 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
+											<view class="wihe13 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
 											<view class="f-left length">{{item.comment_count}}</view>
-											<view class="f-right fenxi"><image src="{{fexi}}" alt=""></image></view>
+											<button class="share fx wihe18" open-type='share' style="top:2px;margin-left:14px;">
+									    		<image style="width:88%;height: 88%" class=" " src="{{fexi}}"></image>
+									    	</button>
 										</view>
 									</view>
 				   			 	</view>

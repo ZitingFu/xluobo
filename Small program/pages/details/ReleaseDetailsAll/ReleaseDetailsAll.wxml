@@ -3,12 +3,13 @@
 	<view class=""></view>
 	<view id="peoplelist">
 		<!-- 场所 -->
-		<view class="organ_Type" wx:if="{{boolean}}">
+		<view class="organ_Type" wx:if="{{boolean}}" style="top:47px;">
 			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}" data-name="{{item.name}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
 		</view>
 		<!-- 信息类型 -->
-		<view class="organ_Type_number" wx:if="{{boolean3}}" >
+		<view class="organ_Type_number" wx:if="{{boolean3}}" style="top:47px;">
 			<view class="f-left organ_l">
+				<span class="{{9 == num_?'adv2':''}}" data-id="9" bindtap="useid"  wx:key="index">全部</span>
 				<span class="{{item.id == num_?'adv2':''}}" data-id="{{item.id}}" bindtap="useid"  wx:for="{{genreImages}}" wx:key="index">{{item.name}}</span>
 			</view>
 			<view class="f-right wi80 organ_r">
@@ -17,7 +18,7 @@
 			</view>
 		</view>
 		<!-- 时间 -->
-		<view class="organ_Type_number organ_time" wx:if="{{boolean2}}" >
+		<view class="organ_Type_number organ_time" wx:if="{{boolean2}}" style="top:52px">
 			<view class="organ_time_top">
 				<view class="box">
 					<view class="column" style="text-align:left;">
@@ -25,8 +26,8 @@
 							<picker
 							    mode="date"
 							    value="{{date}}"
-							    start="2015-09-01"
-							    end="2017-09-01"
+							    start=""
+							    end=""
 							    bindchange="bindDateChange"
 							    data-na="0"
 						  	>
@@ -39,8 +40,8 @@
 				      		<picker
 							    mode="date"
 							    value="{{date}}"
-							    start="2015-09-01"
-							    end="2017-09-01"
+							    start=""
+							    end=""
 							    bindchange="bindDateChange"
 							    data-na="1"
 							    class="f-right"
@@ -158,9 +159,11 @@
 											<view class="f-left hidden wi70" style="line-height: 40px">{{item.user_name}}</view>
 										</view>
 										<view class="f-right wi23 f999 clearFix">
-											<view class="wihe20 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
+											<view class="wihe13 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
 											<view class="f-left length">{{item.comment_count}}</view>
-											<view class="f-right fenxi"><image src="{{fexi}}" alt=""></image></view>
+											<button class="share fx wihe18" open-type='share' style="top:2px;margin-left:14px;">
+								    			<image style="width:88%;height: 88%" class=" " src="{{fexi}}"></image>
+								    		</button>
 										</view>
 									</view>
 				   			 	</view>

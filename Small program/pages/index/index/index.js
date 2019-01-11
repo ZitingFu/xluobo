@@ -329,6 +329,7 @@ Page({
       title: '正在加载中'
     })
     setTimeout(function(){
+      console.log(page)
       var activeIndex = that.data.activeIndex
       if(activeIndex == 0){
         // 附近
@@ -340,11 +341,13 @@ Page({
               "area":city
           },
           success: function(res) {
-            var from = res.data.data.list
+            console.log(res)
+            var from = that.data.fromItem1
             if(from.length==0){
                 that.setData({ 
                   boolean1:0
                 })
+              wx.hideLoading()
             }
             else{
               for (var i = 0; i < res.data.data.list.length; i++) {
@@ -356,8 +359,8 @@ Page({
                   page:page,
                   init:activeIndex
               })
+              wx.hideLoading()
             }
-            wx.hideLoading()
           }
         })
       }

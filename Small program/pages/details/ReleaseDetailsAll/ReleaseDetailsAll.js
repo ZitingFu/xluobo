@@ -37,7 +37,7 @@ Page({
     index: 0,
     TypeItem3:"",
     genreImages:"",
-    num_:1,
+    num_:9,
     start:"开始时间",
     end:"截止时间",
     multiArray: [
@@ -199,23 +199,43 @@ Page({
   useid:function(e){
     that = this
      var id = e.currentTarget.dataset.id;
+     console.log(id)
+     if(id==9){
+        that.setData({
+            TypeItem3:[{
+              id:"",
+              name:"全部"
+            }]
+        })
+     }
+     else{
+      wx.request({
+        url:config.Firstclassify,
+        method:"post",
+        data:{
+          "id":id
+        },
+        success: function(res) {
+         var site = res.data.data.genre
+         console.log("99")
+         console.log(site)
+         // site.unshift(
+         //    [{
+         //      id:"",
+         //      name:"全部"
+         //    }]
+         //  )
+         console.log(site)
+          that.setData({
+              id:1,
+              TypeItem3:site
+          })
+        }
+      })
+     }
      that.setData({
         num_:id
      })
-     wx.request({
-      url:config.Firstclassify,
-      method:"post",
-      data:{
-        "id":id
-      },
-      success: function(res) {
-       var site = res.data.data.genre
-        that.setData({
-            id:1,
-            TypeItem3:site
-        })
-      }
-    })
   },
   open:function(that){
     that = this
@@ -276,10 +296,20 @@ Page({
           "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
-         var genre = res.data.data.genre
-           that.setData({ 
-              genreImages:genre
+          console.log(res)
+         var genre = res.data.data.list
+          if(genre.length==0){
+            that.setData({ 
+                listItem:"",
+                activeIndex:1
             })
+          }
+          else{
+              that.setData({
+                listItem:genre,
+                activeIndex:0
+              })
+          }
            that.setData({
             boolean2:false
           })
@@ -299,6 +329,7 @@ Page({
   bindDateChange(e) {
     that = this
     var na = e.currentTarget.dataset.na
+    console.log(e.currentTarget.dataset.na)
     if(na==0){
       that.setData({
         start:e.detail.value
@@ -330,7 +361,6 @@ Page({
       })
   },
   Type_top_number:function(e){
-    // console.log(that.data.number,that.data.type_id,that.data.start,that.data.end,that.data.passport_id)
     that = this
     wx.showLoading({
         title: '正在加载...',
@@ -344,9 +374,6 @@ Page({
         number:number,
         boolean3:false
     })
-    console.log(that.data.number)
-    console.log(that.data.type_id)
-    console.log(that.data.passport_id)
     setTimeout(function(){
         wx.request({
         url:config.organizationQuestion,
@@ -380,9 +407,16 @@ Page({
       })
         wx.hideLoading()  
     },1000)
-     that.setData({ 
-      typeLIst:e.currentTarget.dataset.name
-    })
+    if(e.currentTarget.dataset.name=="全部"){
+      that.setData({ 
+        typeLIst:"信息类型"
+      })
+    }
+    else{
+      that.setData({ 
+        typeLIst:e.currentTarget.dataset.name
+      })
+    }
   },
   Type_top:function(e,that){
     console.log(456)
@@ -433,6 +467,7 @@ Page({
       })
          wx.hideLoading()
       },1000)
+      console.log(e.currentTarget.dataset.name)
     that.setData({ 
       place:e.currentTarget.dataset.name
     })
@@ -455,6 +490,8 @@ Page({
         },
         success: function(res) {
          var genre = res.data.data.genre
+         console.log("一级分类")
+         console.log(genre)
            that.setData({ 
               genreImages:genre
             })
@@ -471,21 +508,12 @@ Page({
           })
         }
       })
-      wx.request({
-        url:config.Firstclassify,
-        method:"post",
-        data:{
-          "id":1
-        },
-        success: function(res) {
-         var site = res.data.data.genre
-          that.setData({
-              id:1,
-              TypeItem3:site
-          })
-        }
+      that.setData({
+            TypeItem3:[{
+              id:"",
+              name:"全部"
+            }]
       })
-      console.log(options.id)
       wx.request({
         url:config.organizationQuestion,
         method:"post",

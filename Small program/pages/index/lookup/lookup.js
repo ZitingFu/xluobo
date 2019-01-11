@@ -42,20 +42,26 @@ Page({
     ],
     multiIndex:[0, 0, 0],
     place:"场所",
-    mtype:"物品类型"
+    mtype:"物品类型",
+    id:"",
+    name:""
   },
   search:function(e){
       var that = this
       var name = e.detail.value;
+      that.setData({ 
+              name:name
+      })
       wx.request({
-        url:config.searchpeople,
+        url:config.genrelist,
         method:"post",
         data: {
-          "name":name,
-          "pn":1,
-          "type":1
+          "key":name,
+          "genre":that.data.id,
+          "pn":1
         },
         success: function(res) {
+          console.log(123)
           console.log(res)
           var from = res.data.data.list
           that.setData({ 
@@ -99,14 +105,15 @@ Page({
     var page = Number(that.data.page)
     var citynamelist =  app.data.citynamelist
     var citycode = app.data.citycode
-    //机构列表
+    that.setData({ 
+        id:options.id
+    })
     wx.request({
       url:config.genrelist,
       method:"post",
       data: {
         "genre":options.id,
         "code":city,
-        "site":"",
         "pn":page
       },
       success: function(res) {
@@ -127,28 +134,53 @@ Page({
     wx.showLoading({
       title: '正在加载中'
     })
+    console.log(that.data.name.length)
     setTimeout(function(){
-      wx.request({
-        url:config.genrelist,
-        method:"post",
-        data: {
-           "code":"",
-           "site":"",
-           "sort":"",
-           "pn":page
-        },
-        success: function(res) {
-         var from = that.data.listItem
-          for (var i = 0; i < res.data.data.list.length; i++) {
-              from.push(res.data.data.list[i]);
+      if(that.data.name.length==0){
+        wx.request({
+          url:config.genrelist,
+          method:"post",
+          data: {
+              "genre":that.data.id,
+              "code":city,
+              "pn":page
+          },
+          success: function(res) {
+           var from = that.data.listItem
+            for (var i = 0; i < res.data.data.list.length; i++) {
+                from.push(res.data.data.list[i]);
+              }
+              that.setData({ 
+                  listItem:from,
+                  page:page
+              })
+            wx.hideLoading()
+          }
+        })
+      }
+      else{
+        wx.request({
+          url:config.genrelist,
+          method:"post",
+          data: {
+            "key":that.data.name,
+            "genre":that.data.id,
+            "pn":page
+          },
+          success: function(res) {
+            console.log(res)
+            var from = that.data.listItem
+            for (var i = 0; i < res.data.data.list.length; i++) {
+                  from.push(res.data.data.list[i]);
             }
             that.setData({ 
                 listItem:from,
                 page:page
             })
-          wx.hideLoading()
-        }
-      })
+            wx.hideLoading()
+          }
+        })
+      }
     },1500)
   },
   onPullDownRefresh: function(){

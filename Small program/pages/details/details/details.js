@@ -26,6 +26,9 @@ Page({
     name:"",
     followid2:""
   },
+  // onShareAppMessage:function(){
+  //    // wx.setStorageSync('_t',"")
+  // },
   mapp:function(e){
     var latitude = e.currentTarget.dataset.latitude;
     var longitude = e.currentTarget.dataset.longitude;
@@ -65,7 +68,13 @@ Page({
         urls:arry
        })
   },
+  launchApp:function(){
+    console.log(888956)
+  },
   onLoad: function (options) {
+    wx.showShareMenu({
+     withShareTicket: true
+    })
     that = this
     wx.showLoading({
       title: '正在加载...',

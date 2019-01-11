@@ -376,6 +376,8 @@ Page({
              "pn":page
           },
           success: function(res) {
+          console.log("sd")
+          console.log(res)
            var from = that.data.listItem
             for (var i = 0; i < res.data.data.list.length; i++) {
                 from.push(res.data.data.list[i]);

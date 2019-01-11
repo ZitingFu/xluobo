@@ -108,11 +108,16 @@ option{
 .active2{
 	/*background-color:#cecece;*/
 }
-.active3{
+#peoplelist .organ_Type_number .active3{
 	background-color:#fda249;
 	color:#fff;
+	border:1px solid #fff;
 }
-
+.organ_Type .active3{
+	background-color:#fda249;
+	color:#fff;
+	border:1px solid #fff;
+}
 .dian{
 	position:relative;
 	display:inline-block;
@@ -244,8 +249,8 @@ option{
 	height:25px;
 }
 .wihe13{
-	width:13px;
-	height:13px;
+	width:18px;
+	height:18px;
 }
 .wihe15{
 	width:15px;
@@ -539,11 +544,12 @@ image {
 	background-color:#f3f5f9;
 }
 .ico5{
-	width: 41rpx;
-	height: 54rpx;
+	width: 28px;
+	height:31px;
 	position:absolute;
 	bottom:23rpx;
-	left:27rpx;
+	top:5px;
+	left:9px;
 }
 /*附近机构*/
 .list-imgbox{
@@ -600,12 +606,13 @@ image {
 }
 .xinxi{
 	position: relative;
-	top:0px;
+	top:4px;
 	left:4px;
 }
 .fenxi{
-	width:23px;
-	height:22px;
+	width:18px;
+	height:18px;
+	display:inline-block;
 	position:relative;
 	top:16rpx;
 	right:2rpx;
@@ -680,6 +687,10 @@ image {
     top:13px;
     right:14px;
 }
+#Release .organ_Type_number li{
+	height:40px;
+	line-height: 40px;
+}
 #Release{
 	position: relative;
 }
@@ -744,7 +755,8 @@ image {
 	margin-top:60px; 
 }
 #peoplelist  .banner_sousuo {
-	/*width: 80%;*/
+	background-color:#f3f5f9;
+	border:1px solid #fff;
 }
 #peoplelist .searchimg{
 	position:relative;
@@ -1149,11 +1161,15 @@ picker{
 }
 #Research .binner_input{
 	margin-left:23px; 
+	font-size:14px;
+}
+input{
+	font-size:14px;
 }
 #Research .Release-center{
 	background-color:#fff;
 }
 #Research .renotime{
-	height:90%;
+	height:84%;
 	background-size:40% 30%;
 }

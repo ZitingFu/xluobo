@@ -44,7 +44,7 @@ Page({
     place:"场所",
     mtype:"物品类型"
   },
-   lookup:function(){
+  lookup:function(){
     wx.navigateTo ({
       url:'../../index/lookup/lookup?id='+2
     })
