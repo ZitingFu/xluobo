@@ -1,4 +1,5 @@
 const config = require('config');
+var feedbackApi=require('showToast')
 // const util = require('utils/utils');
 App({
   data:{
@@ -27,7 +28,9 @@ App({
     da:"88"
   },
   bindMultiPickerChange(e,that) {
-    console.log(123)
+    that.setData({ 
+      open_num:99
+    })
     var multiIndex = []
     multiIndex.push(that.data.newcity)
     multiIndex.push(that.data.newresede)
@@ -186,7 +189,8 @@ App({
       that.setData({
           currentTab2:current2,
           number:number,
-          boolean3:false
+          boolean3:false,
+          open_num:99
       })
       setTimeout(function(){
         wx.request({
@@ -232,7 +236,8 @@ App({
           currentTab:current,
           type_id:type_id,
           boolean:false,
-          place:nam
+          place:nam,
+          open_num:99
       })
       setTimeout(function(){
         wx.request({
@@ -347,6 +352,16 @@ App({
             that.setData({
               followid:!that.data.followid
             })
+            if(that.data.followid==false){
+              feedbackApi.showToast({
+                title:"收藏成功"
+              })
+            }
+            if(that.data.followid==true){
+              feedbackApi.showToast({
+                title:"取消收藏成功"
+              })
+            }
             wx.request({
                 url:config.follow,
                 method:"post",
@@ -405,10 +420,19 @@ App({
           }
           //机构详情关注
           if(ud==6){
-            console.log(123)
             that.setData({
               followid:!that.data.followid
             })
+            if(that.data.followid==false){
+              feedbackApi.showToast({
+                title:"关注成功"
+              })
+            }
+            if(that.data.followid==true){
+              feedbackApi.showToast({
+                title:"取消关注成功"
+              })
+            }
             wx.request({
               url:config.follow,
               method:"post",
@@ -454,6 +478,16 @@ App({
             that.setData({
               followid2:!that.data.followid2
             })
+            if(that.data.followid2==false){
+              feedbackApi.showToast({
+                title:"关注成功"
+              })
+            }
+            if(that.data.followid2==true){
+              feedbackApi.showToast({
+                title:"取消关注成功"
+              })
+            }
              var idd = e.currentTarget.dataset.idd
             wx.request({
               url:config.follow,
@@ -523,12 +557,6 @@ App({
   //     }
   //   })
   // },
-  onShareAppMessage:function(){
-    console.log(123)
-    wx.showShareMenu({
-     withShareTicket: true
-    })
-  },
   onLaunch: function (options) {
     var that = this
     //获取省市区域

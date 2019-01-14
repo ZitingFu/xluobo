@@ -44,6 +44,12 @@ Page({
     place:"场所",
     mtype:"物品类型"
   },
+  scroll: function (e) {
+    var that = this;
+    that.setData({
+      scrollY: e.detail.scrollTop
+    })
+  },
   lookup:function(){
     wx.navigateTo ({
       url:'../../index/lookup/lookup?id='+2

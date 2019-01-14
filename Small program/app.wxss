@@ -1,4 +1,5 @@
 @import "weui.wxss"
+@import "showToast.wxss"
 .container {
 	height: 100%;
 	display: flex;
@@ -67,7 +68,7 @@ i{
 	background-image: url(https://img.qa.xluob.com/Small%20program/withoutnews%403x.png);
 }
 .notime{
-	background-image:url(https://img.qa.xluob.com/Small%20program/withoutnews%403x.png);
+	background-image:url(https://img.qa.xluob.com/Small%20program/noreleaseinformation%402x.png);
 }
 .notime2{
 	background-image:url(https://img.qa.xluob.com/Small%20program/img_wupinglun.png);
@@ -536,6 +537,28 @@ image {
 .one_classify{
 	padding:18rpx 22rpx;
 }
+#peoplelist .topnav{
+	position: fixed;
+	top:-60px;
+	left:0;
+	width:100%;
+	background: #fff;
+	color:#333;
+	border-top:1px solid #cecece;
+	z-index: 99;
+	margin-top:0px;
+}
+.topnav{
+	position: fixed;
+	top:0;
+	left:0;
+	width:100%;
+	background: #fff;
+	color:#333;
+	border-top:1px solid #cecece;
+	z-index: 99;
+	margin-top:0px;
+}
 .box-img{
 	position: relative;
 	width: 90rpx;
@@ -563,7 +586,11 @@ image {
 	/*padding-top:10px;  */
 }
 .nearby-top .flex-item{
+	width:80%;
 	font-size:14px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
 }
 .nearby-top .f999{
 	font-size:12px;
@@ -893,6 +920,9 @@ input{
 .Releaselist_list{
 	margin-bottom:65px;
 }
+/*.bottom1 .item{
+	padding:23px 0;
+}*/
 .bottom .comment{
 	padding-left:8px; 
 	width:100%;
@@ -982,7 +1012,21 @@ input{
 	width:50%;
 	text-align:center;
 	border-radius:0px;
-	border-right:1px solid #e7e7e7;
+	position: relative;
+	/*border-right:1px solid #e7e7e7;*/
+}
+#bottom1{
+	padding:0px;
+	height:46px;
+	line-height: 46px;
+}
+.bottom .item1{
+	width:1px;
+	height:12px;
+	background-color:#e7e7e7;
+	position:absolute;
+	top:18px;
+	right:5px;
 }
 .follow2No{
 	margin-right:7px;	

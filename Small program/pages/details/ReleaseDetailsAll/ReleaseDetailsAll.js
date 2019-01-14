@@ -49,6 +49,17 @@ Page({
     place:"场所",
     na:5
   },
+  scroll: function (e) {
+    var that = this;
+    that.setData({
+      scrollY: e.detail.scrollTop
+    })
+  },
+  lookup:function(){
+    wx.navigateTo ({
+      url:'../../index/search/search'
+    })
+  },
   bindMultiPickerChange(e) {
     that = this;
        var multiIndex = []
@@ -527,6 +538,7 @@ Page({
           "passport_id":options.id
         },
         success: function(res) {
+          console.log(555)
           console.log(res)
          var list = res.data.data.list
          if(list.length==0){

@@ -1,25 +1,28 @@
 <!--logs.wxml-->
+<import src="../../../widgets/showToast.wxml" />
 <view class="container log-list brbott-tae7e7e7">
 	<view id="Release">
+	<scroll-view scroll-y="true" style="height:100vh;"  bindscroll="scroll"  scroll-top="{{scrollTop}}">
+		<template is="showToast" data="{{showToast: showToast}}" />
 		<view class="Research" bindtap="Research">
 			<span class="wihe15 searchimg"></span>
 			<span>搜索</span>
 		</view>
 		<!-- 机构类型 -->
 		<view class="organ_Type" wx:if="{{boolean}}">
-			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
+			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}"  data-type_id="{{item.id}}" data-nam="{{item.name}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
 		</view>
 		<view class="organ_Type_number" wx:if="{{boolean3}}" >
-			<li bindtap="Type_top_number" data-number="" class="{{number == 0?'ff8030':'f333'}}">默认排序</li>
-			<li bindtap="Type_top_number" data-number="1" class="{{number == 1?'ff8030':'f333'}}">距离最近</li>
-			<li bindtap="Type_top_number" data-number="2" class="{{number == 2?'ff8030':'f333'}}">爱心值优先</li>
+			<li bindtap="Type_top_number" data-number="" data-nam="默认排序" class="{{number == 0?'ff8030':'f333'}}">默认排序</li>
+			<li bindtap="Type_top_number" data-number="1" data-nam="距离最近" class="{{number == 1?'ff8030':'f333'}}">距离最近</li>
+			<li bindtap="Type_top_number" data-number="2" data-nam="爱心值优先" class="{{number == 2?'ff8030':'f333'}}">爱心值优先</li>
 		</view>
-		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7">
+		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7 {{scrollY>100 ? 'topnav' : ''}}">
 			<view class="box">
 				<view class="column">
 				    <view class="item" bindtap="open" data-open="0">
 				    	<select name="机构类型" id="">
-				    		<option class="{{open_num==0?'ff8030':''}}" value="">机构类型<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
+				    		<option class="{{open_num==0?'ff8030':''}}" value="">{{mtype}}<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
 				    	</select>
 					</view>
 			     	<view class="item" data-open="1" bindtap="open1">
@@ -41,7 +44,7 @@
 			     	</view>
 			      	<view class="item" bindtap="open3" data-open="2">
 			      		<select name="排序" id="">
-				    		<option class="{{open_num==2?'ff8030':''}}" value="">排序<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
+				    		<option class="{{open_num==2?'ff8030':''}}" value="">{{place}}<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
 				    	</select>
 			      	</view>
 			    </view>
@@ -57,7 +60,8 @@
 						</view>
 						<view class="f-right wi82 brbott-boe7e7e7 paddBo20">
 							<view class="fontSize30 .ma-bo7">{{item.name}}</view>
-							<view class="f999">发布数{{item.publish}}<i class="dian"></i>已找到{{item.founded}}<i class="dian"></i>爱心值{{item.love}}</view>
+							<view class="f999" wx:if="{{item.publish.length==0 && item.founded.length==0&& item.love.length==0}}">发布数0<i class="dian"></i>已找到0<i class="dian"></i>爱心值0</view>
+							<view class="f999" wx:else>发布数{{item.publish}}<i class="dian"></i>已找到{{item.founded}}<i class="dian"></i>爱心值{{item.love}}</view>
 						</view>
 					</view>
 				</view>
@@ -67,5 +71,6 @@
    		<view class="Popup" bindtap="open" wx:if="{{boolean}}"></view>
    		<view class="Popup" bindtap="open3" wx:if="{{boolean3}}"></view>
 		<!--三级联动 -->
+	</scroll-view>
 	</view>
 </view>

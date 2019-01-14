@@ -1,12 +1,12 @@
 {
   "pages":[
     "pages/index/index/index",
+    "pages/me/me/me", 
     "pages/index/Exhibition/Exhibition",
     "pages/index/peoplelist/peoplelist",  
     "pages/index/lookup/lookup", 
     "pages/index/matterlist/matterlist",  
     "pages/Release/seach/seach",
-    "pages/me/me/me", 
     "pages/Release/Release/Release",
     "pages/me/meFollow/meFollow",
     "pages/me/meCollection/meCollection",

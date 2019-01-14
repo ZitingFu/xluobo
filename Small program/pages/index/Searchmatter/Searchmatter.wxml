@@ -1,7 +1,7 @@
 <!--logs.wxml-->
 <view class="container log-list">
-	<view class=""></view>
 	<view id="peoplelist">
+	<scroll-view scroll-y="true" style="height:100vh;"  bindscroll="scroll"  scroll-top="{{scrollTop}}">
 		<view class="search-top" bindtap="lookup">
 			<view class="banner_sousuo" bindtap="search">
 				<span class="wihe15 searchimg"></span>
@@ -15,7 +15,7 @@
 		<view class="organ_Type_number" wx:if="{{boolean3}}" >
 			<li bindtap="Type_top_number" data-currenttab2="{{index}}" data-number="{{item.id}}" class="{{currentTab2 == index ?'active3':'active'}}" wx:for="{{TypeItem3}}" wx:for-index="index" data-nam="{{item.name}}"  wx:key="index">{{item.name}}</li>
 		</view>
-		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7">
+		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7 {{scrollY>50 ? 'topnav' : ''}}">
 			<view class="box">
 				<view class="column">
 					<view class="item" bindtap="open3" data-open="2" class="{{open_num==2?'ff8030':''}}">
@@ -142,5 +142,6 @@
    		<view class="Popup" bindtap="open" wx:if="{{boolean}}"></view>
    		<view class="Popup" bindtap="open3" wx:if="{{boolean3}}"></view>
 		<!--三级联动 -->
+	</scroll-view>	
 	</view>
 </view>

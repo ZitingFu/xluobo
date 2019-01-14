@@ -7,6 +7,8 @@ var that;
 //获取应用实例
 Page({
   data: {
+    scrollTop:'0',
+    scrollY:'',
     rightlist:"",
     notime:"https://img.qa.xluob.com/Small%20program/Notime.png",
     boolean1:"",
@@ -43,6 +45,12 @@ Page({
     sliderLeft: 0,
     create_time1:"",
     create_time2:""
+  },
+  scroll: function (e) {
+    var that = this;
+    that.setData({
+      scrollY: e.detail.scrollTop
+    })
   },
   all:function(){
     wx.switchTab ({

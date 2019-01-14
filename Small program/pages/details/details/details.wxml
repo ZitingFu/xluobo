@@ -1,5 +1,7 @@
+<import src="../../../widgets/showToast.wxml" />
 <view class="container log-list">
 	<view id="Releaselist">
+	<template is="showToast" data="{{showToast: showToast}}" />
 		<view class="list_item">
 			<view class="nearby-top brbott-tae7e7e7">
 				<view class="clearFix genre_name_top">
@@ -145,8 +147,8 @@
 		<view class="box">
 			<view class="column" style="text-align:left;">
 			    <view class="item" style="width: 75%;">
-			    	<view class="comment">
-					  	<input cursor-spacing="20" class="" style="" bindinput="sear" name="{{input}}" placeholder="写评论" auto-focus/>
+			    	<view class="comment" style="line-height: 27px;">
+					  	<input cursor-spacing="20" class=""  bindinput="sear" name="{{input}}" placeholder="" auto-focus/>
 					</view>
 			    </view>
 			    <view class="item">

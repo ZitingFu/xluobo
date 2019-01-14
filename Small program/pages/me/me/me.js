@@ -13,7 +13,8 @@ Page({
     city:"",
     name:"点击登录",
     img:"https://img.qa.xluob.com/Small%20program/img_touxiang.png",
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    showPhone:""
   },
   bindphone:function(){
     wx.navigateTo({
@@ -32,9 +33,13 @@ Page({
        "_t":wx.getStorageSync('_t')
       },
       success:function(res){
-       var info = res.data.data.info;
+      var info = res.data.data.info;
+      var phone = info.phone
+      var showPhone =  phone.replace(/^(\d{3})\d{4}(\d+)/,"$1****$2")
+        console.log(showPhone)
         that.setData({
-          info:info
+          info:info,
+          showPhone:showPhone
         })
         wx.hideLoading()
       }

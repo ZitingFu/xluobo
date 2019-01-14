@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
+var feedbackApi=require('../../../showToast.js');
 var that;
 //index.js
 //获取应用实例
@@ -83,7 +84,7 @@ Page({
           wx.showToast({
             title: '取消成功',
             icon: '',
-            duration: 2000
+            duration: 1000
           })
         }
     })

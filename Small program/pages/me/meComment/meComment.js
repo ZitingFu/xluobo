@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
+var feedbackApi=require('../../../showToast.js');
 var that;
 //index.js
 //获取应用实例
@@ -30,6 +31,7 @@ Page({
     }
   },
   openConfirm: function (e) {
+    console.log(45645646)
     that = this
     var dd = e.currentTarget.dataset.dd;
     wx.showModal({
@@ -47,6 +49,11 @@ Page({
                     "id":dd
                   },
                   success:function(res){
+                    wx.showToast({
+                      title: '删除成功',
+                      icon: 'success',
+                      duration: 1000
+                    })
                     that.onLoad()
                     console.log(res)
                   }

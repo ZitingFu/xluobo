@@ -1,7 +1,8 @@
 <!--logs.wxml-->
 <view class="container log-list">
 	<view id="Research">
-		<view class="search-top clearFix brbott-tae7e7e7">
+	<scroll-view scroll-y="true" style="height:100vh;"  bindscroll="scroll"  scroll-top="{{scrollTop}}">
+		<view class="search-top clearFix brbott-tae7e7e7 {{scrollY>10 ? 'topnav' : ''}}">
 			<view class="banner_sousuo" style="width:80%">
 			  <input class="binner_input" confirm-type="search" bindconfirm="search" value="{{input}}" placeholder="搜索" auto-focus/>
 			  <span class="wihe15 searchimg"></span>
@@ -33,5 +34,6 @@
 				</view>
 			</view>
    		</view>
+	</scroll-view>	
     </view>
 </view>

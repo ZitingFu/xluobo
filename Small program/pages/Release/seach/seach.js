@@ -14,6 +14,12 @@ Page({
     input:"",
     page:1
   },
+   scroll: function (e) {
+    var that = this;
+    that.setData({
+      scrollY: e.detail.scrollTop
+    })
+  },
   btn:function(e){
     that = this
     var index = e.currentTarget.dataset.ia

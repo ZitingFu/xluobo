@@ -1,6 +1,8 @@
 <!--logs.wxml-->
+<import src="../../../widgets/showToast.wxml" />
 <view class="container log-list">
 	<view id="ReleaseDetails">
+		<template is="showToast" data="{{showToast: showToast}}" />
 		<view class="list_item brbott-tae7e7e7">
 		 	<view class="Releaselist_follow brbote7">
 				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-boe7e7e7">
@@ -120,7 +122,7 @@
 									 	<image wx:if="{{item.avatar.s}}" src="{{item.avatar.s}}"></image>
 									 	<image wx:else src="{{loge}}"></image>
 									</view>
-									<view class="f-left hidden wi70" style="line-height: 40px">{{item.user_name}}</view>
+									<view class="f-left hidden wi70" style="line-height: 40px;height: 40px">{{item.user_name}}</view>
 								</view>
 								<view class="f-right wi23 f999 clearFix">
 									<view class="wihe13 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
@@ -136,18 +138,16 @@
 			</view>
 		</view>
 		<!-- 底部 -->
-		<view class="bottom">
+		<view class="bottom" id="bottom1">
 			<view class="box">
 				<view class="column">
-				    <button class="item" style="font-size:14px;line-height:0px;background-color:#fff;" data-ud="6" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+				    <button class="item" style="font-size:14px;line-height:46px;background-color:#fff;" data-ud="6" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 				    	<image wx:if="{{followid == false}}" class="love" src="{{love}}"></image>
 				    	<image wx:if="{{followid == true}}" class="love" src="https://img.qa.xluob.com/Small%20program/love.jpg"></image>
 				    	<span wx:if="{{followid == true}}">关注</span>
 						<span wx:if="{{followid == false}}" style="color:#fda249">已关注</span>
+						<view class="item1"></view> 
 				    </button>
-				    <!-- <view class="item">
-						私信
-					</view>  -->
 				    <view class="item" data-linkphone="{{fromItem.linkphone}}" bindtap="dialphone">
 				    	<image class="phone"  src="{{phone}}"></image>
 						电话联系

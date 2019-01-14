@@ -39,9 +39,8 @@
 				<li bindtap="phone">
 					<i class="f-left fontSize15 f999">绑定手机号码</i>
 					<i class="f-right clearFix UserName-right">
-						<i wx:if="{{infoItem.phone != ''}}" class="f-left f333 fontSize15">{{infoItem.phone}}</i>
+						<i wx:if="{{infoItem.phone.length>1}}" class="f-left f333 fontSize15">{{infoItem.phone}}</i>
 						<i wx:else class="f-left f333 fontSize15">未绑定</i>
-						<i class="f-left f333">{{infoItem.phone}}</i>
 						<i class="rightimg f-left"></i>
 					</i>
 				</li>

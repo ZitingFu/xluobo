@@ -12,7 +12,8 @@
 					<view class="f-right paddBo20" style="width:79%;">
 						<view wx:if="{{info.name.length>1}}" class="fontSize15 .ma-bo7">{{info.name}}</view>
 						<view wx:else class="fontSize15 .ma-bo7">点击登录</view>
-						<view class="f999"><span catchtap="bindphone" class="bindphone">绑定手机号码</span></view>
+						<view wx:if="{{info.phone.length<1}}" class="f999"><span catchtap="bindphone" class="bindphone">绑定手机号码</span></view>
+						<view wx:else class="f999"><span catchtap="bindphone" class="bindphone">{{showPhone}}</span></view>
 						<i class="f-right rightimg"></i>
 					</view>
 				</view>

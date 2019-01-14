@@ -1,7 +1,8 @@
 <!--logs.wxml-->
+<import src="../../../widgets/showToast.wxml" />
 <view class="container log-list">
-	<view class=""></view>
 	<view id="meCollection">
+		<template is="showToast" data="{{showToast: showToast}}" />
    		<view class="Release-center" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix {{activeIndex == 1 ? 'notime3' : ''}}">

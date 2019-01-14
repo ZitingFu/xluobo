@@ -1,5 +1,7 @@
+<import src="../../../widgets/showToast.wxml" />
 <view class="container log-list">
 	<view id="meComment">
+		<template is="showToast" data="{{showToast: showToast}}" />
 		<view class="Release-center brbott-tae7e7e7 {{activeIndex == 1 ? 'notime2' : ''}}" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">

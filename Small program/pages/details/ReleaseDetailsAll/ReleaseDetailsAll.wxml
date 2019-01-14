@@ -1,13 +1,19 @@
 <!--logs.wxml-->
 <view class="container log-list">
-	<view class=""></view>
 	<view id="peoplelist">
+	<scroll-view scroll-y="true" style="height:100vh;"  bindscroll="scroll"  scroll-top="{{scrollTop}}">
+		<view class="search-top" bindtap="lookup" style="margin-bottom:60px;">
+			<view class="banner_sousuo" bindtap="search">
+				<span class="wihe15 searchimg"></span>
+				<span class="banner_sousuo_span">搜索</span>
+			</view> 
+		</view>
 		<!-- 场所 -->
-		<view class="organ_Type" wx:if="{{boolean}}" style="top:47px;">
+		<view class="organ_Type" wx:if="{{boolean}}" style="top:109px;">
 			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}" data-name="{{item.name}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
 		</view>
 		<!-- 信息类型 -->
-		<view class="organ_Type_number" wx:if="{{boolean3}}" style="top:47px;">
+		<view class="organ_Type_number" wx:if="{{boolean3}}" style="top:107px;">
 			<view class="f-left organ_l">
 				<span class="{{9 == num_?'adv2':''}}" data-id="9" bindtap="useid"  wx:key="index">全部</span>
 				<span class="{{item.id == num_?'adv2':''}}" data-id="{{item.id}}" bindtap="useid"  wx:for="{{genreImages}}" wx:key="index">{{item.name}}</span>
@@ -18,7 +24,7 @@
 			</view>
 		</view>
 		<!-- 时间 -->
-		<view class="organ_Type_number organ_time" wx:if="{{boolean2}}" style="top:52px">
+		<view class="organ_Type_number organ_time" wx:if="{{boolean2}}" style="top:112px">
 			<view class="organ_time_top">
 				<view class="box">
 					<view class="column" style="text-align:left;">
@@ -58,7 +64,7 @@
 				<button class="bgfc9937 f-right" bindtap="sub">确认</button>
 			</view>
 		</view>
-		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7" style="margin-top:0px;">
+		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7 {{scrollY>10 ? 'topnav' : ''}}">
 			<view class="box">
 				<view class="column">
 					<view class="item" bindtap="open3" data-open="2" class="{{open_num==2?'ff8030':''}}">
@@ -156,7 +162,7 @@
 												<image wx:if="{{item.avatar.length != 0}}" src="{{item.avatar.s}}" alt=""></image>
 											 	<image wx:else src="{{loge}}"></image>
 											</view>
-											<view class="f-left hidden wi70" style="line-height: 40px">{{item.user_name}}</view>
+											<view class="f-left hidden wi70" style="line-height: 40px;height: 40px">{{item.user_name}}</view>
 										</view>
 										<view class="f-right wi23 f999 clearFix">
 											<view class="wihe13 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
@@ -178,5 +184,6 @@
    		<view class="Popup" bindtap="open3" wx:if="{{boolean3}}"></view>
    		<view class="Popup" bindtap="open1" wx:if="{{boolean2}}"></view>
 		<!--三级联动 -->
+	</scroll-view>		
 	</view>
 </view>

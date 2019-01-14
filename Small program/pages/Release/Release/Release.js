@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config');
+var feedbackApi=require('../../../showToast.js');
 var that;
 //index.js
 //获取应用实例
@@ -36,7 +37,15 @@ Page({
           ['全部市', ], 
           ['全部区',],
     ],
-    multiIndex: [110000, 0, 0]
+    multiIndex: [110000, 0, 0],
+    mtype:"机构类型",
+    place:"排序"
+  },
+  scroll: function (e) {
+    var that = this;
+    that.setData({
+      scrollY: e.detail.scrollTop
+    })
   },
   Research:function(){
     wx.navigateTo({
@@ -45,6 +54,9 @@ Page({
   },
   bindMultiPickerChange(e) {
     that = this;
+    that.setData({ 
+      open_num:99
+    })
     var multiIndex = []
     multiIndex.push(that.data.newcity)
     multiIndex.push(that.data.newresede)
@@ -203,19 +215,22 @@ Page({
     app.open3(that)
   },
   Type_top_number:function(e){
-    console.log(456)
     that = this
       wx.showLoading({
         title: '正在加载...',
       })
+      var nam = e.currentTarget.dataset.nam
       var current2 = e.currentTarget.dataset.currenttab2
       var number = e.currentTarget.dataset.number
+      console.log(number)
       var type_id = that.data.type_id
       var code = (that.data.multiIndex[0])
       that.setData({
           currentTab2:current2,
           number:number,
-          boolean3:false
+          boolean3:false,
+          open_num:99,
+           place:nam
       })
       setTimeout(function(){
         wx.request({
@@ -247,19 +262,31 @@ Page({
       },1000)
   },
   Type_top:function(e){
-    console.log(123)
+    console.log(8888)
      that = this
       wx.showLoading({
         title: '正在加载...',
       })
+      var nam = e.currentTarget.dataset.nam
       var current = e.currentTarget.dataset.currenttab
       var type_id = e.currentTarget.dataset.type_id
       var sort = that.data.number
       var code = (that.data.multiIndex[0])
+      if(nam=="所有场所"){
+        that.setData({
+          mtype:"物品类型"
+        })
+      }
+      else{
+        that.setData({
+          mtype:nam
+        })
+      }
       that.setData({ 
           currentTab:current,
           type_id:type_id,
-          boolean:false
+          boolean:false,
+          open_num:99
       })
       console.log(sort,type_id)
       setTimeout(function(){
@@ -335,11 +362,10 @@ Page({
          "_t":wx.getStorageSync('_t')
       },
       success: function(res) {
-        console.log(res)
        var list = res.data.data.list
-        // that.setData({ 
-        //   listItem:list
-        // })
+        that.setData({ 
+          listItem:list
+        })
         if(list.length==0){
             that.setData({ 
               listItem:"",
@@ -376,8 +402,11 @@ Page({
              "pn":page
           },
           success: function(res) {
-          console.log("sd")
-          console.log(res)
+          if(res.data.data.list.length<1){
+            feedbackApi.showToast({
+                title:"没有数据了.."
+            })
+          }
            var from = that.data.listItem
             for (var i = 0; i < res.data.data.list.length; i++) {
                 from.push(res.data.data.list[i]);
@@ -386,6 +415,7 @@ Page({
                   listItem:from,
                   page:page
               })
+
             wx.hideLoading()
           }
         })

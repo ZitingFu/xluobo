@@ -46,6 +46,12 @@ Page({
     id:"",
     name:""
   },
+  scroll: function (e) {
+    var that = this;
+    that.setData({
+      scrollY: e.detail.scrollTop
+    })
+  },
   search:function(e){
       var that = this
       var name = e.detail.value;
@@ -61,12 +67,19 @@ Page({
           "pn":1
         },
         success: function(res) {
-          console.log(123)
-          console.log(res)
           var from = res.data.data.list
-          that.setData({ 
-              listItem:from
-          })
+          if(from.length==0){
+              that.setData({ 
+                 listItem:"",
+                activeIndex:1
+              })
+            }
+          else{
+              that.setData({ 
+                listItem:from,
+                activeIndex:0
+              })
+          }
           wx.hideLoading()
         }
       })

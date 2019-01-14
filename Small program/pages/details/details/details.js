@@ -1,4 +1,5 @@
 var amapFile = require('../../../utils/amap-wx.js');
+var feedbackApi=require('../../../showToast.js');
 const config = require('../../../config');
 var that;
 var set;
