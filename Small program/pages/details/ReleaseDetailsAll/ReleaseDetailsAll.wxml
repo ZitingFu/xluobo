@@ -1,15 +1,41 @@
 <!--logs.wxml-->
 <view class="container log-list">
 	<view id="peoplelist">
-	<scroll-view scroll-y="true" style="height:100vh;"  bindscroll="scroll"  scroll-top="{{scrollTop}}">
-		<view class="search-top" bindtap="lookup" style="margin-bottom:60px;">
+		<view id="peoplelist_search-top">
+			<view class="search-top" bindtap="lookup" style="margin-bottom:60px;">
 			<view class="banner_sousuo" bindtap="search">
 				<span class="wihe15 searchimg"></span>
 				<span class="banner_sousuo_span">搜索</span>
 			</view> 
-		</view>
+			</view>
+			<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7">
+			<view class="box">
+				<view class="column">
+					<view class="item" bindtap="open3" data-open="2" class="{{open_num==2?'ff8030':''}}">
+			      		<select name="排序" id="">
+				    		<option value="">{{typeLIst}}<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
+				    	</select>
+			      	</view>
+			     	<view class="item" data-open="1" bindtap="open1" class="{{open_num==1?'ff8030':''}}">
+						<select name="区域" id="" >
+							<view class="section">
+							    <view class="picker">
+							      <option value="">发布时间<i class="{{open_num==1?'sjs':'sjx'}}"></i></option>
+							    </view>
+							</view>
+				    	</select>
+			     	</view>
+			      	 <view class="item" bindtap="open" data-open="0" class="{{open_num==0?'ff8030':''}}">
+				    	<select name="机构类型" id="">
+				    		<option value="">{{place}}<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
+				    	</select>
+					</view>
+			    </view>
+	   		 </view>
+   		 </view>
+   		</view>
 		<!-- 场所 -->
-		<view class="organ_Type" wx:if="{{boolean}}" style="top:109px;">
+		<view class="organ_Type" wx:if="{{boolean}}" style="top:107px;">
 			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}" data-name="{{item.name}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
 		</view>
 		<!-- 信息类型 -->
@@ -24,7 +50,7 @@
 			</view>
 		</view>
 		<!-- 时间 -->
-		<view class="organ_Type_number organ_time" wx:if="{{boolean2}}" style="top:112px">
+		<view class="organ_Type_number organ_time" wx:if="{{boolean2}}" style="top:107px">
 			<view class="organ_time_top">
 				<view class="box">
 					<view class="column" style="text-align:left;">
@@ -64,31 +90,6 @@
 				<button class="bgfc9937 f-right" bindtap="sub">确认</button>
 			</view>
 		</view>
-		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7 {{scrollY>10 ? 'topnav' : ''}}">
-			<view class="box">
-				<view class="column">
-					<view class="item" bindtap="open3" data-open="2" class="{{open_num==2?'ff8030':''}}">
-			      		<select name="排序" id="">
-				    		<option value="">{{typeLIst}}<i class="{{open_num==2?'sjs':'sjx'}}"></i></option>
-				    	</select>
-			      	</view>
-			     	<view class="item" data-open="1" bindtap="open1" class="{{open_num==1?'ff8030':''}}">
-						<select name="区域" id="" >
-							<view class="section">
-							    <view class="picker">
-							      <option value="">发布时间<i class="{{open_num==1?'sjs':'sjx'}}"></i></option>
-							    </view>
-							</view>
-				    	</select>
-			     	</view>
-			      	 <view class="item" bindtap="open" data-open="0" class="{{open_num==0?'ff8030':''}}">
-				    	<select name="机构类型" id="">
-				    		<option value="">{{place}}<i class="{{open_num==0?'sjs':'sjx'}}"></i></option>	
-				    	</select>
-					</view>
-			    </view>
-	   		 </view>
-   		 </view>
    		<view class="Release-center {{activeIndex == 1 ? 'notime' : ''}}" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
@@ -184,6 +185,5 @@
    		<view class="Popup" bindtap="open3" wx:if="{{boolean3}}"></view>
    		<view class="Popup" bindtap="open1" wx:if="{{boolean2}}"></view>
 		<!--三级联动 -->
-	</scroll-view>		
 	</view>
 </view>

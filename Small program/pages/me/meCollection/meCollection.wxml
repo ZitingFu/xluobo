@@ -5,8 +5,8 @@
 		<template is="showToast" data="{{showToast: showToast}}" />
    		<view class="Release-center" >
    		 	<view class="nearby clearFix">
-				<view class="nearby-center clearFix {{activeIndex == 1 ? 'notime3' : ''}}">
-					<view class="nearby-top brbott-tae7e7e7" data-id="{{item.id}}" wx:for="{{questionItem}}" wx:key="" bindtap="details">
+				<view class="nearby-center brbott-tae7e7e7 clearFix {{activeIndex == 1 ? 'notime3' : ''}}">
+					<view class="nearby-top brbott-boe7e7e7" data-id="{{item.id}}" wx:for="{{questionItem}}" wx:key="" bindtap="details">
 						<view class="clearFix genre_name_top">
 							<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 							<text class="f-right f999">{{item.time}}</text>

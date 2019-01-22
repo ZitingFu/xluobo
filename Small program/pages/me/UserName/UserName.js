@@ -107,6 +107,10 @@ Page({
   },
   onLoad: function (options) {
     that = this
+    wx.showLoading({
+      title: '正在加载中'
+    })
+    console.log(wx.getStorageSync('_t'))
     wx.request({
       url:config.melist,
       method:"post",
@@ -114,12 +118,14 @@ Page({
        "_t":wx.getStorageSync('_t')
       },
       success:function(res){
+        console.log(res)
       var info = res.data.data.info;
-       var name = info.name
-       var avatar = info.avatar.b
+      var name = info.name
+      var avatar = info.avatar.b
         that.setData({
           infoItem:info
         })
+       wx.hideLoading()
       }
     })
   },

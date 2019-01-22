@@ -26,11 +26,11 @@ Page({
     fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
     jing:"https://img.qa.xluob.com/Small%20program/1.png",
     zhfa:"",
-    one1:"https://img.qa.xluob.com/Small%20program/recognize_publi%402x.png",
-    one2:"https://img.qa.xluob.com/Small%20program/renwu_public.png",
-    one3:"https://img.qa.xluob.com/Small%20program/find_public%402x.png",
-    one4:"https://img.qa.xluob.com/Small%20program/lookfor_public%402x.png",
-    one5:"https://img.qa.xluob.com/Small%20program/goodperson_publicwelfare%402x.png",
+    one1:"https://img.qa.xluob.com/Small%20program/home_icon_xr.png",
+    one2:"https://img.qa.xluob.com/Small%20program/home_icon_xw.png",
+    one3:"https://img.qa.xluob.com/Small%20program/home_icon_renren.png",
+    one4:"https://img.qa.xluob.com/Small%20program/home_icon_rw.png",
+    one5:"https://img.qa.xluob.com/Small%20program/home_icon_activity.png",
     inputShowed: false,
     inputVal:"",
     indicatorColor:"#fda249",
@@ -68,6 +68,10 @@ Page({
       wx.navigateTo({
         url: '../../details/details/details?id='+id
       })
+  },
+  tolower:function(){
+     that = this;
+    that.onReachBottom()
   },
   //寻人，寻物
   Latelytop:function(e){
@@ -123,11 +127,6 @@ Page({
         urls:arry
        })
   },
-  //切换点击,请求当前页面页数,让page恢复到1逻辑
-  //1.先把刚进来页面展示下标存入init
-  //2.点击后先判断第一次跟现在点击是否是同一个
-  //3.如果不是同一个page=1
-  //4.如果是同一个page不变,把现在的下标存入到init里面
   tabClick: function (e) {
     this.setData({
         sliderOffset: e.currentTarget.offsetLeft,
@@ -166,168 +165,224 @@ Page({
         });
       }
     });
-     // 引入高德地图
-    wx.showLoading({
-      title: '正在加载...',
-    })
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        // var markersData = {
-        //   latitude: res.latitude,//纬度
-        //   longitude: res.longitude,//经度
-        //   key: that.data.MapKey
-        // };
-        var addArr = [];
-        var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
-        myAmapFun.getRegeo({
-          success: function (data) {
-            console.log(data)
-            var city = data[0].regeocodeData.addressComponent.city
-            // console.log(data[0].regeocodeData.addressComponent)
-            var city = data[0].regeocodeData.addressComponent.adcode
-            that.setData({
-              city:city
-            })
-            console.log(config)
-            //轮播图
-            wx.request({
-              url:config.Rotation,
-              method:"post",
-              data: {
-                 "city":city,
-                 "_t":wx.getStorageSync('_t')
-              },
-              success: function(res) {
-                console.log(res)
-               var banner = res.data.data.banner
-                that.setData({ 
-                    bannerImages:banner
-                })
-              }
-            })
-            //一级分类
-            wx.request({
-              url:config.Firstclassify,
-              method:"post",
-              data: {
-                "id":0,
-                "_t":wx.getStorageSync('_t')
-              },
-              success: function(res) {
-               var genre = res.data.data.genre
-                 that.setData({ 
-                    genreImages:genre
-                  })
-                 wx.hideLoading()
-              }
-            })
-
-            //附近机构
-            wx.request({
-              url:config.nearbyOutfit,
-              method:"post",
-              data: {
-                 "city":city,
-                  "_t":wx.getStorageSync('_t')
-              },
-              success: function(res) {
-               var list = res.data.data.list
-               var indearry = []
-               for(var a=0;a<list.length;a++){
-                  indearry.push(a)
-               }
-                 that.setData({ 
-                    listItem:list,
-                    rightlist:list.length-1
-                  })
-                 wx.hideLoading()
-              }
-            })
-            console.log("城市")
-            console.log(city)
-            // 附近
-            wx.request({
-              url:config.nearby,
-              method:"post",
-              data: {
-                  "pn":1,
-                  "area":city,
-                   "_t":wx.getStorageSync('_t')
-              },
-              success: function(res) {
-                console.log("附近数据")
-                console.log(res)
-                var from = res.data.data.list
-                if(from.length==0){
-                    that.setData({ 
-                      boolean1:0
-                    })
-                }
-                else{
-                  var d = []
-                  var now = res.data.data.now
-                  for(var a=0;a<from.length;a++){
-                    var create_time = Number(from[a].create_time)
-                    var expire = Number(from[a].expire*86400)
-                    var end = Number(create_time+expire)
-                    var difference = Math.ceil(Number(end-now)/86400)
-                    d.push(difference)
-                  }
-                  that.setData({
-                      create_time1:d,
-                      fromItem1:from,
-                      boolean1:1
-                  })
-                }
-                wx.hideLoading()
-              }
-            })
-            // 最近
-            wx.request({
-              url:config.LAtely,
-              method:"post",
-              data: {
-                  "pn":1,
-                  "area":city,
-                   "_t":wx.getStorageSync('_t')
-              },
-              success: function(res) {
-                console.log("最近")
-                console.log(res.data.data.list)
-                var from = res.data.data.list
-                if(from.length==0){
-                    that.setData({ 
-                      boolean2:0
-                    })
-                }
-                else{
-                // 倒计时 = 发布时间+天数-现在的时间
-                // 现在时间
-                var d = []
-                var now = res.data.data.now
-                for(var a=0;a<from.length;a++){
-                  var create_time = Number(from[a].create_time)
-                  var expire = Number(from[a].expire*86400)
-                  var end = Number(create_time+expire)
-                  var difference = Math.ceil(Number(end-now)/86400)
-                  d.push(difference)
-                }
-                  that.setData({ 
-                      create_time2:d,
-                      fromItem2:from,
-                      boolean2:1
-                  })
-                }
-                wx.hideLoading()
-              }
-            })
-            wx.hideLoading()
-            wx.stopPullDownRefresh();
-          }
-        });
+    //一级分类
+    wx.request({
+      url:config.Firstclassify,
+      method:"post",
+      data: {
+        "id":0,
+        "_t":wx.getStorageSync('_t')
+      },
+      success: function(res) {
+       var genre = res.data.data.genre
+         that.setData({ 
+            genreImages:genre
+          })
+         wx.hideLoading()
       }
     })
+    //附近机构
+    wx.request({
+      url:config.nearbyOutfit,
+      method:"post",
+      data: {
+         "city":city,
+          "_t":wx.getStorageSync('_t')
+      },
+      success: function(res) {
+       var list = res.data.data.list
+       var indearry = []
+       for(var a=0;a<list.length;a++){
+          indearry.push(a)
+       }
+         that.setData({ 
+            listItem:list,
+            rightlist:list.length-1
+          })
+         wx.hideLoading()
+      }
+    })
+    // 最近
+    wx.request({
+      url:config.LAtely,
+      method:"post",
+      data: {
+          "pn":1,
+          "area":city,
+           "_t":wx.getStorageSync('_t')
+      },
+      success: function(res) {
+        var from = res.data.data.list
+        if(from.length==0){
+            that.setData({ 
+              boolean2:0
+            })
+        }
+        else{
+        // 倒计时 = 发布时间+天数-现在的时间
+        // 现在时间
+        var d = []
+        var now = res.data.data.now
+        for(var a=0;a<from.length;a++){
+          var create_time = Number(from[a].create_time)
+          var expire = Number(from[a].expire*86400)
+          var end = Number(create_time+expire)
+          var difference = Math.ceil(Number(end-now)/86400)
+          d.push(difference)
+        }
+          that.setData({ 
+              create_time2:d,
+              fromItem2:from,
+              boolean2:1
+          })
+        }
+      }
+    })
+    var cty = wx.getStorageSync('city')
+    if(cty !=''){
+      //轮播图*
+        wx.request({
+          url:config.Rotation,
+          method:"post",
+          data: {
+             "city":wx.getStorageSync('city'),
+             "_t":wx.getStorageSync('_t')
+          },
+          success: function(res) {
+           var banner = res.data.data.banner
+            that.setData({ 
+                bannerImages:banner
+            })
+          }
+        })
+        // 附近*
+        wx.request({
+          url:config.nearby,
+          method:"post",
+          data: {
+              "pn":1,
+              "area":wx.getStorageSync('city'),
+               "_t":wx.getStorageSync('_t')
+          },
+          success: function(res) {
+            var from = res.data.data.list
+            if(from.length==0){
+                that.setData({ 
+                  boolean1:0
+                })
+              wx.hideLoading()  
+            }
+            else{
+              var d = []
+              var now = res.data.data.now
+              for(var a=0;a<from.length;a++){
+                var create_time = Number(from[a].create_time)
+                var expire = Number(from[a].expire*86400)
+                var end = Number(create_time+expire)
+                var difference = Math.ceil(Number(end-now)/86400)
+                d.push(difference)
+              }
+              that.setData({
+                  create_time1:d,
+                  fromItem1:from,
+                  boolean1:1
+              })
+            }
+            wx.hideLoading()
+          }
+        })
+    }else{
+      wx.showModal({
+        title:'',
+        content:"小萝卜公益需要获取您的位置",
+        confirmText:"确定",
+        cancelText:"取消",
+         success: function (res) {
+            wx.showLoading({
+              title: '正在加载...',
+            })
+            if (res.confirm) {
+              var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
+              myAmapFun.getRegeo({
+                success: function (data) {
+                  var city = data[0].regeocodeData.addressComponent.adcode
+                  that.setData({
+                    city:city
+                  })
+                   wx.setStorageSync('city',city)
+                  //轮播图*
+                  wx.request({
+                    url:config.Rotation,
+                    method:"post",
+                    data: {
+                       "city":wx.getStorageSync('city'),
+                       "_t":wx.getStorageSync('_t')
+                    },
+                    success: function(res) {
+                     var banner = res.data.data.banner
+                      that.setData({ 
+                          bannerImages:banner
+                      })
+                    }
+                  })
+                  // 附近*
+                  wx.request({
+                    url:config.nearby,
+                    method:"post",
+                    data: {
+                        "pn":1,
+                        "area":wx.getStorageSync('city'),
+                         "_t":wx.getStorageSync('_t')
+                    },
+                    success: function(res) {
+                      var from = res.data.data.list
+                      if(from.length==0){
+                          that.setData({ 
+                            boolean1:0
+                          })
+                      }
+                      else{
+                        var d = []
+                        var now = res.data.data.now
+                        for(var a=0;a<from.length;a++){
+                          var create_time = Number(from[a].create_time)
+                          var expire = Number(from[a].expire*86400)
+                          var end = Number(create_time+expire)
+                          var difference = Math.ceil(Number(end-now)/86400)
+                          d.push(difference)
+                        }
+                        that.setData({
+                            create_time1:d,
+                            fromItem1:from,
+                            boolean1:1
+                        })
+                      }
+                      wx.hideLoading()
+                    }
+                  })
+                }
+              })
+            }
+            else if (res.cancel){
+              wx.request({
+                url:config.Rotation,
+                method:"post",
+                data: {
+                   "city":'',
+                   "_t":wx.getStorageSync('_t')
+                },
+                success: function(res) {
+                 var banner = res.data.data.banner
+                  that.setData({ 
+                      bannerImages:banner
+                  })
+                  wx.hideLoading()
+                }
+              }) 
+            }
+         }
+      })
+    }
   },
   onReachBottom: function(){
     that = this;

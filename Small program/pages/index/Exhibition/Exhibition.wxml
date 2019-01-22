@@ -1,21 +1,14 @@
 <!--logs.wxml-->
 <view class="container log-list">
 	<view id="peoplelist">
-	<scroll-view scroll-y="true" style="height:100vh;"  bindscroll="scroll"  scroll-top="{{scrollTop}}">
-		<view class="search-top" bindtap="lookup">
+		<view id="peoplelist_search-top">
+			<view class="search-top" bindtap="lookup">
 			<view class="banner_sousuo" bindtap="search">
 				<span class="wihe15 searchimg"></span>
 				<span class="banner_sousuo_span">搜索</span>
 			</view> 
-		</view>
-		<!-- 机构类型 -->
-		<view class="organ_Type" wx:if="{{boolean}}">
-			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}" data-nam="{{item.name}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
-		</view>
-		<view class="organ_Type_number" wx:if="{{boolean3}}" >
-			<li bindtap="Type_top_number" data-currenttab2="{{index}}" data-number="{{item.id}}" class="{{currentTab2 == index ?'active3':'active'}}" wx:for="{{TypeItem3}}" wx:for-index="index" data-nam="{{item.name}}"   wx:key="index">{{item.name}}</li>
-		</view>
-		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7 {{scrollY>50 ? 'topnav' : ''}}">
+			</view>
+			<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7">
 			<view class="box">
 				<view class="column">
 					<view class="item" bindtap="open3" data-open="2" class="{{open_num==2?'ff8030':''}}">
@@ -48,6 +41,14 @@
 			    </view>
 	   		 </view>
    		 </view>
+   		</view>
+		<!-- 机构类型 -->
+		<view class="organ_Type" wx:if="{{boolean}}">
+			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}"  data-type_id="{{item.id}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  data-nam="{{item.name}}"  wx:key="index">{{item.name}}</li>
+		</view>
+		<view class="organ_Type_number" wx:if="{{boolean3}}" >
+			<li bindtap="Type_top_number" data-currenttab2="{{index}}" data-number="{{item.id}}" class="{{currentTab2 == index ?'active3':'active'}}" wx:for="{{TypeItem3}}" wx:for-index="index"  data-nam="{{item.name}}"  wx:key="index">{{item.name}}</li>
+		</view>
    		<view class="Release-center {{activeIndex == 1 ? 'notime' : ''}}" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
@@ -142,6 +143,5 @@
    		<view class="Popup" bindtap="open" wx:if="{{boolean}}"></view>
    		<view class="Popup" bindtap="open3" wx:if="{{boolean3}}"></view>
 		<!--三级联动 -->
-	</scroll-view>	
 	</view>
 </view>

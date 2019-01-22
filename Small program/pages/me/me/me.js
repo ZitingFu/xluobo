@@ -33,15 +33,23 @@ Page({
        "_t":wx.getStorageSync('_t')
       },
       success:function(res){
-      var info = res.data.data.info;
-      var phone = info.phone
-      var showPhone =  phone.replace(/^(\d{3})\d{4}(\d+)/,"$1****$2")
-        console.log(showPhone)
+        console.log(res)
+        if(res.data.flag==1){
+          that.setData({
+            showPhone:"绑定手机号码"
+          })
+          wx.hideLoading()
+        }
+        else{
+          var info = res.data.data.info;
+          var phone = info.phone
+          var showPhone = phone.replace(/^(\d{3})\d{4}(\d+)/,"$1****$2")
+         wx.hideLoading()
+        }
         that.setData({
           info:info,
           showPhone:showPhone
         })
-        wx.hideLoading()
       }
     })
   },

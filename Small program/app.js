@@ -318,7 +318,8 @@ App({
      }
   },
   getUserInfo:function(e,that,app){
-   var value = wx.getStorageSync('_t')
+    console.log(444)
+    var value = wx.getStorageSync('_t')
     var ud = e.currentTarget.dataset.ud
         if(value.length != 0){
           app.data._t = value
@@ -503,8 +504,6 @@ App({
           }
         }
         else{
-          console.log("第一次登陆")
-          console.log(e.detail.encryptedData,app.data.code,e.detail.iv)
           wx.request({
             url:config.login,
             method:"post",
@@ -522,41 +521,16 @@ App({
                  "_t":wx.getStorageSync('_t')
                 },
                 success:function(res){
-                  console.log(res)
                  var info = res.data.data.info;
                   that.setData({
                     info:info
                   })
-                  wx.hideLoading()
                 }
               })
             }
           })
         }
   },
-  // 授权是否过期
-  // onShow: function (e) {
-  //   wx.checkSession({
-  //     success: function () { 
-  //       return ;
-  //     },
-  //     fail: function () { 
-  //       wx.request({
-  //         url:config.login,
-  //         method:"post",
-  //         data: {
-  //             "encrypted_data":e.detail.encryptedData,
-  //             "code":app.data.code,
-  //             "iv":e.detail.iv
-  //         },
-  //         success: function(res) {
-  //           wx.setStorageSync('_t',res.data.data._t)
-  //           app.data._t = res.data.data._t
-  //         }
-  //       })
-  //     }
-  //   })
-  // },
   onLaunch: function (options) {
     var that = this
     //获取省市区域

@@ -58,12 +58,30 @@ i{
 .sjs{
 	background-image: url(https://img.qa.xluob.com/Small%20program/5.png);
 }
+#Release .Release-center,#peoplelist .Release-center{
+	margin-top:100px; 
+}
+#Release_Research,#peoplelist_search-top{
+	width: 100%;
+	background-color: #fff;
+	position:fixed;
+	top:0;
+	left: 0;
+	z-index: 999;
+}
+#Research .renotime {
+	width: 100%;
+	margin:0;
+}
 .list_item2,.notime,.notime2,.notime3,.notime4,.renotime{
 	height:350px;
+	width: 350px;
+	margin:0 auto;
 	background-size:50% 50%;
 	background-repeat: no-repeat;
 	background-position: center center;
 }
+
 .list_item2{
 	background-image: url(https://img.qa.xluob.com/Small%20program/withoutnews%403x.png);
 }
@@ -561,18 +579,18 @@ image {
 }
 .box-img{
 	position: relative;
-	width: 90rpx;
-	height: 90rpx;
+	width: 56px;
+	height: 53px;
 	border-radius: 50%;
 	background-color:#f3f5f9;
 }
 .ico5{
-	width: 28px;
-	height:31px;
+	width:56px;
+	height:53px;
 	position:absolute;
 	bottom:23rpx;
-	top:5px;
-	left:9px;
+	top:0px;
+	left:1px;
 }
 /*附近机构*/
 .list-imgbox{
@@ -727,25 +745,29 @@ image {
 .Release-top .box{
 	padding:0 27px; 
 }
+#Release .organ_Type,#Release .organ_Type_number{
+	top:102px;
+	border-top:1px solid #e7e7e7;
+} 
 .item_type{
 	position: relative;
 }
 .organ_Type{
-	position:absolute;
+	position:fixed;
 	left:0px;
-	top:108px;
-	z-index:3;
+	top:107px;
+	z-index:999;
 	width:100%;
 	background-color:#fff;
 	border-bottom:1px solid #cecece;
 	/*padding:12px 17px 12px 8px; */
 }
 .organ_Type_number{
-	position:absolute;
+	position:fixed;
 	text-align:center;
 	left:0px;
-	top:108px;
-	z-index:3;
+	top:107px;
+	z-index:999;
 	width:100%;
 	background-color:#fff;
 }
@@ -822,11 +844,12 @@ li{
 	border-bottom:1px solid #fff;
 }
 li image{
-	width:23px;
+	width:27px;
 	height:22px;
 	position: relative;
 	float:left;
 	top:12px;
+	left:0px;
 }
 li span{
 	display:inline-block;

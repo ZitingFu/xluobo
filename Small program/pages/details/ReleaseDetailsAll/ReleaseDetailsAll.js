@@ -322,7 +322,8 @@ Page({
               })
           }
            that.setData({
-            boolean2:false
+            boolean2:false,
+            open_num:99,
           })
           wx.hideLoading()  
         }
@@ -372,6 +373,7 @@ Page({
       })
   },
   Type_top_number:function(e){
+    console.log(88)
     that = this
     wx.showLoading({
         title: '正在加载...',
@@ -381,6 +383,7 @@ Page({
     var type_id = that.data.type_id
     var code = (that.data.multiIndex[0])
     that.setData({
+        open_num:99,
         currentTab2:current2,
         number:number,
         boolean3:false
@@ -442,6 +445,7 @@ Page({
       that.setData({ 
           currentTab:current,
           type_id:type_id,
+          open_num:99,
           boolean:false
       })
       console.log(sort,type_id)

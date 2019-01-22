@@ -2,22 +2,13 @@
 <import src="../../../widgets/showToast.wxml" />
 <view class="container log-list brbott-tae7e7e7">
 	<view id="Release">
-	<scroll-view scroll-y="true" style="height:100vh;"  bindscroll="scroll"  scroll-top="{{scrollTop}}">
 		<template is="showToast" data="{{showToast: showToast}}" />
-		<view class="Research" bindtap="Research">
-			<span class="wihe15 searchimg"></span>
-			<span>搜索</span>
-		</view>
-		<!-- 机构类型 -->
-		<view class="organ_Type" wx:if="{{boolean}}">
-			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}"  data-type_id="{{item.id}}" data-nam="{{item.name}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
-		</view>
-		<view class="organ_Type_number" wx:if="{{boolean3}}" >
-			<li bindtap="Type_top_number" data-number="" data-nam="默认排序" class="{{number == 0?'ff8030':'f333'}}">默认排序</li>
-			<li bindtap="Type_top_number" data-number="1" data-nam="距离最近" class="{{number == 1?'ff8030':'f333'}}">距离最近</li>
-			<li bindtap="Type_top_number" data-number="2" data-nam="爱心值优先" class="{{number == 2?'ff8030':'f333'}}">爱心值优先</li>
-		</view>
-		<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7 {{scrollY>100 ? 'topnav' : ''}}">
+		<view id="Release_Research">
+			<view class="Research" bindtap="Research">
+				<span class="wihe15 searchimg"></span>
+				<span>搜索</span>
+			</view>
+			<view class="Release-top height45 brbott-boe7e7e7 brbott-tae7e7e7 ">
 			<view class="box">
 				<view class="column">
 				    <view class="item" bindtap="open" data-open="0">
@@ -50,6 +41,17 @@
 			    </view>
 	   		 </view>
    		 </view>
+   		 </view>
+		<!-- 机构类型 -->
+		<view class="organ_Type" wx:if="{{boolean}}">
+			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}"  data-type_id="{{item.id}}" data-nam="{{item.name}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
+		</view>
+		<view class="organ_Type_number" wx:if="{{boolean3}}" >
+			<li bindtap="Type_top_number" data-number="" data-nam="默认排序" class="{{number == 0?'ff8030':'f333'}}">默认排序</li>
+			<li bindtap="Type_top_number" data-number="1" data-nam="距离最近" class="{{number == 1?'ff8030':'f333'}}">距离最近</li>
+			<li bindtap="Type_top_number" data-number="2" data-nam="爱心值优先" class="{{number == 2?'ff8030':'f333'}}">爱心值优先</li>
+		</view>
+		
    		<view class="Release-center {{activeIndex == 1 ? 'renotime' : ''}}" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
@@ -71,6 +73,5 @@
    		<view class="Popup" bindtap="open" wx:if="{{boolean}}"></view>
    		<view class="Popup" bindtap="open3" wx:if="{{boolean3}}"></view>
 		<!--三级联动 -->
-	</scroll-view>
 	</view>
 </view>
