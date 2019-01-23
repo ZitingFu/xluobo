@@ -15,10 +15,10 @@
 		<view class="organ_Type_number" wx:if="{{boolean3}}" >
 			<li bindtap="Type_top_number" data-currenttab2="{{index}}" data-number="{{item.id}}" class="{{currentTab2 == index ?'active3':'active'}}" wx:for="{{TypeItem3}}" wx:for-index="index" data-nam="{{item.name}}"  wx:key="index">{{item.name}}</li>
 		</view>
-   		<view class="Release-center {{activeIndex == 1 ? 'notime' : ''}}" >
+   		<view class="Release-center {{activeIndex == 1 ? 'notime' : ''}}" style="margin-top:65px">
    		 	<view class="nearby clearFix">
-				<view class="nearby-center clearFix" style="margin-top:60px;">
-					<view class="nearby-item clearFix paddTa20">
+				<view class="nearby-center clearFix">
+					<view class="nearby-item clearFix">
 						<!-- gen_name 搜索-->
 						<!-- genre_name -->
 						<view class="list_item brbott-boe7e7e7" wx:for="{{listItem}}"  wx:key="index" x:for-index="idx2" bindtap="ckdetails" data-usid="{{item.id}}">

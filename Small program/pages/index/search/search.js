@@ -7,6 +7,7 @@ var that;
 const app = getApp()
 Page({
     data: {
+        activeIndex2:"0",
         page:1,
         input:"",
         xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
@@ -97,9 +98,18 @@ Page({
           },
           success: function(res) {
             var from = res.data.data.list
-            that.setData({ 
-                fromItem1:from
-            })
+            if(from.length==0){
+              that.setData({ 
+                 fromItem1:"",
+                activeIndex2:1
+              })
+            }
+            else{
+              that.setData({ 
+                  fromItem1:from,
+                  activeIndex2:0
+              })
+            }
             wx.hideLoading()
           }
         })

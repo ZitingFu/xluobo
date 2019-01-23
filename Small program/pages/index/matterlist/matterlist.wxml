@@ -50,7 +50,7 @@
 			<li bindtap="Type_top_number" data-currenttab2="{{index}}" data-number="{{item.id}}" class="{{currentTab2 == index ?'active3':'active'}}" wx:for="{{TypeItem3}}" wx:for-index="index" data-nam="{{item.name}}"  wx:key="index">{{item.name}}</li>
 		</view>
 		
-   		<view class="Release-center {{activeIndex == 1 ? 'notime' : ''}}" >
+   		<view class="Release-center {{activeIndex == 1 ? 'list_item2' : ''}}" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
 					<view class="nearby-item clearFix paddTa20">

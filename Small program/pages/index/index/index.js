@@ -46,6 +46,16 @@ Page({
     create_time1:"",
     create_time2:""
   },
+  Scan:function(){
+    wx.scanCode({
+      success(res) {
+        var id = res.result
+        wx.navigateTo({
+          url: '../../details/details/details?id='+id
+        })
+      }
+    })
+  },
   scroll: function (e) {
     var that = this;
     that.setData({

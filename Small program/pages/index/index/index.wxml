@@ -5,9 +5,10 @@
 		<!-- 轮播图 -->
 		<view class="banner">
 			<!-- 搜索 -->
-			<view class="banner_sousuo" bindtap="search">
-				<span class="wihe13 searchimg" style="top:10px;position:absolute;"></span>
-				<span class="banner_sousuo_span" style="position:absolute;left:38px;font-size:14px">搜索</span>
+			<view class="banner_sousuo" bindtap="search" style="width:80%;">
+				<span class="wihe15 searchimg" style="top:8px;position:absolute;"></span>
+				<span class="banner_sousuo_span" style="position:absolute;left:38px;top:5px;font-size:14px">搜索</span>
+				<span class="Scan" catchtap="Scan"></span>
 			</view> 
 			<!-- 轮播 -->
 			<view class="banner_image">

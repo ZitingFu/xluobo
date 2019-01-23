@@ -52,6 +52,17 @@ view,p,h1,h2,h3,h4,h5,h6,ul,li {
 i{
 	display:inline-block;
 }
+.Scan{
+	width:30px;
+	height: 30px;
+	position: absolute;
+	display:inline-block;
+	right:-39px;
+	top:0px;
+	background-size:100% 100%;
+	background-image: url(https://img.qa.xluob.com/Small%20program/icon_saoyisao.png);
+}
+
 .sjx{
 	background-image: url(https://img.qa.xluob.com/Small%20program/icon_xia_nor.png);
 }
@@ -69,11 +80,11 @@ i{
 	left: 0;
 	z-index: 999;
 }
-#Research .renotime {
+#Research .renotime,.notime5{
 	width: 100%;
 	margin:0;
 }
-.list_item2,.notime,.notime2,.notime3,.notime4,.renotime{
+.list_item2,.notime,.notime2,.notime3,.notime4,.renotime,.notime5{
 	height:350px;
 	width: 350px;
 	margin:0 auto;
@@ -81,7 +92,9 @@ i{
 	background-repeat: no-repeat;
 	background-position: center center;
 }
-
+.notime5{
+	background-image: url(https://img.qa.xluob.com/Small%20program/ad.jpg);
+}
 .list_item2{
 	background-image: url(https://img.qa.xluob.com/Small%20program/withoutnews%403x.png);
 }
@@ -844,11 +857,11 @@ li{
 	border-bottom:1px solid #fff;
 }
 li image{
-	width:27px;
-	height:22px;
+	width:30px;
+	height:24px;
 	position: relative;
 	float:left;
-	top:12px;
+	top:10px;
 	left:0px;
 }
 li span{

@@ -121,6 +121,7 @@ Page({
       })
   },
   onLoad: function (options) { 
+      // wx.clearStorageSync()
     that = this
     var num = wx.getStorageSync('name')
     if(num.length>14){
@@ -164,15 +165,4 @@ Page({
       })
     },1500)
   },
-  //下拉
-  onPullDownRefresh: function(){
-
-  },
-  getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  }
 })

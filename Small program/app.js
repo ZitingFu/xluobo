@@ -318,7 +318,6 @@ App({
      }
   },
   getUserInfo:function(e,that,app){
-    console.log(444)
     var value = wx.getStorageSync('_t')
     var ud = e.currentTarget.dataset.ud
         if(value.length != 0){

@@ -210,7 +210,6 @@ Page({
   useid:function(e){
     that = this
      var id = e.currentTarget.dataset.id;
-     console.log(id)
      if(id==9){
         that.setData({
             TypeItem3:[{
@@ -228,18 +227,10 @@ Page({
         },
         success: function(res) {
          var site = res.data.data.genre
-         console.log("99")
-         console.log(site)
-         // site.unshift(
-         //    [{
-         //      id:"",
-         //      name:"全部"
-         //    }]
-         //  )
-         console.log(site)
           that.setData({
               id:1,
-              TypeItem3:site
+              TypeItem3:site,
+              currentTab2:0
           })
         }
       })

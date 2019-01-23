@@ -48,7 +48,13 @@ Page({
        url: '../../details/ReleaseDetails/ReleaseDetails?id='+usid
       })
   },
+  blur:function(){
+     that.setData({ 
+        bottom:0
+    })
+  },
   sear:function(e){
+    console.log(666)
     that = this
     var name = e.detail.value;
     that.setData({ 

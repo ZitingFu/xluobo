@@ -22,7 +22,7 @@
 			    <view class="page__bd">
 			        <view class="weui-tab">
 			            <view class="weui-tab__panel">
-			                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+			                <view class="weui-tab__content {{activeIndex2 == 1 ? 'notime5' : ''}}" hidden="{{activeIndex != 0}}">
 								<view bindtap="ckdetails" class="list_item brbott-boe7e7e7" wx:for="{{fromItem1}}" wx:key="index" x:for-index="idx2" data-usid="{{item.id}}">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
@@ -106,7 +106,7 @@
 									</view>
 								</view>
 			                </view>
-			                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+			                <view class="weui-tab__content"  hidden="{{activeIndex != 1}}">
 								<view bindtap="ckdetails" data-usid="{{item.id}}" class="list_item brbott-boe7e7e7" wx:for="{{fromItem2}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">

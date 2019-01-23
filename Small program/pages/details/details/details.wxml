@@ -148,7 +148,7 @@
 			<view class="column" style="text-align:left;">
 			    <view class="item" style="width: 75%;">
 			    	<view class="comment" style="line-height: 27px;">
-					  	<input cursor-spacing="20" class=""  bindinput="sear" name="{{input}}" placeholder="" auto-focus/>
+					  	<input cursor-spacing="20" class=""  bindinput="sear" name="{{input}}" bindblur="blur" placeholder="" auto-focus/>
 					</view>
 			    </view>
 			    <view class="item">
