@@ -595,15 +595,15 @@ image {
 	width: 56px;
 	height: 53px;
 	border-radius: 50%;
-	background-color:#f3f5f9;
+	/*background-color:#f3f5f9;*/
 }
 .ico5{
-	width:56px;
-	height:53px;
+	width:35px;
+	height:34px;
 	position:absolute;
 	bottom:23rpx;
-	top:0px;
-	left:1px;
+	top:12px;
+	left:10px;
 }
 /*附近机构*/
 .list-imgbox{
@@ -857,11 +857,11 @@ li{
 	border-bottom:1px solid #fff;
 }
 li image{
-	width:30px;
-	height:24px;
+	width:26px;
+	height:19px;
 	position: relative;
 	float:left;
-	top:10px;
+	top:15px;
 	left:0px;
 }
 li span{

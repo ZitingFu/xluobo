@@ -4,7 +4,7 @@
 	<view id="me">
    		<view class="me-top brbote7">
 			<button data-ud="0" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-				<view class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-tae7e7e7">
+				<view wx:if="{{Land==true}}" class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-tae7e7e7">
 					<view class="f-left bo-f000ff paddLe24 wihe50 ">
 						 <image wx:if="{{info.avatar.b.length>1}}"  src="{{info.avatar.b}}"></image>
 						 <image wx:else  src="{{img}}"></image>
@@ -15,6 +15,14 @@
 						<view wx:if="{{info.phone.length<1}}" class="f999"><span catchtap="bindphone" class="bindphone">绑定手机号码</span></view>
 						<view wx:else class="f999"><span catchtap="bindphone" class="bindphone">{{showPhone}}</span></view>
 						<i class="f-right rightimg"></i>
+					</view>
+				</view>
+				<view wx:if="{{Land==false}}" class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-tae7e7e7" style="padding-bottom:15px">
+					<view class="f-left bo-f000ff paddLe24 wihe50 ">
+						 <image src="{{img}}"></image>
+					</view>
+					<view class="f-right" style="width:79%;">
+						<view style="padding-top:18px;font-size:17px;"  class="fontSize15 .ma-bo7">点击登录</view>
 					</view>
 				</view>
 			</button>

@@ -159,6 +159,7 @@ Page({
     }
   },
   onLoad: function (options) {
+    // wx.clearStorageSync()
     that = this
     var city = that.data.city
     var page = Number(that.data.page)
@@ -249,7 +250,8 @@ Page({
       }
     })
     var cty = wx.getStorageSync('city')
-    if(cty !=''){
+    console.log(cty!='')
+    if(cty != ''){
       //轮播图*
         wx.request({
           url:config.Rotation,

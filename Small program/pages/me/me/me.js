@@ -14,7 +14,8 @@ Page({
     name:"点击登录",
     img:"https://img.qa.xluob.com/Small%20program/img_touxiang.png",
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    showPhone:""
+    showPhone:"",
+    Land:""
   },
   bindphone:function(){
     wx.navigateTo({
@@ -26,6 +27,16 @@ Page({
     wx.showLoading({
       title: '正在加载中'
     })
+    if(wx.getStorageSync('_t').length != 0){
+      that.setData({
+        Land:true
+      })
+    }
+    else{
+      that.setData({
+        Land:false
+      })
+    }
     wx.request({
       url:config.melist,
       method:"post",
@@ -56,5 +67,8 @@ Page({
   getUserInfo: function(e) {
     that = this
     app.getUserInfo(e,that,app)
+    setTimeout(function(){
+      that.onLoad()
+    },1500)  
   }
 })

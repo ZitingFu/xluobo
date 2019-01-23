@@ -100,8 +100,8 @@ Page({
             "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
-          console.log(res)
           console.log("55")
+          console.log(res)
            var from = res.data.data.info
             if(from.comments.length==0){
               that.setData({ 
@@ -151,8 +151,11 @@ Page({
             }
             else{
                 var from = res.data.data.info
+                console.log(from)
                 var food_cate = from.food_cate
+                console.log(food_cate)
                 var now = res.data.data.now
+                console.log(now)
                 // 天数
                 var expire = Number(res.data.data.info.food_cate.expire*86400)
                 // 发布时间

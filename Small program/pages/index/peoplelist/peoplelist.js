@@ -54,8 +54,9 @@ Page({
     })
   },
   bindMultiPickerChange(e) {
+    var genre = "1"
     that = this;
-    app.bindMultiPickerChange(e,that)
+    app.bindMultiPickerChange(e,that,genre)
   },
   bindMultiPickerColumnChange(e) {
     that = this;
@@ -93,13 +94,14 @@ Page({
       })
   },
   Type_top_number:function(e){
-    console.log(666)
+    var genre = "1"
     that = this
-    app.Type_top_number(e,that)
+    app.Type_top_number(e,that,genre)
   },
   Type_top:function(e,that){
+     var genre = "1"
      that = this
-     app.Type_top(e,that)
+     app.Type_top(e,that,genre)
   },
   onLoad: function (options) {
     wx.showLoading({
@@ -166,6 +168,9 @@ Page({
     })
   },
   onReachBottom: function(){
+    console.log(that.data.multiIndex[0])
+    console.log(that.data.type_id)
+    console.log(that.data.number)
     that = this;
     var city = that.data.city
     var page = Number(that.data.page)+ 1
@@ -177,9 +182,9 @@ Page({
           url:config.genrelist,
           method:"post",
           data: {
-             "code":"",
-             "site":"",
-             "sort":"",
+             "code":that.data.multiIndex[0],
+             "site":that.data.type_id,
+             "sort":that.data.number,
              "pn":page
           },
           success: function(res) {

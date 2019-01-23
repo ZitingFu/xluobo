@@ -55,8 +55,9 @@ Page({
     })
   },
   bindMultiPickerChange(e) {
+    var genre = "5"
     that = this;
-    app.bindMultiPickerChange(e,that)
+    app.bindMultiPickerChange(e,that,genre)
   },
   bindMultiPickerColumnChange(e) {
     that = this;
@@ -167,36 +168,37 @@ Page({
     })
   },
   onReachBottom: function(){
-    var that = this;
+    console.log(that.data.multiIndex[0])
+    console.log(that.data.type_id)
+    console.log(that.data.number)
+    that = this;
     var city = that.data.city
     var page = Number(that.data.page)+ 1
-    // 显示加载图标
     wx.showLoading({
       title: '正在加载中'
     })
     setTimeout(function(){
-      wx.request({
-        url:config.genrelist,
-        method:"post",
-        data: {
-           "code":"",
-           "site":"",
-           "sort":"",
-           "pn":page
-        },
-        success: function(res) {
-          console.log(res)
-         var from = that.data.listItem
-          for (var i = 0; i < res.data.data.list.length; i++) {
-              from.push(res.data.data.list[i]);
-            }
-            that.setData({ 
-                listItem:from,
-                page:page
-            })
-          wx.hideLoading()
-        }
-      })
+        wx.request({
+          url:config.genrelist,
+          method:"post",
+          data: {
+             "code":that.data.multiIndex[0],
+             "site":that.data.type_id,
+             "sort":that.data.number,
+             "pn":page
+          },
+          success: function(res) {
+           var from = that.data.listItem
+            for (var i = 0; i < res.data.data.list.length; i++) {
+                from.push(res.data.data.list[i]);
+              }
+              that.setData({ 
+                  listItem:from,
+                  page:page
+              })
+            wx.hideLoading()
+          }
+        })
     },1500)
   },
   onPullDownRefresh: function(){

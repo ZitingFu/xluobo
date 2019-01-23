@@ -1,7 +1,7 @@
 	<!--index.wxml-->
 <view class="container">
 	<view id="container_home">
-	<scroll-view scroll-y="true" style="height:100vh;"  bindscroll="scroll"  scroll-top="{{scrollTop}}" bindscrolltolower="tolower">	
+	<!-- <scroll-view scroll-y="true" style="height:100vh;"  bindscroll="scroll"  scroll-top="{{scrollTop}}" bindscrolltolower="tolower"> -->	
 		<!-- 轮播图 -->
 		<view class="banner">
 			<!-- 搜索 -->
@@ -60,7 +60,7 @@
 			<view class="page">
 			    <view class="page__bd">
 			        <view class="weui-tab">
-			            <view class="weui-navbar {{scrollY>450 ? 'topnav' : ''}}">
+			            <view class="weui-navbar">
 			                <block wx:for="{{tabs}}" wx:key="*this">
 			                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
 			                        <view class="weui-navbar__title">{{item}}</view>
@@ -75,8 +75,9 @@
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
-											<text class="f-right f999" wx:if="{{create_time2[index]>0}}">{{item.time}} - 剩余{{create_time2[index]}}天</text>
-											<text class="f-right f999" wx:else>{{item.time}}</text>
+											<text class="f-right f999">{{item.time}}</text>
+											<!-- <text class="f-right f999" wx:if="{{create_time2[index]>0}}">{{item.time}} - 剩余{{create_time2[index]}}天</text>
+											<text class="f-right f999" wx:else>{{item.time}}</text> -->
 										</view>
 										<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
 										<view class="list-imgbox">
@@ -252,6 +253,6 @@
 			    </view>
 			</view>
 		</view>
-	</scroll-view>
+	<!-- </scroll-view> -->
 	</view>
 </view>

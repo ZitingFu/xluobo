@@ -27,7 +27,7 @@ App({
     newarea:"",
     da:"88"
   },
-  bindMultiPickerChange(e,that) {
+  bindMultiPickerChange(e,that,genre) {
     that.setData({ 
       open_num:99
     })
@@ -38,7 +38,9 @@ App({
     wx.showLoading({
       title: '正在加载...',
     })
-    console.log(multiIndex[0])
+    that.setData({ 
+       multiIndex:multiIndex
+    })
       var site = that.data.type_id
       var sort = that.data.number
       setTimeout(function(){
@@ -46,9 +48,10 @@ App({
             url:config.genrelist,
             method:"post",
             data: {
-               site:site,
-               code:multiIndex[0],
-               sort:sort
+               "site":site,
+               "sort":sort,
+               "code":multiIndex[0],
+               "genre":genre
             },
             success: function(res) {
               console.log(res)
@@ -244,10 +247,10 @@ App({
           url:config.genrelist,
           method:"post",
           data: {
-            "genre":type_id,
+            "genre":sort,
             "code":code,
             "pn":1,
-            "site":sort
+            "site":type_id
           },
           success: function(res) {
             console.log(res)

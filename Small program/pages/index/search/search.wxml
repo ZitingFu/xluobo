@@ -4,7 +4,7 @@
 		<view class="search-top">
 			<view class="banner_sousuo" style="padding-left:35px;width:74%;">
 			<span class="wihe15 searchimg" style="position:absolute;top:9px;left:10px;"></span>
-			<input class="binner_input" bindinput="search" value="{{input}}" placeholder="搜索" auto-focus/>
+			<input class="binner_input" confirm-type="search" bindconfirm="search" value="{{input}}" placeholder="搜索" auto-focus/>
 			</view>
 			 <span class="f-right bind-s" bindtap="cancel">取消</span>
 			<view class="weui-navbar brbott-tae7e7e7">
@@ -106,7 +106,7 @@
 									</view>
 								</view>
 			                </view>
-			                <view class="weui-tab__content"  hidden="{{activeIndex != 1}}">
+			                <view class="weui-tab__content {{activeIndex2 == 1 ? 'notime5' : ''}}"  hidden="{{activeIndex != 1}}">
 								<view bindtap="ckdetails" data-usid="{{item.id}}" class="list_item brbott-boe7e7e7" wx:for="{{fromItem2}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
@@ -190,7 +190,7 @@
 									</view>
 								</view>
 			                </view>
-			                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+			                <view class="weui-tab__content {{activeIndex2 == 1 ? 'notime5' : ''}}" hidden="{{activeIndex != 2}}">
 								<view bindtap="ckdetails" data-usid="{{item.id}}" class="list_item brbott-boe7e7e7" wx:for="{{fromItem3}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
@@ -274,7 +274,7 @@
 									</view>
 								</view>
 			                </view>
-			                <view class="weui-tab__content" hidden="{{activeIndex != 3}}">
+			                <view class="weui-tab__content {{activeIndex2 == 1 ? 'notime5' : ''}}" hidden="{{activeIndex != 3}}">
 								<view bindtap="ckdetails" data-usid="{{item.id}}" class="list_item brbott-boe7e7e7" wx:for="{{fromItem4}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
@@ -358,7 +358,7 @@
 									</view>
 								</view>
 			                </view>
-			                <view class="weui-tab__content" hidden="{{activeIndex != 4}}">
+			                <view class="weui-tab__content {{activeIndex2 == 1 ? 'notime5' : ''}}" hidden="{{activeIndex != 4}}">
 								<view bindtap="ckdetails" data-usid="{{item.id}}" class="list_item brbott-boe7e7e7" wx:for="{{fromItem5}}" wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
 										<view class="clearFix genre_name_top">
