@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/index/index/index",
-    "pages/index/Exhibition/Exhibition",
     "pages/me/me/me", 
+    "pages/index/Exhibition/Exhibition",
     "pages/index/peoplelist/peoplelist",  
     "pages/index/lookup/lookup", 
     "pages/index/matterlist/matterlist",  

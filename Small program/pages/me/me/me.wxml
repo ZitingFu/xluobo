@@ -40,14 +40,14 @@
 			</button>
 			<button data-ud="2" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 			<li>
-				<image src="../../../images/icon_guanzhu.png" alt=""></image>
+				<image style="height: 17px;top:14px;" src="../../../images/icon_guanzhu.png" alt=""></image>
 				<span class="fontSize15 rightlist">
 					我的关注
 					<i class="f-right rightimg"></i>
 				</span>
 			</li>
 			</button>
-			<button data-ud="3" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+			<button data-ud="3" style="top:8px;" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 			<li class="brbote7">
 				<image src="../../../images/icon_shoucang.png" alt=""></image>
 				<span class="fontSize15">

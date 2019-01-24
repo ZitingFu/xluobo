@@ -7,6 +7,7 @@ var that;
 //获取应用实例
 Page({
   data: {
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     scrollTop:'0',
     scrollY:'',
     rightlist:"",
@@ -159,7 +160,10 @@ Page({
     }
   },
   onLoad: function (options) {
-    // wx.clearStorageSync()
+    wx.clearStorageSync()
+    wx.showLoading({
+        title: '正在加载...',
+      })
     that = this
     var city = that.data.city
     var page = Number(that.data.page)
@@ -189,7 +193,6 @@ Page({
          that.setData({ 
             genreImages:genre
           })
-         wx.hideLoading()
       }
     })
     //附近机构
@@ -210,7 +213,6 @@ Page({
             listItem:list,
             rightlist:list.length-1
           })
-         wx.hideLoading()
       }
     })
     // 最近
@@ -250,15 +252,17 @@ Page({
       }
     })
     var cty = wx.getStorageSync('city')
-    console.log(cty!='')
-    if(cty != ''){
+    if(cty.length>1){
+      wx.showLoading({
+        title: '正在加载...',
+      })
+      console.log("第二次")
       //轮播图*
         wx.request({
           url:config.Rotation,
           method:"post",
           data: {
-             "city":wx.getStorageSync('city'),
-             "_t":wx.getStorageSync('_t')
+             "city":wx.getStorageSync('city')
           },
           success: function(res) {
            var banner = res.data.data.banner
@@ -273,8 +277,7 @@ Page({
           method:"post",
           data: {
               "pn":1,
-              "area":wx.getStorageSync('city'),
-               "_t":wx.getStorageSync('_t')
+              "area":wx.getStorageSync('city')
           },
           success: function(res) {
             var from = res.data.data.list
@@ -282,7 +285,6 @@ Page({
                 that.setData({ 
                   boolean1:0
                 })
-              wx.hideLoading()  
             }
             else{
               var d = []
@@ -303,97 +305,189 @@ Page({
             wx.hideLoading()
           }
         })
-    }else{
-      wx.showModal({
-        title:'',
-        content:"小萝卜公益需要获取您的位置",
-        confirmText:"确定",
-        cancelText:"取消",
-         success: function (res) {
-            wx.showLoading({
-              title: '正在加载...',
-            })
-            if (res.confirm) {
-              var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
-              myAmapFun.getRegeo({
-                success: function (data) {
-                  var city = data[0].regeocodeData.addressComponent.adcode
-                  that.setData({
-                    city:city
-                  })
-                   wx.setStorageSync('city',city)
-                  //轮播图*
-                  wx.request({
-                    url:config.Rotation,
-                    method:"post",
-                    data: {
-                       "city":wx.getStorageSync('city'),
-                       "_t":wx.getStorageSync('_t')
-                    },
-                    success: function(res) {
-                     var banner = res.data.data.banner
-                      that.setData({ 
-                          bannerImages:banner
-                      })
-                    }
-                  })
-                  // 附近*
-                  wx.request({
-                    url:config.nearby,
-                    method:"post",
-                    data: {
-                        "pn":1,
-                        "area":wx.getStorageSync('city'),
-                         "_t":wx.getStorageSync('_t')
-                    },
-                    success: function(res) {
-                      var from = res.data.data.list
-                      if(from.length==0){
-                          that.setData({ 
-                            boolean1:0
-                          })
-                      }
-                      else{
-                        var d = []
-                        var now = res.data.data.now
-                        for(var a=0;a<from.length;a++){
-                          var create_time = Number(from[a].create_time)
-                          var expire = Number(from[a].expire*86400)
-                          var end = Number(create_time+expire)
-                          var difference = Math.ceil(Number(end-now)/86400)
-                          d.push(difference)
-                        }
-                        that.setData({
-                            create_time1:d,
-                            fromItem1:from,
-                            boolean1:1
-                        })
-                      }
-                      wx.hideLoading()
-                    }
-                  })
-                }
+    }
+    else if(cty.length==false){
+      wx.showLoading({
+        title: '正在加载...',
+      })
+      console.log("第一次")
+      wx.getLocation({
+        type: 'wgs84',
+        success(res) {
+          console.log("成功")
+            const latitude = res.latitude
+            const longitude = res.longitude
+            const speed = res.speed
+            const accuracy = res.accuracy
+            console.log(latitude,longitude,speed,accuracy)
+          var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
+          myAmapFun.getRegeo({
+            success: function (data) {
+              console.log(3)
+              var city = data[0].regeocodeData.addressComponent.adcode
+               console.log(1)
+              that.setData({
+                city:city
               })
-            }
-            else if (res.cancel){
+               wx.setStorageSync('city',city)
+              //轮播图*
               wx.request({
                 url:config.Rotation,
                 method:"post",
                 data: {
-                   "city":'',
-                   "_t":wx.getStorageSync('_t')
+                   "city":wx.getStorageSync('city')
                 },
                 success: function(res) {
                  var banner = res.data.data.banner
                   that.setData({ 
                       bannerImages:banner
                   })
+                }
+              })
+              // 附近*
+              wx.request({
+                url:config.nearby,
+                method:"post",
+                data: {
+                    "pn":1,
+                    "area":wx.getStorageSync('city')
+                },
+                success: function(res) {
+                  var from = res.data.data.list
+                  if(from.length==0){
+                      that.setData({ 
+                        boolean1:0
+                      })
+                  }
+                  else{
+                    var d = []
+                    var now = res.data.data.now
+                    for(var a=0;a<from.length;a++){
+                      var create_time = Number(from[a].create_time)
+                      var expire = Number(from[a].expire*86400)
+                      var end = Number(create_time+expire)
+                      var difference = Math.ceil(Number(end-now)/86400)
+                      d.push(difference)
+                    }
+                    that.setData({
+                        create_time1:d,
+                        fromItem1:from,
+                        boolean1:1
+                    })
+                  }
                   wx.hideLoading()
                 }
-              }) 
+              })
             }
-         }
+          })
+        },
+        fail(res){
+          console.log("失败")
+          wx.request({
+            url:config.Rotation,
+            method:"post",
+            data: {
+               "city":''
+            },
+            success: function(res) {
+             var banner = res.data.data.banner
+              that.setData({ 
+                  bannerImages:banner
+              })
+              wx.hideLoading()
+            }
+          }) 
+        }
       })
+      // wx.showModal({
+      //   title:'',
+      //   content:"小萝卜公益需要获取您的位置",
+      //    success: function (res) {
+      //       wx.showLoading({
+      //         title: '正在加载...',
+      //       })
+      //       if (res.confirm) {
+      //         console.log(45)
+      //         var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
+      //         console.log(4)
+      //         myAmapFun.getRegeo({
+      //           success: function (data) {
+      //             console.log(3)
+      //             var city = data[0].regeocodeData.addressComponent.adcode
+      //              console.log(1)
+      //             that.setData({
+      //               city:city
+      //             })
+      //              wx.setStorageSync('city',city)
+      //             //轮播图*
+      //             wx.request({
+      //               url:config.Rotation,
+      //               method:"post",
+      //               data: {
+      //                  "city":wx.getStorageSync('city')
+      //               },
+      //               success: function(res) {
+      //                var banner = res.data.data.banner
+      //                 that.setData({ 
+      //                     bannerImages:banner
+      //                 })
+      //               }
+      //             })
+      //             // 附近*
+      //             wx.request({
+      //               url:config.nearby,
+      //               method:"post",
+      //               data: {
+      //                   "pn":1,
+      //                   "area":wx.getStorageSync('city')
+      //               },
+      //               success: function(res) {
+      //                 var from = res.data.data.list
+      //                 if(from.length==0){
+      //                     that.setData({ 
+      //                       boolean1:0
+      //                     })
+      //                 }
+      //                 else{
+      //                   var d = []
+      //                   var now = res.data.data.now
+      //                   for(var a=0;a<from.length;a++){
+      //                     var create_time = Number(from[a].create_time)
+      //                     var expire = Number(from[a].expire*86400)
+      //                     var end = Number(create_time+expire)
+      //                     var difference = Math.ceil(Number(end-now)/86400)
+      //                     d.push(difference)
+      //                   }
+      //                   that.setData({
+      //                       create_time1:d,
+      //                       fromItem1:from,
+      //                       boolean1:1
+      //                   })
+      //                 }
+      //                 wx.hideLoading()
+      //               }
+      //             })
+      //           }
+      //         })
+      //       }
+      //       else if (res.cancel){
+      //         wx.request({
+      //           url:config.Rotation,
+      //           method:"post",
+      //           data: {
+      //              "city":''
+      //           },
+      //           success: function(res) {
+      //            var banner = res.data.data.banner
+      //             that.setData({ 
+      //                 bannerImages:banner
+      //             })
+      //             wx.hideLoading()
+      //           }
+      //         }) 
+      //       }
+      //    }
+      // })
     }
   },
   onReachBottom: function(){
@@ -476,12 +570,9 @@ Page({
   onPullDownRefresh: function(){
     that = this;
     that.onLoad()
-  },
-  getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: false
-    })
   }
+  // getUserInfo:function(e) {
+  //     that = this
+  //     app.getUserInfo(e,that,app)
+  // }
 })

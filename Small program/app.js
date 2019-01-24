@@ -1,4 +1,5 @@
 const config = require('config');
+var amapFile = require('utils/amap-wx.js');
 var feedbackApi=require('showToast')
 // const util = require('utils/utils');
 App({
@@ -323,6 +324,7 @@ App({
   getUserInfo:function(e,that,app){
     var value = wx.getStorageSync('_t')
     var ud = e.currentTarget.dataset.ud
+    console.log(ud)
         if(value.length != 0){
           app.data._t = value
           //个人页
@@ -504,8 +506,75 @@ App({
               }
             })
           }
+          if(ud==9){
+            console.log("sdas")
+            // wx.getLocation({
+            //   type: 'wgs84',
+            //   success: function (res) {
+            //     var myAmapFun = new amapFile.AMapWX({ key:"6f967ad7e3c309757773579d0f7c90c4"});
+            //     myAmapFun.getRegeo({
+            //       success: function (data) {
+            //         var city = data[0].regeocodeData.addressComponent.adcode
+            //         wx.setStorageSync('city',city)
+            //         that.setData({
+            //           city:city
+            //         })
+            //         //轮播图*
+            //         wx.request({
+            //           url:config.Rotation,
+            //           method:"post",
+            //           data: {
+            //              "city":city
+            //           },
+            //           success: function(res) {
+            //            var banner = res.data.data.banner
+            //             that.setData({ 
+            //                 bannerImages:banner
+            //             })
+            //           }
+            //         })
+            //         // 附近*
+            //         wx.request({
+            //           url:config.nearby,
+            //           method:"post",
+            //           data: {
+            //               "pn":1,
+            //               "area":city
+            //           },
+            //           success: function(res) {
+            //             var from = res.data.data.list
+            //             if(from.length==0){
+            //                 that.setData({ 
+            //                   boolean1:0
+            //                 })
+            //             }
+            //             else{
+            //               var d = []
+            //               var now = res.data.data.now
+            //               for(var a=0;a<from.length;a++){
+            //                 var create_time = Number(from[a].create_time)
+            //                 var expire = Number(from[a].expire*86400)
+            //                 var end = Number(create_time+expire)
+            //                 var difference = Math.ceil(Number(end-now)/86400)
+            //                 d.push(difference)
+            //               }
+            //               that.setData({
+            //                   create_time1:d,
+            //                   fromItem1:from,
+            //                   boolean1:1
+            //               })
+            //               wx.hideLoading()
+            //             }
+            //           }
+            //         })
+            //       }
+            //     });
+            //   }
+            // })
+          }
         }
         else{
+          // 第一次登陆
           wx.request({
             url:config.login,
             method:"post",
@@ -516,6 +585,99 @@ App({
             },
             success: function(res) {
               wx.setStorageSync('_t',res.data.data._t)
+              // wx.showModal({
+              //   title: '小萝卜公益',
+              //   content: '需要获取你的地理位置',
+              //   success(res) {
+              //     if (res.confirm) {
+              //       console.log(123)
+              //       wx.getLocation({
+              //         success(res) {
+              //           console.log(res)
+              //           // var myAmapFun = new amapFile.AMapWX({ key:"6f967ad7e3c309757773579d0f7c90c4"});
+              //           // myAmapFun.getRegeo({
+              //             // success: function () {
+              //               // var city = data[0].regeocodeData.addressComponent.adcode
+              //               // wx.setStorageSync('city',city)
+              //               // that.setData({
+              //               //   city:city
+              //               // })
+              //               // var city = 610113
+              //               // console.log(city)
+              //               // wx.openSetting()
+              //               //轮播图*
+              //               wx.request({
+              //                 url:config.Rotation,
+              //                 method:"post",
+              //                 data: {
+              //                    "city":"610113"
+              //                 },
+              //                 success: function(res) {
+              //                  var banner = res.data.data.banner
+              //                   that.setData({ 
+              //                       bannerImages:banner
+              //                   })
+              //                 }
+              //               })
+              //               // 附近*
+              //               // wx.request({
+              //               //   url:config.nearby,
+              //               //   method:"post",
+              //               //   data: {
+              //               //       "pn":1,
+              //               //       "area":city
+              //               //   },
+              //               //   success: function(res) {
+              //               //     var from = res.data.data.list
+              //               //     if(from.length==0){
+              //               //         that.setData({ 
+              //               //           boolean1:0
+              //               //         })
+              //               //     }
+              //               //     else{
+              //               //       var d = []
+              //               //       var now = res.data.data.now
+              //               //       for(var a=0;a<from.length;a++){
+              //               //         var create_time = Number(from[a].create_time)
+              //               //         var expire = Number(from[a].expire*86400)
+              //               //         var end = Number(create_time+expire)
+              //               //         var difference = Math.ceil(Number(end-now)/86400)
+              //               //         d.push(difference)
+              //               //       }
+              //               //       that.setData({
+              //               //           create_time1:d,
+              //               //           fromItem1:from,
+              //               //           boolean1:1
+              //               //       })
+              //               //       wx.hideLoading()
+              //               //     }
+              //               //   }
+              //               // })
+              //             // }
+              //           // });
+              //         },
+              //         fill(){
+              //           console.log("失败")
+              //         }
+              //       })
+              //     } 
+              //     else if (res.cancel) {
+              //       wx.request({
+              //         url:config.Rotation,
+              //         method:"post",
+              //         data: {
+              //            "city":''
+              //         },
+              //         success: function(res) {
+              //          var banner = res.data.data.banner
+              //           that.setData({ 
+              //               bannerImages:banner
+              //           })
+              //         }
+              //       })
+              //     }
+              //   }
+              // })
               wx.request({
                 url:config.melist,
                 method:"post",
@@ -527,6 +689,7 @@ App({
                   that.setData({
                     info:info
                   })
+                  wx.hideLoading()
                 }
               })
             }
@@ -534,6 +697,7 @@ App({
         }
   },
   onLaunch: function (options) {
+    // wx.clearStorageSync()
     var that = this
     //获取省市区域
     wx.request({

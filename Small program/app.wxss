@@ -857,11 +857,11 @@ li{
 	border-bottom:1px solid #fff;
 }
 li image{
-	width:26px;
-	height:19px;
+	width:22px;
+	height:22px;
 	position: relative;
 	float:left;
-	top:15px;
+	top:9px;
 	left:0px;
 }
 li span{

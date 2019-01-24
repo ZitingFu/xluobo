@@ -67,8 +67,12 @@ Page({
   getUserInfo: function(e) {
     that = this
     app.getUserInfo(e,that,app)
+    wx.showLoading({
+      title: '正在加载...',
+    })
     setTimeout(function(){
       that.onLoad()
+      wx.hideLoading() 
     },1500)  
   }
 })

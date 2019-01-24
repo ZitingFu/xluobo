@@ -1,7 +1,7 @@
 	<!--index.wxml-->
 <view class="container">
 	<view id="container_home">
-	<!-- <scroll-view scroll-y="true" style="height:100vh;"  bindscroll="scroll"  scroll-top="{{scrollTop}}" bindscrolltolower="tolower"> -->	
+		<button data-ud="9" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
 		<!-- 轮播图 -->
 		<view class="banner">
 			<!-- 搜索 -->
@@ -253,6 +253,5 @@
 			    </view>
 			</view>
 		</view>
-	<!-- </scroll-view> -->
 	</view>
 </view>
