@@ -6,6 +6,7 @@ var that;
 const app = getApp()
 Page({
   data: {
+     mode: 'aspectFill',
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",

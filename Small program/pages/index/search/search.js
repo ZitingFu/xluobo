@@ -7,6 +7,7 @@ var that;
 const app = getApp()
 Page({
     data: {
+        mode: 'aspectFill', 
         activeIndex2:"0",
         page:1,
         input:"",

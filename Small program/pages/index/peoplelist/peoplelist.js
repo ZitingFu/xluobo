@@ -6,6 +6,7 @@ var that;
 const app = getApp()
 Page({
   data: {
+    mode: 'aspectFill',
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
@@ -110,7 +111,7 @@ Page({
     that = this
     var city = that.setData.city
     var page = Number(that.data.page)
-    var citynamelist =  app.data.citynamelist
+    var citynamelist = app.data.citynamelist
     var citycode = app.data.citycode
     var city = app.data.city
     that.setData({
@@ -153,8 +154,8 @@ Page({
       url:config.genrelist,
       method:"post",
       data: {
-        "genre":1,
         "code":city,
+        "genre":1,
         "site":"",
         "pn":page
       },
@@ -168,38 +169,9 @@ Page({
     })
   },
   onReachBottom: function(){
-    console.log(that.data.multiIndex[0])
-    console.log(that.data.type_id)
-    console.log(that.data.number)
+    var genre = "1"
     that = this;
-    var city = that.data.city
-    var page = Number(that.data.page)+ 1
-    wx.showLoading({
-      title: '正在加载中'
-    })
-    setTimeout(function(){
-        wx.request({
-          url:config.genrelist,
-          method:"post",
-          data: {
-             "code":that.data.multiIndex[0],
-             "site":that.data.type_id,
-             "sort":that.data.number,
-             "pn":page
-          },
-          success: function(res) {
-           var from = that.data.listItem
-            for (var i = 0; i < res.data.data.list.length; i++) {
-                from.push(res.data.data.list[i]);
-              }
-              that.setData({ 
-                  listItem:from,
-                  page:page
-              })
-            wx.hideLoading()
-          }
-        })
-    },1500)
+    app.onReachBottom(that,genre)
   },
   onPullDownRefresh: function(){
     that = this;

@@ -93,9 +93,9 @@
 											  data-list="{{item.images}}" 
 											  data-index='{{index}}'  
 											  wx:key="index"
-											  style="width:80%;height:200px;" 
+											  id="whdd"
 											  wx:for-item="iteming">
-									    	<image src="{{iteming.s}}" alt=""></image>
+									    	<image mode="{{mode}}" src="{{iteming.s}}" alt=""></image>
 									    </view>
 									    <!-- 图片4张 -->
 									    <view style="width:80%" class="clearFix">

@@ -6,6 +6,7 @@ var that;
 const app = getApp()
 Page({
   data: {
+     mode: 'aspectFill',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     fromItem:"",
     followid:true,

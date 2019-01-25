@@ -10,7 +10,7 @@
 		<view class="banner_sousuo2">
 			<i class="me-right2"></i>
 			<i class="Line"></i>
-			<span class="ag"  bindtap="clickn"><i class="Line"></i>{{bind}}</span>
+			<span class="ag" style="font-size:14px;"  bindtap="clickn"><i class="Line"></i>{{bind}}</span>
 		  	<input class="binner_input"  bindinput="search2" name="{{input}}" placeholder="请输入验证码" auto-focus/>
 		</view>
 		<button bindtap="sub">完成</button>

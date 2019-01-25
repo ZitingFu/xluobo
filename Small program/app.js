@@ -171,7 +171,7 @@ App({
     data.multiIndex[e.detail.column] = e.detail.value
     that.setData(data)
   },
-  Type_top_number:function(e,that){
+  Type_top_number:function(e,that,genre){
      wx.showLoading({
         title: '正在加载...',
       })
@@ -181,9 +181,32 @@ App({
       var type_id = that.data.type_id
       var code = (that.data.multiIndex[0])
       if(nam=="全部"){
-        that.setData({
-          mtype:"物品类型"
-        })
+        console.log(genre)
+        if(genre==1){
+          that.setData({
+            mtype:"寻人类型"
+          })
+        }
+        if(genre==2){
+          that.setData({
+            mtype:"物品类型"
+          })
+        }
+        if(genre==3){
+          that.setData({
+            mtype:"认人类型"
+          })
+        }
+        if(genre==4){
+          that.setData({
+            mtype:"物品类型"
+          })
+        }
+        if(genre==5){
+          that.setData({
+            mtype:"类型"
+          })
+        }
       }
       else{
         that.setData({
@@ -272,6 +295,110 @@ App({
         })
          wx.hideLoading()
       },1000)
+  },
+  onReachBottom:function(that,genre){
+    var city = that.data.city
+    var page = Number(that.data.page)+ 1
+    wx.showLoading({
+      title: '正在加载中'
+    })
+    setTimeout(function(){
+      //物品类型 
+      if(that.data.type_id!=''){
+        wx.request({
+          url:config.genrelist,
+          method:"post",
+          data: {
+            "genre":that.data.number,
+            "code":that.data.city,
+            "pn":page,
+            "site":that.data.type_id
+          },
+          success: function(res) {
+            var from = that.data.listItem
+              for(var i = 0; i < res.data.data.list.length; i++) {
+                from.push(res.data.data.list[i]);
+              }
+              that.setData({ 
+                  listItem:from,
+                  page:page
+              })
+            wx.hideLoading()
+          }
+        })
+      }
+      //场所
+      if(that.data.type_id!=''&&that.data.number!=''){
+        wx.request({
+          url:config.genrelist,
+          method:"post",
+          data: {
+            "genre":that.data.number,
+            "code":that.data.city,
+            "pn":page,
+            "site":that.data.type_id
+          },
+          success: function(res) {
+            var from = that.data.listItem
+              for (var i = 0; i < res.data.data.list.length; i++) {
+                from.push(res.data.data.list[i]);
+              }
+              that.setData({ 
+                  listItem:from,
+                  page:page
+              })
+            wx.hideLoading()
+          }
+        })
+      }
+      //全部
+      if(that.data.type_id==''&&that.data.number==''&&that.data.city==''){
+        wx.request({
+          url:config.genrelist,
+          method:"post",
+          data: {
+             "code":that.data.city,
+             "genre":genre,
+             "site":that.data.type_id,
+             "sort":that.data.number,
+             "pn":page
+          },
+          success: function(res) {
+           var from = that.data.listItem
+            for (var i = 0; i < res.data.data.list.length; i++) {
+                from.push(res.data.data.list[i]);
+              }
+              that.setData({ 
+                  listItem:from,
+                  page:page
+              })
+            wx.hideLoading()
+          }
+        })
+      }
+      wx.request({
+          url:config.genrelist,
+          method:"post",
+          data: {
+             "code":that.data.city,
+             "genre":genre,
+             "site":that.data.type_id,
+             "sort":that.data.number,
+             "pn":page
+          },
+          success: function(res) {
+           var from = that.data.listItem
+            for (var i = 0; i < res.data.data.list.length; i++) {
+                from.push(res.data.data.list[i]);
+              }
+              that.setData({ 
+                  listItem:from,
+                  page:page
+              })
+            wx.hideLoading()
+          }
+      })
+    },1500)
   },
   open:function(that){
      that.setData({ 
@@ -506,72 +633,6 @@ App({
               }
             })
           }
-          if(ud==9){
-            console.log("sdas")
-            // wx.getLocation({
-            //   type: 'wgs84',
-            //   success: function (res) {
-            //     var myAmapFun = new amapFile.AMapWX({ key:"6f967ad7e3c309757773579d0f7c90c4"});
-            //     myAmapFun.getRegeo({
-            //       success: function (data) {
-            //         var city = data[0].regeocodeData.addressComponent.adcode
-            //         wx.setStorageSync('city',city)
-            //         that.setData({
-            //           city:city
-            //         })
-            //         //轮播图*
-            //         wx.request({
-            //           url:config.Rotation,
-            //           method:"post",
-            //           data: {
-            //              "city":city
-            //           },
-            //           success: function(res) {
-            //            var banner = res.data.data.banner
-            //             that.setData({ 
-            //                 bannerImages:banner
-            //             })
-            //           }
-            //         })
-            //         // 附近*
-            //         wx.request({
-            //           url:config.nearby,
-            //           method:"post",
-            //           data: {
-            //               "pn":1,
-            //               "area":city
-            //           },
-            //           success: function(res) {
-            //             var from = res.data.data.list
-            //             if(from.length==0){
-            //                 that.setData({ 
-            //                   boolean1:0
-            //                 })
-            //             }
-            //             else{
-            //               var d = []
-            //               var now = res.data.data.now
-            //               for(var a=0;a<from.length;a++){
-            //                 var create_time = Number(from[a].create_time)
-            //                 var expire = Number(from[a].expire*86400)
-            //                 var end = Number(create_time+expire)
-            //                 var difference = Math.ceil(Number(end-now)/86400)
-            //                 d.push(difference)
-            //               }
-            //               that.setData({
-            //                   create_time1:d,
-            //                   fromItem1:from,
-            //                   boolean1:1
-            //               })
-            //               wx.hideLoading()
-            //             }
-            //           }
-            //         })
-            //       }
-            //     });
-            //   }
-            // })
-          }
         }
         else{
           // 第一次登陆
@@ -585,99 +646,6 @@ App({
             },
             success: function(res) {
               wx.setStorageSync('_t',res.data.data._t)
-              // wx.showModal({
-              //   title: '小萝卜公益',
-              //   content: '需要获取你的地理位置',
-              //   success(res) {
-              //     if (res.confirm) {
-              //       console.log(123)
-              //       wx.getLocation({
-              //         success(res) {
-              //           console.log(res)
-              //           // var myAmapFun = new amapFile.AMapWX({ key:"6f967ad7e3c309757773579d0f7c90c4"});
-              //           // myAmapFun.getRegeo({
-              //             // success: function () {
-              //               // var city = data[0].regeocodeData.addressComponent.adcode
-              //               // wx.setStorageSync('city',city)
-              //               // that.setData({
-              //               //   city:city
-              //               // })
-              //               // var city = 610113
-              //               // console.log(city)
-              //               // wx.openSetting()
-              //               //轮播图*
-              //               wx.request({
-              //                 url:config.Rotation,
-              //                 method:"post",
-              //                 data: {
-              //                    "city":"610113"
-              //                 },
-              //                 success: function(res) {
-              //                  var banner = res.data.data.banner
-              //                   that.setData({ 
-              //                       bannerImages:banner
-              //                   })
-              //                 }
-              //               })
-              //               // 附近*
-              //               // wx.request({
-              //               //   url:config.nearby,
-              //               //   method:"post",
-              //               //   data: {
-              //               //       "pn":1,
-              //               //       "area":city
-              //               //   },
-              //               //   success: function(res) {
-              //               //     var from = res.data.data.list
-              //               //     if(from.length==0){
-              //               //         that.setData({ 
-              //               //           boolean1:0
-              //               //         })
-              //               //     }
-              //               //     else{
-              //               //       var d = []
-              //               //       var now = res.data.data.now
-              //               //       for(var a=0;a<from.length;a++){
-              //               //         var create_time = Number(from[a].create_time)
-              //               //         var expire = Number(from[a].expire*86400)
-              //               //         var end = Number(create_time+expire)
-              //               //         var difference = Math.ceil(Number(end-now)/86400)
-              //               //         d.push(difference)
-              //               //       }
-              //               //       that.setData({
-              //               //           create_time1:d,
-              //               //           fromItem1:from,
-              //               //           boolean1:1
-              //               //       })
-              //               //       wx.hideLoading()
-              //               //     }
-              //               //   }
-              //               // })
-              //             // }
-              //           // });
-              //         },
-              //         fill(){
-              //           console.log("失败")
-              //         }
-              //       })
-              //     } 
-              //     else if (res.cancel) {
-              //       wx.request({
-              //         url:config.Rotation,
-              //         method:"post",
-              //         data: {
-              //            "city":''
-              //         },
-              //         success: function(res) {
-              //          var banner = res.data.data.banner
-              //           that.setData({ 
-              //               bannerImages:banner
-              //           })
-              //         }
-              //       })
-              //     }
-              //   }
-              // })
               wx.request({
                 url:config.melist,
                 method:"post",

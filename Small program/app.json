@@ -29,6 +29,11 @@
     "navigationBarTitleText": "首页",
     "navigationBarTextStyle":"black"
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于小程序位置接口的效果展示"
+    }
+  },
   "tabBar": {
       "color":"#333",
       "selectedColor":"#fda249",

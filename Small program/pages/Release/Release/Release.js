@@ -300,8 +300,6 @@ Page({
             "sort":sort
           },
           success: function(res) {
-            console.log("所有")
-            console.log(res)
            var list = res.data.data.list
            if(list.length == 0){
              that.setData({ 
@@ -424,27 +422,8 @@ Page({
   //下拉
   onPullDownRefresh: function(){
     that = this;
-    wx.request({
-      url:config.ReleaseList,
-      method:"post",
-      data: {
-         "code":"",
-         "site":"",
-         "sort":"",
-         "pn":page
-      },
-      success: function(res) {
-       var from = that.data.listItem
-        for (var i = 0; i < res.data.data.list.length; i++) {
-            from.push(res.data.data.list[i]);
-          }
-          that.setData({ 
-              listItem:from,
-              page:page
-          })
-      wx.stopPullDownRefresh();
-      }
-    })
+    that.onLoad()
+     wx.stopPullDownRefresh();
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

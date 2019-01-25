@@ -6,6 +6,7 @@ var set;
 const app = getApp()
 Page({
   data: {
+     mode: 'aspectFill',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     id:"",
     fromItem:"",

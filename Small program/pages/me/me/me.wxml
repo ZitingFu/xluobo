@@ -10,8 +10,8 @@
 						 <image wx:else  src="{{img}}"></image>
 					</view>
 					<view class="f-right paddBo20" style="width:79%;">
-						<view wx:if="{{info.name.length>1}}" class="fontSize15 .ma-bo7">{{info.name}}</view>
-						<view wx:else class="fontSize15 .ma-bo7">点击登录</view>
+						<view wx:if="{{info.name}}" class="fontSize15 .ma-bo7">{{info.name}}</view>
+						<view wx:else class="fontSize15 .ma-bo7">未设置</view>
 						<view wx:if="{{info.phone.length<1}}" class="f999"><span catchtap="bindphone" class="bindphone">绑定手机号码</span></view>
 						<view wx:else class="f999"><span catchtap="bindphone" class="bindphone">{{showPhone}}</span></view>
 						<i class="f-right rightimg"></i>
@@ -40,7 +40,7 @@
 			</button>
 			<button data-ud="2" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 			<li>
-				<image style="height: 17px;top:14px;" src="../../../images/icon_guanzhu.png" alt=""></image>
+				<image style="height: 24px;top:11px;width:27px;left:-3px" src="../../../images/icon_guanzhu.png" alt=""></image>
 				<span class="fontSize15 rightlist">
 					我的关注
 					<i class="f-right rightimg"></i>

@@ -93,12 +93,12 @@
 						    	  wx:for="{{item.images}}" 
 						    	  wx:if="{{item.images.length == 1}}" 
 						    	  wx:key="index" 
-						    	  style="width:80%;height:200px;" 
+						    	  id="whdd"
 						    	  wx:for-item="iteming" 
 						    	  class="SixImg-img" 
 						    	  data-list="{{item.images}}" 
 						    	  data-index='{{index}}'>
-						    	<image src="{{iteming.s}}" alt=""></image>
+						    	<image mode="{{mode}}" src="{{iteming.s}}" alt=""></image>
 						    </view>
 						    <!--图片4张 -->
 						    <view style="width:80%" class="clearFix">
@@ -141,14 +141,14 @@
 		<view class="bottom" id="bottom1">
 			<view class="box">
 				<view class="column">
-				    <button class="item" style="font-size:14px;line-height:46px;background-color:#fff;" data-ud="6" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+				    <button class="item" style="font-size:16px;line-height:59px;background-color:#fff;" data-ud="6" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 				    	<image wx:if="{{followid == false}}" class="love" src="{{love}}"></image>
 				    	<image wx:if="{{followid == true}}" class="love" src="https://img.qa.xluob.com/Small%20program/love.jpg"></image>
 				    	<span wx:if="{{followid == true}}">关注</span>
 						<span wx:if="{{followid == false}}" style="color:#fda249">已关注</span>
 						<view class="item1"></view> 
 				    </button>
-				    <view class="item" data-linkphone="{{fromItem.linkphone}}" bindtap="dialphone">
+				    <view class="item" style="line-height: 59px;" data-linkphone="{{fromItem.linkphone}}" bindtap="dialphone">
 				    	<image class="phone"  src="{{phone}}"></image>
 						电话联系
 			     	</view>

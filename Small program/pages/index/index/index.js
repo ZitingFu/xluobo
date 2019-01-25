@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
+var feedbackApi=require('../../../showToast.js');
 var sliderWidth = 58;
 const app = getApp();
 var that;
@@ -7,6 +8,7 @@ var that;
 //获取应用实例
 Page({
   data: {
+    mode: 'aspectFill',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     scrollTop:'0',
     scrollY:'',
@@ -257,7 +259,7 @@ Page({
         title: '正在加载...',
       })
       console.log("第二次")
-      //轮播图*
+      //轮播图*  
         wx.request({
           url:config.Rotation,
           method:"post",
@@ -382,7 +384,17 @@ Page({
           })
         },
         fail(res){
-          console.log("失败")
+          wx.showModal({
+            title: '获取定位失败',
+            content: '请打开定位，重新进入！',
+            success(res) {
+              if (res.confirm) {
+                
+              } else if (res.cancel) {
+               
+              }
+            }
+          })
           wx.request({
             url:config.Rotation,
             method:"post",
@@ -399,95 +411,6 @@ Page({
           }) 
         }
       })
-      // wx.showModal({
-      //   title:'',
-      //   content:"小萝卜公益需要获取您的位置",
-      //    success: function (res) {
-      //       wx.showLoading({
-      //         title: '正在加载...',
-      //       })
-      //       if (res.confirm) {
-      //         console.log(45)
-      //         var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
-      //         console.log(4)
-      //         myAmapFun.getRegeo({
-      //           success: function (data) {
-      //             console.log(3)
-      //             var city = data[0].regeocodeData.addressComponent.adcode
-      //              console.log(1)
-      //             that.setData({
-      //               city:city
-      //             })
-      //              wx.setStorageSync('city',city)
-      //             //轮播图*
-      //             wx.request({
-      //               url:config.Rotation,
-      //               method:"post",
-      //               data: {
-      //                  "city":wx.getStorageSync('city')
-      //               },
-      //               success: function(res) {
-      //                var banner = res.data.data.banner
-      //                 that.setData({ 
-      //                     bannerImages:banner
-      //                 })
-      //               }
-      //             })
-      //             // 附近*
-      //             wx.request({
-      //               url:config.nearby,
-      //               method:"post",
-      //               data: {
-      //                   "pn":1,
-      //                   "area":wx.getStorageSync('city')
-      //               },
-      //               success: function(res) {
-      //                 var from = res.data.data.list
-      //                 if(from.length==0){
-      //                     that.setData({ 
-      //                       boolean1:0
-      //                     })
-      //                 }
-      //                 else{
-      //                   var d = []
-      //                   var now = res.data.data.now
-      //                   for(var a=0;a<from.length;a++){
-      //                     var create_time = Number(from[a].create_time)
-      //                     var expire = Number(from[a].expire*86400)
-      //                     var end = Number(create_time+expire)
-      //                     var difference = Math.ceil(Number(end-now)/86400)
-      //                     d.push(difference)
-      //                   }
-      //                   that.setData({
-      //                       create_time1:d,
-      //                       fromItem1:from,
-      //                       boolean1:1
-      //                   })
-      //                 }
-      //                 wx.hideLoading()
-      //               }
-      //             })
-      //           }
-      //         })
-      //       }
-      //       else if (res.cancel){
-      //         wx.request({
-      //           url:config.Rotation,
-      //           method:"post",
-      //           data: {
-      //              "city":''
-      //           },
-      //           success: function(res) {
-      //            var banner = res.data.data.banner
-      //             that.setData({ 
-      //                 bannerImages:banner
-      //             })
-      //             wx.hideLoading()
-      //           }
-      //         }) 
-      //       }
-      //    }
-      // })
     }
   },
   onReachBottom: function(){
@@ -570,6 +493,7 @@ Page({
   onPullDownRefresh: function(){
     that = this;
     that.onLoad()
+     wx.stopPullDownRefresh();
   }
   // getUserInfo:function(e) {
   //     that = this

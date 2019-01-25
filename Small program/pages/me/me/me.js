@@ -14,7 +14,7 @@ Page({
     name:"点击登录",
     img:"https://img.qa.xluob.com/Small%20program/img_touxiang.png",
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    showPhone:"",
+    showPhone:"绑定手机号码",
     Land:""
   },
   bindphone:function(){
@@ -46,9 +46,6 @@ Page({
       success:function(res){
         console.log(res)
         if(res.data.flag==1){
-          that.setData({
-            showPhone:"绑定手机号码"
-          })
           wx.hideLoading()
         }
         else{
@@ -61,6 +58,7 @@ Page({
           info:info,
           showPhone:showPhone
         })
+        wx.hideLoading()
       }
     })
   },
