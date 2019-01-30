@@ -8,7 +8,7 @@ cb:       接口调用成功的回调函数 选填
  */
 function showToast(obj) {
     if (typeof obj == 'object' && obj.title) {
-        if (!obj.duration || typeof obj.duration != 'number') { obj.duration = 500; }//默认1.5s后消失
+        if (!obj.duration || typeof obj.duration != 'number') { obj.duration = 1500; }//默认1.5s后消失
         var that = getCurrentPages()[getCurrentPages().length - 1];//获取当前page实例
         obj.isShow = true;//开启toast
         // if (obj.duration < 1000) {

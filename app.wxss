@@ -72,7 +72,7 @@ i{
 #Release .Release-center,#peoplelist .Release-center{
 	margin-top:100px; 
 }
-#Release_Research,#peoplelist_search-top{
+#Release_Research,#peoplelist_search-top,#meFollow{
 	width: 100%;
 	background-color: #fff;
 	position:fixed;
@@ -614,18 +614,11 @@ image {
 	left:10px;
 }
 /*附近机构*/
-.list-imgbox{
-	/*margin-top:20px; */
-}
-.list_Four{
-	/*margin-top:30rpx; */
-}
 .nearby-top{
 	padding:0px 28rpx;
-	/*padding-top:10px;  */
 }
 .nearby-top .flex-item{
-	width:80%;
+	width:97%;
 	font-size:14px;
 	overflow:hidden;
 	text-overflow:ellipsis;

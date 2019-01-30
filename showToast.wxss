@@ -4,9 +4,6 @@
   top: 0;
   bottom: 0;
   z-index: 999999;
-  /*width: 100%;
-  height: 100%;*/
-  /*background: rgba(0, 0, 0, .2);*/
 }
 /*水平居中必备样式*/
 .toast-center {

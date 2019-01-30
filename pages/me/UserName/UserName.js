@@ -117,6 +117,7 @@ Page({
        "_t":wx.getStorageSync('_t')
       },
       success:function(res){
+        console.log(res)
       var info = res.data.data.info;
       var name = info.name
       var avatar = info.avatar.b

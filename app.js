@@ -254,11 +254,20 @@ App({
       var type_id = e.currentTarget.dataset.type_id
       var sort = that.data.number
       var code = (that.data.multiIndex[0])
+      if(nam=="所有场所"){
+        that.setData({
+            place:"场所"
+        })
+      }
+      else{
+        that.setData({
+            place:nam
+        })
+      }
       that.setData({ 
           currentTab:current,
           type_id:type_id,
           boolean:false,
-          place:nam,
           open_num:99
       })
       setTimeout(function(){
@@ -672,7 +681,6 @@ App({
         }
   },
   onLaunch: function (options) {
-    // wx.clearStorageSync()
     var that = this
     //获取省市区域
     wx.request({

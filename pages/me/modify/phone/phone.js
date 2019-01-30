@@ -1,5 +1,6 @@
 var amapFile = require('../../../../utils/amap-wx.js');
 const config = require('../../../../config.js');
+var feedbackApi = require('../../../../showToast.js');
 var that;
 //index.js
 //获取应用实例
@@ -33,31 +34,18 @@ Page({
       },
       success: function(res) {
         if(res.data.flag == 0){
-          wx.showModal({
-            title:'',
-            content:"修改成功",
-            confirmText:"好哒~",
-            cancelText:"取消",
-            success: function (res) {
-                if (res.confirm) {
-                    wx.navigateTo({
-                      url:'../../UserName/UserName'
-                    })
-                }
-                else{
-                    wx.navigateTo({
-                      url:'../../UserName/UserName'
-                    })
-                }
-            }
+          feedbackApi.showToast({
+              title:"修改成功"
           })
+          setTimeout(function () {
+            wx.navigateTo({
+              url:'../../UserName/UserName'
+            })
+          },1000);
         }
         else{
-          wx.showModal({
-            title:'',
-            content:res.data.data.msg,
-            confirmText:"好哒~",
-            cancelText:"取消"
+          feedbackApi.showToast({
+              title:res.data.data.msg
           })
         }
       }
@@ -67,11 +55,8 @@ Page({
     var that = this
     var phe = that.data.name1
     if(!(/^1[34578]\d{9}$/.test(phe))){ 
-        wx.showModal({
-          title: '',
-          content:'手机号码有误,请慎重!',
-          confirmText:"确定",
-          cancelText:"取消"
+      feedbackApi.showToast({
+          title:"手机号码有误,请慎重!"
       })
     }
     else{
@@ -100,11 +85,8 @@ Page({
                         },1000)
             }
             else{
-              wx.showModal({
-                  title: '',
-                  content:res.data.data.msg,
-                  confirmText:"知道啦",
-                  cancelText:"取消"
+              feedbackApi.showToast({
+                title:res.data.data.msg
               })
             }
           }

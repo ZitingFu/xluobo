@@ -6,6 +6,7 @@ var that;
 const app = getApp()
 Page({
   data: {
+    find:"https://img.qa.xluob.com/Small%20program/find.png",
     mode: 'aspectFill',
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
@@ -48,7 +49,8 @@ Page({
     ],
     multiIndex:[0, 0, 0],typeLIst:"信息类型",
     place:"场所",
-    na:5
+    na:5,
+    create_time2:""
   },
   scroll: function (e) {
     var that = this;
@@ -63,7 +65,7 @@ Page({
   },
   bindMultiPickerChange(e) {
     that = this;
-       var multiIndex = []
+    var multiIndex = []
     multiIndex.push(that.data.newcity)
     multiIndex.push(that.data.newresede)
     multiIndex.push(that.data.newarea)
@@ -519,7 +521,17 @@ Page({
           "passport_id":options.id
         },
         success: function(res) {
-         var list = res.data.data.list
+        var list = res.data.data.list
+        var from = res.data.data.list
+        var d = []
+        var now = res.data.data.now
+        for(var a=0;a<from.length;a++){
+          var create_time = Number(from[a].create_time)
+          var expire = Number(from[a].expire*86400)
+          var end = Number(create_time+expire)
+          var difference = Math.ceil(Number(end-now)/86400)
+          d.push(difference)
+        }
          if(list.length==0){
             that.setData({ 
                listItem:"",
@@ -528,6 +540,7 @@ Page({
          }
         else{
             that.setData({
+              create_time2:d,
               listItem:list,
               activeIndex:0
             })

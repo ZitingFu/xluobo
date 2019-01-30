@@ -1,6 +1,8 @@
 {
   "pages":[
     "pages/index/index/index",
+    "pages/details/ReleaseDetails/ReleaseDetails",
+    "pages/index/Searchmatter/Searchmatter",  
     "pages/me/me/me", 
     "pages/index/Exhibition/Exhibition",
     "pages/index/peoplelist/peoplelist",  
@@ -15,10 +17,8 @@
     "pages/me/modify/phone/phone",
     "pages/me/modify/UserName/UserName",
     "pages/details/ReleaseDetailsAll/ReleaseDetailsAll",
-    "pages/details/ReleaseDetails/ReleaseDetails",
     "pages/me/modify/sax/sax",
     "pages/index/Searchpeople/Searchpeople",  
-    "pages/index/Searchmatter/Searchmatter",  
     "pages/index/search/search",
     "pages/details/details/details",
     "pages/map/map"

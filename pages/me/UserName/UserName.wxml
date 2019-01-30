@@ -30,8 +30,8 @@
 				<li class="rightlist">
 					<i class="f-left fontSize15 f999">出生日期</i>
 					<i class="f-right clearFix UserName-right">
-						<i wx:if="{{infoItem.birthday != ''}}" class="f-left fontSize15 f333">{{infoItem.birthday}}</i>
-						<i wx:else class="f-left fontSize15 f333">未设置</i>
+						<i wx:if="{{infoItem.birthday != 0}}" class="f-left fontSize15 f333">{{infoItem.birthday}}</i>
+						<i wx:if="{{infoItem.birthday == 0}}" class="f-left fontSize15 f333">未设置</i>
 						<i class="rightimg f-left"></i>
 					</i>
 				</li>

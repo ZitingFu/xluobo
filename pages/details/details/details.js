@@ -6,7 +6,8 @@ var set;
 const app = getApp()
 Page({
   data: {
-     mode: 'aspectFill',
+    find:"https://img.qa.xluob.com/Small%20program/find.png",
+    mode: 'aspectFill',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     id:"",
     fromItem:"",
@@ -99,6 +100,7 @@ Page({
             "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
+          console.log(res)
            var from = res.data.data.info
             if(from.comments.length==0){
               that.setData({ 

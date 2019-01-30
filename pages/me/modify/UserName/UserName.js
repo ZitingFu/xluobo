@@ -1,5 +1,6 @@
 var amapFile = require('../../../../utils/amap-wx.js');
 const config = require('../../../../config.js');
+var feedbackApi = require('../../../../showToast.js');
 var that;
 //index.js
 //获取应用实例
@@ -28,32 +29,19 @@ Page({
         },
         success:function(res){
          if(res.data.flag == 0){
-          wx.showModal({
-            title:'',
-            content:"您的用户名修改成功了哦~",
-            confirmText:"好哒~",
-            cancelText:"取消",
-             success: function (res) {
-                if (res.confirm) {
-                    wx.navigateTo({
-                      url:'../../UserName/UserName'
-                    })
-                }
-                else{
-                    wx.navigateTo({
-                      url:'../../UserName/UserName'
-                    })
-                }
-             }
+          feedbackApi.showToast({
+              title:"您的用户名修改成功了哦~"
           })
+          setTimeout(function () {
+            wx.navigateTo({
+              url:'../../UserName/UserName'
+            })
+          },1000);
          }
          else{
-           wx.showModal({
-            title:'',
-            content:"对不起，修改失败~",
-            confirmText:"好哒~",
-            cancelText:"取消"
-          })
+            feedbackApi.showToast({
+              title:"对不起，修改失败~"
+            })
          }
         }
       })

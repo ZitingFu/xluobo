@@ -90,7 +90,7 @@
 				<button class="bgfc9937 f-right" bindtap="sub">确认</button>
 			</view>
 		</view>
-   		<view class="Release-center {{activeIndex == 1 ? 'notime' : ''}}" >
+   		<view class="Release-center {{activeIndex == 1 ? 'list_item2' : ''}}" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
 					<view class="nearby-item clearFix paddTa20">
@@ -98,64 +98,78 @@
 							<view class="nearby-top">
 								<view class="clearFix genre_name_top">
 									<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.gen_name}}</view>
-									<text class="f-right f999">{{item.time}}</text>
+									<text class="f-right f999" wx:if="{{create_time2[index]>0}}">{{item.time}} - 剩余{{create_time2[index]}}天</text>
+									<text class="f-right f999" wx:else>{{item.time}}</text>
 								</view>
 								<view class="clearFix content"  style="width: 100%;">{{item.content}}</view>
 								<view class="list-imgbox">
-									<!-- 图片为6张 -->
-									<view class="SixImg clearFix">
-										<!-- 图片6张 -->
-										<view catchtap="imgtop"
-											  class="SixImg-img"
-											  wx:if="{{item.images.length > 4}}" 
-											  wx:for="{{item.images}}" 
-											  data-list="{{item.images}}" 
-											  data-index='{{index}}'  
-											  wx:key="index" 
-											  wx:for-item="iteming">
-									    	<image src="{{iteming.s}}" alt=""></image>
-									    </view>
-									    <!-- 图片2.3张 -->
-										<view catchtap="imgtop"
-											  class="SixImg-img"
-											  wx:if="{{item.images.length ==2 || item.images.length == 3}}" 
-											  wx:for="{{item.images}}" 
-											  data-list="{{item.images}}" 
-											  data-index='{{index}}'  
-											  wx:key="index" 
-											  wx:for-item="iteming">
-									    	<image src="{{iteming.s}}" alt=""></image>
-									    </view>
-									    <!-- 图片1张 -->
-									  	<view catchtap="imgtop"
-											  class="SixImg-img"
-											  wx:if="{{item.images.length == 1}}" 
-											  wx:for="{{item.images}}" 
-											  data-list="{{item.images}}" 
-											  data-index='{{index}}'  
-											  wx:key="index"
-											  id="whdd"
-											  wx:for-item="iteming">
-									    	<image mode="{{mode}}" src="{{iteming.s}}" alt=""></image>
-									    </view>
-									    <!-- 图片4张 -->
-									    <view style="width:80%" class="clearFix">
-										  	<view catchtap="imgtop"
-												  class="SixImg-img"
-												  wx:if="{{item.images.length == 4}}" 
-												  wx:for="{{item.images}}" 
-												  data-list="{{item.images}}" 
-												  data-index='{{index}}'  
-												  wx:key="index"
-												  style="width:111px;height:110px;margin-right:5px"
-												  wx:for-item="iteming">
-										    	<image src="{{iteming.s}}" alt=""></image>
+											<!-- 图片为6张 -->
+											<view wx:if="{{item.status!=11}}" class="SixImg clearFix">
+												<!-- 图片6张 -->
+												<view catchtap="imgtop"
+													  class="SixImg-img"
+													  wx:if="{{item.images.length > 4}}" 
+													  wx:for="{{item.images}}" 
+													  data-list="{{item.images}}" 
+													  data-index='{{index}}'  
+													  wx:key="index" 
+													  wx:for-item="iteming">
+											    	<image src="{{iteming.s}}" alt=""></image>
+											    </view>
+											    <!-- 图片2.3张 -->
+												<view catchtap="imgtop"
+													  class="SixImg-img"
+													  wx:if="{{item.images.length ==2 || item.images.length == 3}}" 
+													  wx:for="{{item.images}}" 
+													  data-list="{{item.images}}" 
+													  data-index='{{index}}'  
+													  wx:key="index" 
+													  wx:for-item="iteming">
+											    	<image src="{{iteming.s}}" alt=""></image>
+											    </view>
+											    <!-- 图片1张 -->
+											  	<view catchtap="imgtop"
+											  			id="whdd"
+													  class="SixImg-img"
+													  wx:if="{{item.images.length == 1}}" 
+													  wx:for="{{item.images}}" 
+													  data-list="{{item.images}}" 
+													  data-index='{{index}}'  
+													  wx:key="index"
+													  wx:for-item="iteming">
+											    	<image mode="{{mode}}" src="{{iteming.s}}" alt=""></image>
+											    </view>
+											    <!-- 图片4张 -->
+											    <view style="width:80%" class="clearFix">
+												  	<view catchtap="imgtop"
+														  class="SixImg-img"
+														  wx:if="{{item.images.length == 4}}" 
+														  wx:for="{{item.images}}" 
+														  data-list="{{item.images}}" 
+														  data-index='{{index}}'  
+														  wx:key="index"
+														  style="width:111px;height:110px;margin-right:5px"
+														  wx:for-item="iteming">
+												    	<image src="{{iteming.s}}" alt=""></image>
+												    </view>
+											    </view>
+											    <!-- video -->
+											    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video>
 										    </view>
-									    </view>
-									    <!-- video -->
-									    <!-- <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video> -->
-								    </view>
-				   			 	</view>
+										    <view wx:if="{{item.status==11}}" class="SixImg clearFix">
+												<!-- 图片6张 -->
+												<view catchtap="imgtop"
+													  class="SixImg-img"
+													  data-list="{{find}}" 
+													  data-index='{{find}}'  
+													  >
+											    	<image src="{{find}}" alt=""></image>
+											    </view>
+										    </view>   
+										    <!-- video -->
+										    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}">
+										    </video>
+						   			 	</view>
 				   			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
 				   			 		<view class="clearFix height40">
 										<view class="f-left f333 fontSize30 wi70 hidden">

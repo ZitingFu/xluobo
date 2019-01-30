@@ -19,7 +19,7 @@
 		</view>
 		<view wx:if="{{seet==1}}" class="Release-center {{activeIndex == 1 ? 'renotime' : ''}}" >
    		 	<view class="nearby clearFix">
-				<view class="nearby-center clearFix brbott-tae7e7e7">
+				<view class="nearby-center clearFix brbott-tae7e7e7" style="margin-top:63px;">
 					<view class="nearby-item brbott-boe7e7e7  clearFix paddTa20" bindtap="ckdetails" data-usid="{{item.id}}"  wx:for="{{listItem}}" wx:key="index">
 						<view class="f-left bo-f000ff paddLe24 wihe40">
 							 <image wx:if="{{item.avatar.b}}" src="{{item.avatar.b}}" ></image>

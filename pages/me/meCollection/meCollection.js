@@ -6,6 +6,7 @@ var that;
 const app = getApp()
 Page({
   data: {
+    find:"https://img.qa.xluob.com/Small%20program/find.png",
      mode: 'aspectFill',
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
@@ -49,6 +50,7 @@ Page({
        "pn":1 
       },
       success:function(res){
+        console.log(res)
        var question = res.data.data.question
         if(question.length==0){
             that.setData({ 

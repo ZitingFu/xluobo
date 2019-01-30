@@ -7,6 +7,7 @@ var that;
 const app = getApp()
 Page({
     data: {
+        find:"https://img.qa.xluob.com/Small%20program/find.png",
         mode: 'aspectFill', 
         activeIndex2:"0",
         page:1,
@@ -88,13 +89,14 @@ Page({
       })
     },
     search:function(e){
+      console.log("search")
         var that = this
         var name = e.detail.value;
         that.setData({ 
            name:name
         })
-
       if(that.data.name.length!=0){
+        console.log("456456")
           that.setData({ 
             fromItem1:"",
             fromItem2:"",
@@ -239,6 +241,7 @@ Page({
         }
       }
       else{
+        console.log("555")
         //寻人
         wx.request({
             url:config.searchpeople,
@@ -250,9 +253,18 @@ Page({
             success: function(res) {
               var from = res.data.data.list
               that.data.navData[0].fromItem = from
-              that.setData({ 
-                  fromItem1:from
-              })
+              if(from.length==0){
+                  that.setData({ 
+                     fromItem1:"",
+                    activeIndex2:1
+                  })
+                }
+                else{
+                  that.setData({ 
+                      fromItem1:from,
+                      activeIndex2:0
+                  })
+                }
             }
         })
         // 寻物
@@ -265,9 +277,18 @@ Page({
             },
           success: function(res) {
             var from = res.data.data.list
-            that.setData({ 
-                fromItem2:from
-            })
+            if(from.length==0){
+                  that.setData({ 
+                     fromItem2:"",
+                    activeIndex2:1
+                  })
+                }
+                else{
+                  that.setData({ 
+                      fromItem2:from,
+                      activeIndex2:0
+                  })
+                }
           }
         })
         // 认人
@@ -280,9 +301,18 @@ Page({
             },
           success: function(res) {
             var from = res.data.data.list
-            that.setData({ 
-                fromItem3:from
-            })
+            if(from.length==0){
+                  that.setData({ 
+                     fromItem3:"",
+                    activeIndex2:1
+                  })
+                }
+                else{
+                  that.setData({ 
+                      fromItem3:from,
+                      activeIndex2:0
+                  })
+                }
           }
         })
         // 认领
@@ -295,9 +325,18 @@ Page({
             },
           success: function(res) {
             var from = res.data.data.list
-            that.setData({ 
-                fromItem4:from
-            })
+            if(from.length==0){
+                  that.setData({ 
+                     fromItem4:"",
+                    activeIndex2:1
+                  })
+                }
+                else{
+                  that.setData({ 
+                      fromItem4:from,
+                      activeIndex2:0
+                  })
+                }
           }
         })
         // 好人风采
@@ -310,9 +349,18 @@ Page({
             },
           success: function(res) {
             var from = res.data.data.list
-            that.setData({ 
-                fromItem5:from
-            })
+            if(from.length==0){
+              that.setData({ 
+                 fromItem5:"",
+                activeIndex2:1
+              })
+            }
+            else{
+              that.setData({ 
+                  fromItem5:from,
+                  activeIndex2:0
+              })
+            }
            wx.hideLoading()
           }
         })
@@ -320,6 +368,7 @@ Page({
        
     },
     tabClick: function (e) {
+      console.log("tabClick")
         this.setData({
             sliderOffset: e.currentTarget.offsetLeft,
             activeIndex: e.currentTarget.id
@@ -480,9 +529,9 @@ Page({
             success: function(res) {
               var from = res.data.data.list
               that.data.navData[0].fromItem = from
-              that.setData({ 
+                that.setData({ 
                   fromItem1:from
-              })
+                })
             }
         })
         // 寻物

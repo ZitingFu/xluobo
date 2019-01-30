@@ -225,7 +225,7 @@ Page({
           number:number,
           boolean3:false,
           open_num:99,
-           place:nam
+          place:nam
       })
       setTimeout(function(){
         wx.request({
@@ -267,7 +267,7 @@ Page({
       var code = (that.data.multiIndex[0])
       if(nam=="所有场所"){
         that.setData({
-          mtype:"物品类型"
+          mtype:"机构类型"
         })
       }
       else{

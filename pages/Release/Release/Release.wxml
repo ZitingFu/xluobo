@@ -51,8 +51,7 @@
 			<li bindtap="Type_top_number" data-number="1" data-nam="距离最近" class="{{number == 1?'ff8030':'f333'}}">距离最近</li>
 			<li bindtap="Type_top_number" data-number="2" data-nam="爱心值优先" class="{{number == 2?'ff8030':'f333'}}">爱心值优先</li>
 		</view>
-		
-   		<view class="Release-center {{activeIndex == 1 ? 'renotime' : ''}}" >
+   		<view class="Release-center {{activeIndex == 1 ? 'renotime':''}}" >
    		 	<view class="nearby clearFix">
 				<view class="nearby-center clearFix">
 					<view class="nearby-item clearFix paddTa20" bindtap="ckdetails" data-usid="{{item.id}}"  wx:for="{{listItem}}" wx:key="index">

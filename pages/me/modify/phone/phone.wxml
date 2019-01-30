@@ -1,7 +1,8 @@
 <!--logs.wxml-->
+<import src="../../../../widgets/showToast.wxml" />
 <view class="container log-list">
-	<view></view>
 	<view id="phone">
+		<template is="showToast" data="{{showToast: showToast}}" />
    		<view class=" banner_sousuo1" >
    			<i class="me-right1"></i>
    			<i class="Line"></i>

@@ -6,6 +6,7 @@ var that;
 const app = getApp()
 Page({
   data: {
+     find:"https://img.qa.xluob.com/Small%20program/find.png",
      mode: 'aspectFill',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     fromItem:"",
@@ -22,7 +23,8 @@ Page({
     zhfa:"",
     page:1,
     activeIndex:"0",
-    id:""
+    id:"",
+    create_time2:""
   },
   dialphone:function(e){
     var p = e.currentTarget.dataset.linkphone
@@ -71,12 +73,20 @@ Page({
       url:config.melist,
       method:"post",
       data: {
-          "id":id,
-          "_t":wx.getStorageSync('_t')
+          "id":id
       },
       success: function(res) {
         var from = res.data.data.info
         var recent_post = res.data.data.recent_post
+        var d = []
+        var now = res.data.data.now
+        for(var a=0;a<recent_post.length;a++){
+          var create_time = Number(recent_post[a].create_time)
+          var expire = Number(recent_post[a].expire*86400)
+          var end = Number(create_time+expire)
+          var difference = Math.ceil(Number(end-now)/86400)
+          d.push(difference)
+        }
         if(recent_post.length==0){
               that.setData({ 
                 recent_post:"",
@@ -85,6 +95,7 @@ Page({
             }
             else{
                 that.setData({ 
+                  create_time2:d,
                   recent_post:recent_post,
                   activeIndex:0
                 })

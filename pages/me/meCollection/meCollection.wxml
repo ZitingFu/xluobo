@@ -14,7 +14,7 @@
 						<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
 						<view class="list-imgbox">
 							<!-- 图片为6张 -->
-							<view class="SixImg clearFix">
+							<view wx:if="{{item.status!=11}}" class="SixImg clearFix">
 								<!-- 图片6张 -->
 								<view catchtap="imgtop"
 									  class="SixImg-img"
@@ -66,6 +66,11 @@
 							    <!-- video -->
 							    <!-- <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video> -->
 						    </view>
+						    <view wx:if="{{item.status==11}}" class="SixImg clearFix">
+								<view class="SixImg-img">
+							    	<image src="{{find}}" alt=""></image>
+							    </view>
+						    </view>  
 					    	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
 			   			 		<view class="clearFix height40">
 									<view class="f-left f333 fontSize30 wi70 hidden">

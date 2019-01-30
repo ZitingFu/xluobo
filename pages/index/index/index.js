@@ -8,6 +8,7 @@ var that;
 //获取应用实例
 Page({
   data: {
+    find:"https://img.qa.xluob.com/Small%20program/find.png",
     mode: 'aspectFill',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     scrollTop:'0',
@@ -162,7 +163,6 @@ Page({
     }
   },
   onLoad: function (options) {
-    wx.clearStorageSync()
     wx.showLoading({
         title: '正在加载...',
       })
@@ -227,6 +227,7 @@ Page({
            "_t":wx.getStorageSync('_t')
       },
       success: function(res) {
+        console.log(res)
         var from = res.data.data.list
         if(from.length==0){
             that.setData({ 
@@ -378,17 +379,6 @@ Page({
           })
         },
         fail(res){
-          wx.showModal({
-            title: '获取定位失败',
-            content: '请打开定位，重新进入！',
-            success(res) {
-              if (res.confirm) {
-                
-              } else if (res.cancel) {
-               
-              }
-            }
-          })
           wx.request({
             url:config.Rotation,
             method:"post",

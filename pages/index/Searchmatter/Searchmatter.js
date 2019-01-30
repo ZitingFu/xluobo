@@ -6,6 +6,7 @@ var that;
 const app = getApp()
 Page({
   data: {
+    find:"https://img.qa.xluob.com/Small%20program/find.png",
      mode: 'aspectFill',
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
@@ -42,7 +43,8 @@ Page({
     ],
     multiIndex:[0, 0, 0],
     place:"场所",
-    mtype:"物品类型"
+    mtype:"物品类型",
+    create_time2:""
   },
   scroll: function (e) {
     var that = this;
@@ -158,9 +160,19 @@ Page({
         "pn":page
       },
       success: function(res) {
-       var list = res.data.data.list
-        that.setData({ 
-          listItem:list
+        var from = res.data.data.list
+        var d = []
+        var now = res.data.data.now
+        for(var a=0;a<from.length;a++){
+          var create_time = Number(from[a].create_time)
+          var expire = Number(from[a].expire*86400)
+          var end = Number(create_time+expire)
+          var difference = Math.ceil(Number(end-now)/86400)
+          d.push(difference)
+        }
+        that.setData({
+          create_time2:d,
+          listItem:from
         })
         wx.hideLoading()
       }

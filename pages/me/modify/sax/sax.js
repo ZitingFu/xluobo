@@ -1,5 +1,6 @@
 var amapFile = require('../../../../utils/amap-wx.js');
 const config = require('../../../../config.js');
+var feedbackApi = require('../../../../showToast.js');
 var that;
 //index.js
 //获取应用实例
@@ -8,10 +9,10 @@ Page({
   data: {
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
-      radioItems: [
-          {name: '男', value: '0'},
-          {name: '女', value: '1'}
-      ]
+    radioItems: [
+        {name: '男', value: '0'},
+        {name: '女', value: '1'}
+    ]
   },
   radioChange: function (e) {
       var radioItems = this.data.radioItems;
@@ -19,7 +20,7 @@ Page({
           radioItems[i].checked = radioItems[i].value == e.detail.value;
       }
       this.setData({
-          radioItems: radioItems
+        radioItems: radioItems
       });
       wx.request({
         url:config.passportEdit,
@@ -30,32 +31,19 @@ Page({
         },
         success:function(res){
          if(res.data.flag == 0){
-          wx.showModal({
-            title:'',
-            content:"修改成功了哦~",
-            confirmText:"好哒~",
-            cancelText:"取消",
-             success: function (res) {
-                if (res.confirm) {
-                    wx.navigateTo({
-                      url:'../../UserName/UserName'
-                    })
-                }
-                else{
-                    wx.navigateTo({
-                      url:'../../UserName/UserName'
-                    })
-                }
-             }
+           feedbackApi.showToast({
+              title:"您的用户名修改成功了哦~"
           })
+          setTimeout(function () {
+            wx.navigateTo({
+              url:'../../UserName/UserName'
+            })
+          },1000);
          }
          else{
-           wx.showModal({
-            title:'',
-            content:"对不起，修改失败~",
-            confirmText:"好哒~",
-            cancelText:"取消"
-          })
+            feedbackApi.showToast({
+              title:"对不起，修改失败~"
+            })
          }
         }
       })
