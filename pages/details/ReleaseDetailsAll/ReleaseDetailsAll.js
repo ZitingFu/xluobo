@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
+var feedbackApi=require('../../../showToast.js');
 var that;
 //index.js
 //获取应用实例
@@ -50,7 +51,9 @@ Page({
     multiIndex:[0, 0, 0],typeLIst:"信息类型",
     place:"场所",
     na:5,
-    create_time2:""
+    create_time2:"",
+    time:"发布时间",
+    op_id:""
   },
   scroll: function (e) {
     var that = this;
@@ -58,9 +61,11 @@ Page({
       scrollY: e.detail.scrollTop
     })
   },
-  lookup:function(){
+  lookup:function(e){
+    var that = this;
+    var op_id = that.data.op_id
     wx.navigateTo ({
-      url:'../../index/search/search'
+       url:'../../index/search/search?id='+op_id
     })
   },
   bindMultiPickerChange(e) {
@@ -123,6 +128,7 @@ Page({
            "code":ccode1
         },
         success: function(res) {
+          console.log(res)
           var res = res.data.data.city
           var province = []
           var provincede = []
@@ -161,6 +167,7 @@ Page({
            "code":areaid
         },
         success: function(res) {
+          console.log(res)
           var res = res.data.data.city
           var resce = []
           var resede = []
@@ -274,49 +281,60 @@ Page({
   },
   Reset:function(){
     that.setData({
-        start:"",
-        end:""
+        start:"开始时间",
+        end:"截止时间",
+        time:"发布时间"
       })
   },
   sub:function(){
-    wx.showLoading({
-        title: '正在加载...',
-    })
     that = this
-    setTimeout(function(){
-      wx.request({
-        url:config.organizationQuestion,
-        method:"post",
-        data: {
-          "pn":1,
-          "genre":that.data.number,
-          "site":that.data.type_id,
-          "start":that.data.start,
-          "end":that.data.end,
-          "_t":wx.getStorageSync('_t')
-        },
-        success: function(res) {
-         var genre = res.data.data.list
-          if(genre.length==0){
-            that.setData({ 
-                listItem:"",
-                activeIndex:1
-            })
-          }
-          else{
-              that.setData({
-                listItem:genre,
-                activeIndex:0
-              })
-          }
-           that.setData({
-            boolean2:false,
-            open_num:99,
-          })
-          wx.hideLoading()  
-        }
+    if(that.data.start=="开始时间"||that.data.end=="截止时间"){
+      feedbackApi.showToast({
+          title:"请正确的选择起始时间"
       })
-    },1000)
+    }
+    else{
+      wx.showLoading({
+        title: '正在加载...',
+      })
+      that.setData({
+        time:"已选择"
+      })
+      setTimeout(function(){
+        wx.request({
+          url:config.organizationQuestion,
+          method:"post",
+          data: {
+            "pn":1,
+            "genre":that.data.number,
+            "site":that.data.type_id,
+            "start":that.data.start,
+            "end":that.data.end,
+            "_t":wx.getStorageSync('_t')
+          },
+          success: function(res) {
+           var genre = res.data.data.list
+            if(genre.length==0){
+              that.setData({ 
+                  listItem:"",
+                  activeIndex:1
+              })
+            }
+            else{
+                that.setData({
+                  listItem:genre,
+                  activeIndex:0
+                })
+            }
+             that.setData({
+              boolean2:false,
+              open_num:99,
+            })
+            wx.hideLoading()  
+          }
+        })
+      },1000)
+    }
   },
   bindDateInput:function(e){
     that = this
@@ -360,6 +378,7 @@ Page({
       })
   },
   Type_top_number:function(e){
+    console.log(123)
     that = this
     wx.showLoading({
         title: '正在加载...',
@@ -388,6 +407,7 @@ Page({
           "passport_id":that.data.passport_id
         },
         success: function(res) {
+          console.log(res)
          var list = res.data.data.list
          if(list.length==0){
             that.setData({ 
@@ -473,6 +493,9 @@ Page({
       title: '正在加载...',
     })
     that = this
+    that.setData({ 
+      op_id:options.id
+    })
     var page = Number(that.data.page)
     var city = app.data.city
     var type_id = app.data.type_id
@@ -485,6 +508,7 @@ Page({
           "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
+          console.log(res)
          var genre = res.data.data.genre
            that.setData({ 
               genreImages:genre

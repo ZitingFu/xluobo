@@ -39,9 +39,100 @@ Page({
        url: '../../map/map?latitude='+latitude+"&longitude="+longitude
     })
   },
-  bindChange:function(){
-    that.setData({ 
-        bottom:1
+  bindChange:function(e){
+    that = this
+    if(!wx.getStorageSync('_t')){
+      console.log("456")
+      that.setData({ 
+          bottom:0
+      })
+    }
+    else{
+      console.log("789")
+      that.setData({ 
+          bottom:1
+      })
+    }
+  },
+  search:function(e){
+    that = this
+    wx.request({
+      url:config.commentsCreate,
+      method:"post",
+      data: {
+        "content":that.data.name,
+        "q_id":that.data.id,
+        "type":0,
+        "_t":wx.getStorageSync('_t')
+      },
+      success: function(res) {
+        var from = res.data.data.list
+         wx.request({
+            url:config.questioninfo,
+            method:"post",
+            data: {
+                // "id":268471567,
+                "id":that.data.id,
+                 "_t":wx.getStorageSync('_t')
+            },
+            success: function(res) {
+                var from = res.data.data.info
+                if(from.comments.length==0){
+                  that.setData({ 
+                    activeIndex:0
+                  })
+               }else{
+                  that.setData({ 
+                    activeIndex:1
+                  })
+               }
+             that.setData({ 
+                  fromItem:res.data.data.info
+              })
+            }
+        })
+      }
+    })
+  },
+  sub:function(){
+    that = this
+    wx.request({
+      url:config.commentsCreate,
+      method:"post",
+      data: {
+        "content":that.data.name,
+        "q_id":that.data.id,
+        "type":0,
+        "_t":wx.getStorageSync('_t')
+      },
+      success: function(res) {
+        var from = res.data.data.list
+         wx.request({
+            url:config.questioninfo,
+            method:"post",
+            data: {
+                // "id":268471567,
+                "id":that.data.id,
+                 "_t":wx.getStorageSync('_t')
+            },
+            success: function(res) {
+              console.log(res)
+                var from = res.data.data.info
+                if(from.comments.length==0){
+                  that.setData({ 
+                    activeIndex:0
+                  })
+               }else{
+                  that.setData({ 
+                    activeIndex:1
+                  })
+               }
+             that.setData({ 
+                  fromItem:res.data.data.info
+              })
+            }
+        })
+      }
     })
   },
   ckReleaseDetails:function(e){

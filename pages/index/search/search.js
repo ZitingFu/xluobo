@@ -57,7 +57,8 @@ Page({
         activeIndex: 0,
         sliderOffset: 0,
         sliderLeft:18.5,
-        name:""
+        name:"",
+        nd:""
     },
     ckdetails:function(e){
       var id = e.currentTarget.dataset.usid;
@@ -84,143 +85,278 @@ Page({
         })
     },  
     cancel:function(){
-      wx.switchTab ({
-        url:'../../index/index/index'
-      })
+      var that = this
+      var nd = this.data.nd
+      if(nd==1){
+        wx.switchTab ({
+          url:'../../index/index/index'
+        })
+      }
+      else{
+        wx.navigateTo({
+           url: '../../details/ReleaseDetailsAll/ReleaseDetailsAll?id='+nd
+        })
+      }
     },
     search:function(e){
-      console.log("search")
         var that = this
+        var nd = that.data.nd
         var name = e.detail.value;
+        console.log(name)
         that.setData({ 
            name:name
         })
-      if(that.data.name.length!=0){
-        console.log("456456")
-          that.setData({ 
-            fromItem1:"",
-            fromItem2:"",
-            fromItem3:"",
-            fromItem4:"",
-            fromItem5:"",
-          })
-        if(that.data.activeIndex==0){
-            wx.request({
-              url:config.searchpeople,
-              method:"post",
-              data: {
-                "name":that.data.name,
-                "pn":1,
-                "type":1
-              },
-              success: function(res) {
-                var from = res.data.data.list
-                if(from.length==0){
-                  that.setData({ 
-                     fromItem1:"",
-                    activeIndex2:1
-                  })
-                }
-                else{
-                  that.setData({ 
-                      fromItem1:from,
-                      activeIndex2:0
-                  })
-                }
-                wx.hideLoading()
-              }
-            })
-        }
-        if(that.data.activeIndex==1){
-            wx.request({
-              url:config.searchpeople,
-              method:"post",
-              data: {
-                "name":that.data.name,
-                "pn":1,
-                "type":2
-              },
-              success: function(res) {
-                var from = res.data.data.list
-                if(from.length==0){
-                  that.setData({ 
-                     fromItem2:"",
-                    activeIndex2:1
-                  })
-                }
-                else{
-                  that.setData({ 
-                      fromItem2:from,
-                      activeIndex2:0
-                  })
-                }
-                wx.hideLoading()
-              }
-            })
-        }
-        if(that.data.activeIndex==2){
+        if(nd==1){
+          if(that.data.name.length!=0){
+              that.setData({ 
+                fromItem1:"",
+                fromItem2:"",
+                fromItem3:"",
+                fromItem4:"",
+                fromItem5:"",
+              })
+            if(that.data.activeIndex==0){
+                wx.request({
+                  url:config.searchpeople,
+                  method:"post",
+                  data: {
+                    "name":that.data.name,
+                    "pn":1,
+                    "type":1
+                  },
+                  success: function(res) {
+                    var from = res.data.data.list
+                    if(from.length==0){
+                      that.setData({ 
+                         fromItem1:"",
+                        activeIndex2:1
+                      })
+                    }
+                    else{
+                      that.setData({ 
+                          fromItem1:from,
+                          activeIndex2:0
+                      })
+                    }
+                    wx.hideLoading()
+                  }
+                })
+            }
+            if(that.data.activeIndex==1){
+                wx.request({
+                  url:config.searchpeople,
+                  method:"post",
+                  data: {
+                    "name":that.data.name,
+                    "pn":1,
+                    "type":2
+                  },
+                  success: function(res) {
+                    var from = res.data.data.list
+                    if(from.length==0){
+                      that.setData({ 
+                         fromItem2:"",
+                        activeIndex2:1
+                      })
+                    }
+                    else{
+                      that.setData({ 
+                          fromItem2:from,
+                          activeIndex2:0
+                      })
+                    }
+                    wx.hideLoading()
+                  }
+                })
+            }
+            if(that.data.activeIndex==2){
+                wx.request({
+                    url:config.searchpeople,
+                    method:"post",
+                    data: {
+                      "name":that.data.name,
+                      "pn":1,
+                      "type":3
+                    },
+                    success: function(res) {
+                      var from = res.data.data.list
+                      if(from.length==0){
+                        that.setData({ 
+                           fromItem3:"",
+                          activeIndex2:1
+                        })
+                      }
+                      else{
+                        that.setData({ 
+                            fromItem3:from,
+                            activeIndex2:0
+                        })
+                      }
+                      wx.hideLoading()
+                    }
+                })
+            }
+            if(that.data.activeIndex==3){
+                wx.request({
+                    url:config.searchpeople,
+                    method:"post",
+                    data: {
+                      "name":that.data.name,
+                      "pn":1,
+                      "type":4
+                    },
+                    success: function(res) {
+                      var from = res.data.data.list
+                      if(from.length==0){
+                        that.setData({ 
+                           fromItem4:"",
+                          activeIndex2:1
+                        })
+                      }
+                      else{
+                        that.setData({ 
+                            fromItem4:from,
+                            activeIndex2:0
+                        })
+                      }
+                      wx.hideLoading()
+                    }
+                })
+            }
+            if(that.data.activeIndex==4){
+                wx.request({
+                  url:config.searchpeople,
+                  method:"post",
+                  data: {
+                    "name":that.data.name,
+                    "pn":1,
+                    "type":5
+                  },
+                  success: function(res) {
+                    var from = res.data.data.list
+                    if(from.length==0){
+                      that.setData({ 
+                         fromItem5:"",
+                        activeIndex2:1
+                      })
+                    }
+                    else{
+                      that.setData({ 
+                          fromItem5:from,
+                          activeIndex2:0
+                      })
+                    }
+                    wx.hideLoading()
+                  }
+                })
+            }
+          }
+          else{
+            //寻人
             wx.request({
                 url:config.searchpeople,
                 method:"post",
                 data: {
-                  "name":that.data.name,
+                  "pn":1,
+                  "type":1
+                },
+                success: function(res) {
+                  var from = res.data.data.list
+                  that.data.navData[0].fromItem = from
+                  if(from.length==0){
+                      that.setData({ 
+                         fromItem1:"",
+                        activeIndex2:1
+                      })
+                    }
+                    else{
+                      that.setData({ 
+                          fromItem1:from,
+                          activeIndex2:0
+                      })
+                    }
+                }
+            })
+            // 寻物
+            wx.request({
+              url:config.searchpeople,
+              method:"post",
+              data: {
+                  "pn":1,
+                  "type":2
+                },
+              success: function(res) {
+                var from = res.data.data.list
+                if(from.length==0){
+                      that.setData({ 
+                         fromItem2:"",
+                        activeIndex2:1
+                      })
+                    }
+                    else{
+                      that.setData({ 
+                          fromItem2:from,
+                          activeIndex2:0
+                      })
+                    }
+              }
+            })
+            // 认人
+            wx.request({
+              url:config.searchpeople,
+              method:"post",
+              data: {
                   "pn":1,
                   "type":3
                 },
-                success: function(res) {
-                  var from = res.data.data.list
-                  if(from.length==0){
-                    that.setData({ 
-                       fromItem3:"",
-                      activeIndex2:1
-                    })
-                  }
-                  else{
-                    that.setData({ 
-                        fromItem3:from,
-                        activeIndex2:0
-                    })
-                  }
-                  wx.hideLoading()
-                }
+              success: function(res) {
+                var from = res.data.data.list
+                if(from.length==0){
+                      that.setData({ 
+                         fromItem3:"",
+                        activeIndex2:1
+                      })
+                    }
+                    else{
+                      that.setData({ 
+                          fromItem3:from,
+                          activeIndex2:0
+                      })
+                    }
+              }
             })
-        }
-        if(that.data.activeIndex==3){
-            wx.request({
-                url:config.searchpeople,
-                method:"post",
-                data: {
-                  "name":that.data.name,
-                  "pn":1,
-                  "type":4
-                },
-                success: function(res) {
-                  var from = res.data.data.list
-                  if(from.length==0){
-                    that.setData({ 
-                       fromItem4:"",
-                      activeIndex2:1
-                    })
-                  }
-                  else{
-                    that.setData({ 
-                        fromItem4:from,
-                        activeIndex2:0
-                    })
-                  }
-                  wx.hideLoading()
-                }
-            })
-        }
-        if(that.data.activeIndex==4){
+            // 认领
             wx.request({
               url:config.searchpeople,
               method:"post",
               data: {
-                "name":that.data.name,
-                "pn":1,
-                "type":5
-              },
+                  "pn":1,
+                  "type":4
+                },
+              success: function(res) {
+                var from = res.data.data.list
+                if(from.length==0){
+                      that.setData({ 
+                         fromItem4:"",
+                        activeIndex2:1
+                      })
+                    }
+                    else{
+                      that.setData({ 
+                          fromItem4:from,
+                          activeIndex2:0
+                      })
+                    }
+              }
+            })
+            // 好人风采
+            wx.request({
+              url:config.searchpeople,
+              method:"post",
+              data: {
+                  "pn":1,
+                  "type":5
+                },
               success: function(res) {
                 var from = res.data.data.list
                 if(from.length==0){
@@ -235,140 +371,41 @@ Page({
                       activeIndex2:0
                   })
                 }
-                wx.hideLoading()
+               wx.hideLoading()
               }
             })
+          }
         }
-      }
-      else{
-        console.log("555")
-        //寻人
-        wx.request({
-            url:config.searchpeople,
+        else{
+          console.log("搜索机构")
+          wx.request({
+            url:config.organizationQuestion,
             method:"post",
             data: {
-              "pn":1,
-              "type":1
+              "passport_id":nd,
+              "key":name,
+              "pn":1
             },
             success: function(res) {
               var from = res.data.data.list
-              that.data.navData[0].fromItem = from
               if(from.length==0){
-                  that.setData({ 
-                     fromItem1:"",
-                    activeIndex2:1
-                  })
-                }
-                else{
-                  that.setData({ 
-                      fromItem1:from,
-                      activeIndex2:0
-                  })
-                }
+                that.setData({ 
+                   fromItem5:"",
+                  activeIndex2:1
+                })
+              }
+              else{
+                that.setData({ 
+                    fromItem5:from,
+                    activeIndex2:0
+                })
+              }
+              wx.hideLoading()
             }
-        })
-        // 寻物
-        wx.request({
-          url:config.searchpeople,
-          method:"post",
-          data: {
-              "pn":1,
-              "type":2
-            },
-          success: function(res) {
-            var from = res.data.data.list
-            if(from.length==0){
-                  that.setData({ 
-                     fromItem2:"",
-                    activeIndex2:1
-                  })
-                }
-                else{
-                  that.setData({ 
-                      fromItem2:from,
-                      activeIndex2:0
-                  })
-                }
-          }
-        })
-        // 认人
-        wx.request({
-          url:config.searchpeople,
-          method:"post",
-          data: {
-              "pn":1,
-              "type":3
-            },
-          success: function(res) {
-            var from = res.data.data.list
-            if(from.length==0){
-                  that.setData({ 
-                     fromItem3:"",
-                    activeIndex2:1
-                  })
-                }
-                else{
-                  that.setData({ 
-                      fromItem3:from,
-                      activeIndex2:0
-                  })
-                }
-          }
-        })
-        // 认领
-        wx.request({
-          url:config.searchpeople,
-          method:"post",
-          data: {
-              "pn":1,
-              "type":4
-            },
-          success: function(res) {
-            var from = res.data.data.list
-            if(from.length==0){
-                  that.setData({ 
-                     fromItem4:"",
-                    activeIndex2:1
-                  })
-                }
-                else{
-                  that.setData({ 
-                      fromItem4:from,
-                      activeIndex2:0
-                  })
-                }
-          }
-        })
-        // 好人风采
-        wx.request({
-          url:config.searchpeople,
-          method:"post",
-          data: {
-              "pn":1,
-              "type":5
-            },
-          success: function(res) {
-            var from = res.data.data.list
-            if(from.length==0){
-              that.setData({ 
-                 fromItem5:"",
-                activeIndex2:1
-              })
-            }
-            else{
-              that.setData({ 
-                  fromItem5:from,
-                  activeIndex2:0
-              })
-            }
-           wx.hideLoading()
-          }
-        })
-      }
-       
+          })
+        }
     },
     tabClick: function (e) {
-      console.log("tabClick")
         this.setData({
             sliderOffset: e.currentTarget.offsetLeft,
             activeIndex: e.currentTarget.id
@@ -598,8 +635,12 @@ Page({
       }
     },
     //事件处理函数
-    onLoad: function (e) {
+    onLoad: function (options) {
+        console.log(options.id)
         that = this;
+        that.setData({ 
+            nd:options.id
+        })
         wx.showLoading({
           title: '正在加载中'
         })

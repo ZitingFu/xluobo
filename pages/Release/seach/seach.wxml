@@ -11,15 +11,15 @@
 	   <view wx:if="{{seet==0}}" style="margin-top:80px">
 		   <view class="nearby-top clearFix height47 brbott-boe7e7e7 bgff">
 				<view class="f-left f333 fontSize15">历史搜索</view>
-				<text class="f-right fontSize15" style="color:#1065cb"  bindtap="clearSearchStorage">清空</text>
+				<text class="f-right fontSize15" style="color:#1065cb"  bindtap="clearSearchStorage" wx:if="{{clear_i}}">清空</text>
 			</view>
 			<view class="History bgff">
 				<span wx:for="{{namelist}}" wx:key="index" bindtap="btn" data-ia="{{index}}">{{item}}</span>
 			</view>	
 		</view>
-		<view wx:if="{{seet==1}}" class="Release-center {{activeIndex == 1 ? 'renotime' : ''}}" >
+		<view wx:if="{{seet==1}}" class="Release-center {{activeIndex == 1 ? 'renotime' : ''}}">
    		 	<view class="nearby clearFix">
-				<view class="nearby-center clearFix brbott-tae7e7e7" style="margin-top:63px;">
+				<view class="nearby-center clearFix brbott-tae7e7e7" style="margin-top:70px;">
 					<view class="nearby-item brbott-boe7e7e7  clearFix paddTa20" bindtap="ckdetails" data-usid="{{item.id}}"  wx:for="{{listItem}}" wx:key="index">
 						<view class="f-left bo-f000ff paddLe24 wihe40">
 							 <image wx:if="{{item.avatar.b}}" src="{{item.avatar.b}}" ></image>

@@ -96,7 +96,7 @@
 						  <image wx:else src="{{loge}}"></image>
 					</view>
 					<view class="f-left wi40 paddBo20" data-usid="{{fromItem.user_id}}" bindtap="ckReleaseDetails">
-						<view class="fontSize30 ma-bo4 hidden" style="width:95%">{{fromItem.user_name}}</view>
+						<view class="fontSize30 ma-bo4 hidden" style="width:90%">{{fromItem.user_name}}</view>
 						<view class="f999">发布数{{fromItem.issue_num}}<i class="dian"></i>已找到{{fromItem.find_num}}<i class="dian"></i>爱心值{{fromItem.love}}</view>
 					</view>
 					<button data-ud="8" data-idd="{{fromItem.user_id}}" class="follow f-left wi50" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
@@ -115,7 +115,8 @@
 						</view>
 						<view class="f-right wi82 paddBo20">
 							<view class="fontSize30 hidden wi70 ma-bo4">{{item.user_name}}</view>
-							<view class="f999">{{item.tmp_time}}</view>
+							<view wx:if="{{item.tmp_time}}" class="f999">{{item.tmp_time}}</view>
+							<view wx:else class="f999">刚刚</view>
 						</view>
 						<button style="padding:0px;border:1px solid #fff" class="{{item.num_like==true?'zan':'zan2'}}" data-q_id="{{item.id}}" data-ud="7" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
 
@@ -136,9 +137,9 @@
 		<view class="box">
 			<view class="column" style="text-align:left;">
 			    <view class="item" style="width:73%;">
-			    	<view class="comment" bindtap="bindChange" style="line-height: 27px;">
+			    	<button class="comment" data-ud="5" bindtap="bindChange" bindgetuserinfo="getUserInfo" open-type="getUserInfo" style="line-height: 27px;text-align:left;font-size:14px;">
 			    		<span style="color:#ddd">写评论</span>
-					</view>
+					</button>
 			    </view>
 			    <view class="item" style="width: 16%;">
 				<button data-ud="4" class="share" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
@@ -157,11 +158,11 @@
 			<view class="column" style="text-align:left;">
 			    <view class="item" style="width: 75%;">
 			    	<view class="comment" style="line-height: 27px;">
-					  	<input cursor-spacing="20" class=""  bindinput="sear" name="{{input}}" bindblur="blur" placeholder="" auto-focus/>
+					  	<input cursor-spacing="20" class=""  bindinput="sear" name="{{input}}" bindconfirm="search" bindblur="blur" placeholder="" auto-focus/>
 					</view>
 			    </view>
 			    <view class="item">
-			    	<button class="sub" data-ud="5" bindgetuserinfo="getUserInfo" open-type="getUserInfo">发布</button>
+			    	<button class="sub" bindtap="sub">发布</button>
 		     	</view>
 		    </view>
     	</view>

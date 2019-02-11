@@ -526,44 +526,7 @@ App({
           //详情评论
           if(ud==5){
             that.setData({ 
-                bottom:0
-            })
-            wx.request({
-              url:config.commentsCreate,
-              method:"post",
-              data: {
-                "content":that.data.name,
-                "q_id":that.data.id,
-                "type":0,
-                "_t":app.data._t
-              },
-              success: function(res) {
-                var from = res.data.data.list
-                 wx.request({
-                    url:config.questioninfo,
-                    method:"post",
-                    data: {
-                        // "id":268471567,
-                        "id":that.data.id,
-                         "_t":app.data._t
-                    },
-                    success: function(res) {
-                        var from = res.data.data.info
-                        if(from.comments.length==0){
-                          that.setData({ 
-                            activeIndex:0
-                          })
-                       }else{
-                          that.setData({ 
-                            activeIndex:1
-                          })
-                       }
-                     that.setData({ 
-                          fromItem:res.data.data.info
-                      })
-                    }
-                })
-              }
+                bottom:1
             })
           }
           //机构详情关注
@@ -670,6 +633,9 @@ App({
                 },
                 success:function(res){
                  var info = res.data.data.info;
+                  feedbackApi.showToast({
+                    title:"登陆成功"
+                  })
                   that.setData({
                     info:info
                   })

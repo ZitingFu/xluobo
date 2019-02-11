@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
+var feedbackApi = require('../../../showToast.js');
 var that;
 //index.js
 //获取应用实例

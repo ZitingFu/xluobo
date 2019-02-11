@@ -73,8 +73,9 @@ Page({
   },
   //搜索页面
   search:function(){
+    console.log(123)
     wx.navigateTo({
-      url:'../search/search'
+      url:'../search/search?id='+1
     })
   },
   ckdetails:function(e){
@@ -141,6 +142,12 @@ Page({
         urls:arry
        })
   },
+  ckReleaseDetails:function(e){
+      var usid = e.currentTarget.dataset.tyid;
+      wx.navigateTo({
+       url: '../../details/ReleaseDetails/ReleaseDetails?id='+usid
+      })
+  },
   tabClick: function (e) {
     this.setData({
         sliderOffset: e.currentTarget.offsetLeft,
@@ -160,6 +167,19 @@ Page({
       this.setData({
         page:this.data.page
       })
+    }
+  },
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      var id = res.target.dataset.usid
+      console.log(res.target)
+    }
+    return {
+      title: '小萝卜公益',
+      path: '/pages/details/details/details?id='+id,
+      success:function(res){
+        console.log(res)
+      }
     }
   },
   onLoad: function (options) {
@@ -227,7 +247,6 @@ Page({
            "_t":wx.getStorageSync('_t')
       },
       success: function(res) {
-        console.log(res)
         var from = res.data.data.list
         if(from.length==0){
             that.setData({ 
@@ -379,6 +398,7 @@ Page({
           })
         },
         fail(res){
+          console.log(res)
           wx.request({
             url:config.Rotation,
             method:"post",

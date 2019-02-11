@@ -13,6 +13,12 @@
 	color: #333333;
 	/*background-color: red;*/
 }
+.hjk{
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
 /*共同*/
 #map,#details,#Research,#meFollow,#meCollection,#meComment,#Release,#me,#search,#Releaselist,#peoplelist,#ReleaseDetails,#UserName,#phone,#sax,#UserNameTop{
 	width: 100%;

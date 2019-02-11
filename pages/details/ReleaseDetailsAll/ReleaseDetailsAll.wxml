@@ -1,6 +1,8 @@
 <!--logs.wxml-->
+<import src="../../../widgets/showToast.wxml" />
 <view class="container log-list">
 	<view id="peoplelist">
+		<template is="showToast" data="{{showToast: showToast}}" />
 		<view id="peoplelist_search-top">
 			<view class="search-top" bindtap="lookup" style="margin-bottom:60px;">
 			<view class="banner_sousuo" bindtap="search">
@@ -20,7 +22,7 @@
 						<select name="区域" id="" >
 							<view class="section">
 							    <view class="picker">
-							      <option value="">发布时间<i class="{{open_num==1?'sjs':'sjx'}}"></i></option>
+							      <option value="">{{time}}<i class="{{open_num==1?'sjs':'sjx'}}"></i></option>
 							    </view>
 							</view>
 				    	</select>

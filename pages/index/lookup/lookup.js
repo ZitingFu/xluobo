@@ -86,6 +86,33 @@ Page({
       })
     },
   cancel:function(){
+     var that = this
+     var id = that.data.id
+     if(id==1){
+        wx.navigateTo({
+          url: '../../index/peoplelist/peoplelist'
+        })
+     }
+     if(id==2){
+        wx.navigateTo({
+          url: '../../index/matterlist/matterlist'
+        })
+     }
+     if(id==3){
+        wx.navigateTo({
+          url: '../../index/Searchpeople/Searchpeople'
+        })
+     }
+     if(id==4){
+        wx.navigateTo({
+          url: '../../index/Searchmatter/Searchmatter'
+        })
+     }
+     if(id==5){
+        wx.navigateTo({
+          url: '../../index/Exhibition/Exhibition'
+        })
+     }
     wx.switchTab ({
       url:'../../index/index/index'
     })
@@ -118,6 +145,7 @@ Page({
     var page = Number(that.data.page)
     var citynamelist =  app.data.citynamelist
     var citycode = app.data.citycode
+    console.log(options.id)
     that.setData({ 
         id:options.id
     })

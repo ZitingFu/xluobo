@@ -414,8 +414,13 @@ Page({
   //下拉
   onPullDownRefresh: function(){
     that = this;
-    that.onLoad()
-     wx.stopPullDownRefresh();
+    wx.showLoading({
+      title: '正在加载...',
+    })
+    setTimeout(function() {
+      wx.hideLoading()
+      wx.stopPullDownRefresh();
+    },1000);
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo

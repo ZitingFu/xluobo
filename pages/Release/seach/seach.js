@@ -13,7 +13,8 @@ Page({
     namelist:"",
     input:"",
     loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
-    page:1
+    page:1,
+    clear_i:false
   },
    scroll: function (e) {
     var that = this;
@@ -53,7 +54,16 @@ Page({
       }
     })
   },
-  search:function(e){
+  search:function(e){ 
+    function uniq(array){
+        var temp = [];
+        for(var i = 0; i < array.length; i++) {
+            if(array.indexOf(array[i]) == i){
+                temp.push(array[i])
+            }
+        }
+        return temp;
+    }
     var that = this
     var arry = []
     var name = e.detail.value;
@@ -71,7 +81,7 @@ Page({
       namelist:namelist
     })
     namelist = that.data.namelist
-    wx.setStorageSync('name',namelist)
+    wx.setStorageSync('name',uniq(namelist))
     wx.showLoading({
       title: '正在加载...',
     })
@@ -83,6 +93,7 @@ Page({
          "_t":wx.getStorageSync('_t')
       },
       success: function(res) {
+        console.log(res)
        var list = res.data.data.list
         that.setData({ 
           listItem:list,
@@ -106,6 +117,17 @@ Page({
   },
   clearSearchStorage:function(){
     wx.setStorageSync('name','')
+    var num = wx.getStorageSync('name')
+    if(num.length>0){
+      that.setData({  
+        clear_i:true
+      })
+    }
+    else{
+      that.setData({  
+        clear_i:false
+      })
+    }
     that.setData({ 
         namelist:"",
     })
@@ -125,6 +147,12 @@ Page({
       // wx.clearStorageSync()
     that = this
     var num = wx.getStorageSync('name')
+    if(num.length>0){
+      console.log(that)
+      that.setData({  
+        clear_i:true
+      })
+    }
     if(num.length>14){
         num.pop()
         wx.setStorageSync('name',num)
@@ -150,6 +178,7 @@ Page({
            "pn":page
         },
         success: function(res) {
+          console.log(res)
          var list = res.data.data.list
           var from = that.data.listItem;
             for (var i = 0; i < res.data.data.list.length; i++) {

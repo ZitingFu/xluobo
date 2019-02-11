@@ -6,7 +6,7 @@
 			<span class="wihe15 searchimg" style="position:absolute;top:9px;left:10px;"></span>
 			<input class="binner_input" confirm-type="search" bindconfirm="search" value="{{input}}" placeholder="搜索" auto-focus/>
 			</view>
-			 <span class="f-right bind-s" bindtap="cancel">取消</span>
+			 <span class="f-right bind-s"  bindtap="cancel">取消</span>
 			<view class="weui-navbar brbott-tae7e7e7">
                 <block wx:for="{{tabs}}" wx:key="*this">
                     <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">

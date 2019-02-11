@@ -71,6 +71,7 @@ Page({
       },
       success:function(res){
         var list = res.data.data.comments
+        console.log(list)
         if(list.length==0){
             that.setData({ 
                listItem:"",

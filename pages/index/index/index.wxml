@@ -73,16 +73,16 @@
 			            <view class="weui-tab__panel">
 			            	<!-- 附近 -->
 			                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-			                <view class="list_item brbott-boe7e7e7" wx:for="{{fromItem1}}" wx:if="{{boolean1 == true}}" data-usid="{{item.id}}" bindtap="ckdetails" wx:key="index" x:for-index="idx2">
+			                <view class="list_item brbott-boe7e7e7" wx:for="{{fromItem1}}" wx:if="{{boolean1 == true}}" data-usid="{{item.id}}"  wx:key="index" x:for-index="idx2">
 									<view class="nearby-top">
-										<view class="clearFix genre_name_top">
+										<view class="clearFix genre_name_top" bindtap="ckdetails" data-usid="{{item.id}}">
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999">{{item.time}}</text>
 											<!-- <text class="f-right f999" wx:if="{{create_time2[index]>0}}">{{item.time}} - 剩余{{create_time2[index]}}天</text>
 											<text class="f-right f999" wx:else>{{item.time}}</text> -->
 										</view>
-										<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
-										<view class="list-imgbox">
+										<view bindtap="ckdetails" data-usid="{{item.id}}" class="clearFix content" style="width: 100%;">{{item.content}}</view>
+										<view class="list-imgbox" data-usid="{{item.id}}" bindtap="ckdetails">
 											<!-- 图片为6张 -->
 											<view wx:if="{{item.status!=11}}" class="SixImg clearFix">
 												<!-- 图片6张 -->
@@ -148,7 +148,7 @@
 						   			 	</view>
 						   			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
 						   			 		<view class="clearFix height40">
-												<view class="f-left f333 fontSize30 wi70 hidden">
+												<view bindtap="ckReleaseDetails" data-tyid="{{item.user_id}}" class="f-left f333 fontSize30 wi70 hidden">
 													<view  class="wihe20 f-left paddRi14" style="top:7px;">
 														<image wx:if="{{item.avatar.m}}" src="{{item.avatar.s}}" alt=""></image>
 													 	<image wx:else src="{{loge}}"></image>
@@ -158,7 +158,7 @@
 												<view class="f-right wi23 f999 clearFix">
 													<view class="wihe13 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
 													<view class="f-left length">{{item.comment_count}}</view>
-													<button class="share fx wihe18" open-type='share' style="top:4px;margin-left:14px;">
+													<button data-usid="{{item.id}}" class="share fx wihe18" open-type='share'style="top:4px;margin-left:14px;">
 										    			<image style="width:88%;height: 88%" class=" " src="{{fexi}}"></image>
 										    		</button>
 												</view>
@@ -171,15 +171,15 @@
 			                </view>
 			                <!-- 最新 -->
 			                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-			                	<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem2}}" wx:key="index" data-usid="{{item.id}}"  bindtap="ckdetails" x:for-index="idx2" wx:if="{{boolean2 == true}}">
+			                	<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem2}}" wx:key="index"  wx:for-index="idx2" wx:if="{{boolean2 == true}}">
 									<view class="nearby-top">
-										<view class="clearFix genre_name_top">
+										<view data-usid="{{item.id}}" bindtap="ckdetails" class="clearFix genre_name_top">
 											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
 											<text class="f-right f999" wx:if="{{create_time2[index]>0}}">{{item.time}} - 剩余{{create_time2[index]}}天</text>
 											<text class="f-right f999" wx:else>{{item.time}}</text>
 										</view>
-										<view class="clearFix content" style="width: 100%;">{{item.content}}</view>
-										<view class="list-imgbox">
+										<view data-usid="{{item.id}}"  bindtap="ckdetails" class="clearFix content" style="width: 100%;">{{item.content}}</view>
+										<view data-usid="{{item.id}}"  bindtap="ckdetails" class="list-imgbox">
 											<!-- 图片为6张 -->
 											<view wx:if="{{item.status!=11}}" class="SixImg clearFix">
 												<!-- 图片6张 -->
@@ -245,8 +245,8 @@
 						   			 	</view>
 						   			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
 						   			 		<view class="clearFix height40">
-												<view class="f-left f333 fontSize30 wi70 hidden">
-													<view  class="wihe20 f-left paddRi14" style="top:7px;">
+												<view bindtap="ckReleaseDetails" data-tyid="{{item.user_id}}" class="f-left f333 fontSize30 wi70 hidden">
+													<view class="wihe20 f-left paddRi14" style="top:7px;">
 														<image wx:if="{{item.avatar.m}}" src="{{item.avatar.s}}" alt=""></image>
 													 	<image wx:else src="{{loge}}"></image>
 													</view>
@@ -255,18 +255,15 @@
 												<view class="f-right wi23 f999 clearFix">
 													<view class="wihe13 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
 													<view class="f-left length">{{item.comment_count}}</view>
-													<button class="share fx wihe18" open-type='share' style="top:4px;margin-left:14px;">
+													<button data-usid="{{item.id}}" class="share fx wihe18" open-type='share' style="top:4px;margin-left:14px;">
 											    		<image style="width:88%;height: 88%" class=" " src="{{fexi}}"></image>
 											    	</button>
-	
 												</view>
 											</view>
 						   			 	</view>
 									</view>
 								</view>
-								<view class="list_item2" wx:if="{{boolean2 == false}}">
-									<image class="" src="{{notime}}" alt=""></image>
-								</view>
+								<view class="list_item2" wx:if="{{boolean2 == false}}"></view>
 			                </view>
 			            </view>
 			        </view>

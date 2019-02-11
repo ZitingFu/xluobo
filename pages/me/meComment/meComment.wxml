@@ -14,7 +14,7 @@
 							 <image wx:else src="{{loge}}"></image>
 						</view>
 						<view class="f-right wi80">
-							<view class="fontSize30 f6f6f6  center-right">{{item.question.content}}</view>
+							<view class="fontSize30 f6f6f6 hjk center-right">{{item.question.content}}</view>
 							<!-- <view class="f999"></view> -->
 						</view>
 					</view>

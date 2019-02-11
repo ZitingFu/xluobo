@@ -1,7 +1,8 @@
 <!--logs.wxml-->
+<import src="../../../widgets/showToast.wxml" />
 <view class="container log-list">
-	<view></view>
 	<view id="me">
+		<template is="showToast" data="{{showToast: showToast}}" />
    		<view class="me-top brbote7">
 			<button data-ud="0" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 				<view wx:if="{{Land==true}}" class="nearby-item clearFix paddTa20 brbott-boe7e7e7 brbott-tae7e7e7">
