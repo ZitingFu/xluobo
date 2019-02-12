@@ -467,6 +467,19 @@ App({
           })
      }
   },
+  // onShareAppMessage(res) {
+  //   if (res.from === 'button') {
+  //     var id = res.target.dataset.usid
+  //     console.log(res.target)
+  //   }
+  //   return {
+  //     title: '小萝卜公益',
+  //     path: '/pages/details/details/details?id='+id,
+  //     success:function(res){
+  //       console.log(res)
+  //     }
+  //   }
+  // },
   getUserInfo:function(e,that,app){
     var value = wx.getStorageSync('_t')
     var ud = e.currentTarget.dataset.ud

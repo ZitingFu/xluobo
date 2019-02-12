@@ -107,12 +107,9 @@ Page({
         success:function(res){
            var list = res.data.data.comments
            if(list.length<1){
-              setTimeout(function(){
-                wx.showModal({
-                  content:"没有数据了"
+                feedbackApi.showToast({
+                  title:"没有数据了.."
                 })
-                wx.hideLoading()
-              },1000)
              }
            var from = that.data.listItem;
            for (var i = 0; i < list.length; i++) {

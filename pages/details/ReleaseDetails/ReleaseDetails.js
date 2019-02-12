@@ -26,17 +26,29 @@ Page({
     id:"",
     create_time2:""
   },
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      var id = res.target.dataset.usid
+    }
+    return {
+      title: '小萝卜公益',
+      path: '/pages/details/details/details?id='+id,
+      success:function(res){
+        console.log(res)
+      }
+    }
+  },
   dialphone:function(e){
     var p = e.currentTarget.dataset.linkphone
     wx.makePhoneCall({
       phoneNumber:p,
     })
   },
-   ckdetails:function(e){
+  ckdetails:function(e){
     var id = e.currentTarget.dataset.dd;
-      wx.navigateTo({
-        url: '../../details/details/details?id='+id
-      })
+    wx.navigateTo({
+      url: '../../details/details/details?id='+id
+    })
   },
   all:function(e){
     var id = e.currentTarget.dataset.id

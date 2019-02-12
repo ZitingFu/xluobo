@@ -378,7 +378,6 @@ Page({
       })
   },
   Type_top_number:function(e){
-    console.log(123)
     that = this
     wx.showLoading({
         title: '正在加载...',
@@ -484,9 +483,17 @@ Page({
       })
          wx.hideLoading()
       },1000)
-    that.setData({ 
-      place:e.currentTarget.dataset.name
-    })
+      var nam = e.currentTarget.dataset.name
+      if(nam=="所有场所"){
+        that.setData({
+            place:"场所"
+        })
+      }
+      else{
+        that.setData({
+            place:nam
+        })
+      }
   },
   onLoad: function (options) {
     wx.showLoading({

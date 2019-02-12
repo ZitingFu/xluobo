@@ -47,6 +47,24 @@ Page({
     id:"",
     name:""
   },
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      var id = res.target.dataset.usid
+    }
+    return {
+      title: '小萝卜公益',
+      path: '/pages/details/details/details?id='+id,
+      success:function(res){
+        console.log(res)
+      }
+    }
+  },
+  ckReleaseDetails:function(e){
+      var usid = e.currentTarget.dataset.id;
+      wx.navigateTo({
+       url: '../../details/ReleaseDetails/ReleaseDetails?id='+usid
+      })
+  },
   scroll: function (e) {
     var that = this;
     that.setData({
@@ -84,7 +102,7 @@ Page({
           wx.hideLoading()
         }
       })
-    },
+  },
   cancel:function(){
      var that = this
      var id = that.data.id
@@ -145,7 +163,6 @@ Page({
     var page = Number(that.data.page)
     var citynamelist =  app.data.citynamelist
     var citycode = app.data.citycode
-    console.log(options.id)
     that.setData({ 
         id:options.id
     })

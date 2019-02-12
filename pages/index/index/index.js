@@ -8,7 +8,7 @@ var that;
 //获取应用实例
 Page({
   data: {
-    find:"https://img.qa.xluob.com/Small%20program/find.png",
+    loge:'https://img.qa.xluob.com/Small%20program/avatar2.png',
     mode: 'aspectFill',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     scrollTop:'0',
@@ -25,10 +25,6 @@ Page({
     fromItem1:"",
     fromItem2:"",
     init:"",
-    loge:"https://img.qa.xluob.com/Small%20program/avatar2.png",
-    xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
-    fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
-    jing:"https://img.qa.xluob.com/Small%20program/1.png",
     zhfa:"",
     one1:"https://img.qa.xluob.com/Small%20program/home_icon_xr.png",
     one2:"https://img.qa.xluob.com/Small%20program/home_icon_xw.png",
@@ -49,6 +45,18 @@ Page({
     sliderLeft: 0,
     create_time1:"",
     create_time2:""
+  },
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      var id = res.target.dataset.usid
+    }
+    return {
+      title: '小萝卜公益',
+      path: '/pages/details/details/details?id='+id,
+      success:function(res){
+        console.log(res)
+      }
+    }
   },
   Scan:function(){
     wx.scanCode({
@@ -172,13 +180,14 @@ Page({
   onShareAppMessage(res) {
     if (res.from === 'button') {
       var id = res.target.dataset.usid
-      console.log(res.target)
     }
     return {
       title: '小萝卜公益',
       path: '/pages/details/details/details?id='+id,
       success:function(res){
-        console.log(res)
+        feedbackApi.showToast({
+            title:"分享成功"
+        })
       }
     }
   },

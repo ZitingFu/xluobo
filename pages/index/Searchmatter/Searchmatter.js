@@ -6,14 +6,10 @@ var that;
 const app = getApp()
 Page({
   data: {
-    find:"https://img.qa.xluob.com/Small%20program/find.png",
-     mode: 'aspectFill',
+    mode: 'aspectFill',
     MapKey:"6f967ad7e3c309757773579d0f7c90c4",
     city:"",
     notime:"https://img.qa.xluob.com/Small%20program/Notime.png",
-    fexi:"https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png",
-    xinxi:"https://img.qa.xluob.com/Small%20program/x.png",
-    jing:"https://img.qa.xluob.com/Small%20program/1.png",
     activeIndex:"0",
     TypeItem:"",
     listItem:"",
@@ -45,6 +41,23 @@ Page({
     place:"场所",
     mtype:"物品类型",
     create_time2:""
+  },
+  onShareAppMessage(res) {
+    if (res.from === 'button') {
+      var id = res.target.dataset.usid
+    }
+    return {
+      title: '小萝卜公益',
+      path: '/pages/details/details/details?id='+id,
+      success:function(res){
+      }
+    }
+  },
+  ckReleaseDetails:function(e){
+      var usid = e.currentTarget.dataset.id;
+      wx.navigateTo({
+       url: '../../details/ReleaseDetails/ReleaseDetails?id='+usid
+      })
   },
   scroll: function (e) {
     var that = this;

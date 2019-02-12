@@ -1,5 +1,6 @@
 	<!--index.wxml-->
 <import src="../../../widgets/showToast.wxml" />
+<import src="../../../widgets/container.wxml" />
 <view class="container">
 	<view id="container_home">
 		<template is="showToast" data="{{showToast: showToast}}" />
@@ -73,196 +74,17 @@
 			            <view class="weui-tab__panel">
 			            	<!-- 附近 -->
 			                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-			                <view class="list_item brbott-boe7e7e7" wx:for="{{fromItem1}}" wx:if="{{boolean1 == true}}" data-usid="{{item.id}}"  wx:key="index" x:for-index="idx2">
-									<view class="nearby-top">
-										<view class="clearFix genre_name_top" bindtap="ckdetails" data-usid="{{item.id}}">
-											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
-											<text class="f-right f999">{{item.time}}</text>
-											<!-- <text class="f-right f999" wx:if="{{create_time2[index]>0}}">{{item.time}} - 剩余{{create_time2[index]}}天</text>
-											<text class="f-right f999" wx:else>{{item.time}}</text> -->
-										</view>
-										<view bindtap="ckdetails" data-usid="{{item.id}}" class="clearFix content" style="width: 100%;">{{item.content}}</view>
-										<view class="list-imgbox" data-usid="{{item.id}}" bindtap="ckdetails">
-											<!-- 图片为6张 -->
-											<view wx:if="{{item.status!=11}}" class="SixImg clearFix">
-												<!-- 图片6张 -->
-												<view catchtap="imgtop"
-													  class="SixImg-img"
-													  wx:if="{{item.images.length > 4}}" 
-													  wx:for="{{item.images}}" 
-													  data-list="{{item.images}}" 
-													  data-index='{{index}}'  
-													  wx:key="index" 
-													  wx:for-item="iteming">
-											    	<image src="{{iteming.s}}" alt=""></image>
-											    </view>
-											    <!-- 图片2.3张 -->
-												<view catchtap="imgtop"
-													  class="SixImg-img"
-													  wx:if="{{item.images.length ==2 || item.images.length == 3}}" 
-													  wx:for="{{item.images}}" 
-													  data-list="{{item.images}}" 
-													  data-index='{{index}}'  
-													  wx:key="index" 
-													  wx:for-item="iteming">
-											    	<image src="{{iteming.s}}" alt=""></image>
-											    </view>
-											    <!-- 图片1张 -->
-											  	<view catchtap="imgtop"
-											  			id="whdd"
-													  class="SixImg-img"
-													  wx:if="{{item.images.length == 1}}" 
-													  wx:for="{{item.images}}" 
-													  data-list="{{item.images}}" 
-													  data-index='{{index}}'  
-													  wx:key="index"
-													  wx:for-item="iteming">
-											    	<image mode="{{mode}}" src="{{iteming.s}}" alt=""></image>
-											    </view>
-											    <!-- 图片4张 -->
-											    <view style="width:80%" class="clearFix">
-												  	<view catchtap="imgtop"
-														  class="SixImg-img"
-														  wx:if="{{item.images.length == 4}}" 
-														  wx:for="{{item.images}}" 
-														  data-list="{{item.images}}" 
-														  data-index='{{index}}'  
-														  wx:key="index"
-														  style="width:111px;height:110px;margin-right:5px"
-														  wx:for-item="iteming">
-												    	<image src="{{iteming.s}}" alt=""></image>
-												    </view>
-											    </view>
-											    <!-- video -->
-											    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video>
-										    </view>
-										    <view wx:if="{{item.status==11}}" class="SixImg clearFix">
-												<!-- 图片6张 -->
-												<view class="SixImg-img">
-											    	<image src="{{find}}" alt=""></image>
-											    </view>
-										    </view>   
-										    <!-- video -->
-										    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}">
-										    </video>
-						   			 	</view>
-						   			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
-						   			 		<view class="clearFix height40">
-												<view bindtap="ckReleaseDetails" data-tyid="{{item.user_id}}" class="f-left f333 fontSize30 wi70 hidden">
-													<view  class="wihe20 f-left paddRi14" style="top:7px;">
-														<image wx:if="{{item.avatar.m}}" src="{{item.avatar.s}}" alt=""></image>
-													 	<image wx:else src="{{loge}}"></image>
-													</view>
-													<view class="f-left hidden wi80" style="line-height: 40px;height: 40px">{{item.user_name}}</view>
-												</view>
-												<view class="f-right wi23 f999 clearFix">
-													<view class="wihe13 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
-													<view class="f-left length">{{item.comment_count}}</view>
-													<button data-usid="{{item.id}}" class="share fx wihe18" open-type='share'style="top:4px;margin-left:14px;">
-										    			<image style="width:88%;height: 88%" class=" " src="{{fexi}}"></image>
-										    		</button>
-												</view>
-											</view>
-						   			 	</view>
-									</view>
-								</view>
+			                	<block wx:for="{{fromItem1}}" wx:if="{{boolean1 == true}}" data-usid="{{item.id}}"  wx:key="index" x:for-index="idx2">
+								 	<template is="index" data="{{item}}"></template>
+							 	</block>
 								<view class="list_item2" wx:if="{{boolean1 == false}}">
 								</view>
 			                </view>
 			                <!-- 最新 -->
 			                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-			                	<view class="list_item brbott-boe7e7e7" wx:for="{{fromItem2}}" wx:key="index"  wx:for-index="idx2" wx:if="{{boolean2 == true}}">
-									<view class="nearby-top">
-										<view data-usid="{{item.id}}" bindtap="ckdetails" class="clearFix genre_name_top">
-											<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.genre_name}}</view>
-											<text class="f-right f999" wx:if="{{create_time2[index]>0}}">{{item.time}} - 剩余{{create_time2[index]}}天</text>
-											<text class="f-right f999" wx:else>{{item.time}}</text>
-										</view>
-										<view data-usid="{{item.id}}"  bindtap="ckdetails" class="clearFix content" style="width: 100%;">{{item.content}}</view>
-										<view data-usid="{{item.id}}"  bindtap="ckdetails" class="list-imgbox">
-											<!-- 图片为6张 -->
-											<view wx:if="{{item.status!=11}}" class="SixImg clearFix">
-												<!-- 图片6张 -->
-												<view catchtap="imgtop"
-													  class="SixImg-img"
-													  wx:if="{{item.images.length > 4}}" 
-													  wx:for="{{item.images}}" 
-													  data-list="{{item.images}}" 
-													  data-index='{{index}}'  
-													  wx:key="index" 
-													  wx:for-item="iteming">
-											    	<image src="{{iteming.s}}" alt=""></image>
-											    </view>
-											    <!-- 图片2.3张 -->
-												<view catchtap="imgtop"
-													  class="SixImg-img"
-													  wx:if="{{item.images.length ==2 || item.images.length == 3}}" 
-													  wx:for="{{item.images}}" 
-													  data-list="{{item.images}}" 
-													  data-index='{{index}}'  
-													  wx:key="index" 
-													  wx:for-item="iteming">
-											    	<image src="{{iteming.s}}" alt=""></image>
-											    </view>
-											    <!-- 图片1张 -->
-											  	<view catchtap="imgtop"
-											  			id="whdd"
-													  class="SixImg-img"
-													  wx:if="{{item.images.length == 1}}" 
-													  wx:for="{{item.images}}" 
-													  data-list="{{item.images}}" 
-													  data-index='{{index}}'  
-													  wx:key="index"
-													  wx:for-item="iteming">
-											    	<image mode="{{mode}}" src="{{iteming.s}}" alt=""></image>
-											    </view>
-											    <!-- 图片4张 -->
-											    <view style="width:80%" class="clearFix">
-												  	<view catchtap="imgtop"
-														  class="SixImg-img"
-														  wx:if="{{item.images.length == 4}}" 
-														  wx:for="{{item.images}}" 
-														  data-list="{{item.images}}" 
-														  data-index='{{index}}'  
-														  wx:key="index"
-														  style="width:111px;height:110px;margin-right:5px"
-														  wx:for-item="iteming">
-												    	<image src="{{iteming.s}}" alt=""></image>
-												    </view>
-											    </view>
-											    <!-- video -->
-											    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video>
-										    </view>
-										    <view wx:if="{{item.status==11}}" class="SixImg clearFix">
-												<!-- 图片6张 -->
-												<view class="SixImg-img">
-											    	<image src="{{find}}" alt=""></image>
-											    </view>
-										    </view>   
-										    <!-- video -->
-										    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}">
-										    </video>
-						   			 	</view>
-						   			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
-						   			 		<view class="clearFix height40">
-												<view bindtap="ckReleaseDetails" data-tyid="{{item.user_id}}" class="f-left f333 fontSize30 wi70 hidden">
-													<view class="wihe20 f-left paddRi14" style="top:7px;">
-														<image wx:if="{{item.avatar.m}}" src="{{item.avatar.s}}" alt=""></image>
-													 	<image wx:else src="{{loge}}"></image>
-													</view>
-													<view class="f-left hidden wi80" style="line-height: 40px;height: 40px">{{item.user_name}}</view>
-												</view>
-												<view class="f-right wi23 f999 clearFix">
-													<view class="wihe13 f-left paddRi9 "><image class="xinxi" src="{{xinxi}}" alt=""></image></view>
-													<view class="f-left length">{{item.comment_count}}</view>
-													<button data-usid="{{item.id}}" class="share fx wihe18" open-type='share' style="top:4px;margin-left:14px;">
-											    		<image style="width:88%;height: 88%" class=" " src="{{fexi}}"></image>
-											    	</button>
-												</view>
-											</view>
-						   			 	</view>
-									</view>
-								</view>
+			                	<block wx:for="{{fromItem2}}" wx:if="{{boolean2 == true}}" data-usid="{{item.id}}"  wx:key="index" x:for-index="idx2">
+								 	<template is="index" data="{{item}}"></template>
+							 	</block>
 								<view class="list_item2" wx:if="{{boolean2 == false}}"></view>
 			                </view>
 			            </view>
