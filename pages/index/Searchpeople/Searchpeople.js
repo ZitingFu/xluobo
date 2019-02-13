@@ -27,6 +27,8 @@ Page({
     currentTab:0,
     currentTab2:0,
     number:"",
+    type_id:"",
+    city:"",
     open_num:8,
     index: 0,
     TypeItem3:"",
@@ -95,8 +97,9 @@ Page({
     app.Type_top_number(e,that,genre)
   },
   Type_top:function(e,that){
+    var genre = "3"
       that = this
-     app.Type_top(e,that)
+     app.Type_top(e,that,genre)
   },
   imgtop:function(e){
     var imgList = e.currentTarget.dataset.list;//获取data-list

@@ -28,7 +28,7 @@ Page({
     boolean1:false,
     boolean3:false,
     currentTab:1,
-    number:0,
+    number:'',
     open_num:8,
     index: 0,
     citynamelist:"",
@@ -72,7 +72,7 @@ Page({
           method:"post",
           data: {
             "site":site,
-            "code":multiIndex[0],
+            "code":multiIndex[1],
             "sort":sort,
             "pn":1
           },
@@ -219,7 +219,6 @@ Page({
       var current2 = e.currentTarget.dataset.currenttab2
       var number = e.currentTarget.dataset.number
       var type_id = that.data.type_id
-      var code = (that.data.multiIndex[0])
       that.setData({
           currentTab2:current2,
           number:number,
@@ -232,10 +231,10 @@ Page({
           url:config.ReleaseList,
           method:"post",
           data: {
-            "site":number,
-            "code":code,
+            "site":that.data.type_id,
+            "code":that.data.newresede,
             "pn":1,
-            "sort":type_id
+            "sort":number
           },
           success: function(res) {
            var list = res.data.data.list
@@ -264,7 +263,6 @@ Page({
       var current = e.currentTarget.dataset.currenttab
       var type_id = e.currentTarget.dataset.type_id
       var sort = that.data.number
-      var code = (that.data.multiIndex[0])
       if(nam=="所有场所"){
         that.setData({
           mtype:"机构类型"
@@ -287,7 +285,7 @@ Page({
           method:"post",
           data: {
             "site":type_id,
-            "code":"",
+            "code":that.data.newresede,
             "pn":1,
             "sort":sort
           },
@@ -405,7 +403,6 @@ Page({
                   listItem:from,
                   page:page
               })
-
             wx.hideLoading()
           }
         })

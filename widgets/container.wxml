@@ -68,8 +68,8 @@
 				    </view>
 			    </view>   
 			    <!-- video -->
-			    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}">
-			    </video>
+			    <!-- <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}">
+			    </video> -->
 			 	</view>
 			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
 			 		<view class="clearFix height40">
@@ -153,7 +153,7 @@
 					    </view>
 				    </view>
 				    <!-- video -->
-				    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video>
+				   <!--  <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video> -->
 			    </view>
 			    <view wx:if="{{item.status==11}}" class="SixImg clearFix">
 					<!-- 图片6张 -->
@@ -162,8 +162,8 @@
 				    </view>
 			    </view>   
 			    <!-- video -->
-			    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}">
-			    </video>
+			    <!-- <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}">
+			    </video> -->
 			 	</view>
 			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
 			 		<view class="clearFix height40">
@@ -256,8 +256,8 @@
 				    </view>
 			    </view>   
 			    <!-- video -->
-			    <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}">
-			    </video>
+			    <!-- <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}">
+			    </video> -->
 			 	</view>
 			 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
 			 		<view class="clearFix height40">

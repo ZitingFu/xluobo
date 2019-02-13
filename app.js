@@ -45,33 +45,65 @@ App({
       var site = that.data.type_id
       var sort = that.data.number
       setTimeout(function(){
-          wx.request({
-            url:config.genrelist,
-            method:"post",
-            data: {
-               "site":site,
-               "sort":sort,
-               "code":multiIndex[0],
-               "genre":genre
-            },
-            success: function(res) {
-              var list = res.data.data.list
-              if(list.length==0){
-                that.setData({ 
-                   listItem:"",
-                  activeIndex:1
-                })
-              }
-              else{
+         if(site==''&& sort==''&&multiIndex[1]==''){
+            wx.request({
+              url:config.genrelist,
+              method:"post",
+              data: {
+                 "site":site,
+                 "sort":sort,
+                 "code":multiIndex[1],
+                 "genre":genre,
+                 "pn":1
+              },
+              success: function(res) {
+                var list = res.data.data.list
+                if(list.length==0){
                   that.setData({ 
-                    listItem:list,
-                    activeIndex:0
+                     listItem:"",
+                    activeIndex:1
                   })
-              }
-             wx.hideLoading()
+                }
+                else{
+                    that.setData({ 
+                      listItem:list,
+                      activeIndex:0
+                    })
+                }
+               wx.hideLoading()
 
-            }
+              }
+            })
+         }
+         else{
+          wx.request({
+              url:config.genrelist,
+              method:"post",
+              data: {
+                 "site":that.data.type_id,
+                 "code":that.data.multiIndex[1],
+                 "genre":that.data.number,
+                 "pn":1
+              },
+              success: function(res) {
+                var list = res.data.data.list
+                if(list.length==0){
+                  that.setData({ 
+                     listItem:"",
+                    activeIndex:1
+                  })
+                }
+                else{
+                    that.setData({ 
+                      listItem:list,
+                      activeIndex:0
+                    })
+                }
+               wx.hideLoading()
+
+              }
           })
+         }
       },800)
   },
   bindMultiPickerColumnChange(e,that) {
@@ -178,6 +210,9 @@ App({
       var number = e.currentTarget.dataset.number
       var type_id = that.data.type_id
       var code = (that.data.multiIndex[0])
+      that.setData({
+          page:0
+      })
       if(nam=="全部"){
         if(genre==1){
           that.setData({
@@ -217,35 +252,35 @@ App({
           open_num:99
       })
       setTimeout(function(){
-        wx.request({
-          url:config.genrelist,
-          method:"post",
-          data: {
-            "genre":number,
-            "code":code,
-            "pn":1,
-            "site":type_id
-          },
-          success: function(res) {
-           var list = res.data.data.list
-           if(list.length==0){
-              that.setData({ 
-                 listItem:"",
-                activeIndex:1
-              })
-           }else{
-              that.setData({ 
-                listItem:list,
-                activeIndex:0
-              })
-           }
-          }
-        })
+          wx.request({
+            url:config.genrelist,
+            method:"post",
+            data: {
+              "genre":number,
+              "code":code,
+              "pn":1,
+              "site":type_id
+            },
+            success: function(res) {
+             var list = res.data.data.list
+             if(list.length==0){
+                that.setData({ 
+                   listItem:"",
+                  activeIndex:1
+                })
+             }else{
+                that.setData({ 
+                  listItem:list,
+                  activeIndex:0
+                })
+             }
+            }
+          })
         wx.hideLoading()  
       },1000)
   },
   // 点击机构选项发送请求
-  Type_top:function(e,that){
+  Type_top:function(e,that,genre){
       wx.showLoading({
         title: '正在加载...',
       })
@@ -253,7 +288,10 @@ App({
       var current = e.currentTarget.dataset.currenttab
       var type_id = e.currentTarget.dataset.type_id
       var sort = that.data.number
-      var code = (that.data.multiIndex[0])
+      var code = (that.data.multiIndex[1])
+      that.setData({
+          page:0
+      })
       if(nam=="所有场所"){
         that.setData({
             place:"场所"
@@ -270,33 +308,64 @@ App({
           boolean:false,
           open_num:99
       })
+      console.log(code)
       setTimeout(function(){
-        wx.request({
-          url:config.genrelist,
-          method:"post",
-          data: {
-            "genre":sort,
-            "code":code,
-            "pn":1,
-            "site":type_id
-          },
-          success: function(res) {
-           var list = res.data.data.list
-           if(list.length == 0){
-             that.setData({ 
-                listItem:"",
-                activeIndex:1
+        if(type_id==''&& sort==''&&code==''){
+          wx.request({
+            url:config.genrelist,
+            method:"post",
+            data: {
+              "genre":genre,
+              "code":code,
+              "pn":1,
+              "site":type_id
+            },
+            success: function(res) {
+             var list = res.data.data.list
+             if(list.length == 0){
+               that.setData({ 
+                  listItem:"",
+                  activeIndex:1
+                })
+             }
+             else{
+              that.setData({ 
+                  listItem:list,
+                  activeIndex:0
               })
-           }
-           else{
-            that.setData({ 
-                listItem:list,
-                activeIndex:0
-            })
-           }
-          }
-        })
-         wx.hideLoading()
+             }
+            wx.hideLoading()
+            }
+          })
+        }
+        else{
+          wx.request({
+            url:config.genrelist,
+            method:"post",
+            data: {
+              "genre":that.data.number,
+              "code":code,
+              "pn":1,
+              "site":type_id
+            },
+            success: function(res) {
+             var list = res.data.data.list
+             if(list.length == 0){
+               that.setData({ 
+                  listItem:"",
+                  activeIndex:1
+                })
+             }
+             else{
+              that.setData({ 
+                  listItem:list,
+                  activeIndex:0
+              })
+              wx.hideLoading()
+             }
+            }
+          })
+        }
       },1000)
   },
   onReachBottom:function(that,genre){
@@ -305,118 +374,70 @@ App({
     wx.showLoading({
       title: '正在加载中'
     })
+    console.log(page)
     setTimeout(function(){
-      //物品类型 
-      if(that.data.type_id!=''){
+      if(that.data.type_id==''&&that.data.number==''&&that.data.multiIndex[1]==''){
         wx.request({
           url:config.genrelist,
           method:"post",
           data: {
-            "genre":that.data.number,
-            "code":that.data.city,
-            "pn":page,
-            "site":that.data.type_id
-          },
-          success: function(res) {
-            var list = res.data.data.list
-            feedbackApi.showToast({
-                title:"没有数据了.."
-            })
-            var from = that.data.listItem
-            for(var i = 0; i < res.data.data.list.length; i++) {
-              from.push(res.data.data.list[i]);
-            }
-            that.setData({ 
-                listItem:from,
-                page:page
-            })
-            wx.hideLoading()
-          }
-        })
-      }
-      //场所
-      if(that.data.type_id!=''&&that.data.number!=''){
-        wx.request({
-          url:config.genrelist,
-          method:"post",
-          data: {
-            "genre":that.data.number,
-            "code":that.data.city,
-            "pn":page,
-            "site":that.data.type_id
-          },
-          success: function(res) {
-            var list = res.data.data.list
-            feedbackApi.showToast({
-                title:"没有数据了.."
-            })
-            var from = that.data.listItem
-            for (var i = 0; i < res.data.data.list.length; i++) {
-              from.push(res.data.data.list[i]);
-            }
-            that.setData({ 
-                listItem:from,
-                page:page
-            })
-            wx.hideLoading()
-          }
-        })
-      }
-      //全部
-      if(that.data.type_id==''&&that.data.number==''&&that.data.city==''){
-        wx.request({
-          url:config.genrelist,
-          method:"post",
-          data: {
-             "code":that.data.city,
              "genre":genre,
-             "site":that.data.type_id,
-             "sort":that.data.number,
              "pn":page
           },
           success: function(res) {
             var list = res.data.data.list
-            feedbackApi.showToast({
-                title:"没有数据了.."
-            })
-            var from = that.data.listItem
-            for (var i = 0; i < res.data.data.list.length; i++) {
-                from.push(res.data.data.list[i]);
-              }
-              that.setData({ 
-                  listItem:from,
-                  page:page
+            if(list==0){
+              wx.hideLoading()
+              feedbackApi.showToast({
+                  title:"没有数据了.."
               })
-            wx.hideLoading()
+            }
+            else{
+              var from = that.data.listItem
+              for (var i = 0; i < res.data.data.list.length; i++) {
+                  from.push(res.data.data.list[i]);
+                }
+                that.setData({ 
+                    listItem:from,
+                    page:page
+                })
+              wx.hideLoading()
+            }
           }
         })
       }
-      wx.request({
-          url:config.genrelist,
-          method:"post",
-          data: {
-             "code":that.data.city,
-             "genre":genre,
-             "site":that.data.type_id,
-             "sort":that.data.number,
-             "pn":page
-          },
-          success: function(res) {
-            var list = res.data.data.list
-            feedbackApi.showToast({
-                title:"没有数据了.."
-            })
-            var from = that.data.listItem
-            for (var i = 0; i < res.data.data.list.length; i++) {
-                from.push(res.data.data.list[i]);
+      else{
+        wx.request({
+            url:config.genrelist,
+            method:"post",
+            data: {
+               "site":that.data.type_id,
+               "code":that.data.multiIndex[1],
+               "genre":that.data.number,
+               "pn":page
+            },
+            success: function(res) {
+              var list = res.data.data.list
+              if(list==0){
+                wx.hideLoading()
+                feedbackApi.showToast({
+                    title:"没有数据了.."
+                })
               }
-              that.setData({ 
-                  listItem:from,
-                  page:page
-              })
-            wx.hideLoading()
-          }
-      })
+              else{
+                var from = that.data.listItem
+                for (var i = 0; i < res.data.data.list.length; i++) {
+                    from.push(res.data.data.list[i]);
+                  }
+                  that.setData({ 
+                      listItem:from,
+                      page:page
+                  })
+                wx.hideLoading()
+              }
+            }
+        })
+      }
     },1500)
   },
   open:function(that){
@@ -467,19 +488,6 @@ App({
           })
      }
   },
-  // onShareAppMessage(res) {
-  //   if (res.from === 'button') {
-  //     var id = res.target.dataset.usid
-  //     console.log(res.target)
-  //   }
-  //   return {
-  //     title: '小萝卜公益',
-  //     path: '/pages/details/details/details?id='+id,
-  //     success:function(res){
-  //       console.log(res)
-  //     }
-  //   }
-  // },
   getUserInfo:function(e,that,app){
     var value = wx.getStorageSync('_t')
     var ud = e.currentTarget.dataset.ud

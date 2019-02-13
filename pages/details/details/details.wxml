@@ -60,7 +60,7 @@
 						    	<image src="{{iteming.image.s}}" alt=""></image>
 						    </view>
 					    </view>
-					   <video objectFit="fill" wx:if="{{fromItem.video}}" style="margin-top:13px;" src="{{item.video}}"></video>
+					   <!-- <video objectFit="fill" wx:if="{{fromItem.video}}" style="margin-top:13px;" src="{{item.video}}"></video> -->
 			    	</view>
 			    	<view wx:if="{{fromItem.question_status == 11}}" class="SixImg clearFix">
 						<view class="SixImg-img">  

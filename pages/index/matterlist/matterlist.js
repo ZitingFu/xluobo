@@ -29,6 +29,8 @@ Page({
     currentTab:0,
     currentTab2:0,
     number:"",
+    type_id:"",
+    city:"",
     open_num:8,
     index: 0,
     TypeItem3:"",
@@ -92,10 +94,6 @@ Page({
     that = this
     app.open3(that)
   },
-  Type_top_number:function(e){
-    that = this
-    app.Type_top_number(e,that)
-  },
   imgtop:function(e){
     var imgList = e.currentTarget.dataset.list;//获取data-list
     var index = e.currentTarget.dataset.index
@@ -115,9 +113,15 @@ Page({
         url: '../../details/details/details?id='+id
       })
   },
+  Type_top_number:function(e){
+    var genre = "2"
+    that = this
+    app.Type_top_number(e,that,genre)
+  },
   Type_top:function(e,that){
-     var that = this
-     app.Type_top(e,that)
+     var genre = "2"
+     that = this
+     app.Type_top(e,that,genre)
   },
   onLoad: function (options) {
     wx.showLoading({

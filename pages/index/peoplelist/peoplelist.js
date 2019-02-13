@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config.js');
+var feedbackApi=require('../../../showToast.js');
 var that;
 //index.js
 //获取应用实例
@@ -27,6 +28,8 @@ Page({
     currentTab:0,
     currentTab2:0,
     number:"",
+    type_id:"",
+    city:"",
     open_num:8,
     index: 0,
     TypeItem3:"",
@@ -186,6 +189,7 @@ Page({
   onReachBottom: function(){
     var genre = "1"
     that = this;
+    // feedbackApi.Onelist(that,genre,config,feedbackApi)
     app.onReachBottom(that,genre)
   },
   onPullDownRefresh: function(){

@@ -28,6 +28,8 @@ Page({
     currentTab:0,
     currentTab2:0,
     number:"",
+    type_id:"",
+    city:"",
     open_num:8,
     index: 0,
     TypeItem3:"",
@@ -92,12 +94,14 @@ Page({
     app.open3(that)
   },
   Type_top_number:function(e){
+     var genre = "4"
     that = this
-    app.Type_top_number(e,that)
+    app.Type_top_number(e,that,genre)
   },
   Type_top:function(e,that){
+    var genre = "4"
      that = this
-     app.Type_top(e,that)
+     app.Type_top(e,that,genre)
   },
   ckdetails:function(e){
     var id = e.currentTarget.dataset.usid;

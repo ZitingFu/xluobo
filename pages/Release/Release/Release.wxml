@@ -47,9 +47,9 @@
 			<li bindtap="Type_top" class="{{currentTab == index ?'active3':'active'}}"  data-type_id="{{item.id}}" data-nam="{{item.name}}" data-currenttab="{{index}}"  wx:for="{{TypeItem}}" wx:for-index="index"  wx:key="index">{{item.name}}</li>
 		</view>
 		<view class="organ_Type_number" wx:if="{{boolean3}}" >
-			<li bindtap="Type_top_number" data-number="" data-nam="默认排序" class="{{number == 0?'ff8030':'f333'}}">默认排序</li>
-			<li bindtap="Type_top_number" data-number="1" data-nam="距离最近" class="{{number == 1?'ff8030':'f333'}}">距离最近</li>
-			<li bindtap="Type_top_number" data-number="2" data-nam="爱心值优先" class="{{number == 2?'ff8030':'f333'}}">爱心值优先</li>
+			<li bindtap="Type_top_number" data-number="2" data-nam="默认排序" class="{{number == 2?'ff8030':'f333'}}">默认排序</li>
+			<li bindtap="Type_top_number" data-number="0" data-nam="距离最近" class="{{number == 0?'ff8030':'f333'}}">距离最近</li>
+			<li bindtap="Type_top_number" data-number="1" data-nam="爱心值优先" class="{{number == 1?'ff8030':'f333'}}">爱心值优先</li>
 		</view>
    		<view class="Release-center {{activeIndex == 1 ? 'renotime':''}}" >
    		 	<view class="nearby clearFix">

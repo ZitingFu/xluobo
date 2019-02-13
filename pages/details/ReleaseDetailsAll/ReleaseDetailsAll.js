@@ -606,15 +606,23 @@ Page({
             "passport_id":that.data.passport_id
           },
           success: function(res) {
-           var from = that.data.listItem
-            for (var i = 0; i < res.data.data.list.length; i++) {
-                from.push(res.data.data.list[i]);
-              }
-              that.setData({ 
-                  listItem:from,
-                  page:page
+            if( res.data.data.list.length==0){
+              wx.hideLoading()
+              feedbackApi.showToast({
+                  title:"没有数据了.."
               })
-            wx.hideLoading()
+            }
+            else{
+              var from = that.data.listItem
+              for (var i = 0; i < res.data.data.list.length; i++) {
+                  from.push(res.data.data.list[i]);
+                }
+                that.setData({ 
+                    listItem:from,
+                    page:page
+                })
+              wx.hideLoading()
+            }
           }
         })
     },1500)
