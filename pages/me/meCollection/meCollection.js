@@ -19,11 +19,11 @@ Page({
   },
   onShareAppMessage(res) {
     if (res.from === 'button') {
-      var id = res.target.dataset.usid
+      var id = res.target.dataset.id
     }
     return {
       title: '小萝卜公益',
-      path: '/pages/details/details/details?id='+id,
+      path: '/pages/index/index/index?id='+id,
       success:function(res){
         console.log(res)
       }
@@ -64,7 +64,6 @@ Page({
        "pn":1 
       },
       success:function(res){
-        console.log(res)
        var question = res.data.data.question
         if(question.length==0){
             that.setData({ 

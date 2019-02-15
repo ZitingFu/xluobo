@@ -3,7 +3,6 @@ const config = require('../../../config.js');
 var feedbackApi = require('../../../showToast.js');
 var sliderWidth = 96; 
 var that;
-console.log(feedbackApi)
 //index.js
 //获取应用实例
 const app = getApp()
@@ -64,7 +63,7 @@ Page({
     }
     return {
       title: '小萝卜公益',
-      path: '/pages/details/details/details?id='+id,
+      path: '/pages/index/index/index?id='+id,
       success:function(res){
         console.log(res)
       }
@@ -267,7 +266,6 @@ Page({
                   "passport_id":nd
                 },
                 success: function(res) {
-                  console.log(res)
                   var from = res.data.data.list
                   feedbackApi.searchbuttom(from,numcc,that)
                 }
@@ -310,7 +308,6 @@ Page({
           }
       });
       if(options.id==1){
-        console.log("首页搜索")
         //寻人
         wx.request({
             url:config.searchpeople,
@@ -320,75 +317,22 @@ Page({
               "type":1
             },
             success: function(res) {
-              console.log("sd")
-              console.log(res)
               var from = res.data.data.list
               that.data.navData[0].fromItem = from
-              that.setData({ 
-                  fromItem1:from
-              })
+              if(from.length==0){
+                that.setData({ 
+                   fromItem1:"",
+                  activeIndex2:1
+                })
+              }
+              else{
+                that.setData({ 
+                    fromItem1:from,
+                    activeIndex2:0
+                })
+              }
+              wx.hideLoading()
             }
-        })
-        // 寻物
-        wx.request({
-          url:config.searchpeople,
-          method:"post",
-          data: {
-              "pn":1,
-              "type":2
-            },
-          success: function(res) {
-            var from = res.data.data.list
-            that.setData({ 
-                fromItem2:from
-            })
-          }
-        })
-        // 认人
-        wx.request({
-          url:config.searchpeople,
-          method:"post",
-          data: {
-              "pn":1,
-              "type":3
-            },
-          success: function(res) {
-            var from = res.data.data.list
-            that.setData({ 
-                fromItem3:from
-            })
-          }
-        })
-        // 认领
-        wx.request({
-          url:config.searchpeople,
-          method:"post",
-          data: {
-              "pn":1,
-              "type":4
-            },
-          success: function(res) {
-            var from = res.data.data.list
-            that.setData({ 
-                fromItem4:from
-            })
-          }
-        })
-        // 好人风采
-        wx.request({
-          url:config.searchpeople,
-          method:"post",
-          data: {
-              "pn":1,
-              "type":5
-            },
-          success: function(res) {
-            var from = res.data.data.list
-            that.setData({ 
-                fromItem5:from
-            })
-           wx.hideLoading()
-          }
         })
       }
       else{
@@ -403,9 +347,18 @@ Page({
             success: function(res) {
               var from = res.data.data.list
               that.data.navData[0].fromItem = from
-              that.setData({ 
-                  fromItem1:from
-              })
+              if(from.length==0){
+                that.setData({ 
+                   fromItem1:"",
+                  activeIndex2:1
+                })
+              }
+              else{
+                that.setData({ 
+                    fromItem1:from,
+                    activeIndex2:0
+                })
+              }
               wx.hideLoading()
             }
         })
@@ -475,7 +428,6 @@ Page({
         }
         //无内容
         else{
-          console.log(numcc)
           wx.request({
               url:config.searchpeople,
               method:"post",
@@ -491,7 +443,6 @@ Page({
       },1000)
     }
     else{
-      console.log("机构上拉")
       setTimeout(function(){
           // 有内容
         if(that.data.name.length!=0){
@@ -511,7 +462,6 @@ Page({
             })
         }
         else{
-          console.log("无内容")
           var numcc = (Number(that.data.activeIndex)+1)
           wx.request({
               url:config.organizationQuestion,

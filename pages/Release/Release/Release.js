@@ -64,6 +64,9 @@ Page({
     wx.showLoading({
       title: '正在加载...',
     })
+     that.setData({ 
+      multiIndex:multiIndex
+    })
     var site = that.data.type_id
     var sort = that.data.number
     setTimeout(function(){
@@ -77,6 +80,7 @@ Page({
             "pn":1
           },
           success: function(res) {
+
             var list = res.data.data.list
             if(list.length==0){
               that.setData({ 
@@ -99,7 +103,6 @@ Page({
   bindMultiPickerColumnChange(e) {
     that = this;
     if(e.detail.column==0){
-      // console.log('picker发送选择改变，携带值为', e.detail.value)
       var citycodelist = that.data.citycode
       // 市
       var index1 = e.detail.value-1  
@@ -212,6 +215,7 @@ Page({
   },
   Type_top_number:function(e){
     that = this
+    console.log(that.data.multiIndex[1])
       wx.showLoading({
         title: '正在加载...',
       })
@@ -219,12 +223,21 @@ Page({
       var current2 = e.currentTarget.dataset.currenttab2
       var number = e.currentTarget.dataset.number
       var type_id = that.data.type_id
+      if(nam=="默认排序"){
+        that.setData({
+          place:"排序"
+        })
+      }
+      else{
+        that.setData({
+          place:nam
+        })
+      }
       that.setData({
           currentTab2:current2,
           number:number,
           boolean3:false,
-          open_num:99,
-          place:nam
+          open_num:99
       })
       setTimeout(function(){
         wx.request({
@@ -232,7 +245,7 @@ Page({
           method:"post",
           data: {
             "site":that.data.type_id,
-            "code":that.data.newresede,
+            "code":that.data.multiIndex[1],
             "pn":1,
             "sort":number
           },
@@ -285,7 +298,7 @@ Page({
           method:"post",
           data: {
             "site":type_id,
-            "code":that.data.newresede,
+            "code":that.data.multiIndex[1],
             "pn":1,
             "sort":sort
           },
@@ -344,15 +357,13 @@ Page({
       url:config.ReleaseList,
       method:"post",
       data: {
-         "code":"",
-         "site":"",
-         "sort":"",
-         "_t":wx.getStorageSync('_t')
+         "code":wx.getStorageSync('city')
       },
       success: function(res) {
        var list = res.data.data.list
         that.setData({ 
-          listItem:list
+          listItem:list,
+          multiIndex:[0,wx.getStorageSync('city'),0]
         })
         if(list.length==0){
             that.setData({ 
@@ -384,9 +395,9 @@ Page({
           url:config.ReleaseList,
           method:"post",
           data: {
-             "code":"",
-             "site":"",
-             "sort":"",
+             "code":that.data.multiIndex[1],
+             "site":that.data.type_id,
+             "sort":that.data.number,
              "pn":page
           },
           success: function(res) {

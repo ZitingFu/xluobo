@@ -93,7 +93,6 @@ Page({
          "_t":wx.getStorageSync('_t')
       },
       success: function(res) {
-        console.log(res)
        var list = res.data.data.list
         that.setData({ 
           listItem:list,
@@ -148,7 +147,6 @@ Page({
     that = this
     var num = wx.getStorageSync('name')
     if(num.length>0){
-      console.log(that)
       that.setData({  
         clear_i:true
       })
@@ -178,7 +176,6 @@ Page({
            "pn":page
         },
         success: function(res) {
-          console.log(res)
          var list = res.data.data.list
           var from = that.data.listItem;
             for (var i = 0; i < res.data.data.list.length; i++) {

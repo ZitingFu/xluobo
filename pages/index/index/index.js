@@ -51,8 +51,8 @@ Page({
       var id = res.target.dataset.usid
     }
     return {
-      title: '小萝卜公益',
-      path: '/pages/details/details/details?id='+id,
+      title: '小萝卜公益', 
+      path: '/pages/index/index/index?id='+id,
       success:function(res){
         console.log(res)
       }
@@ -81,7 +81,6 @@ Page({
   },
   //搜索页面
   search:function(){
-    console.log(123)
     wx.navigateTo({
       url:'../search/search?id='+1
     })
@@ -177,25 +176,17 @@ Page({
       })
     }
   },
-  onShareAppMessage(res) {
-    if (res.from === 'button') {
-      var id = res.target.dataset.usid
-    }
-    return {
-      title: '小萝卜公益',
-      path: '/pages/details/details/details?id='+id,
-      success:function(res){
-        feedbackApi.showToast({
-            title:"分享成功"
-        })
-      }
-    }
-  },
   onLoad: function (options) {
     wx.showLoading({
         title: '正在加载...',
-      })
+    })
     that = this
+     if (options.id) {
+        var id = options.id
+        wx.navigateTo({
+          url: '../../details/details/details?id='+id
+        })
+    }
     var city = that.data.city
     var page = Number(that.data.page)
     //之前
@@ -231,8 +222,8 @@ Page({
       url:config.nearbyOutfit,
       method:"post",
       data: {
-         "city":city,
-          "_t":wx.getStorageSync('_t')
+         "city":wx.getStorageSync('city'),
+         "_t":wx.getStorageSync('_t')
       },
       success: function(res) {
        var list = res.data.data.list
@@ -407,7 +398,6 @@ Page({
           })
         },
         fail(res){
-          console.log(res)
           wx.request({
             url:config.Rotation,
             method:"post",
@@ -515,8 +505,13 @@ Page({
   },
   onPullDownRefresh: function(){
     that = this;
-    that.onLoad()
-     wx.stopPullDownRefresh();
+    wx.showLoading({
+        title: '正在加载...',
+    })
+    setTimeout(function() {
+      wx.hideLoading()
+      wx.stopPullDownRefresh();
+    },1000);
   }
   // getUserInfo:function(e) {
   //     that = this

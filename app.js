@@ -108,7 +108,6 @@ App({
   },
   bindMultiPickerColumnChange(e,that) {
     if(e.detail.column==0){
-      // console.log('picker发送选择改变，携带值为', e.detail.value)
       var citycodelist = that.data.citycode
       // 市
       var index1 = e.detail.value-1  
@@ -361,8 +360,8 @@ App({
                   listItem:list,
                   activeIndex:0
               })
-              wx.hideLoading()
              }
+            wx.hideLoading()
             }
           })
         }
@@ -374,7 +373,6 @@ App({
     wx.showLoading({
       title: '正在加载中'
     })
-    console.log(page)
     setTimeout(function(){
       if(that.data.type_id==''&&that.data.number==''&&that.data.multiIndex[1]==''){
         wx.request({
@@ -654,9 +652,17 @@ App({
                 },
                 success:function(res){
                  var info = res.data.data.info;
+                 if(wx.getStorageSync('_t').length!=0){
                   feedbackApi.showToast({
                     title:"登陆成功"
                   })
+                 }
+                 else{
+                  feedbackApi.showToast({
+                    title:"请登录"
+                  })
+                 }
+
                   that.setData({
                     info:info
                   })
@@ -668,6 +674,7 @@ App({
         }
   },
   onLaunch: function (options) {
+    // wx.clearStorage()
     var that = this
     //获取省市区域
     wx.request({

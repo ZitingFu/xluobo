@@ -146,7 +146,7 @@
 			    	<image wx:if="{{followid == true}}" class="wihe18 sc" src="{{sc}}"></image>
 			    	<image wx:if="{{followid == false}}" class="wihe18 sc" src="{{sx}}"></image>
 		    	</button>
-			    	<button class="share fx wihe18" bindgetuserinfo="getUserInfo" open-type='share'>
+			    	<button class="share fx wihe18" bindgetuserinfo="getUserInfo" open-type='share' data-usid="{{id}}">
 			    		<image style="width:88%;height: 88%" class=" " src="{{fx}}"></image>
 			    	</button>
 		     	</view>

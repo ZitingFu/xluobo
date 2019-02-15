@@ -52,7 +52,7 @@ Page({
           var info = res.data.data.info;
           var phone = info.phone
           var showPhone = phone.replace(/^(\d{3})\d{4}(\d+)/,"$1****$2")
-         wx.hideLoading()
+          wx.hideLoading()
         }
         that.setData({
           info:info,

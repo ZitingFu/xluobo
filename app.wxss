@@ -49,8 +49,8 @@ view,p,h1,h2,h3,h4,h5,h6,ul,li {
 	background-color:#f3f5f9; 
 }
 .option1{
-	width:13px;
-	height:15px;
+	width:14px;
+	height:16px;
 	position: relative;
 	top:2px;
 	margin-left:5px; 
@@ -650,6 +650,7 @@ image {
 	width:32%;
 	height:220rpx;
 	margin-top:20rpx;
+	margin-bottom:20rpx;
 	margin-right:2%;  
 	/*border:1rpx solid #cecece;*/
 	float: left;
@@ -750,7 +751,7 @@ image {
 }
 .bind-s{
     position:relative;
-    font-size:24rpx;
+    font-size:15px;
     top:13px;
     right:14px;
 }

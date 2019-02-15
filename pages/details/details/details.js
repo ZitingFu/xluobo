@@ -29,9 +29,18 @@ Page({
     name:"",
     followid2:""
   },
-  // onShareAppMessage:function(){
-  //    // wx.setStorageSync('_t',"")
-  // },
+ onShareAppMessage(res) {
+    if (res.from === 'button') {
+      var id = res.target.dataset.usid
+    }
+    return {
+      title: '小萝卜公益',
+      path: '/pages/index/index/index?id='+id,
+      success:function(res){
+        console.log(res)
+      }
+    }
+  },
   mapp:function(e){
     var latitude = e.currentTarget.dataset.latitude;
     var longitude = e.currentTarget.dataset.longitude;
@@ -42,13 +51,11 @@ Page({
   bindChange:function(e){
     that = this
     if(!wx.getStorageSync('_t')){
-      console.log("456")
       that.setData({ 
           bottom:0
       })
     }
     else{
-      console.log("789")
       that.setData({ 
           bottom:1
       })
@@ -116,7 +123,6 @@ Page({
                  "_t":wx.getStorageSync('_t')
             },
             success: function(res) {
-              console.log(res)
                 var from = res.data.data.info
                 if(from.comments.length==0){
                   that.setData({ 
@@ -191,7 +197,6 @@ Page({
             "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
-          console.log(res)
            var from = res.data.data.info
             if(from.comments.length==0){
               that.setData({ 

@@ -48,7 +48,7 @@ Page({
     }
     return {
       title: '小萝卜公益',
-      path: '/pages/details/details/details?id='+id,
+      path: '/pages/index/index/index?id='+id,
       success:function(res){
       }
     }

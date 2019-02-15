@@ -39,7 +39,7 @@
 				    </view>
 		    	</view>
 			</view>
-			<view class="brbott-boe7e7e7 nearby-top">
+			<view class=" nearby-top">
 				<view class="clearFix height47">
 					<view class="f-left f333 fontSize30"><i class="init"></i>联系方式</view>
 				</view>
@@ -157,8 +157,8 @@
 			<view class="box">
 				<view class="column">
 				    <button class="item" style="font-size:16px;line-height:59px;background-color:#fff;" data-ud="6" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-				    	<image wx:if="{{followid == false}}" class="love" src="{{love}}"></image>
-				    	<image wx:if="{{followid == true}}" class="love" src="https://img.qa.xluob.com/Small%20program/love.jpg"></image>
+				    	<image wx:if="{{followid == false}}" class="love" style="width:15px;height:15px;top:2px;"  src="https://img.qa.xluob.com/Small%20program/jgxq_icon_guanzhu.png"></image>
+				    	<image wx:if="{{followid == true}}"  class="love" src="https://img.qa.xluob.com/Small%20program/love.jpg"></image>
 				    	<span wx:if="{{followid == true}}">关注</span>
 						<span wx:if="{{followid == false}}" style="color:#fda249">已关注</span>
 						<view class="item1"></view> 

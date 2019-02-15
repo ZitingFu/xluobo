@@ -69,7 +69,7 @@
 							<i class="organ_time_img"></i>
 							</picker>
 				     	</view>
-				      	<view class="item">至</view>
+				      	<view class="item" style="line-height:32px">至</view>
 				      	<view class="item">
 				      		<picker
 							    mode="date"

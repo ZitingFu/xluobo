@@ -48,8 +48,8 @@
 				</span>
 			</li>
 			</button>
-			<button data-ud="3" style="top:8px;" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-			<li class="brbote7">
+			<button data-ud="3" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+			<li class="">
 				<image src="../../../images/icon_shoucang.png" alt=""></image>
 				<span class="fontSize15">
 					我的收藏
@@ -57,6 +57,7 @@
 				</span>
 			</li>
 			</button>
+			<li style="height:1.5px;background-color:#f3f5f9"></li>
 			<li class="brbote7">
 				<button open-type="contact">
 				<image src="../../../images/kf.png" alt=""></image>

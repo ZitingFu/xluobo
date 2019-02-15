@@ -57,7 +57,98 @@
 				<view class="nearby-center clearFix">
 					<view class="nearby-item clearFix paddTa20">
 						<block wx:for="{{listItem}}"  wx:key="index" x:for-index="idx2" wx:key="index">
-						 	<template is="container" data="{{item}}"></template>
+						 	<view class="list_item brbott-boe7e7e7">
+								<view class="nearby-top">
+									<view class="clearFix genre_name_top" bindtap="ckdetails" data-usid="{{item.id}}">
+										<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="https://img.qa.xluob.com/Small%20program/1.png" alt=""></image>{{item.genre_name}}</view>
+										<text wx:if="{{create_time2[index]>0 && item.status!=11}}" class="f-right f999">{{item.time}}-剩余{{create_time2[index]}}天</text>
+										<text wx:else class="f-right f999">{{item.time}}</text>
+									</view>
+									<view bindtap="ckdetails" data-usid="{{item.id}}" class="clearFix content" style="width: 100%;">{{item.content}}</view>
+									<view class="list-imgbox" data-usid="{{item.id}}" bindtap="ckdetails">
+										<!-- 图片为6张 -->
+										<view wx:if="{{item.status!=11}}" class="SixImg clearFix">
+											<!-- 图片6张 -->
+											<view catchtap="imgtop"
+												  class="SixImg-img"
+												  wx:if="{{item.images.length > 4}}" 
+												  wx:for="{{item.images}}" 
+												  data-list="{{item.images}}" 
+												  data-index='{{index}}'  
+												  wx:key="index" 
+												  wx:for-item="iteming">
+										    	<image src="{{iteming.s}}" alt=""></image>
+										    </view>
+										    <!-- 图片2.3张 -->
+											<view catchtap="imgtop"
+												  class="SixImg-img"
+												  wx:if="{{item.images.length ==2 || item.images.length == 3}}" 
+												  wx:for="{{item.images}}" 
+												  data-list="{{item.images}}" 
+												  data-index='{{index}}'  
+												  wx:key="index" 
+												  wx:for-item="iteming">
+										    	<image src="{{iteming.s}}" alt=""></image>
+										    </view>
+										    <!-- 图片1张 -->
+										  	<view catchtap="imgtop"
+										  			id="whdd"
+												  class="SixImg-img"
+												  wx:if="{{item.images.length == 1}}" 
+												  wx:for="{{item.images}}" 
+												  data-list="{{item.images}}" 
+												  data-index='{{index}}'  
+												  wx:key="index"
+												  wx:for-item="iteming">
+										    	<image mode="aspectFill" src="{{iteming.s}}" alt=""></image>
+										    </view>
+										    <!-- 图片4张 -->
+										    <view style="width:80%" class="clearFix">
+											  	<view catchtap="imgtop"
+													  class="SixImg-img"
+													  wx:if="{{item.images.length == 4}}" 
+													  wx:for="{{item.images}}" 
+													  data-list="{{item.images}}" 
+													  data-index='{{index}}'  
+													  wx:key="index"
+													  style="width:111px;height:110px;margin-right:5px"
+													  wx:for-item="iteming">
+											    	<image src="{{iteming.s}}" alt=""></image>
+											    </view>
+										    </view>
+										    <!-- video -->
+										   <!--  <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}"></video> -->
+									    </view>
+									    <view wx:if="{{item.status==11}}" class="SixImg clearFix">
+											<!-- 图片6张 -->
+											<view class="SixImg-img">
+										    	<image src="https://img.qa.xluob.com/Small%20program/find.png" alt=""></image>
+										    </view>
+									    </view>   
+									    <!-- video -->
+									    <!-- <video objectFit="fill" wx:if="{{item.video}}" style="margin-top:13px;" src="{{item.video}}">
+									    </video> -->
+									 	</view>
+									 	<view class="nearby-bottom paddBo13 paddTa13 clearFix">
+									 		<view class="clearFix height40">
+											<view bindtap="ckReleaseDetails" data-tyid="{{item.user_id}}" class="f-left f333 fontSize30 wi70 hidden" style="height:32px">
+												<view  class="wihe20 f-left paddRi14" style="top:7px;">
+													<image wx:if="{{item.avatar.m}}" src="{{item.avatar.s}}" alt=""></image>
+												 	<image wx:else src="https://img.qa.xluob.com/Small%20program/avatar2.png"></image>
+												</view>
+												<view class="f-left hidden wi80" style="line-height: 40px;height: 40px">{{item.user_name}}</view>
+											</view>
+											<view class="f-right wi23 f999 clearFix">
+												<view class="wihe13 f-left paddRi9 "><image class="xinxi" src="https://img.qa.xluob.com/Small%20program/x.png" alt=""></image></view>
+												<view class="f-left length">{{item.comment_count}}</view>
+												<button data-usid="{{item.id}}" class="share fx wihe18" open-type='share' style="top:3px;margin-left:14px;">
+									    			<image style="width:82%;height: 88%" class=" " src="https://img.qa.xluob.com/Small%20program/xxxq-icon_fenxiang%402x.png"></image>
+									    		</button>
+											</view>
+										</view>
+									 	</view>
+								</view>
+							</view>
 					 	</block>
 					</view>
 				</view>

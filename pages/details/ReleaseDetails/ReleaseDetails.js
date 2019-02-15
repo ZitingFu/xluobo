@@ -1,5 +1,6 @@
 var amapFile = require('../../../utils/amap-wx.js');
 const config = require('../../../config');
+var feedbackApi = require('../../../showToast.js');
 var that;
 //index.js
 //获取应用实例
@@ -32,7 +33,7 @@ Page({
     }
     return {
       title: '小萝卜公益',
-      path: '/pages/details/details/details?id='+id,
+      path: '/pages/index/index/index?id='+id,
       success:function(res){
         console.log(res)
       }
@@ -89,44 +90,52 @@ Page({
       },
       success: function(res) {
         var from = res.data.data.info
-        var recent_post = res.data.data.recent_post
-        var d = []
-        var now = res.data.data.now
-        for(var a=0;a<recent_post.length;a++){
-          var create_time = Number(recent_post[a].create_time)
-          var expire = Number(recent_post[a].expire*86400)
-          var end = Number(create_time+expire)
-          var difference = Math.ceil(Number(end-now)/86400)
-          d.push(difference)
+        if(res.data.flag==1){
+          wx.hideLoading()
+          feedbackApi.showToast({
+            title:"用户不存在"
+          })
         }
-        if(recent_post.length==0){
-              that.setData({ 
-                recent_post:"",
-                activeIndex:1
-              })
-            }
-            else{
+        else{
+          var recent_post = res.data.data.recent_post
+          var d = []
+          var now = res.data.data.now
+          for(var a=0;a<recent_post.length;a++){
+            var create_time = Number(recent_post[a].create_time)
+            var expire = Number(recent_post[a].expire*86400)
+            var end = Number(create_time+expire)
+            var difference = Math.ceil(Number(end-now)/86400)
+            d.push(difference)
+          }
+          if(recent_post.length==0){
                 that.setData({ 
-                  create_time2:d,
-                  recent_post:recent_post,
-                  activeIndex:0
+                  recent_post:"",
+                  activeIndex:1
                 })
-            }
-        var fav = res.data.data.fav
-         if(fav == 99){
-            that.setData({ 
-                followid:true
-            })
-         }
-         else{
-            that.setData({ 
-                followid:false
-            })
-         }
-        that.setData({ 
-            fromItem:from
-        })
-        wx.hideLoading()
+              }
+              else{
+                  that.setData({ 
+                    create_time2:d,
+                    recent_post:recent_post,
+                    activeIndex:0
+                  })
+              }
+          var fav = res.data.data.fav
+          if(fav == 99){
+              that.setData({ 
+                  followid:true
+              })
+          }
+          else{
+              that.setData({ 
+                  followid:false
+              })
+           }
+          that.setData({ 
+              fromItem:from
+          })
+          wx.hideLoading()
+        }
       }
     })
   },

@@ -1,7 +1,7 @@
 /**
  * 小程序配置文件
  */
-var host = "https://qb.xluob.com"
+var host = "https://www.xluob.com"
 var config = {
     host,
     //登陆

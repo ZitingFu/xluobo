@@ -112,7 +112,6 @@ Page({
   bindMultiPickerColumnChange(e) {
     that = this;
     if(e.detail.column==0){
-      // console.log('picker发送选择改变，携带值为', e.detail.value)
       var citycodelist = that.data.citycode
       // 市
       var index1 = e.detail.value-1  
@@ -128,7 +127,6 @@ Page({
            "code":ccode1
         },
         success: function(res) {
-          console.log(res)
           var res = res.data.data.city
           var province = []
           var provincede = []
@@ -167,7 +165,6 @@ Page({
            "code":areaid
         },
         success: function(res) {
-          console.log(res)
           var res = res.data.data.city
           var resce = []
           var resede = []
@@ -406,7 +403,6 @@ Page({
           "passport_id":that.data.passport_id
         },
         success: function(res) {
-          console.log(res)
          var list = res.data.data.list
          if(list.length==0){
             that.setData({ 
@@ -515,7 +511,6 @@ Page({
           "_t":wx.getStorageSync('_t')
         },
         success: function(res) {
-          console.log(res)
          var genre = res.data.data.genre
            that.setData({ 
               genreImages:genre
