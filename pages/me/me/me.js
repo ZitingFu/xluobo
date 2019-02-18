@@ -45,6 +45,7 @@ Page({
        "_t":wx.getStorageSync('_t')
       },
       success:function(res){
+        console.log(res)
         if(res.data.flag==1){
           wx.hideLoading()
         }

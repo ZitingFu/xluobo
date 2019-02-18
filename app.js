@@ -486,6 +486,37 @@ App({
           })
      }
   },
+  money(that,name){
+    // wx.request({
+    //   url:config.reword,
+    //   method:"post",
+    //   data: {
+    //      "_t":wx.getStorageSync('_t')
+    //   },
+    //   success: function(res) {
+    //     console.log(res.data.data)
+    //     wx.requestPayment({
+    //       timeStamp:res.data.data.weixin.timeStamp,
+    //       nonceStr:res.data.data.weixin.nonceStr,
+    //       package:res.data.data.weixin.package,
+    //       signType:res.data.data.weixin.signType,
+    //       paySign:res.data.data.weixin.sign,
+    //       success(res) { 
+    //         console.log("支付成功")
+    //       },
+    //       fail(res){
+    //          console.log("支付失败")
+    //       }
+    //     }) 
+    //   },
+    //   fail: function (err) {
+    //     wx.showToast({
+    //         icon: "none",
+    //         title: '服务器异常，清稍候再试'
+    //     })
+    //   },
+    // })
+  },
   getUserInfo:function(e,that,app){
     var value = wx.getStorageSync('_t')
     var ud = e.currentTarget.dataset.ud
@@ -643,6 +674,7 @@ App({
                 "iv":e.detail.iv
             },
             success: function(res) {
+              console.log(res.data.data._t)
               wx.setStorageSync('_t',res.data.data._t)
               wx.request({
                 url:config.melist,
@@ -697,6 +729,7 @@ App({
     wx.login({
       success: res => {
          that.data.code = res.code
+        console.log(res.code)
         this.globalData.userInfo = res.userInfo
       }
     })

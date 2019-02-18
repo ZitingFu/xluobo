@@ -2,6 +2,32 @@
 <import src="../../../widgets/showToast.wxml" />
 <view class="container log-list">
 	<view id="ReleaseDetails">
+		<view wx:if="{{Fabulous}}" class="Elasticframe">
+			<view class="Elasticframetop" >
+				<view class="column columntop">
+					<view class="f-left">打赏</view>
+					<view class="f-right" style="font-size:25px;position:absolute;top:0px;right:18px;" bindtap="cancel">x</view>
+				</view>
+				<!-- 其他金额 -->
+				<view wx:if="{{moneyOne}}" class="box1 hidden">
+					<view class="fixed hidden">
+						<span class="f-left" style="font-size:25px;position:relative;top:11px;width:12%;">￥</span>
+						<view class="f-left"  style="width:63%;">
+						  	<input type="digit" value="{{input}}" bindinput="search" maxlength="6" style="font-size:32px;height:65px;display:inline;" placeholder="0.00" auto-focus />
+						</view>
+					</view>
+					<view class="Other" style="font-size:15px;width:55px;margin:7px auto 32px auto;" bindtap="fixmoney">固定金额</view>
+				</view>
+				<view  wx:if="{{moneyOne}}" class="topxian"></view>
+				<view  wx:if="{{moneyOne}}" class="Other" bindtap="ok">确定</view>
+				<!-- 固定金额 -->
+				<view class="box1 hidden" wx:if="{{moneyT}}">
+					<span class="item {{moneyIndex==index ? 'active3':''}}" bindtap="money" data-index="{{item.id}}" wx:for="{{money}}" data-name="{{item.money}}"  wx:key>{{item.money}}元</span>
+				</view>
+				<view wx:if="{{moneyT}}" class="Other" bindtap="Othermoney">其他金额</view>
+				<!--  -->
+	    	</view>
+		</view>
 		<template is="showToast" data="{{showToast: showToast}}" />
 		<view class="list_item brbott-tae7e7e7">
 		 	<view class="Releaselist_follow brbote7">
@@ -163,6 +189,12 @@
 						<span wx:if="{{followid == false}}" style="color:#fda249">已关注</span>
 						<view class="item1"></view> 
 				    </button>
+				    <view class="item" style="line-height: 59px;" data-linkphone="{{fromItem.linkphone}}" bindtap="ClockFabulous">
+				    	<image class="phone"  src="https://qa-xluob.oss-cn-beijing.aliyuncs.com/Small%20program/icon_ds_nor%402x.png"></image>
+				    	<!-- <image class="phone"  src="https://qa-xluob.oss-cn-beijing.aliyuncs.com/Small%20program/icon_ds_pre%402x.png"></image> -->
+						打赏
+						<view class="item1"></view> 
+			     	</view>
 				    <view class="item" style="line-height: 59px;" data-linkphone="{{fromItem.linkphone}}" bindtap="dialphone">
 				    	<image class="phone"  src="{{phone}}"></image>
 						电话联系

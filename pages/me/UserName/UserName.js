@@ -118,7 +118,13 @@ Page({
       },
       success:function(res){
       var info = res.data.data.info;
-      var name = info.name
+      console.log(res)
+      if(res.data.data.info.name==''){
+        var name = '未设置'
+      }
+      else{
+        var name = info.name
+      }
       var avatar = info.avatar.b
         that.setData({
           infoItem:info

@@ -275,6 +275,7 @@ Page({
     })
     var cty = wx.getStorageSync('city')
     if(cty.length>1){
+      // wx.clearStorage()
       wx.showLoading({
         title: '正在加载...',
       })
@@ -328,6 +329,7 @@ Page({
         })
     }
     else if(cty.length==false){
+       // wx.clearStorage()
       wx.showLoading({
         title: '正在加载...',
       })

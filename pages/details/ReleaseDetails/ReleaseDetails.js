@@ -7,8 +7,8 @@ var that;
 const app = getApp()
 Page({
   data: {
-     find:"https://img.qa.xluob.com/Small%20program/find.png",
-     mode: 'aspectFill',
+    find:"https://img.qa.xluob.com/Small%20program/find.png",
+    mode: 'aspectFill',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     fromItem:"",
     followid:true,
@@ -25,7 +25,84 @@ Page({
     page:1,
     activeIndex:"0",
     id:"",
-    create_time2:""
+    create_time2:"",
+    moneyIndex:"99",
+    moneyName:"",
+    money:[
+      {
+        id:0,
+        money:"1"
+      },
+      {
+        id:1,
+        money:"5"
+      },
+      {
+        id:2,
+        money:"10"
+      },
+      {
+        id:3,
+        money:"20"
+      },
+      {
+        id:4,
+        money:"50"
+      },
+      {
+        id:5,
+        money:"100"
+      }
+    ],
+    Fabulous:false,
+    moneyOne:false,
+    moneyT:true,
+    moneyV:""
+  },
+  fixmoney(){
+    that.setData({ 
+        moneyT:true,
+        moneyOne:false
+    })
+  },
+  Othermoney(){
+     that.setData({ 
+        moneyT:false,
+        moneyOne:true
+    })
+  },
+  // 自选
+  ok(e){
+    var that = this
+    var name = that.data.moneyV
+    app.money(that,name)
+  },
+  //固定 
+  money(e){
+    var that = this
+    var index = e.currentTarget.dataset.index
+    var name = e.currentTarget.dataset.name
+    that.setData({ 
+        moneyIndex:index,
+        moneyName:name
+    })
+    app.money(that,name)
+  },
+  search(e){
+    var name = e.detail.value;
+    that.setData({ 
+        moneyV:name
+    })
+  },
+  cancel(){
+    that.setData({ 
+        Fabulous:false
+    })
+  },
+  ClockFabulous(){
+    that.setData({ 
+        Fabulous:true
+    })
   },
   onShareAppMessage(res) {
     if (res.from === 'button') {
@@ -89,6 +166,7 @@ Page({
           "id":id
       },
       success: function(res) {
+        console.log(res)
         var from = res.data.data.info
         if(res.data.flag==1){
           wx.hideLoading()
