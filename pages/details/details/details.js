@@ -27,9 +27,90 @@ Page({
     create_time:"",
     createTime:true,
     name:"",
-    followid2:""
+    followid2:"",
+    moneyIndex:"99",
+    moneyName:"",
+    money:[
+      {
+        id:0,
+        money:"1"
+      },
+      {
+        id:1,
+        money:"5"
+      },
+      {
+        id:2,
+        money:"10"
+      },
+      {
+        id:3,
+        money:"20"
+      },
+      {
+        id:4,
+        money:"50"
+      },
+      {
+        id:5,
+        money:"100"
+      }
+    ],
+    Fabulous:false,
+    moneyOne:false,
+    moneyT:true,
+    moneyV:"",
+    phoneNumber:""
   },
- onShareAppMessage(res) {
+  dialphone:function(e){
+    var p = e.currentTarget.dataset.linkphone
+    wx.makePhoneCall({
+      phoneNumber:p,
+    })
+  },
+  fixmoney(){
+    that.setData({ 
+        moneyT:true,
+        moneyOne:false
+    })
+  },
+  Othermoney(){
+     that.setData({ 
+        moneyT:false,
+        moneyOne:true
+    })
+  },
+  // 自选
+  ok(e){
+    var that = this
+    var name = that.data.moneyV
+    var q_id = that.data.id
+    app.money(that,name,q_id)
+  },
+  //固定 
+  money(e){
+    var that = this
+    var index = e.currentTarget.dataset.index
+    var name = e.currentTarget.dataset.name
+    var q_id = that.data.id
+    that.setData({ 
+        moneyIndex:index,
+        moneyName:name
+    })
+    app.money(that,name,q_id)
+  },
+  search1(e){
+    var name = e.detail.value;
+    that.setData({ 
+        moneyV:name
+    })
+  },
+  cancel(){
+    that.setData({ 
+        Fabulous:false
+    })
+  },
+  onShareAppMessage(res) {
     if (res.from === 'button') {
       var id = res.target.dataset.usid
     }
@@ -198,15 +279,23 @@ Page({
         },
         success: function(res) {
            var from = res.data.data.info
+           if(res.data.flag==1){
+            wx.hideLoading()
+            feedbackApi.showToast({
+              title:"信息已经删除了"
+            })
+          }
+          else{
             if(from.comments.length==0){
-              that.setData({ 
-                activeIndex:0
-              })
-           }else{
-              that.setData({ 
-                activeIndex:1
-              })
-           }
+                that.setData({ 
+                  activeIndex:0
+                })
+            }else{
+                that.setData({ 
+                  activeIndex:1
+                })
+            }
+          }
            var fav = res.data.data.fav
            var followd = res.data.data.follow
            if(fav == 99){

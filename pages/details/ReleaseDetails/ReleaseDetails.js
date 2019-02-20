@@ -71,22 +71,24 @@ Page({
         moneyOne:true
     })
   },
-  // 自选
+  // 自选 
   ok(e){
     var that = this
     var name = that.data.moneyV
-    app.money(that,name)
+    var q_id = that.data.id
+    app.money2(that,name,q_id)
   },
   //固定 
   money(e){
     var that = this
     var index = e.currentTarget.dataset.index
     var name = e.currentTarget.dataset.name
+    var q_id = that.data.id
     that.setData({ 
         moneyIndex:index,
         moneyName:name
     })
-    app.money(that,name)
+    app.money2(that,name,q_id)
   },
   search(e){
     var name = e.detail.value;
@@ -97,11 +99,6 @@ Page({
   cancel(){
     that.setData({ 
         Fabulous:false
-    })
-  },
-  ClockFabulous(){
-    that.setData({ 
-        Fabulous:true
     })
   },
   onShareAppMessage(res) {
@@ -166,12 +163,14 @@ Page({
           "id":id
       },
       success: function(res) {
-        console.log(res)
         var from = res.data.data.info
         if(res.data.flag==1){
           wx.hideLoading()
           feedbackApi.showToast({
             title:"用户不存在"
+          })
+          that.setData({ 
+            activeIndex:1
           })
         }
         else{

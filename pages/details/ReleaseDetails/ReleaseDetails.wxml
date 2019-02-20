@@ -71,8 +71,8 @@
 				</view>
 				<view class="flex-wrp" style="flex-direction:column;">
 					    <view class="nearby-top">
-						    <view class="flex-item">联系电话：{{fromItem.linkphone}}</view>
-						    <view class="flex-item">联系地址：{{fromItem.province}}{{fromItem.area}}{{fromItem.address}}</view>
+						    <view class="flex-item" data-linkphone="{{fromItem.linkphone}}" bindtap="dialphone">联系电话：{{fromItem.linkphone}}</view>
+						    <view class="flex-item">联系地址：{{fromItem.address}}</view>
 					    </view>
 				 </view>
 			</view>
@@ -83,7 +83,7 @@
 				<view class="f-left f333 fontSize30">最新发布</view>
 				<text class="f-right f999" data-id="{{fromItem.id}}" bindtap="all">精确查找 ></text>
 			</view>
-			<view class="Releaselist_list {{activeIndex == 1 ? 'notime' : ''}}">
+			<view class="Releaselist_list {{activeIndex == 1 ? 'list_item2' : ''}}">
 				<view class="nearby-top brbott-boe7e7e7" wx:for="{{recent_post}}" wx:key="index">
 					<view class="clearFix genre_name_top" data-dd="{{item.id}}" bindtap="ckdetails">
 						<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="{{jing}}" alt=""></image>{{item.gen_name}}</view>
@@ -189,12 +189,12 @@
 						<span wx:if="{{followid == false}}" style="color:#fda249">已关注</span>
 						<view class="item1"></view> 
 				    </button>
-				    <view class="item" style="line-height: 59px;" data-linkphone="{{fromItem.linkphone}}" bindtap="ClockFabulous">
+				    <button class="item" style="line-height: 59px;background-color:#fff;" data-ud="9" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 				    	<image class="phone"  src="https://qa-xluob.oss-cn-beijing.aliyuncs.com/Small%20program/icon_ds_nor%402x.png"></image>
 				    	<!-- <image class="phone"  src="https://qa-xluob.oss-cn-beijing.aliyuncs.com/Small%20program/icon_ds_pre%402x.png"></image> -->
 						打赏
 						<view class="item1"></view> 
-			     	</view>
+			     	</button>
 				    <view class="item" style="line-height: 59px;" data-linkphone="{{fromItem.linkphone}}" bindtap="dialphone">
 				    	<image class="phone"  src="{{phone}}"></image>
 						电话联系

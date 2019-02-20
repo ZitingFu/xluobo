@@ -35,9 +35,10 @@ Page({
               title:"您的用户名修改成功了哦~"
           })
           setTimeout(function () {
-            wx.navigateTo({
-              url:'../../UserName/UserName'
-            })
+            that.onUnload()
+              wx.navigateBack({
+                delta: 1
+              })
           },1000);
          }
          else{
@@ -47,6 +48,8 @@ Page({
          }
         }
       })
+  },
+  onUnload: function () {
   },
   onLoad: function (options) {
     that = this

@@ -19,6 +19,21 @@
 	-webkit-line-clamp: 3;
 	overflow: hidden;
 }
+.detailsReward{
+	/*width:39px;*/
+	line-height:33px;
+	height:33px;
+	font-size:14px;
+	border: 1px solid #fda249;
+	color:#fda249;
+	text-align:center;
+	display:inline-block;
+	border-radius:5px; 
+	margin:15px auto;
+	position:relative;
+	padding-left:29px;
+	padding-right:11px;
+}
 /*共同*/
 #map,#details,#Research,#meFollow,#meCollection,#meComment,#Release,#me,#search,#Releaselist,#peoplelist,#ReleaseDetails,#UserName,#phone,#sax,#UserNameTop{
 	width: 100%;
@@ -164,7 +179,7 @@ i{
 }
 .list_item2,.notime,.notime2,.notime3,.notime4,.renotime,.notime5{
 	height:350px;
-	width: 350px;
+	width:350px;
 	margin:0 auto;
 	background-size:50% 50%;
 	background-repeat: no-repeat;
@@ -180,13 +195,15 @@ i{
 	background-image:url(https://img.qa.xluob.com/Small%20program/noreleaseinformation%402x.png);
 }
 .notime2{
-	background-image:url(https://img.qa.xluob.com/Small%20program/img_wupinglun.png);
+	background-size:70% 70%;
+	background-image:url(https://img.qa.xluob.com/Small%20program/xxxx.png);
 }
 .notime3{
 	background-image:url(https://img.qa.xluob.com/Small%20program/img_wushoucang%402x.png);
 }
 .notime4{
-	background-image:url(https://img.qa.xluob.com/Small%20program/img_wuguanzhu.png);
+	background-size:70% 70%;
+	background-image:url(https://img.qa.xluob.com/Small%20program/yyyy.png);
 }
 .renotime{
 	background-image:url(https://img.qa.xluob.com/Small%20program/img_jigou.png);

@@ -28,16 +28,6 @@ Page({
     wx.showLoading({
       title: '正在加载中'
     })
-    if(wx.getStorageSync('_t').length != 0){
-      that.setData({
-        Land:true
-      })
-    }
-    else{
-      that.setData({
-        Land:false
-      })
-    }
     wx.request({
       url:config.melist,
       method:"post",
@@ -47,9 +37,17 @@ Page({
       success:function(res){
         console.log(res)
         if(res.data.flag==1){
+          console.log("1")
+          that.setData({
+            Land:false
+          })
           wx.hideLoading()
         }
         else{
+          console.log("2")
+          that.setData({
+            Land:true
+          })
           var info = res.data.data.info;
           var phone = info.phone
           var showPhone = phone.replace(/^(\d{3})\d{4}(\d+)/,"$1****$2")

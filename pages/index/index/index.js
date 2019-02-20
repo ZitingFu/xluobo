@@ -217,26 +217,6 @@ Page({
           })
       }
     })
-    //附近机构
-    wx.request({
-      url:config.nearbyOutfit,
-      method:"post",
-      data: {
-         "city":wx.getStorageSync('city'),
-         "_t":wx.getStorageSync('_t')
-      },
-      success: function(res) {
-       var list = res.data.data.list
-       var indearry = []
-       for(var a=0;a<list.length;a++){
-          indearry.push(a)
-       }
-         that.setData({ 
-            listItem:list,
-            rightlist:list.length-1
-          })
-      }
-    })
     // 最近
     wx.request({
       url:config.LAtely,
@@ -327,6 +307,27 @@ Page({
             wx.hideLoading()
           }
         })
+        //附近机构
+        wx.request({
+          url:config.nearbyOutfit,
+          method:"post",
+          data: {
+             "city":wx.getStorageSync('city'),
+             "_t":wx.getStorageSync('_t')
+          },
+          success: function(res) {
+            console.log(res)
+           var list = res.data.data.list
+           var indearry = []
+           for(var a=0;a<list.length;a++){
+              indearry.push(a)
+           }
+             that.setData({ 
+                listItem:list,
+                rightlist:list.length-1
+              })
+          }
+        })
     }
     else if(cty.length==false){
        // wx.clearStorage()
@@ -342,7 +343,7 @@ Page({
             const accuracy = res.accuracy
           var myAmapFun = new amapFile.AMapWX({ key: that.data.MapKey});
           myAmapFun.getRegeo({
-            success: function (data) {
+            success: function (data){
               var city = data[0].regeocodeData.addressComponent.adcode
               that.setData({
                 city:city
@@ -394,6 +395,27 @@ Page({
                     })
                   }
                   wx.hideLoading()
+                }
+              })
+              //附近机构
+              wx.request({
+                url:config.nearbyOutfit,
+                method:"post",
+                data: {
+                   "city":wx.getStorageSync('city'),
+                   "_t":wx.getStorageSync('_t')
+                },
+                success: function(res) {
+                  console.log(res)
+                 var list = res.data.data.list
+                 var indearry = []
+                 for(var a=0;a<list.length;a++){
+                    indearry.push(a)
+                 }
+                   that.setData({ 
+                      listItem:list,
+                      rightlist:list.length-1
+                    })
                 }
               })
             }
@@ -493,10 +515,20 @@ Page({
               for (var i = 0; i < res.data.data.list.length; i++) {
                 from.push(res.data.data.list[i]);
               }
+              var d = []
+              var now = res.data.data.now
+              for(var a=0;a<from.length;a++){
+                var create_time = Number(from[a].create_time)
+                var expire = Number(from[a].expire*86400)
+                var end = Number(create_time+expire)
+                var difference = Math.ceil(Number(end-now)/86400)
+                d.push(difference)
+              }
               that.setData({ 
                   fromItem2:from,
                   boolean2:1,
-                  page:page
+                  page:page,
+                  create_time2:d
               })
             }
             wx.hideLoading()

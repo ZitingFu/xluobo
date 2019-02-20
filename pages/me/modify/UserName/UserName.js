@@ -33,8 +33,8 @@ Page({
               title:"您的用户名修改成功了哦~"
           })
           setTimeout(function () {
-            wx.navigateTo({
-              url:'../../UserName/UserName'
+            wx.navigateBack({
+                delta: 1
             })
           },1000);
          }

@@ -1,7 +1,6 @@
 const config = require('config');
 var amapFile = require('utils/amap-wx.js');
-var feedbackApi=require('showToast')
-// const util = require('utils/utils');
+var feedbackApi = require('showToast')
 App({
   data:{
     UserInfo_ud:false,
@@ -307,7 +306,6 @@ App({
           boolean:false,
           open_num:99
       })
-      console.log(code)
       setTimeout(function(){
         if(type_id==''&& sort==''&&code==''){
           wx.request({
@@ -392,10 +390,21 @@ App({
             }
             else{
               var from = that.data.listItem
+              var d = []
+              var now = res.data.data.now
+              for(var a=0;a<from.length;a++){
+                var create_time = Number(from[a].create_time)
+                var expire = Number(from[a].expire*86400)
+                var end = Number(create_time+expire)
+                var difference = Math.ceil(Number(end-now)/86400)
+                d.push(difference)
+                console.log(d)
+              }
               for (var i = 0; i < res.data.data.list.length; i++) {
                   from.push(res.data.data.list[i]);
                 }
                 that.setData({ 
+                    create_time2:d,
                     listItem:from,
                     page:page
                 })
@@ -482,40 +491,146 @@ App({
      }
      else{
         that.setData({
-             open_num:99
-          })
+           open_num:99
+        })
      }
   },
-  money(that,name){
-    // wx.request({
-    //   url:config.reword,
-    //   method:"post",
-    //   data: {
-    //      "_t":wx.getStorageSync('_t')
-    //   },
-    //   success: function(res) {
-    //     console.log(res.data.data)
-    //     wx.requestPayment({
-    //       timeStamp:res.data.data.weixin.timeStamp,
-    //       nonceStr:res.data.data.weixin.nonceStr,
-    //       package:res.data.data.weixin.package,
-    //       signType:res.data.data.weixin.signType,
-    //       paySign:res.data.data.weixin.sign,
-    //       success(res) { 
-    //         console.log("支付成功")
-    //       },
-    //       fail(res){
-    //          console.log("支付失败")
-    //       }
-    //     }) 
-    //   },
-    //   fail: function (err) {
-    //     wx.showToast({
-    //         icon: "none",
-    //         title: '服务器异常，清稍候再试'
-    //     })
-    //   },
-    // })
+  money(that,name,q_id){
+    if(Number(name)<1){
+      feedbackApi.showToast({
+          title:"不能低于1元"
+      })
+    }
+    else{
+      wx.showLoading({
+        title: '正在加载中'
+      })
+      wx.request({
+        url:config.reword,
+        method:"post",
+        data: {
+           "_t":wx.getStorageSync('_t'),
+           "q_id":q_id,
+           "price":name
+        },
+        success: function(res){
+           wx.request({
+              url:config.reword2,
+              method:"post",
+              data: {
+                "_t":wx.getStorageSync('_t'),
+                "pay":2,
+                "id":res.data.data.orderId
+              },
+              success:function(res){
+                wx.hideLoading()
+                wx.requestPayment({
+                  timeStamp:res.data.data.weixin.timeStamp,
+                  nonceStr:res.data.data.weixin.nonceStr,
+                  package:res.data.data.weixin.package,
+                  signType:res.data.data.weixin.signType,
+                  paySign:res.data.data.weixin.sign,
+                  success(res) { 
+                    that.setData({ 
+                        Fabulous:false
+                    })
+                    wx.showToast({
+                      title: '打赏成功',
+                      duration: 1000
+                    })
+                  },
+                  fail(res){
+                    feedbackApi.showToast({
+                        title:"支付失败"
+                    })
+                  }
+                }) 
+              },
+              fail:function(){
+                wx.hideLoading()
+                feedbackApi.showToast({
+                        title:"支付失败"
+                })
+              }
+           })
+        },
+        fail: function (err) {
+           wx.hideLoading()
+          feedbackApi.showToast({
+              title:"支付失败"
+          })    
+        },
+      })
+    }
+  },
+  money2(that,name,q_id){
+    if(Number(name)<1){
+      feedbackApi.showToast({
+          title:"不能低于1元"
+      })
+    }
+    else{
+       wx.showLoading({
+        title: '正在加载中'
+      })
+      wx.request({
+        url:config.reword3,
+        method:"post",
+        data: {
+           "_t":wx.getStorageSync('_t'),
+           "passport_id":q_id,
+           "price":name
+        },
+        success: function(res){
+           wx.request({
+              url:config.reword2,
+              method:"post",
+              data: {
+                "_t":wx.getStorageSync('_t'),
+                "pay":2,
+                "id":res.data.data.orderId
+              },
+              success:function(res){
+                wx.hideLoading()
+                wx.requestPayment({
+                  timeStamp:res.data.data.weixin.timeStamp,
+                  nonceStr:res.data.data.weixin.nonceStr,
+                  package:res.data.data.weixin.package,
+                  signType:res.data.data.weixin.signType,
+                  paySign:res.data.data.weixin.sign,
+                  success(res) { 
+                    that.setData({ 
+                        Fabulous:false
+                    })
+                    wx.showToast({
+                      title: '打赏成功',
+                      duration: 1000
+                    })
+                  },
+                  fail(res){
+                    wx.hideLoading()
+                    feedbackApi.showToast({
+                        title:"支付失败"
+                    })
+                  }
+                }) 
+              },
+              fail:function(){
+                wx.hideLoading()
+                feedbackApi.showToast({
+                        title:"支付失败"
+                })
+              }
+           })
+        },
+        fail: function (err) {
+          wx.hideLoading()
+          feedbackApi.showToast({
+              title:"支付失败"
+          })    
+        },
+      })
+    }
   },
   getUserInfo:function(e,that,app){
     var value = wx.getStorageSync('_t')
@@ -649,7 +764,27 @@ App({
                 title:"取消关注成功"
               })
             }
-             var idd = e.currentTarget.dataset.idd
+            var idd = e.currentTarget.dataset.idd
+            wx.request({
+              url:config.follow,
+              method:"post",
+                data: {
+                    "id":idd,
+                    "_t":app.data._t,
+                    "type":3
+                },
+              success: function(res) {
+              }
+            })
+          }
+          //打赏
+          if(ud==9){
+            that.setData({ 
+              moneyOne:false,
+              moneyT:true,
+              Fabulous:true,
+              moneyIndex:"99"
+            })
             wx.request({
               url:config.follow,
               method:"post",
@@ -664,49 +799,52 @@ App({
           }
         }
         else{
-          // 第一次登陆
-          wx.request({
-            url:config.login,
-            method:"post",
-            data: {
-                "encrypted_data":e.detail.encryptedData,
-                "code":app.data.code,
-                "iv":e.detail.iv
-            },
-            success: function(res) {
-              console.log(res.data.data._t)
-              wx.setStorageSync('_t',res.data.data._t)
-              wx.request({
-                url:config.melist,
-                method:"post",
-                data:{
-                 "_t":wx.getStorageSync('_t')
-                },
-                success:function(res){
-                 var info = res.data.data.info;
-                 if(wx.getStorageSync('_t').length!=0){
-                  feedbackApi.showToast({
-                    title:"登陆成功"
-                  })
-                 }
-                 else{
-                  feedbackApi.showToast({
-                    title:"请登录"
-                  })
-                 }
+          if(e.detail.encryptedData == undefined){
+           console.log("8888")
+          }
+          else{
+            // 第一次登陆
+            wx.request({
+              url:config.login,
+              method:"post",
+              data: {
+                  "encrypted_data":e.detail.encryptedData,
+                  "code":app.data.code,
+                  "iv":e.detail.iv
+              },
+              success: function(res) {
+                wx.setStorageSync('_t',res.data.data._t)
+                wx.request({
+                  url:config.melist,
+                  method:"post",
+                  data:{
+                   "_t":wx.getStorageSync('_t')
+                  },
+                  success:function(res){
+                   var info = res.data.data.info;
+                   if(wx.getStorageSync('_t').length!=0){
+                    feedbackApi.showToast({
+                      title:"登录成功"
+                    })
+                   }
+                   else{
+                    feedbackApi.showToast({
+                      title:"请登录"
+                    })
+                   }
 
-                  that.setData({
-                    info:info
-                  })
-                  wx.hideLoading()
-                }
-              })
-            }
-          })
+                    that.setData({
+                      info:info
+                    })
+                    wx.hideLoading()
+                  }
+                })
+              }
+            })
+          }
         }
   },
   onLaunch: function (options) {
-    // wx.clearStorage()
     var that = this
     //获取省市区域
     wx.request({
@@ -729,7 +867,6 @@ App({
     wx.login({
       success: res => {
          that.data.code = res.code
-        console.log(res.code)
         this.globalData.userInfo = res.userInfo
       }
     })

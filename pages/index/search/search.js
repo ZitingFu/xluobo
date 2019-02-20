@@ -102,16 +102,9 @@ Page({
   cancel:function(){
     var that = this
     var nd = this.data.nd
-    if(nd==1){
-      wx.switchTab ({
-        url:'../../index/index/index'
-      })
-    }
-    else{
-      wx.navigateTo({
-         url: '../../details/ReleaseDetailsAll/ReleaseDetailsAll?id='+nd
-      })
-    }
+    wx.navigateBack({
+        delta: 1
+    })
   },
   search:function(e){
       var that = this

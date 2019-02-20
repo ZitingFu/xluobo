@@ -1,7 +1,33 @@
 <import src="../../../widgets/showToast.wxml" />
 <view class="container log-list">
 	<view id="Releaselist">
-	<template is="showToast" data="{{showToast: showToast}}" />
+		<view wx:if="{{Fabulous}}" class="Elasticframe">
+			<view class="Elasticframetop" >
+				<view class="column columntop">
+					<view class="f-left">打赏</view>
+					<view class="f-right" style="font-size:25px;position:absolute;top:0px;right:18px;" bindtap="cancel">x</view>
+				</view>
+				<!-- 其他金额 -->
+				<view wx:if="{{moneyOne}}" class="box1 hidden">
+					<view class="fixed hidden">
+						<span class="f-left" style="font-size:25px;position:relative;top:11px;width:12%;">￥</span>
+						<view class="f-left"  style="width:63%;">
+						  	<input type="digit" value="{{input}}" bindinput="search1" maxlength="6" style="font-size:32px;height:65px;display:inline;" placeholder="0.00" auto-focus />
+						</view>
+					</view>
+					<view class="Other" style="font-size:15px;width:55px;margin:7px auto 32px auto;" bindtap="fixmoney">固定金额</view>
+				</view>
+				<view  wx:if="{{moneyOne}}" class="topxian"></view>
+				<view  wx:if="{{moneyOne}}" class="Other" bindtap="ok">确定</view>
+				<!-- 固定金额 -->
+				<view class="box1 hidden" wx:if="{{moneyT}}">
+					<span class="item {{moneyIndex==index ? 'active3':''}}" bindtap="money" data-index="{{item.id}}" wx:for="{{money}}" data-name="{{item.money}}"  wx:key>{{item.money}}元</span>
+				</view>
+				<view wx:if="{{moneyT}}" class="Other" bindtap="Othermoney">其他金额</view>
+				<!--  -->
+	    	</view>
+		</view>
+		<template is="showToast" data="{{showToast: showToast}}" />
 		<view class="list_item">
 			<view class="nearby-top brbott-tae7e7e7">
 				<view class="clearFix genre_name_top">
@@ -79,10 +105,10 @@
 					    <view wx:if="{{fromItem.q_remark.length!=0}}" class="flex-item f4f4f4 fontSize14 paddLe28 lin-h32">备   注：{{fromItem.q_remark}}</view>
 					    <view class="nearby-top">
 						    <view class="flex-item">联 系 人：{{fromItem.user_name}}</view>
-						    <view class="flex-item">联系方式：{{fromItem.phone}}</view>
+						    <view class="flex-item" data-linkphone="{{fromItem.phone}}" bindtap="dialphone">联系方式：{{fromItem.phone}}</view>
 						    <view wx:if="{{fromItem.latitude==0}}" class="flex-item" bindtap="mapp">发送位置：未知
 						    </view>
-						    <view wx:else class="flex-item" bindtap="mapp" data-latitude="{{fromItem.latitude}}" data-longitude="{{fromItem.longitude}}">发送位置：{{fromItem.city}}{{fromItem.area}}<image src="{{option1}}" class="option1" alt=""></image>
+						    <view wx:else class="flex-item" bindtap="mapp" data-latitude="{{fromItem.latitude}}" data-longitude="{{fromItem.longitude}}">发布位置：{{fromItem.site_two_name}}<image src="{{option1}}" class="option1" alt=""></image>
 						    </view>
 						    <view class="flex-item">信息编码：{{fromItem.id}}</view>
 					    </view>
@@ -104,12 +130,17 @@
 						<span wx:if="{{followid2 == false}}">已关注</span>
 					</button>
 				</view>
+				<view style="text-align:center;">
+				<button data-ud="9" style="background-color:#fff;" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="detailsReward">
+					<image style="width:13px;height:13px;position:absolute;left:9px;top:10px;" src="https://qa-xluob.oss-cn-beijing.aliyuncs.com/Small%20program/xxxq_icon_dashang%402x.png" alt=""></image>打赏
+				</button>
+				</view>
 	   		</view>
 	   		<view class="Releaselist_comment">
 				<view class="brbott-boe7e7e7 ma-bt fontSize14">评论</view>
 				<view class="Releaselist_item paddBo20" wx:key="index" wx:for="{{fromItem.comments}}" wx:if="{{activeIndex==1}}">
 					<view class="nearby-item clearFix">
-						<view class="f-left bo-f000ff paddLe24 wihe40 ">
+						<view bindtap="ckReleaseDetails" data-usid="{{item.user_id}}" class="f-left bo-f000ff paddLe24 wihe40 ">
 							 <image wx:if="{{item.avatar.b}}" src="{{item.avatar.b}}"></image>
 							 <image wx:else src="{{loge}}"></image>
 						</view>
@@ -128,43 +159,43 @@
 						</view>
 					</view>
 				</view>
-				<view style="text-align:center;padding-top:50px;color:#999;font-size:14px;" wx:if="{{activeIndex==0}}">还没有评论</view>
+				<view style="text-align:center;padding-top:50px;color:#999;font-size:14px;padding-bottom:50px" wx:if="{{activeIndex==0}}">还没有评论</view>
 	   		</view>
 		</view>
-	</view>
-	<!-- 底部 -->
-	<view class="bottom" wx:if="{{bottom==0}}">
-		<view class="box">
-			<view class="column" style="text-align:left;">
-			    <view class="item" style="width:73%;">
-			    	<button class="comment" data-ud="5" bindtap="bindChange" bindgetuserinfo="getUserInfo" open-type="getUserInfo" style="line-height: 27px;text-align:left;font-size:14px;">
-			    		<span style="color:#ddd">写评论</span>
-					</button>
-			    </view>
-			    <view class="item" style="width: 16%;">
-				<button data-ud="4" class="share" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-			    	<image wx:if="{{followid == true}}" class="wihe18 sc" src="{{sc}}"></image>
-			    	<image wx:if="{{followid == false}}" class="wihe18 sc" src="{{sx}}"></image>
-		    	</button>
-			    	<button class="share fx wihe18" bindgetuserinfo="getUserInfo" open-type='share' data-usid="{{id}}">
-			    		<image style="width:88%;height: 88%" class=" " src="{{fx}}"></image>
+		<!-- 底部 -->
+		<view class="bottom" wx:if="{{bottom==0}}">
+			<view class="box">
+				<view class="column" style="text-align:left;">
+				    <view class="item" style="width:73%;">
+				    	<button class="comment" data-ud="5" bindtap="bindChange" bindgetuserinfo="getUserInfo" open-type="getUserInfo" style="line-height: 27px;text-align:left;font-size:14px;">
+				    		<span style="color:#ddd">写评论</span>
+						</button>
+				    </view>
+				    <view class="item" style="width: 16%;">
+					<button data-ud="4" class="share" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+				    	<image wx:if="{{followid == true}}" class="wihe18 sc" src="{{sc}}"></image>
+				    	<image wx:if="{{followid == false}}" class="wihe18 sc" src="{{sx}}"></image>
 			    	</button>
-		     	</view>
-		    </view>
-    	</view>
-	</view>
-	<view wx:if="{{bottom==1}}" class="bottom">
-		<view class="box">
-			<view class="column" style="text-align:left;">
-			    <view class="item" style="width: 75%;">
-			    	<view class="comment" style="line-height: 27px;">
-					  	<input cursor-spacing="20" class=""  bindinput="sear" name="{{input}}" bindconfirm="search" bindblur="blur" placeholder="" auto-focus/>
-					</view>
+				    	<button class="share fx wihe18" bindgetuserinfo="getUserInfo" open-type='share' data-usid="{{id}}">
+				    		<image style="width:88%;height: 88%" class=" " src="{{fx}}"></image>
+				    	</button>
+			     	</view>
 			    </view>
-			    <view class="item">
-			    	<button class="sub" bindtap="sub">发布</button>
-		     	</view>
-		    </view>
-    	</view>
+	    	</view>
+		</view>
+		<view wx:if="{{bottom==1}}" class="bottom">
+			<view class="box">
+				<view class="column" style="text-align:left;">
+				    <view class="item" style="width: 75%;">
+				    	<view class="comment" style="line-height: 27px;">
+						  	<input cursor-spacing="20" class=""  bindinput="sear" name="{{input}}" bindconfirm="search" bindblur="blur" placeholder="" auto-focus/>
+						</view>
+				    </view>
+				    <view class="item">
+				    	<button class="sub" bindtap="sub">发布</button>
+			     	</view>
+			    </view>
+	    	</view>
+		</view>
 	</view>
 </view>

@@ -27,8 +27,8 @@ Page({
     boolean:false,
     boolean1:false,
     boolean3:false,
-    currentTab:1,
-    number:'',
+    currentTab:0,
+    number:2,
     open_num:8,
     index: 0,
     citynamelist:"",
@@ -357,9 +357,11 @@ Page({
       url:config.ReleaseList,
       method:"post",
       data: {
-         "code":wx.getStorageSync('city')
+         // "code":wx.getStorageSync('city')
+         "code":610113
       },
       success: function(res) {
+        console.log(res)
        var list = res.data.data.list
         that.setData({ 
           listItem:list,

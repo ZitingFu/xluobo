@@ -7,8 +7,12 @@ var config = {
     host,
     //登陆
     login:host+'/mini/passport/auth',
+    // 详情支付
+    reword:host+'/mini/pay/submit', 
     // 支付
-    reword:host+'/mini/pay/reword', 
+    reword2:host+'/mini/pay/pay', 
+    // 机构支付
+    reword3:host+'/mini/pay/passport', 
     //省
     province:host+'/mini/area/list',
     // 轮播

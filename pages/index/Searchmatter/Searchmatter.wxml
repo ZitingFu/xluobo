@@ -60,7 +60,7 @@
 						 	<view class="list_item brbott-boe7e7e7">
 								<view class="nearby-top">
 									<view class="clearFix genre_name_top" bindtap="ckdetails" data-usid="{{item.id}}">
-										<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="https://img.qa.xluob.com/Small%20program/1.png" alt=""></image>{{item.genre_name}}</view>
+										<view class="f-left f333 fontSize30 genre_name"><image class="jing" src="https://img.qa.xluob.com/Small%20program/1.png" alt=""></image>{{item.gen_name}}</view>
 										<text wx:if="{{create_time2[index]>0 && item.status!=11}}" class="f-right f999">{{item.time}}-剩余{{create_time2[index]}}天</text>
 										<text wx:else class="f-right f999">{{item.time}}</text>
 									</view>

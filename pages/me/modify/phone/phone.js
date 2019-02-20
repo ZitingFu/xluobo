@@ -38,8 +38,8 @@ Page({
               title:"修改成功"
           })
           setTimeout(function () {
-            wx.navigateTo({
-              url:'../../UserName/UserName'
+            wx.navigateBack({
+                delta: 1
             })
           },1000);
         }
