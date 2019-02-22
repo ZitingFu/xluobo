@@ -398,7 +398,6 @@ App({
                 var end = Number(create_time+expire)
                 var difference = Math.ceil(Number(end-now)/86400)
                 d.push(difference)
-                console.log(d)
               }
               for (var i = 0; i < res.data.data.list.length; i++) {
                   from.push(res.data.data.list[i]);
@@ -635,214 +634,185 @@ App({
   getUserInfo:function(e,that,app){
     var value = wx.getStorageSync('_t')
     var ud = e.currentTarget.dataset.ud
-        if(value.length != 0){
-          app.data._t = value
-          //个人页
-          if(ud==0){
-              wx.navigateTo({
-                url:'../UserName/UserName'
-              })
-          }
-          // 评论
-          if(ud==1){
-            wx.navigateTo({
-               url:'../meComment/meComment'
-            })
-          }
-          // 关注
-          if(ud==2){
-            wx.navigateTo({
-               url:'../meFollow/meFollow'
-            })
-          }
-          //我的收藏
-          if(ud==3){
-            wx.navigateTo({
-              url:'../meCollection/meCollection'
-            })
-          }
-          //详情收藏
-          if(ud==4){
-            that.setData({
-              followid:!that.data.followid
-            })
-            if(that.data.followid==false){
-              feedbackApi.showToast({
-                title:"收藏成功"
-              })
-            }
-            if(that.data.followid==true){
-              feedbackApi.showToast({
-                title:"取消收藏成功"
-              })
-            }
-            wx.request({
-                url:config.follow,
-                method:"post",
-                data: {
-                    "id":that.data.id,
-                    "_t":app.data._t,
-                    "type":1
-                },
-                success: function(res) {
-                }
-            })
-          }
-          //详情评论
-          if(ud==5){
-            that.setData({ 
-                bottom:1
-            })
-          }
-          //机构详情关注
-          if(ud==6){
-            that.setData({
-              followid:!that.data.followid
-            })
-            if(that.data.followid==false){
-              feedbackApi.showToast({
-                title:"关注成功"
-              })
-            }
-            if(that.data.followid==true){
-              feedbackApi.showToast({
-                title:"取消关注成功"
-              })
-            }
-            wx.request({
-              url:config.follow,
-              method:"post",
-                data: {
-                    "id":that.data.id,
-                    "_t":app.data._t,
-                    "type":3
-                },
-              success: function(res) {
-              }
-            })
-          }
-          //详情点赞
-          if(ud==7){
-            var q_id =  e.currentTarget.dataset.q_id
-            wx.request({
-                url:config.Fabulous,
-                method:"post",
-                data: {
-                    "id":q_id,
-                     "_t":wx.getStorageSync('_t')
-                },
-                success: function(res) {
-                  var from = res.data.data.list
-                  wx.request({
-                      url:config.questioninfo,
-                      method:"post",
-                      data: {
-                          "id":that.data.id,
-                           "_t":wx.getStorageSync('_t')
-                      },
-                      success: function(res) {
-                       that.setData({ 
-                            fromItem:res.data.data.info
-                        })
-                      }
-                  })
-                } 
-            })
-          }
-          // 详情关注
-          if(ud==8){
-            that.setData({
-              followid2:!that.data.followid2
-            })
-            if(that.data.followid2==false){
-              feedbackApi.showToast({
-                title:"关注成功"
-              })
-            }
-            if(that.data.followid2==true){
-              feedbackApi.showToast({
-                title:"取消关注成功"
-              })
-            }
-            var idd = e.currentTarget.dataset.idd
-            wx.request({
-              url:config.follow,
-              method:"post",
-                data: {
-                    "id":idd,
-                    "_t":app.data._t,
-                    "type":3
-                },
-              success: function(res) {
-              }
-            })
-          }
-          //打赏
-          if(ud==9){
-            that.setData({ 
-              moneyOne:false,
-              moneyT:true,
-              Fabulous:true,
-              moneyIndex:"99"
-            })
-            wx.request({
-              url:config.follow,
-              method:"post",
-                data: {
-                    "id":idd,
-                    "_t":app.data._t,
-                    "type":3
-                },
-              success: function(res) {
-              }
-            })
-          }
+    if(value.length != 0){
+      app.data._t = value
+      //个人页
+      if(ud==0){
+          wx.navigateTo({
+            url:'../UserName/UserName'
+          })
+      }
+      // 评论
+      if(ud==1){
+        wx.navigateTo({
+           url:'../meComment/meComment'
+        })
+      }
+      // 关注
+      if(ud==2){
+        wx.navigateTo({
+           url:'../meFollow/meFollow'
+        })
+      }
+      //我的收藏
+      if(ud==3){
+        wx.navigateTo({
+          url:'../meCollection/meCollection'
+        })
+      }
+      //详情收藏
+      if(ud==4){
+        that.setData({
+          followid:!that.data.followid
+        })
+        if(that.data.followid==false){
+          feedbackApi.showToast({
+            title:"收藏成功"
+          })
         }
-        else{
-          if(e.detail.encryptedData == undefined){
-           console.log("8888")
+        if(that.data.followid==true){
+          feedbackApi.showToast({
+            title:"取消收藏成功"
+          })
+        }
+        wx.request({
+            url:config.follow,
+            method:"post",
+            data: {
+                "id":that.data.id,
+                "_t":wx.getStorageSync('_t'),
+                "type":1
+            },
+            success: function(res) {
+            }
+        })
+      }
+      //详情评论
+      if(ud==5){
+        that.setData({ 
+            bottom:1
+        })
+      }
+      //机构详情关注
+      if(ud==6){
+        that.setData({
+          followid:!that.data.followid
+        })
+        if(that.data.followid==false){
+          feedbackApi.showToast({
+            title:"关注成功"
+          })
+        }
+        if(that.data.followid==true){
+          feedbackApi.showToast({
+            title:"取消关注成功"
+          })
+        }
+        wx.request({
+          url:config.follow,
+          method:"post",
+            data: {
+                "id":that.data.id,
+                "_t":wx.getStorageSync('_t'),
+                "type":3
+            },
+          success: function(res) {
           }
-          else{
-            // 第一次登陆
-            wx.request({
-              url:config.login,
-              method:"post",
-              data: {
-                  "encrypted_data":e.detail.encryptedData,
-                  "code":app.data.code,
-                  "iv":e.detail.iv
-              },
-              success: function(res) {
-                wx.setStorageSync('_t',res.data.data._t)
-                wx.request({
-                  url:config.melist,
+        })
+      }
+      //详情点赞
+      if(ud==7){
+        var q_id =  e.currentTarget.dataset.q_id
+        wx.request({
+            url:config.Fabulous,
+            method:"post",
+            data: {
+                "id":q_id,
+                 "_t":wx.getStorageSync('_t')
+            },
+            success: function(res) {
+              var from = res.data.data.list
+              wx.request({
+                  url:config.questioninfo,
                   method:"post",
-                  data:{
-                   "_t":wx.getStorageSync('_t')
+                  data: {
+                      "id":that.data.id,
+                       "_t":wx.getStorageSync('_t')
                   },
-                  success:function(res){
-                   var info = res.data.data.info;
-                   if(wx.getStorageSync('_t').length!=0){
-                    feedbackApi.showToast({
-                      title:"登录成功"
+                  success: function(res) {
+                   that.setData({ 
+                        fromItem:res.data.data.info
                     })
-                   }
-                   else{
-                    feedbackApi.showToast({
-                      title:"请登录"
-                    })
-                   }
-
-                    that.setData({
-                      info:info
-                    })
-                    wx.hideLoading()
                   }
-                })
-              }
-            })
-          }
+              })
+            } 
+        })
+      }
+      // 详情关注
+      if(ud==8){
+        that.setData({
+          followid2:!that.data.followid2
+        })
+        if(that.data.followid2==false){
+          feedbackApi.showToast({
+            title:"关注成功"
+          })
         }
+        if(that.data.followid2==true){
+          feedbackApi.showToast({
+            title:"取消关注成功"
+          })
+        }
+        var idd = e.currentTarget.dataset.idd
+        wx.request({
+          url:config.follow,
+          method:"post",
+            data: {
+                "id":idd,
+                "_t":wx.getStorageSync('_t'),
+                "type":3
+            },
+          success: function(res) {
+          }
+        })
+      }
+      //打赏
+      if(ud==9){
+        that.setData({ 
+          moneyOne:false,
+          moneyT:true,
+          Fabulous:true,
+          moneyIndex:"99"
+        })
+      }
+    }
+    else{
+      // 第一次登陆
+      wx.request({
+        url:config.login,
+        method:"post",
+        data: {
+            "encrypted_data":e.detail.encryptedData,
+            "code":app.data.code,
+            "iv":e.detail.iv
+        },
+        success: function(res) {
+          wx.setStorageSync('_t',res.data.data._t)
+           if(wx.getStorageSync('_t').length!=0){
+             wx.hideLoading()
+            feedbackApi.showToast({
+              title:"登录成功"
+            })
+           }
+           else{
+            wx.hideLoading()
+            feedbackApi.showToast({
+              title:"请登录"
+            })
+           }
+        }
+      })
+    }
   },
   onLaunch: function (options) {
     var that = this
@@ -866,7 +836,7 @@ App({
     // 登录
     wx.login({
       success: res => {
-         that.data.code = res.code
+        that.data.code = res.code
         this.globalData.userInfo = res.userInfo
       }
     })
@@ -874,7 +844,7 @@ App({
   bindGetUserInfo(e) {
     console.log(e.detail.userInfo)
   },
-  globalData: { 
+  globalData:{ 
     userInfo: null
   }
 })

@@ -23,43 +23,59 @@ Page({
       url:'../modify/phone/phone'
     })
   },
-  onLoad: function (options) {
+  onShow: function (options) {
     that = this
-    wx.showLoading({
-      title: '正在加载中'
-    })
-    wx.request({
-      url:config.melist,
-      method:"post",
-      data:{
-       "_t":wx.getStorageSync('_t')
-      },
-      success:function(res){
-        console.log(res)
-        if(res.data.flag==1){
-          console.log("1")
-          that.setData({
-            Land:false
-          })
-          wx.hideLoading()
-        }
-        else{
-          console.log("2")
-          that.setData({
-            Land:true
-          })
+    if(wx.getStorageSync('_t').length!=0){
+      wx.request({
+        url:config.melist,
+        method:"post",
+        data:{
+         "_t":wx.getStorageSync('_t')
+        },
+        success:function(res){
           var info = res.data.data.info;
           var phone = info.phone
           var showPhone = phone.replace(/^(\d{3})\d{4}(\d+)/,"$1****$2")
-          wx.hideLoading()
+          that.setData({
+            info:info,
+            showPhone:showPhone,
+            Land:true
+          })
         }
-        that.setData({
-          info:info,
-          showPhone:showPhone
-        })
-        wx.hideLoading()
-      }
-    })
+      })
+    }
+    else{
+      that.setData({
+        Land:false
+      })
+    }
+  },
+  onLoad:function(){
+    that = this
+    if(wx.getStorageSync('_t').length!=0){
+      wx.request({
+        url:config.melist,
+        method:"post",
+        data:{
+         "_t":wx.getStorageSync('_t')
+        },
+        success:function(res){
+          var info = res.data.data.info;
+          var phone = info.phone
+          var showPhone = phone.replace(/^(\d{3})\d{4}(\d+)/,"$1****$2")
+          that.setData({
+            info:info,
+            showPhone:showPhone,
+            Land:true
+          })
+        }
+      })
+    }
+    else{
+      that.setData({
+        Land:false
+      })
+    }
   },
   getUserInfo: function(e) {
     that = this

@@ -35,7 +35,7 @@
 					<text class="f-right f999">{{fromItem.time}}</text>
 				</view>
 				<span>{{item.status}}</span>
-				<text class="clearFix" style="width: 100%;">{{fromItem.content}}</text>
+				<text class="clearFix" style="width: 100%;font-size:15px;">{{fromItem.content}}</text>
 				<view class="list-imgbox">
 					<view wx:if="{{fromItem.question_status!= 11}}" class="SixImg clearFix">
 						<!-- 图片为6张 -->
@@ -132,7 +132,7 @@
 				</view>
 				<view style="text-align:center;">
 				<button data-ud="9" style="background-color:#fff;" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="detailsReward">
-					<image style="width:13px;height:13px;position:absolute;left:9px;top:10px;" src="https://qa-xluob.oss-cn-beijing.aliyuncs.com/Small%20program/xxxq_icon_dashang%402x.png" alt=""></image>打赏
+					<image style="width:13px;height:13px;position:absolute;left:9px;top:10px;" src="https://img.qa.xluob.com/Small%20program/xxxq_icon_dashang%402x.png" alt=""></image>打赏
 				</button>
 				</view>
 	   		</view>
@@ -155,7 +155,7 @@
 					</view>
 					<view class="nearby-item clearFix brbott-boe7e7e7">
 						<view class="f-right wi82 paddBo20 paddLe24">
-							<view class="fontSize30 .ma-bo4 ">{{item.content}}</view>
+							<view class="fontSize30 .ma-bo4">{{item.content}}</view>
 						</view>
 					</view>
 				</view>
@@ -177,7 +177,7 @@
 				    	<image wx:if="{{followid == false}}" class="wihe18 sc" src="{{sx}}"></image>
 			    	</button>
 				    	<button class="share fx wihe18" bindgetuserinfo="getUserInfo" open-type='share' data-usid="{{id}}">
-				    		<image style="width:88%;height: 88%" class=" " src="{{fx}}"></image>
+				    		<image style="width:82%;height:88%;" src="{{fx}}"></image>
 				    	</button>
 			     	</view>
 			    </view>

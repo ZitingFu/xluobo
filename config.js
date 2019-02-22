@@ -9,10 +9,10 @@ var config = {
     login:host+'/mini/passport/auth',
     // 详情支付
     reword:host+'/mini/pay/submit', 
-    // 支付
-    reword2:host+'/mini/pay/pay', 
     // 机构支付
     reword3:host+'/mini/pay/passport', 
+    // 支付
+    reword2:host+'/mini/pay/pay', 
     //省
     province:host+'/mini/area/list',
     // 轮播
@@ -53,18 +53,17 @@ var config = {
     questioninfo:host+'/mini/question/info',
     //赞
     Fabulous:host+'/mini/question/EditLike',
-    // 关注
+    //关注
     follow:host+'/mini/favorite/fav',
-    // 评论
+    //评论
     commentsCreate:host+'/mini/comments/create',
     //删除评论
     commentsDelete:host+'/mini/comments/delete',
     //机构详情页
     codephone:host+'/mini/phone/code',
-    // 机构起止,截止
+    //机构起止,截止
     organizationQuestion:host+'/mini/organization/question',
-    // 图片上传
+    //图片上传
     image:host+'/mini/upload/img'
 };
-
 module.exports = config

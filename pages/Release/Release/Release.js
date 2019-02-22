@@ -321,14 +321,13 @@ Page({
          wx.hideLoading()
       },1000)
   },
-  onLoad: function (options) {
+  onLoad:function (options) {
     wx.showLoading({
       title: '正在加载...',
     })
     var that = this
     var city = that.setData.city
     var page = Number(that.data.page)
-    // setTimeout(function(){
     var citynamelist =  app.data.citynamelist
     var citycode = app.data.citycode
     var city = app.data.city
@@ -357,11 +356,9 @@ Page({
       url:config.ReleaseList,
       method:"post",
       data: {
-         // "code":wx.getStorageSync('city')
-         "code":610113
+         "code":wx.getStorageSync('city')
       },
       success: function(res) {
-        console.log(res)
        var list = res.data.data.list
         that.setData({ 
           listItem:list,

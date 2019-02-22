@@ -176,17 +176,8 @@ Page({
       })
     }
   },
-  onLoad: function (options) {
-    wx.showLoading({
-        title: '正在加载...',
-    })
+  onShow: function (options) {
     that = this
-     if (options.id) {
-        var id = options.id
-        wx.navigateTo({
-          url: '../../details/details/details?id='+id
-        })
-    }
     var city = that.data.city
     var page = Number(that.data.page)
     //之前
@@ -194,14 +185,6 @@ Page({
     that.setData({  
       init:that.data.activeIndex
     })
-    wx.getSystemInfo({
-      success: function(res) {
-        that.setData({
-            sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-            sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
-        });
-      }
-    });
     //一级分类
     wx.request({
       url:config.Firstclassify,
@@ -217,7 +200,7 @@ Page({
           })
       }
     })
-    // 最近
+    // 最新
     wx.request({
       url:config.LAtely,
       method:"post",
@@ -253,14 +236,104 @@ Page({
         }
       }
     })
+  },
+  onLoad: function (options){
+    if (options.id) {
+        var id = options.id
+        wx.navigateTo({
+          url: '../../details/details/details?id='+id
+        })
+    }
+    that = this
+    var city = that.data.city
+    var page = Number(that.data.page)
+    //之前
+    var init =  that.data.activeIndex
+    that.setData({  
+      init:that.data.activeIndex
+    })
+    wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+            sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+            sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+        });
+      }
+    });
+    //一级分类
+    wx.request({
+      url:config.Firstclassify,
+      method:"post",
+      data: {
+        "id":0,
+        "_t":wx.getStorageSync('_t')
+      },
+      success: function(res) {
+       var genre = res.data.data.genre
+         that.setData({ 
+            genreImages:genre
+          })
+      }
+    })
+    // 最新
+    wx.request({
+      url:config.LAtely,
+      method:"post",
+      data: {
+          "pn":1,
+          "area":city,
+           "_t":wx.getStorageSync('_t')
+      },
+      success: function(res) {
+        var from = res.data.data.list
+        if(from.length==0){
+            that.setData({ 
+              boolean2:0
+            })
+        }
+        else{
+        // 倒计时 = 发布时间+天数-现在的时间
+        // 现在时间
+        var d = []
+        var now = res.data.data.now
+        for(var a=0;a<from.length;a++){
+          var create_time = Number(from[a].create_time)
+          var expire = Number(from[a].expire*86400)
+          var end = Number(create_time+expire)
+          var difference = Math.ceil(Number(end-now)/86400)
+          d.push(difference)
+        }
+          that.setData({ 
+              create_time2:d,
+              fromItem2:from,
+              boolean2:1
+          })
+        }
+      }
+    })
+    //附近机构
+    wx.request({
+      url:config.nearbyOutfit,
+      method:"post",
+      data: {
+         "city":''
+      },
+      success: function(res) {
+       var list = res.data.data.list
+       var indearry = []
+       for(var a=0;a<list.length;a++){
+          indearry.push(a)
+       }
+         that.setData({ 
+            listItem:list,
+            rightlist:list.length-1
+          })
+      }
+    })
     var cty = wx.getStorageSync('city')
     if(cty.length>1){
-      // wx.clearStorage()
-      wx.showLoading({
-        title: '正在加载...',
-      })
       //轮播图*  
-        wx.request({
+      wx.request({
           url:config.Rotation,
           method:"post",
           data: {
@@ -272,9 +345,9 @@ Page({
                 bannerImages:banner
             })
           }
-        })
-        // 附近*
-        wx.request({
+      })
+      // 附近*
+      wx.request({
           url:config.nearby,
           method:"post",
           data: {
@@ -306,9 +379,9 @@ Page({
             }
             wx.hideLoading()
           }
-        })
-        //附近机构
-        wx.request({
+      })
+      //附近机构
+      wx.request({
           url:config.nearbyOutfit,
           method:"post",
           data: {
@@ -316,7 +389,6 @@ Page({
              "_t":wx.getStorageSync('_t')
           },
           success: function(res) {
-            console.log(res)
            var list = res.data.data.list
            var indearry = []
            for(var a=0;a<list.length;a++){
@@ -327,10 +399,9 @@ Page({
                 rightlist:list.length-1
               })
           }
-        })
+      })
     }
     else if(cty.length==false){
-       // wx.clearStorage()
       wx.showLoading({
         title: '正在加载...',
       })
@@ -402,11 +473,9 @@ Page({
                 url:config.nearbyOutfit,
                 method:"post",
                 data: {
-                   "city":wx.getStorageSync('city'),
-                   "_t":wx.getStorageSync('_t')
+                   "city":wx.getStorageSync('city')
                 },
                 success: function(res) {
-                  console.log(res)
                  var list = res.data.data.list
                  var indearry = []
                  for(var a=0;a<list.length;a++){
@@ -456,7 +525,7 @@ Page({
           method:"post",
           data: {
               "pn":page,
-              "area":city
+              "area":wx.getStorageSync('city')
           },
           success: function(res) {
             var from = that.data.fromItem1
@@ -535,7 +604,7 @@ Page({
           }
         })
       }  
-    },1500)
+    },800)
   },
   onPullDownRefresh: function(){
     that = this;
@@ -543,9 +612,10 @@ Page({
         title: '正在加载...',
     })
     setTimeout(function() {
+      that.onShow()
       wx.hideLoading()
       wx.stopPullDownRefresh();
-    },1000);
+    }, 1000);
   }
   // getUserInfo:function(e) {
   //     that = this

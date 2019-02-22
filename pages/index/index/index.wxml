@@ -52,7 +52,7 @@
 						 <image wx:else src="{{loge}}" style="border:1rpx solid #f8f8f9;"></image>
 					</view>
 					<view data-indexnum="{{rightlist}}" class="f-right wi82 paddBo20 {{rightlist == index?'rightlist2':'rightlist'}}">
-						<view class="fontSize30 .ma-bo7">{{item.name}}</view>
+						<view class="fontSize30 .ma-bo7">{{item.org_name}}</view>
 						<view class="f999">发布数{{item.publish}}<i class="dian"></i>已找到{{item.founded}}<i class="dian"></i>爱心值{{item.love}}</view>
 					</view>
 				</view>

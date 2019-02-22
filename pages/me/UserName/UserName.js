@@ -118,7 +118,6 @@ Page({
       },
       success:function(res){
       var info = res.data.data.info;
-      console.log(res)
       if(res.data.data.info.name==''){
         var name = '未设置'
       }

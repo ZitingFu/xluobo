@@ -182,20 +182,19 @@
 		<view class="bottom" id="bottom1">
 			<view class="box">
 				<view class="column">
-				    <button class="item" style="font-size:16px;line-height:59px;background-color:#fff;" data-ud="6" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+				    <button class="item" style="font-size:14px;line-height:59px;background-color:#fff;" data-ud="6" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
 				    	<image wx:if="{{followid == false}}" class="love" style="width:15px;height:15px;top:2px;"  src="https://img.qa.xluob.com/Small%20program/jgxq_icon_guanzhu.png"></image>
 				    	<image wx:if="{{followid == true}}"  class="love" src="https://img.qa.xluob.com/Small%20program/love.jpg"></image>
 				    	<span wx:if="{{followid == true}}">关注</span>
 						<span wx:if="{{followid == false}}" style="color:#fda249">已关注</span>
 						<view class="item1"></view> 
 				    </button>
-				    <button class="item" style="line-height: 59px;background-color:#fff;" data-ud="9" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-				    	<image class="phone"  src="https://qa-xluob.oss-cn-beijing.aliyuncs.com/Small%20program/icon_ds_nor%402x.png"></image>
-				    	<!-- <image class="phone"  src="https://qa-xluob.oss-cn-beijing.aliyuncs.com/Small%20program/icon_ds_pre%402x.png"></image> -->
+				    <button class="item" style="line-height: 59px;background-color:#fff;font-size:14px;" data-ud="9" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+				    	<image class="phone"  src="https://img.qa.xluob.com/Small%20program/icon_ds_nor%402x.png"></image>
 						打赏
 						<view class="item1"></view> 
 			     	</button>
-				    <view class="item" style="line-height: 59px;" data-linkphone="{{fromItem.linkphone}}" bindtap="dialphone">
+				    <view class="item" style="line-height: 59px;font-size:14px;" data-linkphone="{{fromItem.linkphone}}" bindtap="dialphone">
 				    	<image class="phone"  src="{{phone}}"></image>
 						电话联系
 			     	</view>
